@@ -52,13 +52,13 @@
         html { scroll-behavior: smooth; }
         body { -webkit-font-smoothing: antialiased; }
         
-        .tag { @apply inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider uppercase border border-g200 text-g500 bg-white; }
-        .tag .dot { @apply w-1.5 h-1.5 rounded-full bg-brand; }
-        
-        .title-h2 { @apply font-heading text-4xl lg:text-[45px] font-bold text-brand leading-[1.1] tracking-tight mb-4; }
-        .subtitle { @apply text-base text-g500 max-w-[520px] leading-relaxed; }
-        
-        .btn-brand { @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-300 ease-brand-ease; }
+        .tag { @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wider uppercase border border-g200 text-g500 bg-white; }
+        .tag .dot { @apply w-2 h-2 rounded-full bg-brand; }
+
+        .title-h2 { @apply font-heading text-4xl lg:text-[52px] font-bold text-brand leading-[1.1] tracking-tight mb-5; }
+        .subtitle { @apply text-lg text-g500 max-w-[600px] leading-relaxed; }
+
+        .btn-brand { @apply inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-semibold text-[15px] transition-all duration-300 ease-brand-ease; }
         .btn-brand-dark { @apply bg-brand text-white hover:bg-g800 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10; }
         .btn-brand-ghost { @apply bg-transparent text-brand border-[1.5px] border-g300 hover:border-brand hover:bg-g50; }
         .btn-brand-white { @apply bg-white text-brand hover:bg-g100; }
@@ -99,19 +99,19 @@
 
 <!-- NAVIGATION -->
 <nav class="glass-nav transition-all duration-300" id="navbar">
-<div class="container mx-auto px-6 max-w-7xl">
-<div class="flex items-center justify-between h-16">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="flex items-center justify-between h-20">
 <a class="flex items-center gap-2.5 group" href="#accueil">
 <div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
 <div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
 </a>
 <ul class="hidden lg:flex items-center gap-8 list-none">
-<li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors" href="#accueil">Accueil</a></li>
-<li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors" href="#services">Services</a></li>
-<li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors" href="#simulateur">Simulateur</a></li>
-<li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors" href="#suivi">Suivi</a></li>
-<li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors" href="#formation">Formation</a></li>
-<li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors" href="#apropos">À propos</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#accueil">Accueil</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#services">Services</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#simulateur">Simulateur</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#suivi">Suivi</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#formation">Formation</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#apropos">À propos</a></li>
 <li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors mr-2" href="#contact">Contact</a></li>
 <li><a class="btn-brand btn-brand-dark px-5 py-2 text-[13px]" href="#devis">Devis gratuit</a></li>
 </ul>
@@ -138,14 +138,14 @@
 
 <!-- HERO SECTION -->
 <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white overflow-hidden" id="accueil">
-<div class="container mx-auto px-6 max-w-7xl">
+<div class="container mx-auto px-6 max-w-[1440px]">
 <div class="grid lg:grid-cols-2 gap-16 items-center">
 <div class="relative z-10">
 <div class="tag mb-6"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Port Autonome de Cotonou</div>
-<h1 class="font-heading text-5xl lg:text-[72px] font-bold leading-[1.05] tracking-tight text-brand mb-6">
+<h1 class="font-heading text-5xl lg:text-[82px] font-bold leading-[1.05] tracking-tight text-brand mb-8">
 Transit douanier<br/><span class="text-g400 font-medium italic">simplifié de A à Z</span>
 </h1>
-<p class="text-lg lg:text-xl text-g500 leading-relaxed max-w-[480px] mb-10">
+<p class="text-xl lg:text-2xl text-g500 leading-relaxed max-w-[560px] mb-12">
 Dédouanement, importation de véhicules, logistique portuaire. Nous accompagnons les PME et importateurs avec une transparence totale.
 </p>
 <div class="flex flex-col sm:flex-row gap-4 mb-16">
@@ -225,7 +225,7 @@ Dédouanement, importation de véhicules, logistique portuaire. Nous accompagnon
 
 <!-- SERVICES SECTION -->
 <section class="py-24 bg-g50" id="services">
-<div class="container mx-auto px-6 max-w-7xl">
+<div class="container mx-auto px-6 max-w-[1440px]">
 <div class="text-center mb-16">
 <div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Nos services</div>
 <h2 class="title-h2">Expertise complète du commerce extérieur</h2>
@@ -286,7 +286,7 @@ Dédouanement, importation de véhicules, logistique portuaire. Nous accompagnon
 
 <!-- SIMULATOR SECTION -->
 <section class="py-24 bg-white" id="simulateur">
-<div class="container mx-auto px-6 max-w-7xl">
+<div class="container mx-auto px-6 max-w-[1440px]">
 <div class="mb-12">
 <div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Simulateur</div>
 <h2 class="title-h2">Estimez vos droits de douane</h2>
@@ -376,7 +376,7 @@ Calculer l'estimation <span class="material-symbols-outlined !text-sm">calculate
 
 <!-- TRACKING SECTION -->
 <section class="py-24 bg-g50" id="suivi">
-<div class="container mx-auto px-6 max-w-3xl">
+<div class="container mx-auto px-6 max-w-4xl">
 <div class="text-center mb-12">
 <div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Suivi en temps réel</div>
 <h2 class="title-h2">Suivez votre dossier</h2>
@@ -408,7 +408,7 @@ Calculer l'estimation <span class="material-symbols-outlined !text-sm">calculate
 
 <!-- WHY US SECTION -->
 <section class="py-24 bg-brand text-white overflow-hidden">
-<div class="container mx-auto px-6 max-w-7xl">
+<div class="container mx-auto px-6 max-w-[1440px]">
 <div class="text-center mb-16">
 <div class="tag !bg-white/5 !border-white/15 !text-white/50 mb-4"><div class="w-1.5 h-1.5 rounded-full bg-white"></div>Pourquoi nous</div>
 <h2 class="title-h2 !text-white">L'excellence logistique, la clarté en plus</h2>
@@ -441,7 +441,7 @@ Calculer l'estimation <span class="material-symbols-outlined !text-sm">calculate
 
 <!-- DEVIS SECTION -->
 <section class="py-24 bg-white" id="devis">
-<div class="container mx-auto px-6 max-w-7xl">
+<div class="container mx-auto px-6 max-w-[1440px]">
 <div class="mb-12">
 <div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Devis gratuit</div>
 <h2 class="title-h2">Une proposition sur mesure</h2>
@@ -542,7 +542,7 @@ Offre gratuite et sans engagement
 
 <!-- FORMATION SECTION -->
 <section class="py-24 bg-g50" id="formation">
-<div class="container mx-auto px-6 max-w-7xl">
+<div class="container mx-auto px-6 max-w-[1440px]">
 <div class="grid lg:grid-cols-2 gap-16 items-center">
 <div>
 <div class="tag mb-6"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Académie logistique</div>
@@ -581,7 +581,7 @@ Rejoignez nos milliers d'abonnés sur YouTube. Plus de 22 vidéos pédagogiques 
 
 <!-- FAQ SECTION -->
 <section class="py-24 bg-white" id="faq">
-<div class="container mx-auto px-6 max-w-3xl">
+<div class="container mx-auto px-6 max-w-4xl">
 <div class="text-center mb-16">
 <div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>FAQ</div>
 <h2 class="title-h2">Questions fréquentes</h2>
@@ -638,7 +638,7 @@ Le Guichet Unique du Commerce Extérieur (GUCE) est la plateforme numérique cen
 
 <!-- ABOUT SECTION -->
 <section class="py-24 bg-g50" id="apropos">
-<div class="container mx-auto px-6 max-w-7xl">
+<div class="container mx-auto px-6 max-w-[1440px]">
 <div class="grid lg:grid-cols-2 gap-16 items-center">
 <div class="bg-brand rounded-brand-xl p-10 lg:p-12 text-white relative overflow-hidden shadow-2xl">
 <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
@@ -708,7 +708,7 @@ Dirigée par Anthony Durand, ADTL est née d'une double vocation : offrir un ser
 
 <!-- CONTACT SECTION -->
 <section class="py-24 bg-white" id="contact">
-<div class="container mx-auto px-6 max-w-7xl">
+<div class="container mx-auto px-6 max-w-[1440px]">
 <div class="grid lg:grid-cols-2 gap-20">
 <div>
 <div class="tag mb-6"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Contact</div>
@@ -805,7 +805,7 @@ Envoyer <span class="material-symbols-outlined">send</span>
 
 <!-- FOOTER -->
 <footer class="bg-g50 border-t border-g200 py-16">
-<div class="container mx-auto px-6 max-w-7xl">
+<div class="container mx-auto px-6 max-w-[1440px]">
 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 <!-- Company Info -->
 <div>
