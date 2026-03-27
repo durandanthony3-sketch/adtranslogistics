@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Negoce de Matieres Premieres | AD TRANS LOGISTICS - Cotonou</title>
+    <meta content="Sourcing et negoce de matieres premieres en Afrique de l'Ouest. Cajou, karite, coton, cacao, soja, mais, minerais. AD TRANS LOGISTICS, Cotonou, Benin." name="description"/>
+    <!-- Fonts: Space Grotesk for Headings, Instrument Sans for Body -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand': '#0A0A0A',
+                        'g950': '#111111',
+                        'g900': '#171717',
+                        'g800': '#262626',
+                        'g700': '#3A3A3A',
+                        'g600': '#525252',
+                        'g500': '#737373',
+                        'g400': '#A3A3A3',
+                        'g300': '#D4D4D4',
+                        'g200': '#E5E5E5',
+                        'g100': '#F0F0F0',
+                        'g50': '#F7F7F7',
+                    },
+                    fontFamily: {
+                        sans: ['Instrument Sans', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'brand': '14px',
+                        'brand-sm': '10px',
+                        'brand-lg': '20px',
+                        'brand-xl': '28px',
+                    },
+                    transitionTimingFunction: {
+                        'brand-ease': 'cubic-bezier(0.4, 0, 0.2, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { -webkit-font-smoothing: antialiased; }
+
+        .tag { @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wider uppercase border border-g200 text-g500 bg-white; }
+        .tag .dot { @apply w-2 h-2 rounded-full bg-brand; }
+
+        .title-h2 { @apply font-heading text-4xl lg:text-[52px] font-bold text-brand leading-[1.1] tracking-tight mb-5; }
+        .subtitle { @apply text-lg text-g500 max-w-[600px] leading-relaxed; }
+
+        .btn-brand { @apply inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-semibold text-[15px] transition-all duration-300 ease-brand-ease; }
+        .btn-brand-dark { @apply bg-brand text-white hover:bg-g800 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10; }
+        .btn-brand-ghost { @apply bg-transparent text-brand border-[1.5px] border-g300 hover:border-brand hover:bg-g50; }
+        .btn-brand-white { @apply bg-white text-brand hover:bg-g100; }
+
+        .glass-nav { @apply fixed top-0 left-0 right-0 z-[1000] bg-white/85 backdrop-blur-2xl border-b border-black/5; }
+        .glass-nav.scrolled { @apply bg-white/95 shadow-lg shadow-black/5; }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes pulse-green { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .animate-blink { animation: blink 2s infinite; }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .animate-pulse-green { animation: pulse-green 2s ease-in-out infinite; }
+
+        .toast { @apply fixed bottom-6 right-6 bg-brand text-white px-6 py-4 rounded-brand shadow-xl z-[2000] opacity-0 transform translate-y-4 transition-all duration-300; }
+        .toast.show { @apply opacity-100 translate-y-0; }
+
+        .whatsapp-btn { position:fixed; bottom:1.5rem; right:1.5rem; width:64px; height:64px; background:#25D366; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 15px rgba(0,0,0,.1); z-index:999; transition:all .3s; }
+        .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 25px 50px rgba(0,0,0,.15); }
+        .whatsapp-btn svg { width:32px; height:32px; }
+
+        .price-up { color: #16a34a; }
+        .price-down { color: #dc2626; }
+    </style>
+</head>
+<body class="bg-white text-g800 font-sans">
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/22997500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20le%20negoce%20de%20matieres%20premieres." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
+    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="width:32px;height:32px;min-width:32px;min-height:32px;">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast"></div>
+
+<!-- NAVIGATION -->
+<nav class="glass-nav transition-all duration-300" id="navbar">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="flex items-center justify-between h-20">
+<a class="flex items-center gap-2.5 group" href="/">
+<div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
+<div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
+</a>
+<ul class="hidden lg:flex items-center gap-8 list-none">
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/">Accueil</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#services">Services</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#simulateur">Simulateur</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#suivi">Suivi</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#formation">Formation</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#apropos">A propos</a></li>
+<li><a class="text-[15px] font-semibold text-brand transition-colors" href="/negoce">Negoce</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/vehicules">Vehicules</a></li>
+<li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors mr-2" href="/#contact">Contact</a></li>
+<li><a class="btn-brand btn-brand-dark px-5 py-2 text-[13px]" href="#devis-negoce">Devis gratuit</a></li>
+</ul>
+<button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current transition-all"></span>
+</button>
+</div>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="hidden fixed inset-0 z-[999] bg-white pt-20 px-6 flex-col gap-1" id="mobileMenu">
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Accueil</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#services" onclick="closeMobile()">Services</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#simulateur" onclick="closeMobile()">Simulateur</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#suivi" onclick="closeMobile()">Suivi</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#formation" onclick="closeMobile()">Formation</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#apropos" onclick="closeMobile()">A propos</a>
+<a class="block p-4 text-base font-semibold text-brand rounded-brand-sm bg-g50" href="/negoce" onclick="closeMobile()">Negoce</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/vehicules" onclick="closeMobile()">Vehicules</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#contact" onclick="closeMobile()">Contact</a>
+<a class="btn-brand btn-brand-dark justify-center mt-4" href="#devis-negoce" onclick="closeMobile()">Devis gratuit</a>
+</div>
+
+<!-- ===================== SECTION 1: HERO ===================== -->
+<section class="pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white overflow-hidden">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="relative z-10">
+<div class="tag mb-6"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Negoce International</div>
+<h1 class="font-heading text-5xl lg:text-[82px] font-bold leading-[1.05] tracking-tight text-brand mb-8">
+Matieres premieres<br/><span class="text-g400 font-medium italic">d'Afrique de l'Ouest</span>
+</h1>
+<p class="text-xl lg:text-2xl text-g500 leading-relaxed max-w-[560px] mb-12">
+Sourcing, certification et expedition de produits agricoles et minerais depuis le Benin et la sous-region. Qualite garantie, tracabilite totale.
+</p>
+<div class="flex flex-col sm:flex-row gap-4 mb-16">
+<a class="btn-brand btn-brand-dark" href="#devis-negoce">Demander un devis <span class="material-symbols-outlined !text-sm">arrow_forward</span></a>
+<a class="btn-brand btn-brand-ghost" href="#produits">Voir le catalogue</a>
+</div>
+<div class="flex gap-12">
+<div>
+<div class="font-heading text-3xl font-bold text-brand">12+</div>
+<div class="text-[13px] text-g400 mt-1">Pays desservis</div>
+</div>
+<div>
+<div class="font-heading text-3xl font-bold text-brand">5000+</div>
+<div class="text-[13px] text-g400 mt-1">Tonnes exportees</div>
+</div>
+<div>
+<div class="font-heading text-3xl font-bold text-brand">100%</div>
+<div class="text-[13px] text-g400 mt-1">Tracabilite</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<!-- Hero Visual Card: Commodity Dashboard -->
+<div class="bg-g950 text-white rounded-brand-xl p-8 lg:p-10 relative overflow-hidden shadow-2xl shadow-black/20">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-center mb-8 relative z-10">
+<span class="text-xs font-semibold tracking-wider text-g400">COMMODITY DESK</span>
+<span class="px-3 py-1 bg-emerald-500/20 rounded-full text-[11px] font-semibold text-emerald-400 animate-pulse-green">Live</span>
+</div>
+<div class="space-y-4 relative z-10">
+<!-- Cajou -->
+<div class="flex items-center justify-between p-3 rounded-brand-sm bg-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-amber-400 text-lg">nutrition</span>
+<div>
+<div class="text-[14px] font-semibold">Cajou W320</div>
+<div class="text-[11px] text-white/40">Benin</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-[14px] font-bold" id="dash-cajou">$1,250</div>
+<div class="text-[11px] text-emerald-400">+2.4%</div>
+</div>
+</div>
+<!-- Karite -->
+<div class="flex items-center justify-between p-3 rounded-brand-sm bg-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-yellow-400 text-lg">spa</span>
+<div>
+<div class="text-[14px] font-semibold">Karite</div>
+<div class="text-[11px] text-white/40">Burkina Faso</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-[14px] font-bold" id="dash-karite">$950</div>
+<div class="text-[11px] text-emerald-400">+1.8%</div>
+</div>
+</div>
+<!-- Cacao -->
+<div class="flex items-center justify-between p-3 rounded-brand-sm bg-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-orange-400 text-lg">coffee</span>
+<div>
+<div class="text-[14px] font-semibold">Cacao Grade A</div>
+<div class="text-[11px] text-white/40">Cote d'Ivoire</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-[14px] font-bold" id="dash-cacao">$3,200</div>
+<div class="text-[11px] text-red-400">-0.7%</div>
+</div>
+</div>
+<!-- Coton -->
+<div class="flex items-center justify-between p-3 rounded-brand-sm bg-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sky-400 text-lg">cloud</span>
+<div>
+<div class="text-[14px] font-semibold">Coton Grade A</div>
+<div class="text-[11px] text-white/40">Benin</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-[14px] font-bold" id="dash-coton">$1,800</div>
+<div class="text-[11px] text-emerald-400">+0.5%</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-white/10 relative z-10">
+<div class="flex justify-between text-[11px] text-white/30">
+<span>Derniere mise a jour: il y a 3s</span>
+<span>Source: marche indicatif</span>
+</div>
+</div>
+</div>
+<!-- Floating badges -->
+<div class="absolute -top-6 -right-6 bg-white rounded-brand p-5 shadow-xl border border-g100 animate-float hidden lg:block">
+<div class="font-heading text-xl font-bold text-brand">FOB/CIF</div>
+<div class="text-[11px] text-g400 uppercase tracking-wider font-semibold">Incoterms flexibles</div>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-white rounded-brand p-5 shadow-xl border border-g100 animate-float hidden lg:block" style="animation-delay: 2.5s;">
+<div class="font-heading text-xl font-bold text-brand">ISO 9001</div>
+<div class="text-[11px] text-g400 uppercase tracking-wider font-semibold">Qualite certifiee</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 2: CATALOGUE ===================== -->
+<section class="py-24 bg-g50" id="produits">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Nos produits</div>
+<h2 class="title-h2">Catalogue de matieres premieres</h2>
+<p class="subtitle mx-auto">Produits agricoles et minerais soigneusement selectionnes aupres de producteurs certifies en Afrique de l'Ouest.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Cajou -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100 group-hover:bg-amber-100 transition-colors">
+<span class="material-symbols-outlined text-amber-600 text-2xl">nutrition</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Noix de Cajou</h3>
+<div class="space-y-2 text-[13px] text-g500">
+<div class="flex justify-between"><span>Origine</span><span class="font-medium text-g700">Benin, Tanzanie</span></div>
+<div class="flex justify-between"><span>Volume</span><span class="font-medium text-g700">500 - 5 000 t/an</span></div>
+<div class="flex justify-between"><span>Grades</span><span class="font-medium text-g700">W180, W240, W320</span></div>
+<div class="flex justify-between"><span>Saison</span><span class="font-medium text-g700">Fev - Juin</span></div>
+</div>
+</div>
+<!-- Karite -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="w-14 h-14 bg-yellow-50 rounded-brand-sm flex items-center justify-center mb-6 border border-yellow-100 group-hover:bg-yellow-100 transition-colors">
+<span class="material-symbols-outlined text-yellow-600 text-2xl">spa</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Beurre de Karite</h3>
+<div class="space-y-2 text-[13px] text-g500">
+<div class="flex justify-between"><span>Origine</span><span class="font-medium text-g700">Burkina, Ghana</span></div>
+<div class="flex justify-between"><span>Volume</span><span class="font-medium text-g700">200 - 2 000 t/an</span></div>
+<div class="flex justify-between"><span>Grades</span><span class="font-medium text-g700">Brut, Raffine</span></div>
+<div class="flex justify-between"><span>Saison</span><span class="font-medium text-g700">Mai - Sept</span></div>
+</div>
+</div>
+<!-- Coton -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="w-14 h-14 bg-sky-50 rounded-brand-sm flex items-center justify-center mb-6 border border-sky-100 group-hover:bg-sky-100 transition-colors">
+<span class="material-symbols-outlined text-sky-600 text-2xl">cloud</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Coton Fibre</h3>
+<div class="space-y-2 text-[13px] text-g500">
+<div class="flex justify-between"><span>Origine</span><span class="font-medium text-g700">Benin, Mali</span></div>
+<div class="flex justify-between"><span>Volume</span><span class="font-medium text-g700">1 000 - 10 000 t/an</span></div>
+<div class="flex justify-between"><span>Grades</span><span class="font-medium text-g700">Grade A, Grade B</span></div>
+<div class="flex justify-between"><span>Saison</span><span class="font-medium text-g700">Oct - Mars</span></div>
+</div>
+</div>
+<!-- Cacao -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="w-14 h-14 bg-orange-50 rounded-brand-sm flex items-center justify-center mb-6 border border-orange-100 group-hover:bg-orange-100 transition-colors">
+<span class="material-symbols-outlined text-orange-700 text-2xl">coffee</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Feves de Cacao</h3>
+<div class="space-y-2 text-[13px] text-g500">
+<div class="flex justify-between"><span>Origine</span><span class="font-medium text-g700">Cote d'Ivoire, Ghana</span></div>
+<div class="flex justify-between"><span>Volume</span><span class="font-medium text-g700">500 - 5 000 t/an</span></div>
+<div class="flex justify-between"><span>Grades</span><span class="font-medium text-g700">Grade I, Grade II</span></div>
+<div class="flex justify-between"><span>Saison</span><span class="font-medium text-g700">Oct - Mars</span></div>
+</div>
+</div>
+<!-- Soja -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="w-14 h-14 bg-lime-50 rounded-brand-sm flex items-center justify-center mb-6 border border-lime-100 group-hover:bg-lime-100 transition-colors">
+<span class="material-symbols-outlined text-lime-600 text-2xl">grass</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Soja</h3>
+<div class="space-y-2 text-[13px] text-g500">
+<div class="flex justify-between"><span>Origine</span><span class="font-medium text-g700">Benin, Togo</span></div>
+<div class="flex justify-between"><span>Volume</span><span class="font-medium text-g700">300 - 3 000 t/an</span></div>
+<div class="flex justify-between"><span>Grades</span><span class="font-medium text-g700">Non-OGM</span></div>
+<div class="flex justify-between"><span>Saison</span><span class="font-medium text-g700">Sept - Dec</span></div>
+</div>
+</div>
+<!-- Mais -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100 group-hover:bg-amber-100 transition-colors">
+<span class="material-symbols-outlined text-amber-500 text-2xl">grain</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Mais</h3>
+<div class="space-y-2 text-[13px] text-g500">
+<div class="flex justify-between"><span>Origine</span><span class="font-medium text-g700">Benin, Nigeria</span></div>
+<div class="flex justify-between"><span>Volume</span><span class="font-medium text-g700">500 - 8 000 t/an</span></div>
+<div class="flex justify-between"><span>Grades</span><span class="font-medium text-g700">Jaune, Blanc</span></div>
+<div class="flex justify-between"><span>Saison</span><span class="font-medium text-g700">Juil - Nov</span></div>
+</div>
+</div>
+<!-- Minerais -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="w-14 h-14 bg-violet-50 rounded-brand-sm flex items-center justify-center mb-6 border border-violet-100 group-hover:bg-violet-100 transition-colors">
+<span class="material-symbols-outlined text-violet-600 text-2xl">diamond</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Minerais</h3>
+<div class="space-y-2 text-[13px] text-g500">
+<div class="flex justify-between"><span>Origine</span><span class="font-medium text-g700">Guinee, Sierra Leone</span></div>
+<div class="flex justify-between"><span>Volume</span><span class="font-medium text-g700">Sur demande</span></div>
+<div class="flex justify-between"><span>Types</span><span class="font-medium text-g700">Manganese, Bauxite</span></div>
+<div class="flex justify-between"><span>Saison</span><span class="font-medium text-g700">Toute l'annee</span></div>
+</div>
+</div>
+<!-- Petrole -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="w-14 h-14 bg-slate-50 rounded-brand-sm flex items-center justify-center mb-6 border border-slate-200 group-hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-slate-700 text-2xl">oil_barrel</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Petrole Brut</h3>
+<div class="space-y-2 text-[13px] text-g500">
+<div class="flex justify-between"><span>Origine</span><span class="font-medium text-g700">Nigeria, Ghana</span></div>
+<div class="flex justify-between"><span>Volume</span><span class="font-medium text-g700">Sur demande</span></div>
+<div class="flex justify-between"><span>Types</span><span class="font-medium text-g700">Bonny Light, TEN</span></div>
+<div class="flex justify-between"><span>Saison</span><span class="font-medium text-g700">Toute l'annee</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 3: LIVE PRICES ===================== -->
+<section class="py-24 bg-white">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Cours du marche</div>
+<h2 class="title-h2">Prix indicatifs en temps reel</h2>
+<p class="subtitle mx-auto">Suivez l'evolution des cours des matieres premieres. Prix indicatifs actualises automatiquement.</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4" id="priceGrid">
+<!-- Cajou -->
+<div class="bg-white p-6 rounded-brand-lg border border-g100 hover:border-g300 transition-all duration-300">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-amber-500">nutrition</span>
+<span class="font-heading font-semibold text-[15px] text-brand">Cajou W320</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<div class="font-heading text-2xl font-bold text-brand price-value" data-base="1250" data-unit="/t">$1,250</div>
+<div class="text-[12px] text-g400">USD / tonne</div>
+</div>
+<div class="flex items-center gap-1 price-change price-up" data-direction="up">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-[13px] font-semibold">+2.4%</span>
+</div>
+</div>
+</div>
+<!-- Karite -->
+<div class="bg-white p-6 rounded-brand-lg border border-g100 hover:border-g300 transition-all duration-300">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-yellow-500">spa</span>
+<span class="font-heading font-semibold text-[15px] text-brand">Karite</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<div class="font-heading text-2xl font-bold text-brand price-value" data-base="950" data-unit="/t">$950</div>
+<div class="text-[12px] text-g400">USD / tonne</div>
+</div>
+<div class="flex items-center gap-1 price-change price-up" data-direction="up">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-[13px] font-semibold">+1.8%</span>
+</div>
+</div>
+</div>
+<!-- Coton -->
+<div class="bg-white p-6 rounded-brand-lg border border-g100 hover:border-g300 transition-all duration-300">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-sky-500">cloud</span>
+<span class="font-heading font-semibold text-[15px] text-brand">Coton Grade A</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<div class="font-heading text-2xl font-bold text-brand price-value" data-base="1800" data-unit="/t">$1,800</div>
+<div class="text-[12px] text-g400">USD / tonne</div>
+</div>
+<div class="flex items-center gap-1 price-change price-up" data-direction="up">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-[13px] font-semibold">+0.5%</span>
+</div>
+</div>
+</div>
+<!-- Cacao -->
+<div class="bg-white p-6 rounded-brand-lg border border-g100 hover:border-g300 transition-all duration-300">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-orange-600">coffee</span>
+<span class="font-heading font-semibold text-[15px] text-brand">Cacao</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<div class="font-heading text-2xl font-bold text-brand price-value" data-base="3200" data-unit="/t">$3,200</div>
+<div class="text-[12px] text-g400">USD / tonne</div>
+</div>
+<div class="flex items-center gap-1 price-change price-down" data-direction="down">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span class="text-[13px] font-semibold">-0.7%</span>
+</div>
+</div>
+</div>
+<!-- Soja -->
+<div class="bg-white p-6 rounded-brand-lg border border-g100 hover:border-g300 transition-all duration-300">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-lime-500">grass</span>
+<span class="font-heading font-semibold text-[15px] text-brand">Soja</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<div class="font-heading text-2xl font-bold text-brand price-value" data-base="580" data-unit="/t">$580</div>
+<div class="text-[12px] text-g400">USD / tonne</div>
+</div>
+<div class="flex items-center gap-1 price-change price-up" data-direction="up">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-[13px] font-semibold">+1.2%</span>
+</div>
+</div>
+</div>
+<!-- Mais -->
+<div class="bg-white p-6 rounded-brand-lg border border-g100 hover:border-g300 transition-all duration-300">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-amber-400">grain</span>
+<span class="font-heading font-semibold text-[15px] text-brand">Mais</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<div class="font-heading text-2xl font-bold text-brand price-value" data-base="320" data-unit="/t">$320</div>
+<div class="text-[12px] text-g400">USD / tonne</div>
+</div>
+<div class="flex items-center gap-1 price-change price-down" data-direction="down">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span class="text-[13px] font-semibold">-0.3%</span>
+</div>
+</div>
+</div>
+<!-- Minerais -->
+<div class="bg-white p-6 rounded-brand-lg border border-g100 hover:border-g300 transition-all duration-300">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-violet-500">diamond</span>
+<span class="font-heading font-semibold text-[15px] text-brand">Minerais</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<div class="font-heading text-2xl font-bold text-brand price-value" data-base="450" data-unit="/t">$450</div>
+<div class="text-[12px] text-g400">USD / tonne</div>
+</div>
+<div class="flex items-center gap-1 price-change price-up" data-direction="up">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-[13px] font-semibold">+3.1%</span>
+</div>
+</div>
+</div>
+<!-- Petrole -->
+<div class="bg-white p-6 rounded-brand-lg border border-g100 hover:border-g300 transition-all duration-300">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-slate-600">oil_barrel</span>
+<span class="font-heading font-semibold text-[15px] text-brand">Petrole Brut</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<div class="font-heading text-2xl font-bold text-brand price-value" data-base="78" data-unit="/bbl">$78</div>
+<div class="text-[12px] text-g400">USD / baril</div>
+</div>
+<div class="flex items-center gap-1 price-change price-down" data-direction="down">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span class="text-[13px] font-semibold">-1.5%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-8">
+<p class="text-[12px] text-g400">Prix indicatifs mis a jour toutes les 5 secondes. Les cours reels peuvent varier selon les conditions du marche.</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 4: SERVICES NEGOCE ===================== -->
+<section class="py-24 bg-g50">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Nos expertises</div>
+<h2 class="title-h2">Services de negoce</h2>
+<p class="subtitle mx-auto">Un accompagnement complet, du producteur a votre entrepot, avec rigueur et transparence.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Sourcing -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300">
+<div class="w-12 h-12 bg-g50 rounded-brand-sm flex items-center justify-center mb-6 border border-g100">
+<span class="material-symbols-outlined text-brand">search</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-3">Sourcing & Selection</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Identification et qualification des meilleurs producteurs et cooperatives en Afrique de l'Ouest. Audit terrain, echantillonnage et negociation des prix.</p>
+</div>
+<!-- Certification -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300">
+<div class="w-12 h-12 bg-g50 rounded-brand-sm flex items-center justify-center mb-6 border border-g100">
+<span class="material-symbols-outlined text-brand">verified</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-3">Certification & Qualite</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Controle qualite systematique, analyses en laboratoire agree, certificats d'origine et conformite aux normes internationales (ISO, HACCP, Fair Trade).</p>
+</div>
+<!-- Logistique -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300">
+<div class="w-12 h-12 bg-g50 rounded-brand-sm flex items-center justify-center mb-6 border border-g100">
+<span class="material-symbols-outlined text-brand">local_shipping</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-3">Logistique & Expedition</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Organisation du transport terrestre, mise en conteneurs au port de Cotonou, formalites douanieres et expedition maritime FOB/CIF vers toute destination.</p>
+</div>
+<!-- Financement -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300">
+<div class="w-12 h-12 bg-g50 rounded-brand-sm flex items-center justify-center mb-6 border border-g100">
+<span class="material-symbols-outlined text-brand">account_balance_wallet</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-3">Financement & Credits</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Accompagnement dans l'obtention de lettres de credit (L/C), credits documentaires, pre-financement de campagne et facilitation bancaire.</p>
+</div>
+<!-- Stockage -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300">
+<div class="w-12 h-12 bg-g50 rounded-brand-sm flex items-center justify-center mb-6 border border-g100">
+<span class="material-symbols-outlined text-brand">warehouse</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-3">Stockage & Entreposage</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Entrepots securises et ventiles a Cotonou. Gestion des stocks, fumigation, controle phytosanitaire et conditionnement aux normes export.</p>
+</div>
+<!-- Conseil -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300">
+<div class="w-12 h-12 bg-g50 rounded-brand-sm flex items-center justify-center mb-6 border border-g100">
+<span class="material-symbols-outlined text-brand">handshake</span>
+</div>
+<h3 class="font-heading text-lg font-semibold text-brand mb-3">Conseil & Courtage</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Etude de marche, mise en relation acheteur-vendeur, conseil en strategie d'approvisionnement et veille sur les cours mondiaux des matieres premieres.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 5: HOW IT WORKS ===================== -->
+<section class="py-24 bg-brand text-white">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wider uppercase border border-white/20 text-white/60 mb-4">
+<div class="w-1.5 h-1.5 rounded-full bg-white"></div>Processus
+</div>
+<h2 class="font-heading text-4xl lg:text-[52px] font-bold text-white leading-[1.1] tracking-tight mb-5">Comment ca fonctionne</h2>
+<p class="text-lg text-white/50 max-w-[600px] mx-auto leading-relaxed">De votre demande a la livraison, un processus transparent en 5 etapes.</p>
+</div>
+<div class="grid sm:grid-cols-5 gap-6 lg:gap-8">
+<!-- Step 1 -->
+<div class="text-center group">
+<div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-white/20 transition-colors border border-white/10">
+<span class="material-symbols-outlined text-white text-2xl">edit_note</span>
+</div>
+<div class="font-heading text-4xl font-bold text-white/10 mb-2">01</div>
+<h3 class="font-heading text-[15px] font-semibold mb-2">Demande</h3>
+<p class="text-[13px] text-white/40 leading-relaxed">Vous definissez vos besoins : produit, quantite, qualite, destination.</p>
+</div>
+<!-- Step 2 -->
+<div class="text-center group">
+<div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-white/20 transition-colors border border-white/10">
+<span class="material-symbols-outlined text-white text-2xl">search</span>
+</div>
+<div class="font-heading text-4xl font-bold text-white/10 mb-2">02</div>
+<h3 class="font-heading text-[15px] font-semibold mb-2">Sourcing</h3>
+<p class="text-[13px] text-white/40 leading-relaxed">Nous identifions les meilleurs producteurs et negocions les prix.</p>
+</div>
+<!-- Step 3 -->
+<div class="text-center group">
+<div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-white/20 transition-colors border border-white/10">
+<span class="material-symbols-outlined text-white text-2xl">verified</span>
+</div>
+<div class="font-heading text-4xl font-bold text-white/10 mb-2">03</div>
+<h3 class="font-heading text-[15px] font-semibold mb-2">Controle Qualite</h3>
+<p class="text-[13px] text-white/40 leading-relaxed">Analyses en laboratoire, echantillonnage et certification du lot.</p>
+</div>
+<!-- Step 4 -->
+<div class="text-center group">
+<div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-white/20 transition-colors border border-white/10">
+<span class="material-symbols-outlined text-white text-2xl">local_shipping</span>
+</div>
+<div class="font-heading text-4xl font-bold text-white/10 mb-2">04</div>
+<h3 class="font-heading text-[15px] font-semibold mb-2">Expedition</h3>
+<p class="text-[13px] text-white/40 leading-relaxed">Mise en conteneurs, douane et chargement au port de Cotonou.</p>
+</div>
+<!-- Step 5 -->
+<div class="text-center group">
+<div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-white/20 transition-colors border border-white/10">
+<span class="material-symbols-outlined text-white text-2xl">package_2</span>
+</div>
+<div class="font-heading text-4xl font-bold text-white/10 mb-2">05</div>
+<h3 class="font-heading text-[15px] font-semibold mb-2">Livraison</h3>
+<p class="text-[13px] text-white/40 leading-relaxed">Suivi maritime, documentation et reception a destination.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 6: QUOTE FORM ===================== -->
+<section class="py-24 bg-white" id="devis-negoce">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="mb-12">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Demande de devis</div>
+<h2 class="title-h2">Obtenez votre cotation</h2>
+<p class="subtitle">Decrivez votre besoin et recevez une offre personnalisee sous 24 heures.</p>
+</div>
+<div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-start">
+<!-- Form -->
+<form class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm" onsubmit="submitNegoce(event)">
+<h3 class="font-heading text-lg font-bold text-brand mb-1">Formulaire de cotation</h3>
+<p class="text-sm text-g400 mb-8">Renseignez les details de votre demande. Tous les champs marques * sont obligatoires.</p>
+<div class="grid sm:grid-cols-2 gap-5 mb-5">
+<div>
+<label class="block text-[13px] font-semibold text-g700 mb-2">Nom complet *</label>
+<input type="text" name="nom" required placeholder="Votre nom" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors"/>
+</div>
+<div>
+<label class="block text-[13px] font-semibold text-g700 mb-2">Telephone *</label>
+<input type="tel" name="tel" required placeholder="+229 XX XX XX XX" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors"/>
+</div>
+</div>
+<div class="grid sm:grid-cols-2 gap-5 mb-5">
+<div>
+<label class="block text-[13px] font-semibold text-g700 mb-2">Email *</label>
+<input type="email" name="email" required placeholder="votre@email.com" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors"/>
+</div>
+<div>
+<label class="block text-[13px] font-semibold text-g700 mb-2">Entreprise</label>
+<input type="text" name="entreprise" placeholder="Nom de votre societe" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors"/>
+</div>
+</div>
+<div class="mb-5">
+<label class="block text-[13px] font-semibold text-g700 mb-2">Matiere premiere *</label>
+<select name="matiere" required class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors bg-white">
+<option value="">Selectionnez un produit</option>
+<option value="cajou">Noix de Cajou</option>
+<option value="karite">Beurre de Karite</option>
+<option value="coton">Coton Fibre</option>
+<option value="cacao">Feves de Cacao</option>
+<option value="soja">Soja</option>
+<option value="mais">Mais</option>
+<option value="minerais">Minerais</option>
+<option value="petrole">Petrole Brut</option>
+<option value="autre">Autre (preciser ci-dessous)</option>
+</select>
+</div>
+<div class="grid sm:grid-cols-2 gap-5 mb-5">
+<div>
+<label class="block text-[13px] font-semibold text-g700 mb-2">Quantite *</label>
+<input type="number" name="quantite" required placeholder="Ex: 500" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors"/>
+</div>
+<div>
+<label class="block text-[13px] font-semibold text-g700 mb-2">Unite</label>
+<select name="unite" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors bg-white">
+<option value="tonnes">Tonnes</option>
+<option value="kg">Kilogrammes</option>
+<option value="conteneurs">Conteneurs (20')</option>
+<option value="conteneurs40">Conteneurs (40')</option>
+<option value="barils">Barils</option>
+</select>
+</div>
+</div>
+<div class="grid sm:grid-cols-2 gap-5 mb-5">
+<div>
+<label class="block text-[13px] font-semibold text-g700 mb-2">Destination *</label>
+<input type="text" name="destination" required placeholder="Pays / Port de destination" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors"/>
+</div>
+<div>
+<label class="block text-[13px] font-semibold text-g700 mb-2">Incoterm</label>
+<select name="incoterm" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors bg-white">
+<option value="FOB">FOB - Free On Board</option>
+<option value="CIF">CIF - Cost Insurance Freight</option>
+<option value="CFR">CFR - Cost and Freight</option>
+<option value="EXW">EXW - Ex Works</option>
+<option value="DDP">DDP - Delivered Duty Paid</option>
+</select>
+</div>
+</div>
+<div class="mb-8">
+<label class="block text-[13px] font-semibold text-g700 mb-2">Description / Specifications</label>
+<textarea name="description" rows="4" placeholder="Precisions sur la qualite, les grades souhaites, la frequence, etc." class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors resize-none"></textarea>
+</div>
+<button type="submit" class="btn-brand btn-brand-dark w-full justify-center">
+Envoyer la demande <span class="material-symbols-outlined">send</span>
+</button>
+</form>
+
+<!-- Right Column -->
+<div class="space-y-6">
+<!-- Info card -->
+<div class="bg-g950 text-white rounded-brand-lg p-8">
+<h3 class="font-heading text-xl font-bold mb-6">Pourquoi AD TRANS ?</h3>
+<div class="space-y-5">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-white/40 shrink-0">check_circle</span>
+<div>
+<h4 class="text-[14px] font-semibold mb-1">Reseau de producteurs certifies</h4>
+<p class="text-[13px] text-white/40">Partenariats directs avec des cooperatives et producteurs dans 8 pays d'Afrique de l'Ouest.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-white/40 shrink-0">check_circle</span>
+<div>
+<h4 class="text-[14px] font-semibold mb-1">Controle qualite rigoureux</h4>
+<p class="text-[13px] text-white/40">Analyses en laboratoire agree, certificats SGS/Bureau Veritas, conformite internationale.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-white/40 shrink-0">check_circle</span>
+<div>
+<h4 class="text-[14px] font-semibold mb-1">Logistique maitrisee</h4>
+<p class="text-[13px] text-white/40">Du champ au port de Cotonou, nous gerons toute la chaine : transport, stockage, empotage et expedition.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-white/40 shrink-0">check_circle</span>
+<div>
+<h4 class="text-[14px] font-semibold mb-1">Incoterms flexibles</h4>
+<p class="text-[13px] text-white/40">FOB Cotonou, CIF destination, CFR, EXW ou DDP selon vos besoins.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Contact card -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8">
+<h3 class="font-heading text-lg font-bold text-brand mb-4">Contact direct</h3>
+<div class="space-y-4">
+<a href="https://wa.me/22997500555?text=Bonjour%20AD%20TRANS%2C%20je%20souhaite%20un%20devis%20pour%20du%20negoce%20de%20matieres%20premieres." target="_blank" class="flex items-center gap-3 p-4 rounded-brand-sm bg-emerald-50 border border-emerald-100 hover:bg-emerald-100 transition-colors group">
+<div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center shrink-0">
+<svg fill="white" viewBox="0 0 24 24" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+</div>
+<div>
+<div class="text-[14px] font-semibold text-brand group-hover:text-emerald-700">WhatsApp</div>
+<div class="text-[13px] text-g500">+229 97 50 05 55</div>
+</div>
+</a>
+<a href="tel:+22997500555" class="flex items-center gap-3 p-4 rounded-brand-sm bg-g50 border border-g100 hover:bg-g100 transition-colors">
+<div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-lg">call</span>
+</div>
+<div>
+<div class="text-[14px] font-semibold text-brand">Telephone</div>
+<div class="text-[13px] text-g500">+229 97 50 05 55</div>
+</div>
+</a>
+<a href="mailto:adtranslogistic@hotmail.com" class="flex items-center gap-3 p-4 rounded-brand-sm bg-g50 border border-g100 hover:bg-g100 transition-colors">
+<div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-lg">mail</span>
+</div>
+<div>
+<div class="text-[14px] font-semibold text-brand">Email</div>
+<div class="text-[13px] text-g500">adtranslogistic@hotmail.com</div>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 7: TRUST ===================== -->
+<section class="py-24 bg-g50">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Confiance</div>
+<h2 class="title-h2">Ils nous font confiance</h2>
+<p class="subtitle mx-auto">Negociants, industriels et cooperatives comptent sur notre expertise pour leur approvisionnement.</p>
+</div>
+<!-- Partner logos -->
+<div class="grid grid-cols-3 md:grid-cols-6 gap-4 mb-16">
+<div class="h-16 bg-white rounded-brand-sm border border-g100 flex items-center justify-center">
+<span class="text-[13px] text-g300 font-semibold tracking-wider">PARTNER</span>
+</div>
+<div class="h-16 bg-white rounded-brand-sm border border-g100 flex items-center justify-center">
+<span class="text-[13px] text-g300 font-semibold tracking-wider">PARTNER</span>
+</div>
+<div class="h-16 bg-white rounded-brand-sm border border-g100 flex items-center justify-center">
+<span class="text-[13px] text-g300 font-semibold tracking-wider">PARTNER</span>
+</div>
+<div class="h-16 bg-white rounded-brand-sm border border-g100 flex items-center justify-center">
+<span class="text-[13px] text-g300 font-semibold tracking-wider">PARTNER</span>
+</div>
+<div class="h-16 bg-white rounded-brand-sm border border-g100 flex items-center justify-center">
+<span class="text-[13px] text-g300 font-semibold tracking-wider">PARTNER</span>
+</div>
+<div class="h-16 bg-white rounded-brand-sm border border-g100 flex items-center justify-center">
+<span class="text-[13px] text-g300 font-semibold tracking-wider">PARTNER</span>
+</div>
+</div>
+<!-- Stats -->
+<div class="grid sm:grid-cols-3 gap-8">
+<div class="text-center p-8 bg-white rounded-brand-lg border border-g100">
+<div class="font-heading text-4xl lg:text-5xl font-bold text-brand mb-2">12 000+</div>
+<div class="text-[14px] text-g500 font-medium">Tonnes negociees</div>
+</div>
+<div class="text-center p-8 bg-white rounded-brand-lg border border-g100">
+<div class="font-heading text-4xl lg:text-5xl font-bold text-brand mb-2">8</div>
+<div class="text-[14px] text-g500 font-medium">Pays d'approvisionnement</div>
+</div>
+<div class="text-center p-8 bg-white rounded-brand-lg border border-g100">
+<div class="font-heading text-4xl lg:text-5xl font-bold text-brand mb-2">15 ans</div>
+<div class="text-[14px] text-g500 font-medium">D'experience</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 8: CTA ===================== -->
+<section class="py-20 bg-brand">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center max-w-[700px] mx-auto">
+<h2 class="font-heading text-3xl lg:text-[44px] font-bold text-white leading-[1.1] tracking-tight mb-6">Pret a sourcer vos matieres premieres ?</h2>
+<p class="text-lg text-white/50 mb-10 leading-relaxed">Contactez notre equipe de negociants pour une cotation sur mesure. Reponse garantie sous 24 heures.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a class="btn-brand btn-brand-white" href="#devis-negoce">Demander un devis <span class="material-symbols-outlined !text-sm">arrow_forward</span></a>
+<a class="btn-brand bg-transparent text-white border-[1.5px] border-white/30 hover:border-white hover:bg-white/10" href="https://wa.me/22997500555?text=Bonjour%20AD%20TRANS%2C%20je%20suis%20interesse%20par%20vos%20matieres%20premieres." target="_blank">WhatsApp <span class="material-symbols-outlined !text-sm">message</span></a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 9: FOOTER ===================== -->
+<footer class="bg-g50 border-t border-g200 py-16">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<!-- Company Info -->
+<div>
+<div class="font-heading font-bold text-base text-brand mb-6">AD TRANS LOGISTICS</div>
+<p class="text-sm text-g500 mb-4">SURL specialisee en transit douanier, negoce de matieres premieres et logistique portuaire au port de Cotonou, Benin.</p>
+<div class="space-y-2 text-[13px] text-g600">
+<p><strong>IFU:</strong> 3202113824203</p>
+<p><strong>RCCM:</strong> RB/COT/21 B 31505</p>
+</div>
+</div>
+<!-- Services -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Services</h4>
+<ul class="space-y-3 text-[13px]">
+<li><a href="/#services" class="text-g500 hover:text-brand transition-colors">Transit Douanier</a></li>
+<li><a href="/vehicules" class="text-g500 hover:text-brand transition-colors">Importation Vehicules</a></li>
+<li><a href="/negoce" class="text-g500 hover:text-brand transition-colors font-medium text-brand">Negoce Matieres Premieres</a></li>
+<li><a href="/#formation" class="text-g500 hover:text-brand transition-colors">Formation & Conseil</a></li>
+</ul>
+</div>
+<!-- Resources -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Ressources</h4>
+<ul class="space-y-3 text-[13px]">
+<li><a href="/#simulateur" class="text-g500 hover:text-brand transition-colors">Simulateur de couts</a></li>
+<li><a href="/#suivi" class="text-g500 hover:text-brand transition-colors">Suivi en temps reel</a></li>
+<li><a href="/#faq" class="text-g500 hover:text-brand transition-colors">Questions frequentes</a></li>
+<li><a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="text-g500 hover:text-brand transition-colors">Chaine YouTube</a></li>
+</ul>
+</div>
+<!-- Contact & Social -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Contact</h4>
+<ul class="space-y-3 text-[13px] mb-6">
+<li><a href="tel:+22997500555" class="text-g500 hover:text-brand transition-colors">+229 97 50 05 55</a></li>
+<li><a href="mailto:adtranslogistic@hotmail.com" class="text-g500 hover:text-brand transition-colors">adtranslogistic@hotmail.com</a></li>
+<li class="text-g600">Port Autonome de Cotonou<br/>Cotonou, Benin</li>
+</ul>
+<div class="flex gap-3">
+<a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+</a>
+<a href="#" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">facebook</span>
+</a>
+<a href="https://wa.me/22997500555" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">message</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Footer Bottom -->
+<div class="border-t border-g200 pt-8">
+<p class="text-center text-[13px] text-g500">&copy; 2026 AD TRANS LOGISTICS. Tous droits reserves. | Negoce de matieres premieres en Afrique de l'Ouest.</p>
+</div>
+</div>
+</footer>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+// Mobile Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+});
+
+function closeMobile() {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+}
+
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Toast Notification
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// Live Price Animation
+const basePrices = {
+    cajou: 1250,
+    karite: 950,
+    coton: 1800,
+    cacao: 3200,
+    soja: 580,
+    mais: 320,
+    minerais: 450,
+    petrole: 78
+};
+
+let currentPrices = { ...basePrices };
+
+function updatePrices() {
+    const priceCards = document.querySelectorAll('.price-value');
+    const changeCards = document.querySelectorAll('.price-change');
+
+    priceCards.forEach((card, index) => {
+        const base = parseFloat(card.dataset.base);
+        const unit = card.dataset.unit;
+
+        // Random variation +/- 3%
+        const variation = (Math.random() - 0.5) * 0.06;
+        const newPrice = Math.round(base * (1 + variation));
+        const pctChange = ((newPrice - base) / base * 100).toFixed(1);
+        const isUp = newPrice >= base;
+
+        card.textContent = `$${newPrice.toLocaleString('en-US')}`;
+
+        const changeEl = changeCards[index];
+        if (changeEl) {
+            const icon = changeEl.querySelector('.material-symbols-outlined');
+            const text = changeEl.querySelector('.text-\\[13px\\]');
+
+            if (isUp) {
+                changeEl.classList.remove('price-down');
+                changeEl.classList.add('price-up');
+                if (icon) icon.textContent = 'trending_up';
+                if (text) text.textContent = `+${Math.abs(pctChange)}%`;
+            } else {
+                changeEl.classList.remove('price-up');
+                changeEl.classList.add('price-down');
+                if (icon) icon.textContent = 'trending_down';
+                if (text) text.textContent = `-${Math.abs(pctChange)}%`;
+            }
+
+            // Flash animation
+            card.style.transition = 'color 0.3s';
+            card.style.color = isUp ? '#16a34a' : '#dc2626';
+            setTimeout(() => {
+                card.style.color = '#0A0A0A';
+            }, 800);
+        }
+    });
+}
+
+setInterval(updatePrices, 5000);
+
+// Form Submission
+function submitNegoce(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    // Build WhatsApp message
+    const msg = `Bonjour AD TRANS LOGISTICS,%0A%0ADemande de devis Negoce :%0A- Nom: ${data.nom}%0A- Tel: ${data.tel}%0A- Email: ${data.email}%0A- Entreprise: ${data.entreprise || 'N/A'}%0A- Matiere: ${data.matiere}%0A- Quantite: ${data.quantite} ${data.unite}%0A- Destination: ${data.destination}%0A- Incoterm: ${data.incoterm}%0A- Description: ${data.description || 'N/A'}%0A%0AMerci.`;
+
+    window.open(`https://wa.me/22997500555?text=${msg}`, '_blank');
+    showToast('Votre demande a ete envoyee via WhatsApp. Nous vous recontacterons rapidement.');
+    form.reset();
+}
+</script>
+
+</body>
+</html>

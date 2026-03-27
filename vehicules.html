@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Achat & Import de Vehicules | AD TRANS LOGISTICS - Cotonou</title>
+    <meta content="Commandez et importez vos vehicules depuis les USA, Europe, Asie et Dubai. Encheres Copart/IAAI, fret maritime, transit douanier. AD TRANS LOGISTICS, Cotonou." name="description"/>
+    <!-- Fonts: Space Grotesk for Headings, Instrument Sans for Body -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand': '#0A0A0A',
+                        'g950': '#111111',
+                        'g900': '#171717',
+                        'g800': '#262626',
+                        'g700': '#3A3A3A',
+                        'g600': '#525252',
+                        'g500': '#737373',
+                        'g400': '#A3A3A3',
+                        'g300': '#D4D4D4',
+                        'g200': '#E5E5E5',
+                        'g100': '#F0F0F0',
+                        'g50': '#F7F7F7',
+                    },
+                    fontFamily: {
+                        sans: ['Instrument Sans', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'brand': '14px',
+                        'brand-sm': '10px',
+                        'brand-lg': '20px',
+                        'brand-xl': '28px',
+                    },
+                    transitionTimingFunction: {
+                        'brand-ease': 'cubic-bezier(0.4, 0, 0.2, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { -webkit-font-smoothing: antialiased; }
+
+        .tag { @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wider uppercase border border-g200 text-g500 bg-white; }
+        .tag .dot { @apply w-2 h-2 rounded-full bg-brand; }
+
+        .title-h2 { @apply font-heading text-4xl lg:text-[52px] font-bold text-brand leading-[1.1] tracking-tight mb-5; }
+        .subtitle { @apply text-lg text-g500 max-w-[600px] leading-relaxed; }
+
+        .btn-brand { @apply inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-semibold text-[15px] transition-all duration-300 ease-brand-ease; }
+        .btn-brand-dark { @apply bg-brand text-white hover:bg-g800 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10; }
+        .btn-brand-ghost { @apply bg-transparent text-brand border-[1.5px] border-g300 hover:border-brand hover:bg-g50; }
+        .btn-brand-white { @apply bg-white text-brand hover:bg-g100; }
+
+        .glass-nav { @apply fixed top-0 left-0 right-0 z-[1000] bg-white/85 backdrop-blur-2xl border-b border-black/5; }
+        .glass-nav.scrolled { @apply bg-white/95 shadow-lg shadow-black/5; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+
+        .toast { @apply fixed bottom-6 right-6 bg-brand text-white px-6 py-4 rounded-brand shadow-xl z-[2000] opacity-0 transform translate-y-4 transition-all duration-300; }
+        .toast.show { @apply opacity-100 translate-y-0; }
+
+        .whatsapp-btn { position:fixed; bottom:1.5rem; right:1.5rem; width:64px; height:64px; background:#25D366; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 15px rgba(0,0,0,.1); z-index:999; transition:all .3s; }
+        .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 25px 50px rgba(0,0,0,.15); }
+        .whatsapp-btn svg { width:32px; height:32px; }
+
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+        .faq-answer.open { max-height: 500px; }
+        .faq-chevron { transition: transform 0.3s ease; }
+        .faq-chevron.open { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-white text-g800 font-sans">
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/22997500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20souhaite%20commander%20un%20v%C3%A9hicule." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
+    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="width:32px;height:32px;min-width:32px;min-height:32px;">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast"></div>
+
+<!-- NAVIGATION -->
+<nav class="glass-nav transition-all duration-300" id="navbar">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="flex items-center justify-between h-20">
+<a class="flex items-center gap-2.5 group" href="/">
+<div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
+<div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
+</a>
+<ul class="hidden lg:flex items-center gap-8 list-none">
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/">Accueil</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#services">Services</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#simulateur">Simulateur</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#suivi">Suivi</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#formation">Formation</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#apropos">A propos</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/negoce">Negoce</a></li>
+<li><a class="text-[15px] font-medium text-brand transition-colors" href="/vehicules">Vehicules</a></li>
+<li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors mr-2" href="/#contact">Contact</a></li>
+<li><a class="btn-brand btn-brand-dark px-5 py-2 text-[13px]" href="/#devis">Devis gratuit</a></li>
+</ul>
+<button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current transition-all"></span>
+</button>
+</div>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="hidden fixed inset-0 z-[999] bg-white pt-20 px-6 flex-col gap-1" id="mobileMenu">
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Accueil</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#services" onclick="closeMobile()">Services</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#simulateur" onclick="closeMobile()">Simulateur</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#suivi" onclick="closeMobile()">Suivi</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#formation" onclick="closeMobile()">Formation</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#apropos" onclick="closeMobile()">A propos</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/negoce" onclick="closeMobile()">Negoce</a>
+<a class="block p-4 text-base font-medium text-brand rounded-brand-sm bg-g50" href="/vehicules" onclick="closeMobile()">Vehicules</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#contact" onclick="closeMobile()">Contact</a>
+<a class="btn-brand btn-brand-dark justify-center mt-4" href="/#devis" onclick="closeMobile()">Devis gratuit</a>
+</div>
+
+<!-- ============================================================ -->
+<!-- 1. HERO SECTION -->
+<!-- ============================================================ -->
+<section class="pt-32 pb-20 lg:pt-48 lg:pb-32 bg-white overflow-hidden">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="relative z-10">
+<div class="tag mb-6"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Import Vehicules</div>
+<h1 class="font-heading text-5xl lg:text-[82px] font-bold leading-[1.05] tracking-tight text-brand mb-8">
+Votre vehicule<br/><span class="text-g400 font-medium italic">livre a Cotonou</span>
+</h1>
+<p class="text-xl lg:text-2xl text-g500 leading-relaxed max-w-[560px] mb-12">
+USA, Europe, Asie, Dubai. Nous sourcons, achetons et importons votre vehicule depuis les plus grandes plateformes mondiales jusqu'au port de Cotonou.
+</p>
+<div class="flex flex-col sm:flex-row gap-4 mb-16">
+<a class="btn-brand btn-brand-dark" href="#commander">Commander un vehicule <span class="material-symbols-outlined !text-sm">arrow_forward</span></a>
+<a class="btn-brand btn-brand-ghost" href="#simulateur-vehicule">Estimer le cout</a>
+</div>
+<div class="flex gap-12">
+<div>
+<div class="font-heading text-3xl font-bold text-brand">2000+</div>
+<div class="text-[13px] text-g400 mt-1">Vehicules importes</div>
+</div>
+<div>
+<div class="font-heading text-3xl font-bold text-brand">4</div>
+<div class="text-[13px] text-g400 mt-1">Continents sources</div>
+</div>
+<div>
+<div class="font-heading text-3xl font-bold text-brand">30j</div>
+<div class="text-[13px] text-g400 mt-1">Delai moyen</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<!-- Hero Visual Card - Vehicle Import Tracking -->
+<div class="bg-g950 text-white rounded-brand-xl p-8 lg:p-10 relative overflow-hidden shadow-2xl shadow-black/20">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+<div class="flex justify-between items-center mb-10 relative z-10">
+<span class="text-xs font-semibold tracking-wider text-g400">IMPORT #VH-2026-0387</span>
+<span class="px-3 py-1 bg-white/10 rounded-full text-[11px] font-semibold text-white/90">En transit</span>
+</div>
+<div class="mb-6 relative z-10">
+<div class="text-[13px] text-white/50 mb-1">Vehicule</div>
+<div class="font-heading text-lg font-semibold">Toyota RAV4 2023 — Copart USA</div>
+</div>
+<div class="space-y-8 relative z-10">
+<div class="flex gap-4 relative">
+<div class="absolute left-3.5 top-7 bottom-0 w-[1px] bg-white/10"></div>
+<div class="w-7 h-7 bg-white text-brand rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 z-10">&#10003;</div>
+<div>
+<h4 class="text-[15px] font-semibold">Achat confirme sur Copart</h4>
+<p class="text-[12px] text-white/40 mt-0.5">12 fevrier 2026</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="absolute left-3.5 top-7 bottom-0 w-[1px] bg-white/10"></div>
+<div class="w-7 h-7 bg-white text-brand rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 z-10">&#10003;</div>
+<div>
+<h4 class="text-[15px] font-semibold">Embarquement New Jersey</h4>
+<p class="text-[12px] text-white/40 mt-0.5">28 fevrier 2026</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="absolute left-3.5 top-7 bottom-0 w-[1px] bg-white/10"></div>
+<div class="w-7 h-7 bg-g600 text-white rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 z-10" style="animation: blink 2s infinite;">&#8943;</div>
+<div>
+<h4 class="text-[15px] font-semibold">Transit maritime Atlantique</h4>
+<p class="text-[12px] text-white/40 mt-0.5">En mer — ETA 28 mars 2026</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="absolute left-3.5 top-7 bottom-0 w-[1px] bg-white/10"></div>
+<div class="w-7 h-7 bg-white/10 text-white/30 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 z-10">&#183;</div>
+<div>
+<h4 class="text-[15px] font-semibold text-white/30">Dedouanement Cotonou</h4>
+<p class="text-[12px] text-white/20 mt-0.5">En attente</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-7 h-7 bg-white/10 text-white/30 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 z-10">&#183;</div>
+<div>
+<h4 class="text-[15px] font-semibold text-white/30">Livraison client</h4>
+<p class="text-[12px] text-white/20 mt-0.5">En attente</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating badges -->
+<div class="absolute -top-6 -right-6 bg-white rounded-brand p-5 shadow-xl border border-g100 animate-float hidden lg:block">
+<div class="font-heading text-xl font-bold text-brand">$8,200</div>
+<div class="text-[11px] text-g400 uppercase tracking-wider font-semibold">Prix enchere</div>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-white rounded-brand p-5 shadow-xl border border-g100 animate-float hidden lg:block" style="animation-delay: 2.5s;">
+<div class="font-heading text-xl font-bold text-brand">30 jours</div>
+<div class="text-[11px] text-g400 uppercase tracking-wider font-semibold">Delai estime</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<style>
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+</style>
+
+<!-- ============================================================ -->
+<!-- 2. CATEGORIES -->
+<!-- ============================================================ -->
+<section class="py-24 bg-g50" id="categories">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Categories</div>
+<h2 class="title-h2">Tous types de vehicules</h2>
+<p class="subtitle mx-auto">Berlines, SUV, camions, engins de chantier. Quel que soit votre besoin, nous l'importons.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Voitures -->
+<div class="bg-white rounded-brand-lg border border-g100 overflow-hidden hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="aspect-[4/3] bg-g100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] text-g300 group-hover:text-brand transition-colors duration-300">directions_car</span>
+</div>
+<div class="p-6">
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Voitures</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Berlines, compactes, hybrides et electriques. Toyota, Honda, Mercedes, BMW et toutes les marques populaires.</p>
+</div>
+</div>
+<!-- SUV & 4x4 -->
+<div class="bg-white rounded-brand-lg border border-g100 overflow-hidden hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="aspect-[4/3] bg-g100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] text-g300 group-hover:text-brand transition-colors duration-300">airport_shuttle</span>
+</div>
+<div class="p-6">
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">SUV & 4x4</h3>
+<p class="text-[14px] text-g500 leading-relaxed">RAV4, Highlander, Land Cruiser, Tucson, CRV. Les vehicules tout-terrain les plus demandes en Afrique de l'Ouest.</p>
+</div>
+</div>
+<!-- Camions -->
+<div class="bg-white rounded-brand-lg border border-g100 overflow-hidden hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="aspect-[4/3] bg-g100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] text-g300 group-hover:text-brand transition-colors duration-300">local_shipping</span>
+</div>
+<div class="p-6">
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Camions</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Camions porteurs, remorques, semi-remorques, fourgons. Pour le transport de marchandises et la logistique.</p>
+</div>
+</div>
+<!-- Engins BTP -->
+<div class="bg-white rounded-brand-lg border border-g100 overflow-hidden hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="aspect-[4/3] bg-g100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] text-g300 group-hover:text-brand transition-colors duration-300">construction</span>
+</div>
+<div class="p-6">
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Engins BTP</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Pelleteuses, chargeuses, bulldozers, grues. Equipements de construction et travaux publics depuis les USA et l'Europe.</p>
+</div>
+</div>
+<!-- Motos -->
+<div class="bg-white rounded-brand-lg border border-g100 overflow-hidden hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="aspect-[4/3] bg-g100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] text-g300 group-hover:text-brand transition-colors duration-300">two_wheeler</span>
+</div>
+<div class="p-6">
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Motos</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Motos sportives, utilitaires, scooters. Importation depuis le Japon, la Chine et les Etats-Unis.</p>
+</div>
+</div>
+<!-- Utilitaires -->
+<div class="bg-white rounded-brand-lg border border-g100 overflow-hidden hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 group">
+<div class="aspect-[4/3] bg-g100 flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] text-g300 group-hover:text-brand transition-colors duration-300">fire_truck</span>
+</div>
+<div class="p-6">
+<h3 class="font-heading text-lg font-semibold text-brand mb-2">Utilitaires</h3>
+<p class="text-[14px] text-g500 leading-relaxed">Pickups, minibus, ambulances, vehicules speciaux. Solutions sur mesure pour les professionnels et institutions.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. SOURCE MARKETS -->
+<!-- ============================================================ -->
+<section class="py-24 bg-white" id="marches">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Marches sources</div>
+<h2 class="title-h2">Nous sourcons sur 4 continents</h2>
+<p class="subtitle mx-auto">Acces direct aux plus grandes plateformes d'encheres et de vente de vehicules dans le monde.</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- USA -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 text-center">
+<div class="text-6xl mb-5">&#127482;&#127480;</div>
+<h3 class="font-heading text-xl font-semibold text-brand mb-3">Etats-Unis</h3>
+<p class="text-[14px] text-g500 leading-relaxed mb-5">Le plus grand marche de vehicules d'occasion au monde. Encheres quotidiennes sur milliers de lots.</p>
+<div class="flex flex-wrap justify-center gap-2">
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">Copart</span>
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">IAAI</span>
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">Manheim</span>
+</div>
+</div>
+<!-- Europe -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 text-center">
+<div class="text-6xl mb-5">&#127466;&#127482;</div>
+<h3 class="font-heading text-xl font-semibold text-brand mb-3">Europe</h3>
+<p class="text-[14px] text-g500 leading-relaxed mb-5">Vehicules premium et utilitaires depuis l'Allemagne, la Belgique, la France et les Pays-Bas.</p>
+<div class="flex flex-wrap justify-center gap-2">
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">Allemagne</span>
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">Belgique</span>
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">France</span>
+</div>
+</div>
+<!-- Asie -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 text-center">
+<div class="text-6xl mb-5">&#127471;&#127477;</div>
+<h3 class="font-heading text-xl font-semibold text-brand mb-3">Asie</h3>
+<p class="text-[14px] text-g500 leading-relaxed mb-5">Toyota, Nissan, Hyundai et Kia directement depuis les marches japonais et coreens.</p>
+<div class="flex flex-wrap justify-center gap-2">
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">Be Forward</span>
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">SBT Japan</span>
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">Coree</span>
+</div>
+</div>
+<!-- Dubai -->
+<div class="bg-white p-8 rounded-brand-lg border border-g100 hover:border-g300 hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300 text-center">
+<div class="text-6xl mb-5">&#127462;&#127466;</div>
+<h3 class="font-heading text-xl font-semibold text-brand mb-3">Dubai</h3>
+<p class="text-[14px] text-g500 leading-relaxed mb-5">Zone franche et hub de reexportation. Vehicules neufs et d'occasion a prix competitifs.</p>
+<div class="flex flex-wrap justify-center gap-2">
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">Zone franche</span>
+<span class="px-3 py-1 bg-g50 rounded-full text-[12px] font-semibold text-g600 border border-g100">Reexport hub</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. ORDER FORM -->
+<!-- ============================================================ -->
+<section class="py-24 bg-g50" id="commander">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="mb-12">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Commander</div>
+<h2 class="title-h2">Trouvez votre vehicule ideal</h2>
+<p class="subtitle">Decrivez le vehicule que vous recherchez et nous le trouverons pour vous sur les meilleurs marches mondiaux.</p>
+</div>
+<div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-start">
+<!-- Form -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm">
+<h3 class="font-heading text-lg font-bold text-brand mb-1">Details du vehicule recherche</h3>
+<p class="text-sm text-g400 mb-8">Remplissez le formulaire et nous vous contacterons sous 24h.</p>
+<form id="orderForm" class="space-y-5" onsubmit="submitOrder(event)">
+<div class="grid sm:grid-cols-2 gap-5">
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Marque *</label>
+<select id="ordMarque" required class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="">Selectionnez</option>
+<option value="Toyota">Toyota</option>
+<option value="Honda">Honda</option>
+<option value="Mercedes">Mercedes-Benz</option>
+<option value="BMW">BMW</option>
+<option value="Hyundai">Hyundai</option>
+<option value="Kia">Kia</option>
+<option value="Nissan">Nissan</option>
+<option value="Ford">Ford</option>
+<option value="Chevrolet">Chevrolet</option>
+<option value="Autre">Autre</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Modele *</label>
+<input type="text" id="ordModele" required placeholder="Ex: RAV4, Camry, CRV..." class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
+</div>
+</div>
+<div class="grid sm:grid-cols-2 gap-5">
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Annee minimum</label>
+<select id="ordAnneeMin" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="">Pas de preference</option>
+<option value="2026">2026</option>
+<option value="2025">2025</option>
+<option value="2024">2024</option>
+<option value="2023">2023</option>
+<option value="2022">2022</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+<option value="2017">2017</option>
+<option value="2016">2016</option>
+<option value="2015">2015</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Annee maximum</label>
+<select id="ordAnneeMax" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="">Pas de preference</option>
+<option value="2026">2026</option>
+<option value="2025">2025</option>
+<option value="2024">2024</option>
+<option value="2023">2023</option>
+<option value="2022">2022</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+<option value="2017">2017</option>
+<option value="2016">2016</option>
+<option value="2015">2015</option>
+</select>
+</div>
+</div>
+<div class="grid sm:grid-cols-2 gap-5">
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Budget maximum (FCFA)</label>
+<input type="number" id="ordBudget" placeholder="Ex: 8000000" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Marche d'origine</label>
+<select id="ordOrigine" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="">Pas de preference</option>
+<option value="USA">USA</option>
+<option value="Europe">Europe</option>
+<option value="Asie">Asie (Japon/Coree)</option>
+<option value="Dubai">Dubai</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Condition du vehicule</label>
+<div class="flex flex-wrap gap-3">
+<label class="flex items-center gap-2 px-4 py-2.5 rounded-brand-sm border border-g200 cursor-pointer hover:border-brand transition-colors has-[:checked]:border-brand has-[:checked]:bg-g50">
+<input type="radio" name="condition" value="Neuf" class="w-4 h-4 text-brand border-g300 focus:ring-brand"/>
+<span class="text-sm text-g700">Neuf</span>
+</label>
+<label class="flex items-center gap-2 px-4 py-2.5 rounded-brand-sm border border-g200 cursor-pointer hover:border-brand transition-colors has-[:checked]:border-brand has-[:checked]:bg-g50">
+<input type="radio" name="condition" value="Occasion" checked class="w-4 h-4 text-brand border-g300 focus:ring-brand"/>
+<span class="text-sm text-g700">Occasion</span>
+</label>
+<label class="flex items-center gap-2 px-4 py-2.5 rounded-brand-sm border border-g200 cursor-pointer hover:border-brand transition-colors has-[:checked]:border-brand has-[:checked]:bg-g50">
+<input type="radio" name="condition" value="Accidente" class="w-4 h-4 text-brand border-g300 focus:ring-brand"/>
+<span class="text-sm text-g700">Accidente</span>
+</label>
+</div>
+</div>
+<hr class="border-g100 my-2"/>
+<div class="grid sm:grid-cols-2 gap-5">
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Votre nom *</label>
+<input type="text" id="ordNom" required placeholder="Nom complet" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Tel WhatsApp *</label>
+<input type="tel" id="ordTel" required placeholder="+229 XX XX XX XX" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Email</label>
+<input type="email" id="ordEmail" placeholder="votre@email.com" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Commentaires</label>
+<textarea id="ordCommentaires" rows="3" placeholder="Couleur preferee, options, kilome trage max..." class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all resize-none"></textarea>
+</div>
+<button type="submit" class="btn-brand btn-brand-dark w-full justify-center">
+Envoyer ma demande <span class="material-symbols-outlined !text-sm">send</span>
+</button>
+</form>
+</div>
+<!-- Right sidebar -->
+<div class="space-y-6">
+<!-- How it works card -->
+<div class="bg-g950 text-white rounded-brand-lg p-8">
+<h3 class="font-heading text-lg font-semibold mb-6">Comment ca marche ?</h3>
+<div class="space-y-5">
+<div class="flex gap-4">
+<div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</div>
+<div>
+<h4 class="text-[15px] font-semibold">Decrivez votre vehicule</h4>
+<p class="text-[13px] text-white/50 mt-1">Marque, modele, budget, annee souhaitee.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</div>
+<div>
+<h4 class="text-[15px] font-semibold">Nous cherchons pour vous</h4>
+<p class="text-[13px] text-white/50 mt-1">Recherche sur Copart, IAAI, Be Forward et nos reseaux.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</div>
+<div>
+<h4 class="text-[15px] font-semibold">Validation et achat</h4>
+<p class="text-[13px] text-white/50 mt-1">Photos, rapport et devis complet avant achat.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-sm font-bold shrink-0">4</div>
+<div>
+<h4 class="text-[15px] font-semibold">Expedition et livraison</h4>
+<p class="text-[13px] text-white/50 mt-1">Fret, dedouanement et livraison a Cotonou.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Contact card -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8">
+<h3 class="font-heading text-lg font-semibold text-brand mb-4">Besoin d'aide ?</h3>
+<p class="text-[14px] text-g500 mb-6">Contactez directement notre equipe pour un accompagnement personnalise.</p>
+<div class="space-y-3">
+<a href="https://wa.me/22997500555" target="_blank" class="flex items-center gap-3 text-sm text-g700 hover:text-brand transition-colors">
+<span class="material-symbols-outlined text-lg">chat</span>
++229 97 50 05 55
+</a>
+<a href="mailto:adtranslogistic@hotmail.com" class="flex items-center gap-3 text-sm text-g700 hover:text-brand transition-colors">
+<span class="material-symbols-outlined text-lg">mail</span>
+adtranslogistic@hotmail.com
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. COST SIMULATOR -->
+<!-- ============================================================ -->
+<section class="py-24 bg-white" id="simulateur-vehicule">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="mb-12">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Simulateur</div>
+<h2 class="title-h2">Estimez le cout total d'importation</h2>
+<p class="subtitle">Estimation indicative incluant le prix, le fret maritime, les droits de douane et les frais de transit.</p>
+</div>
+<div class="grid lg:grid-cols-2 gap-8 items-start">
+<!-- Inputs -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm">
+<h3 class="font-heading text-lg font-bold text-brand mb-1">Parametres du vehicule</h3>
+<p class="text-sm text-g400 mb-8">Renseignez les details pour obtenir une estimation.</p>
+<div class="space-y-5">
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Prix du vehicule (USD) *</label>
+<input type="number" id="simPrixUSD" placeholder="Ex: 8000" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Marche d'origine *</label>
+<select id="simOrigine" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="">Selectionnez</option>
+<option value="USA">USA</option>
+<option value="Europe">Europe</option>
+<option value="Asie">Asie (Japon/Coree)</option>
+<option value="Dubai">Dubai</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Type de vehicule</label>
+<select id="simTypeVehicule" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="voiture">Voiture / SUV</option>
+<option value="camion">Camion / Utilitaire</option>
+<option value="moto">Moto</option>
+<option value="engin">Engin BTP</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Etat du vehicule</label>
+<select id="simEtat" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="occasion">Occasion</option>
+<option value="neuf">Neuf</option>
+<option value="accidente">Accidente / Salvage</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Annee du vehicule</label>
+<select id="simAnnee" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="2026">2026</option>
+<option value="2025">2025</option>
+<option value="2024">2024</option>
+<option value="2023" selected>2023</option>
+<option value="2022">2022</option>
+<option value="2021">2021</option>
+<option value="2020">2020</option>
+<option value="2019">2019</option>
+<option value="2018">2018</option>
+<option value="2017">2017</option>
+<option value="2016">2016</option>
+<option value="2015">2015 ou plus ancien</option>
+</select>
+</div>
+<div class="flex gap-4">
+<button onclick="simulerCoutVehicule()" class="btn-brand btn-brand-dark flex-1 justify-center">
+Calculer <span class="material-symbols-outlined !text-sm">calculate</span>
+</button>
+<button onclick="resetSimVehicule()" class="btn-brand btn-brand-ghost px-5">
+<span class="material-symbols-outlined !text-sm">refresh</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Results -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm">
+<!-- Empty state -->
+<div id="simVResultEmpty" class="text-center py-12">
+<span class="material-symbols-outlined text-6xl text-g200 mb-4">directions_car</span>
+<h3 class="font-heading text-lg font-semibold text-g400 mb-2">Estimation du cout total</h3>
+<p class="text-sm text-g400">Remplissez les parametres et cliquez sur "Calculer" pour obtenir une estimation detaillee.</p>
+</div>
+<!-- Result data -->
+<div id="simVResultData" class="hidden">
+<h3 class="font-heading text-lg font-bold text-brand mb-6">Estimation detaillee</h3>
+<div class="space-y-2" id="simVResultLines"></div>
+<div class="mt-6 p-5 bg-brand rounded-brand-sm text-white flex justify-between items-center">
+<span class="font-semibold text-[15px]">COUT TOTAL ESTIME</span>
+<span class="font-heading text-2xl font-bold" id="simVTotal">0 FCFA</span>
+</div>
+<p class="text-[12px] text-g400 mt-4 leading-relaxed">* Estimation indicative. Les montants reels peuvent varier selon le taux de change du jour, les frais portuaires et la valeur en douane retenue. Taux applique : 1 USD = 600 FCFA.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. TIMELINE -->
+<!-- ============================================================ -->
+<section class="py-24 bg-brand text-white">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wider uppercase border border-white/20 text-white/60 mb-4">
+<div class="w-1.5 h-1.5 rounded-full bg-white"></div>Processus
+</div>
+<h2 class="font-heading text-4xl lg:text-[52px] font-bold leading-[1.1] tracking-tight mb-5">De la commande a la livraison</h2>
+<p class="text-lg text-white/50 max-w-[600px] mx-auto leading-relaxed">Un processus clair et transparent en 6 etapes, avec un suivi en temps reel a chaque phase.</p>
+</div>
+<div class="grid sm:grid-cols-3 lg:grid-cols-6 gap-4">
+<!-- Step 1 -->
+<div class="bg-white/5 border border-white/10 rounded-brand-lg p-6 text-center hover:bg-white/10 transition-all">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-white/80">shopping_cart</span>
+</div>
+<div class="text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-2">Etape 1</div>
+<h3 class="font-heading text-[15px] font-semibold">Commande</h3>
+<p class="text-[12px] text-white/40 mt-2">Vous decrivez le vehicule souhaite</p>
+</div>
+<!-- Step 2 -->
+<div class="bg-white/5 border border-white/10 rounded-brand-lg p-6 text-center hover:bg-white/10 transition-all">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-white/80">gavel</span>
+</div>
+<div class="text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-2">Etape 2</div>
+<h3 class="font-heading text-[15px] font-semibold">Achat / Encheres</h3>
+<p class="text-[12px] text-white/40 mt-2">Recherche et achat sur les plateformes</p>
+</div>
+<!-- Step 3 -->
+<div class="bg-white/5 border border-white/10 rounded-brand-lg p-6 text-center hover:bg-white/10 transition-all">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-white/80">package_2</span>
+</div>
+<div class="text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-2">Etape 3</div>
+<h3 class="font-heading text-[15px] font-semibold">Embarquement</h3>
+<p class="text-[12px] text-white/40 mt-2">Chargement au port d'origine</p>
+</div>
+<!-- Step 4 -->
+<div class="bg-white/5 border border-white/10 rounded-brand-lg p-6 text-center hover:bg-white/10 transition-all">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-white/80">sailing</span>
+</div>
+<div class="text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-2">Etape 4</div>
+<h3 class="font-heading text-[15px] font-semibold">Transit Maritime</h3>
+<p class="text-[12px] text-white/40 mt-2">30-45 jours de traversee</p>
+</div>
+<!-- Step 5 -->
+<div class="bg-white/5 border border-white/10 rounded-brand-lg p-6 text-center hover:bg-white/10 transition-all">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-white/80">fact_check</span>
+</div>
+<div class="text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-2">Etape 5</div>
+<h3 class="font-heading text-[15px] font-semibold">Dedouanement</h3>
+<p class="text-[12px] text-white/40 mt-2">Formalites au port de Cotonou</p>
+</div>
+<!-- Step 6 -->
+<div class="bg-white/5 border border-white/10 rounded-brand-lg p-6 text-center hover:bg-white/10 transition-all">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-white/80">local_shipping</span>
+</div>
+<div class="text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-2">Etape 6</div>
+<h3 class="font-heading text-[15px] font-semibold">Livraison</h3>
+<p class="text-[12px] text-white/40 mt-2">Remise des cles et documents</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 7. GALLERY -->
+<!-- ============================================================ -->
+<section class="py-24 bg-g50">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Realisations</div>
+<h2 class="title-h2">Vehicules recemment livres</h2>
+<p class="subtitle mx-auto">Une selection de vehicules importes et livres a nos clients a Cotonou.</p>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Gallery Item 1 -->
+<div class="relative aspect-[4/3] bg-g200 rounded-brand-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-g300">directions_car</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white font-heading font-semibold text-sm">Toyota RAV4 2023</h4>
+<p class="text-white/60 text-[12px]">USA - Copart</p>
+</div>
+</div>
+<!-- Gallery Item 2 -->
+<div class="relative aspect-[4/3] bg-g200 rounded-brand-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-g300">directions_car</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white font-heading font-semibold text-sm">Mercedes GLE 2022</h4>
+<p class="text-white/60 text-[12px]">Allemagne</p>
+</div>
+</div>
+<!-- Gallery Item 3 -->
+<div class="relative aspect-[4/3] bg-g200 rounded-brand-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-g300">airport_shuttle</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white font-heading font-semibold text-sm">Toyota Land Cruiser 2021</h4>
+<p class="text-white/60 text-[12px]">Dubai</p>
+</div>
+</div>
+<!-- Gallery Item 4 -->
+<div class="relative aspect-[4/3] bg-g200 rounded-brand-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-g300">local_shipping</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white font-heading font-semibold text-sm">Ford F-150 2023</h4>
+<p class="text-white/60 text-[12px]">USA - IAAI</p>
+</div>
+</div>
+<!-- Gallery Item 5 -->
+<div class="relative aspect-[4/3] bg-g200 rounded-brand-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-g300">directions_car</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white font-heading font-semibold text-sm">Honda CRV 2024</h4>
+<p class="text-white/60 text-[12px]">Japon - Be Forward</p>
+</div>
+</div>
+<!-- Gallery Item 6 -->
+<div class="relative aspect-[4/3] bg-g200 rounded-brand-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-g300">construction</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white font-heading font-semibold text-sm">CAT Excavatrice 320</h4>
+<p class="text-white/60 text-[12px]">USA - Ritchie Bros</p>
+</div>
+</div>
+<!-- Gallery Item 7 -->
+<div class="relative aspect-[4/3] bg-g200 rounded-brand-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-g300">directions_car</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white font-heading font-semibold text-sm">Hyundai Tucson 2022</h4>
+<p class="text-white/60 text-[12px]">Coree du Sud</p>
+</div>
+</div>
+<!-- Gallery Item 8 -->
+<div class="relative aspect-[4/3] bg-g200 rounded-brand-lg overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-g300">fire_truck</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white font-heading font-semibold text-sm">Toyota Hiace 2023</h4>
+<p class="text-white/60 text-[12px]">Dubai - Zone franche</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 8. FAQ -->
+<!-- ============================================================ -->
+<section class="py-24 bg-white" id="faq">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center mb-16">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>FAQ</div>
+<h2 class="title-h2">Questions frequentes</h2>
+<p class="subtitle mx-auto">Tout ce que vous devez savoir sur l'importation de vehicules au Benin.</p>
+</div>
+<div class="max-w-[800px] mx-auto space-y-3">
+<!-- FAQ 1 -->
+<div class="border border-g200 rounded-brand-lg overflow-hidden">
+<button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-g50 transition-colors">
+<span class="font-heading text-[16px] font-semibold text-brand pr-4">Combien de temps prend l'importation depuis les USA ?</span>
+<span class="material-symbols-outlined text-g400 faq-chevron shrink-0">expand_more</span>
+</button>
+<div class="faq-answer px-6">
+<div class="pb-6 text-[14px] text-g600 leading-relaxed">
+Le delai total est generalement de 45 a 60 jours : 5-10 jours pour l'achat et le transport interieur aux USA, 25-35 jours de transit maritime vers Cotonou, puis 5-10 jours pour le dedouanement et la livraison. Pour l'Europe, comptez 30-45 jours. Depuis Dubai, 20-30 jours. Le Japon necessite environ 40-50 jours.
+</div>
+</div>
+</div>
+<!-- FAQ 2 -->
+<div class="border border-g200 rounded-brand-lg overflow-hidden">
+<button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-g50 transition-colors">
+<span class="font-heading text-[16px] font-semibold text-brand pr-4">Quels sont les frais a prevoir ?</span>
+<span class="material-symbols-outlined text-g400 faq-chevron shrink-0">expand_more</span>
+</button>
+<div class="faq-answer px-6">
+<div class="pb-6 text-[14px] text-g600 leading-relaxed">
+Le cout total comprend : le prix d'achat du vehicule, le fret maritime (variable selon l'origine), l'assurance (environ 1.5% de la valeur CIF), les droits de douane (20% pour l'occasion, 15% pour le neuf), la redevance statistique (1%), le prelevement communautaire (1%), la TVA (18%) et les frais de transit (environ 250 000 FCFA). Utilisez notre simulateur pour une estimation personnalisee.
+</div>
+</div>
+</div>
+<!-- FAQ 3 -->
+<div class="border border-g200 rounded-brand-lg overflow-hidden">
+<button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-g50 transition-colors">
+<span class="font-heading text-[16px] font-semibold text-brand pr-4">Peut-on importer un vehicule accidente ?</span>
+<span class="material-symbols-outlined text-g400 faq-chevron shrink-0">expand_more</span>
+</button>
+<div class="faq-answer px-6">
+<div class="pb-6 text-[14px] text-g600 leading-relaxed">
+Oui, il est tout a fait possible d'importer des vehicules avec un titre "Salvage" ou "Rebuilt" depuis les USA. Ces vehicules proviennent souvent de Copart ou IAAI et offrent un excellent rapport qualite-prix. Nous vous fournissons le rapport d'accident complet (photos, estimation des reparations) avant tout achat. Les vehicules accidentes beneficient generalement d'une valeur en douane plus basse.
+</div>
+</div>
+</div>
+<!-- FAQ 4 -->
+<div class="border border-g200 rounded-brand-lg overflow-hidden">
+<button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-g50 transition-colors">
+<span class="font-heading text-[16px] font-semibold text-brand pr-4">Quels documents sont necessaires ?</span>
+<span class="material-symbols-outlined text-g400 faq-chevron shrink-0">expand_more</span>
+</button>
+<div class="faq-answer px-6">
+<div class="pb-6 text-[14px] text-g600 leading-relaxed">
+Les documents requis incluent : le Bill of Sale (facture d'achat), le Title (titre de propriete du vehicule), le Bill of Lading (connaissement maritime), l'attestation de valeur, et votre carte d'importateur (CPI) valide. Nous nous chargeons de rassembler tous les documents cote fournisseur et de preparer le dossier complet pour le dedouanement. Vous n'avez qu'a fournir votre CPI.
+</div>
+</div>
+</div>
+<!-- FAQ 5 -->
+<div class="border border-g200 rounded-brand-lg overflow-hidden">
+<button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-g50 transition-colors">
+<span class="font-heading text-[16px] font-semibold text-brand pr-4">Comment fonctionnent les encheres Copart et IAAI ?</span>
+<span class="material-symbols-outlined text-g400 faq-chevron shrink-0">expand_more</span>
+</button>
+<div class="faq-answer px-6">
+<div class="pb-6 text-[14px] text-g600 leading-relaxed">
+Copart et IAAI sont les deux plus grandes plateformes d'encheres automobiles aux Etats-Unis. Elles vendent des vehicules provenant de compagnies d'assurance (accidentes), de loueurs, de saisies et de particuliers. Nous disposons d'une licence de courtier nous permettant d'encherir en votre nom. Vous selectionnez le vehicule, nous fixons un budget maximum, et nous encherissons. En cas de gain, nous gerons le paiement, le transport interieur et l'embarquement vers Cotonou.
+</div>
+</div>
+</div>
+<!-- FAQ 6 -->
+<div class="border border-g200 rounded-brand-lg overflow-hidden">
+<button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-g50 transition-colors">
+<span class="font-heading text-[16px] font-semibold text-brand pr-4">Y a-t-il une limite d'age pour les vehicules importes ?</span>
+<span class="material-symbols-outlined text-g400 faq-chevron shrink-0">expand_more</span>
+</button>
+<div class="faq-answer px-6">
+<div class="pb-6 text-[14px] text-g600 leading-relaxed">
+Le Benin n'impose pas de limite d'age stricte pour l'importation de vehicules, contrairement a certains pays voisins. Cependant, les vehicules de plus de 5 ans sont soumis a une surcharge supplementaire d'environ 15% sur la valeur en douane. Il est donc generalement plus avantageux d'importer des vehicules de moins de 5 ans. Notre simulateur tient compte de cette surcharge dans l'estimation.
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 9. CTA -->
+<!-- ============================================================ -->
+<section class="py-20 bg-brand">
+<div class="container mx-auto px-6 max-w-[1440px] text-center">
+<h2 class="font-heading text-3xl lg:text-[44px] font-bold text-white leading-[1.1] tracking-tight mb-6">Pret a commander votre vehicule ?</h2>
+<p class="text-lg text-white/50 max-w-[550px] mx-auto leading-relaxed mb-10">Contactez-nous des maintenant pour lancer votre importation. Devis gratuit sous 24h.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a class="btn-brand btn-brand-white" href="#commander">Commander maintenant <span class="material-symbols-outlined !text-sm">arrow_forward</span></a>
+<a class="btn-brand bg-transparent text-white border-[1.5px] border-white/30 hover:bg-white/10" href="https://wa.me/22997500555?text=Bonjour%2C%20je%20souhaite%20importer%20un%20v%C3%A9hicule." target="_blank">Contacter via WhatsApp</a>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 10. FOOTER -->
+<!-- ============================================================ -->
+<footer class="bg-g50 border-t border-g200 py-16">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<!-- Company Info -->
+<div>
+<div class="font-heading font-bold text-base text-brand mb-6">AD TRANS LOGISTICS</div>
+<p class="text-sm text-g500 mb-4">SURL specialisee en transit douanier, importation de vehicules et logistique portuaire au port de Cotonou, Benin.</p>
+<div class="space-y-2 text-[13px] text-g600">
+<p><strong>IFU:</strong> 3202113824203</p>
+<p><strong>RCCM:</strong> RB/COT/21 B 31505</p>
+</div>
+</div>
+<!-- Services -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Services</h4>
+<ul class="space-y-3 text-[13px]">
+<li><a href="/#services" class="text-g500 hover:text-brand transition-colors">Transit Douanier</a></li>
+<li><a href="/vehicules" class="text-g500 hover:text-brand transition-colors">Importation Vehicules</a></li>
+<li><a href="/negoce" class="text-g500 hover:text-brand transition-colors">Negoce International</a></li>
+<li><a href="/#formation" class="text-g500 hover:text-brand transition-colors">Formation & Conseil</a></li>
+</ul>
+</div>
+<!-- Resources -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Ressources</h4>
+<ul class="space-y-3 text-[13px]">
+<li><a href="#simulateur-vehicule" class="text-g500 hover:text-brand transition-colors">Simulateur vehicule</a></li>
+<li><a href="/#simulateur" class="text-g500 hover:text-brand transition-colors">Simulateur douane</a></li>
+<li><a href="#faq" class="text-g500 hover:text-brand transition-colors">Questions frequentes</a></li>
+<li><a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="text-g500 hover:text-brand transition-colors">Chaine YouTube</a></li>
+</ul>
+</div>
+<!-- Contact -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Contact</h4>
+<ul class="space-y-3 text-[13px] mb-6">
+<li><a href="tel:+22997500555" class="text-g500 hover:text-brand transition-colors">+229 97 50 05 55</a></li>
+<li><a href="mailto:adtranslogistic@hotmail.com" class="text-g500 hover:text-brand transition-colors">adtranslogistic@hotmail.com</a></li>
+<li class="text-g600">Port Autonome de Cotonou<br/>Cotonou, Benin</li>
+</ul>
+<div class="flex gap-3">
+<a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+</a>
+<a href="#" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">facebook</span>
+</a>
+<a href="https://wa.me/22997500555" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">message</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Footer Bottom -->
+<div class="border-t border-g200 pt-8">
+<p class="text-center text-[13px] text-g500">&copy; 2026 AD TRANS LOGISTICS. Tous droits reserves. | Import de vehicules et transit douanier a Cotonou, Benin.</p>
+</div>
+</div>
+</footer>
+
+<script>
+// Mobile Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+});
+
+function closeMobile() {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+}
+
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Toast Notification
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3500);
+}
+
+// ============================================================
+// COST SIMULATOR
+// ============================================================
+function simulerCoutVehicule() {
+    const prixUSD = parseFloat(document.getElementById('simPrixUSD').value) || 0;
+    const origine = document.getElementById('simOrigine').value;
+    const typeVehicule = document.getElementById('simTypeVehicule').value;
+    const etat = document.getElementById('simEtat').value;
+    const annee = parseInt(document.getElementById('simAnnee').value) || 2023;
+
+    if (!prixUSD || !origine) {
+        showToast('Veuillez renseigner le prix et le marche d\'origine.');
+        return;
+    }
+
+    const tauxChange = 600; // 1 USD = 600 XOF
+
+    // Fret maritime (USD) par origine et type
+    const fretRates = {
+        'USA': { voiture: 1500, camion: 2500, moto: 800, engin: 3500 },
+        'Europe': { voiture: 1000, camion: 1800, moto: 600, engin: 2500 },
+        'Asie': { voiture: 2000, camion: 3000, moto: 1000, engin: 4000 },
+        'Dubai': { voiture: 800, camion: 1500, moto: 500, engin: 2000 }
+    };
+
+    const fretUSD = fretRates[origine] ? (fretRates[origine][typeVehicule] || 1500) : 1500;
+    const prixFCFA = prixUSD * tauxChange;
+    const fretFCFA = fretUSD * tauxChange;
+
+    // Assurance 1.5%
+    const assurance = (prixFCFA + fretFCFA) * 0.015;
+
+    // CIF = Prix + Fret + Assurance
+    const cif = prixFCFA + fretFCFA + assurance;
+
+    // Droits de douane
+    const tauxDD = etat === 'neuf' ? 0.15 : 0.20;
+    const dd = cif * tauxDD;
+
+    // RS 1%
+    const rs = cif * 0.01;
+
+    // PC 1%
+    const pc = cif * 0.01;
+
+    // TVA 18%
+    const tva = (cif + dd + rs + pc) * 0.18;
+
+    // Surcharge age (> 5 ans)
+    const anneeRef = new Date().getFullYear();
+    const ageVehicule = anneeRef - annee;
+    const surchargeAge = ageVehicule > 5 ? cif * 0.15 : 0;
+
+    // Frais transit fixe
+    const fraisTransit = 250000;
+
+    // Total
+    const total = cif + dd + rs + pc + tva + surchargeAge + fraisTransit;
+
+    // Build results
+    const fmt = (n) => Math.round(n).toLocaleString('fr-FR');
+
+    const lines = document.getElementById('simVResultLines');
+    lines.innerHTML = `
+        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
+            <span class="text-sm text-g600">Prix vehicule</span>
+            <span class="font-semibold text-brand">${fmt(prixFCFA)} FCFA</span>
+        </div>
+        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
+            <span class="text-sm text-g600">Fret maritime (${origine})</span>
+            <span class="font-semibold text-brand">${fmt(fretFCFA)} FCFA</span>
+        </div>
+        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
+            <span class="text-sm text-g600">Assurance (1.5%)</span>
+            <span class="font-semibold text-brand">${fmt(assurance)} FCFA</span>
+        </div>
+        <div class="flex justify-between items-center p-4 bg-brand/5 rounded-brand-sm border border-brand/10">
+            <span class="text-sm text-g700 font-semibold">Valeur CIF</span>
+            <span class="font-semibold text-brand">${fmt(cif)} FCFA</span>
+        </div>
+        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
+            <span class="text-sm text-g600">Droit de Douane (DD ${Math.round(tauxDD*100)}%)</span>
+            <span class="font-semibold text-brand">${fmt(dd)} FCFA</span>
+        </div>
+        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
+            <span class="text-sm text-g600">Redevance Statistique (RS 1%)</span>
+            <span class="font-semibold text-brand">${fmt(rs)} FCFA</span>
+        </div>
+        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
+            <span class="text-sm text-g600">Prelevement Communautaire (PC 1%)</span>
+            <span class="font-semibold text-brand">${fmt(pc)} FCFA</span>
+        </div>
+        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
+            <span class="text-sm text-g600">TVA (18%)</span>
+            <span class="font-semibold text-brand">${fmt(tva)} FCFA</span>
+        </div>
+        ${surchargeAge > 0 ? `
+        <div class="flex justify-between items-center p-4 bg-orange-50 rounded-brand-sm border border-orange-200">
+            <span class="text-sm text-orange-700">Surcharge age +${ageVehicule} ans (15%)</span>
+            <span class="font-semibold text-orange-700">${fmt(surchargeAge)} FCFA</span>
+        </div>` : ''}
+        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
+            <span class="text-sm text-g600">Frais de transit</span>
+            <span class="font-semibold text-brand">${fmt(fraisTransit)} FCFA</span>
+        </div>
+    `;
+
+    document.getElementById('simVTotal').textContent = `${fmt(total)} FCFA`;
+    document.getElementById('simVResultEmpty').classList.add('hidden');
+    document.getElementById('simVResultData').classList.remove('hidden');
+}
+
+function resetSimVehicule() {
+    document.getElementById('simPrixUSD').value = '';
+    document.getElementById('simOrigine').value = '';
+    document.getElementById('simTypeVehicule').value = 'voiture';
+    document.getElementById('simEtat').value = 'occasion';
+    document.getElementById('simAnnee').value = '2023';
+    document.getElementById('simVResultEmpty').classList.remove('hidden');
+    document.getElementById('simVResultData').classList.add('hidden');
+}
+
+// ============================================================
+// FAQ ACCORDION
+// ============================================================
+function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const chevron = btn.querySelector('.faq-chevron');
+    const isOpen = answer.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('open'));
+
+    // Toggle current
+    if (!isOpen) {
+        answer.classList.add('open');
+        chevron.classList.add('open');
+    }
+}
+
+// ============================================================
+// ORDER FORM SUBMISSION
+// ============================================================
+function submitOrder(e) {
+    e.preventDefault();
+
+    const marque = document.getElementById('ordMarque').value;
+    const modele = document.getElementById('ordModele').value;
+    const anneeMin = document.getElementById('ordAnneeMin').value;
+    const anneeMax = document.getElementById('ordAnneeMax').value;
+    const budget = document.getElementById('ordBudget').value;
+    const origine = document.getElementById('ordOrigine').value;
+    const condition = document.querySelector('input[name="condition"]:checked')?.value || '';
+    const nom = document.getElementById('ordNom').value;
+    const tel = document.getElementById('ordTel').value;
+    const email = document.getElementById('ordEmail').value;
+    const commentaires = document.getElementById('ordCommentaires').value;
+
+    // Build WhatsApp message
+    let msg = `Bonjour AD TRANS LOGISTICS,\n\nJe souhaite commander un vehicule :\n\n`;
+    msg += `*Marque :* ${marque}\n`;
+    msg += `*Modele :* ${modele}\n`;
+    if (anneeMin) msg += `*Annee min :* ${anneeMin}\n`;
+    if (anneeMax) msg += `*Annee max :* ${anneeMax}\n`;
+    if (budget) msg += `*Budget :* ${parseInt(budget).toLocaleString('fr-FR')} FCFA\n`;
+    if (origine) msg += `*Origine :* ${origine}\n`;
+    if (condition) msg += `*Condition :* ${condition}\n`;
+    msg += `\n*Nom :* ${nom}\n`;
+    msg += `*Tel :* ${tel}\n`;
+    if (email) msg += `*Email :* ${email}\n`;
+    if (commentaires) msg += `\n*Commentaires :*\n${commentaires}\n`;
+
+    const encoded = encodeURIComponent(msg);
+    window.open(`https://wa.me/22997500555?text=${encoded}`, '_blank');
+    showToast('Demande envoyee via WhatsApp !');
+}
+</script>
+
+</body>
+</html>
