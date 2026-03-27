@@ -81,15 +81,16 @@
         .toast { @apply fixed bottom-6 right-6 bg-brand text-white px-6 py-4 rounded-brand shadow-xl z-[2000] opacity-0 transform translate-y-4 transition-all duration-300; }
         .toast.show { @apply opacity-100 translate-y-0; }
         
-        .whatsapp-btn { @apply fixed bottom-6 right-6 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 z-[999] hover:shadow-2xl; }
-        .whatsapp-btn svg { @apply w-8 h-8; }
+        .whatsapp-btn { position:fixed; bottom:1.5rem; right:1.5rem; width:64px; height:64px; background:#25D366; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 15px rgba(0,0,0,.1); z-index:999; transition:all .3s; }
+        .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 25px 50px rgba(0,0,0,.15); }
+        .whatsapp-btn svg { width:32px; height:32px; }
     </style>
 </head>
 <body class="bg-white text-g800 font-sans">
 
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/22997500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20services." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
-    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="width:32px;height:32px;min-width:32px;min-height:32px;">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378l-.361.214-3.741-.982.998 3.645-.235.374a9.86 9.86 0 .001 15.02l.375.235 3.741.121-.992-3.645.235-.374a9.866 9.866 0 001.378-5.031 9.842 9.842 0 00-2.932-6.962zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z"/>
     </svg>
 </a>
