@@ -112,7 +112,7 @@
 <li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/vehicules" target="_blank">Véhicules</a></li>
 <li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#services">Services</a></li>
 <li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#simulateur">Simulateur</a></li>
-<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#suivi">Suivi</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/suivi" target="_blank">Suivi</a></li>
 <li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="#formation">Formation</a></li>
 <li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors mr-2" href="#contact">Contact</a></li>
 <li><a class="btn-brand btn-brand-dark px-5 py-2 text-[13px]" href="#devis">Devis gratuit</a></li>
@@ -377,37 +377,6 @@ Calculer l'estimation <span class="material-symbols-outlined !text-sm">calculate
 </div>
 </section>
 
-<!-- TRACKING SECTION -->
-<section class="py-24 bg-g50" id="suivi">
-<div class="container mx-auto px-6 max-w-4xl">
-<div class="text-center mb-12">
-<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Suivi en temps réel</div>
-<h2 class="title-h2">Suivez votre dossier</h2>
-<p class="subtitle mx-auto">Entrez votre référence dossier (ex: ADTL-2026-0142) pour consulter l'avancement en direct.</p>
-</div>
-<div class="bg-white p-6 rounded-full border border-g200 shadow-sm flex gap-2 mb-10">
-<input class="flex-1 px-6 py-2 bg-transparent border-none focus:ring-0 text-brand font-medium" id="trackingInput" placeholder="Référence ADTL-XXXX-XXXX" type="text"/>
-<button class="btn-brand btn-brand-dark rounded-full px-8" onclick="trackDossier()">Rechercher</button>
-</div>
-<div class="hidden" id="trackingResult">
-<div class="bg-white rounded-brand-lg border border-g200 overflow-hidden shadow-sm">
-<div class="p-8 border-b border-g100 flex justify-between items-start">
-<div>
-<div class="font-heading text-xl font-bold text-brand" id="trackingRef">#ADTL-2026-0142</div>
-<div class="text-sm text-g400 mt-1" id="trackingType">Import véhicule — Toyota RAV4 2023</div>
-</div>
-<span class="px-4 py-1.5 bg-g100 rounded-full text-[12px] font-semibold text-g600" id="trackingStatus">En cours</span>
-</div>
-<div class="p-8 pb-10 relative">
-<div class="timeline-line ml-3"></div>
-<div class="space-y-8 relative" id="trackingTimeline">
-<!-- JS injected timeline items -->
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
 
 <!-- WHY US SECTION -->
 <section class="py-24 bg-brand text-white overflow-hidden">

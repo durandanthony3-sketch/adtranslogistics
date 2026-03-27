@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Suivi | AD TRANS LOGISTICS - Tracking en temps réel</title>
+    <meta content="Suivez vos expéditions en temps réel : véhicules, conteneurs, dossiers de dédouanement. AD TRANS LOGISTICS, transit douanier à Cotonou, Bénin." name="description"/>
+    <!-- Fonts: Space Grotesk for Headings, Instrument Sans for Body -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand': '#0A0A0A',
+                        'g950': '#111111',
+                        'g900': '#171717',
+                        'g800': '#262626',
+                        'g700': '#3A3A3A',
+                        'g600': '#525252',
+                        'g500': '#737373',
+                        'g400': '#A3A3A3',
+                        'g300': '#D4D4D4',
+                        'g200': '#E5E5E5',
+                        'g100': '#F0F0F0',
+                        'g50': '#F7F7F7',
+                    },
+                    fontFamily: {
+                        sans: ['Instrument Sans', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'brand': '14px',
+                        'brand-sm': '10px',
+                        'brand-lg': '20px',
+                        'brand-xl': '28px',
+                    },
+                    transitionTimingFunction: {
+                        'brand-ease': 'cubic-bezier(0.4, 0, 0.2, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { -webkit-font-smoothing: antialiased; }
+
+        .tag { @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wider uppercase border border-g200 text-g500 bg-white; }
+        .tag .dot { @apply w-2 h-2 rounded-full bg-brand; }
+
+        .title-h2 { @apply font-heading text-4xl lg:text-[52px] font-bold text-brand leading-[1.1] tracking-tight mb-5; }
+        .subtitle { @apply text-lg text-g500 max-w-[600px] leading-relaxed; }
+
+        .btn-brand { @apply inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-semibold text-[15px] transition-all duration-300 ease-brand-ease; }
+        .btn-brand-dark { @apply bg-brand text-white hover:bg-g800 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10; }
+        .btn-brand-ghost { @apply bg-transparent text-brand border-[1.5px] border-g300 hover:border-brand hover:bg-g50; }
+        .btn-brand-white { @apply bg-white text-brand hover:bg-g100; }
+
+        .glass-nav { @apply fixed top-0 left-0 right-0 z-[1000] bg-white/85 backdrop-blur-2xl border-b border-black/5; }
+        .glass-nav.scrolled { @apply bg-white/95 shadow-lg shadow-black/5; }
+
+        .toast { @apply fixed bottom-6 right-6 bg-brand text-white px-6 py-4 rounded-brand shadow-xl z-[2000] opacity-0 transform translate-y-4 transition-all duration-300; }
+        .toast.show { @apply opacity-100 translate-y-0; }
+
+        .whatsapp-btn { position:fixed; bottom:1.5rem; right:1.5rem; width:64px; height:64px; background:#25D366; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 15px rgba(0,0,0,.1); z-index:999; transition:all .3s; }
+        .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 25px 50px rgba(0,0,0,.15); }
+        .whatsapp-btn svg { width:32px; height:32px; }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .animate-blink { animation: blink 2s infinite; }
+
+        @keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        .animate-slide-up { animation: slideUp 0.5s ease-out forwards; }
+
+        @keyframes progressFill { from { width: 0; } }
+        .animate-progress { animation: progressFill 1s ease-out forwards; }
+
+        /* Timeline styles */
+        .track-step { @apply relative flex items-start gap-4; }
+        .track-step .step-line { @apply absolute left-[17px] top-[36px] w-[2px] bg-g200; }
+        .track-step .step-line.done { @apply bg-brand; }
+        .track-step .step-dot { @apply w-[36px] h-[36px] rounded-full flex items-center justify-center shrink-0 text-sm font-bold z-10 border-[3px] border-white shadow-md; }
+        .track-step .step-dot.done { @apply bg-brand text-white; }
+        .track-step .step-dot.current { @apply bg-white text-brand border-brand; }
+        .track-step .step-dot.waiting { @apply bg-g100 text-g400 border-g200; }
+
+        /* Tab pill styles */
+        .tab-pill { @apply px-6 py-3 rounded-full text-sm font-semibold cursor-pointer transition-all duration-300 whitespace-nowrap; }
+        .tab-pill.active { @apply bg-brand text-white shadow-lg shadow-black/10; }
+        .tab-pill:not(.active) { @apply bg-white text-g500 border border-g200 hover:border-g400 hover:text-g700; }
+
+        /* Doc check item */
+        .doc-item { @apply flex items-center gap-3 p-3 rounded-brand-sm border border-g100 bg-white; }
+    </style>
+</head>
+<body class="bg-white text-g800 font-sans">
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/22997500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20services." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
+    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="width:32px;height:32px;min-width:32px;min-height:32px;">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast"></div>
+
+<!-- NAVIGATION -->
+<nav class="glass-nav transition-all duration-300" id="navbar">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="flex items-center justify-between h-20">
+<a class="flex items-center gap-2.5 group" href="/">
+<div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
+<div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
+</a>
+<ul class="hidden lg:flex items-center gap-8 list-none">
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/">Accueil</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/negoce" target="_blank">Négoce</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/vehicules" target="_blank">Véhicules</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#services">Services</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#simulateur">Simulateur</a></li>
+<li><a class="text-[15px] font-semibold text-brand transition-colors" href="/suivi">Suivi</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#formation">Formation</a></li>
+<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors mr-2" href="/#contact">Contact</a></li>
+<li><a class="btn-brand btn-brand-dark px-5 py-2 text-[13px]" href="/#devis">Devis gratuit</a></li>
+</ul>
+<button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current transition-all"></span>
+</button>
+</div>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="hidden fixed inset-0 z-[999] bg-white pt-20 px-6 flex-col gap-1" id="mobileMenu">
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Accueil</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/negoce" target="_blank" onclick="closeMobile()">Négoce</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/vehicules" target="_blank" onclick="closeMobile()">Véhicules</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#services" onclick="closeMobile()">Services</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#simulateur" onclick="closeMobile()">Simulateur</a>
+<a class="block p-4 text-base font-semibold text-brand rounded-brand-sm bg-g50" href="/suivi" onclick="closeMobile()">Suivi</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#formation" onclick="closeMobile()">Formation</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#contact" onclick="closeMobile()">Contact</a>
+<a class="btn-brand btn-brand-dark justify-center mt-4" href="/#devis" onclick="closeMobile()">Devis gratuit</a>
+</div>
+
+<!-- ===================== HERO SECTION ===================== -->
+<section class="pt-32 pb-16 lg:pt-44 lg:pb-20 bg-white">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center max-w-3xl mx-auto">
+<div class="tag mb-6 mx-auto w-fit"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Suivi en temps réel</div>
+<h1 class="font-heading text-4xl lg:text-[62px] font-bold leading-[1.08] tracking-tight text-brand mb-6">
+Suivez vos expéditions<br/><span class="text-g400 font-medium italic">en temps réel</span>
+</h1>
+<p class="text-lg lg:text-xl text-g500 leading-relaxed max-w-[560px] mx-auto">
+Véhicules, conteneurs, dossiers de dédouanement : accédez à l'état d'avancement de vos opérations à tout moment.
+</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== TRACKING TABS SECTION ===================== -->
+<section class="py-16 bg-g50">
+<div class="container mx-auto px-6 max-w-5xl">
+
+<!-- Tab Pills -->
+<div class="flex flex-wrap justify-center gap-3 mb-10">
+<button class="tab-pill active" onclick="switchTab('vin')" id="tab-vin">
+<span class="material-symbols-outlined !text-[18px] align-middle mr-1">directions_car</span>
+Tracking Véhicule (VIN)
+</button>
+<button class="tab-pill" onclick="switchTab('container')" id="tab-container">
+<span class="material-symbols-outlined !text-[18px] align-middle mr-1">package_2</span>
+Tracking Conteneur
+</button>
+<button class="tab-pill" onclick="switchTab('dedouanement')" id="tab-dedouanement">
+<span class="material-symbols-outlined !text-[18px] align-middle mr-1">description</span>
+Suivi Dédouanement
+</button>
+</div>
+
+<!-- ========== TAB 1: VIN ========== -->
+<div id="panel-vin" class="tab-panel">
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-8">
+<h3 class="font-heading text-lg font-bold text-brand mb-1">Recherche par VIN</h3>
+<p class="text-sm text-g400 mb-6">Entrez le numéro d'identification du véhicule (VIN) pour suivre son acheminement.</p>
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-[13px] font-semibold text-g600">Numéro VIN *</label>
+<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="vinInput" placeholder="Ex: 1HGBH41JXMN109186" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-[13px] font-semibold text-g600">Référence dossier ADTL <span class="text-g400 font-normal">(optionnel)</span></label>
+<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="vinRefInput" placeholder="Ex: ADTL-2026-0142" type="text"/>
+</div>
+<button class="btn-brand btn-brand-dark w-full justify-center mt-2" onclick="searchVIN()">
+Rechercher <span class="material-symbols-outlined !text-sm">search</span>
+</button>
+</div>
+</div>
+<!-- VIN Results -->
+<div id="vin-result" class="hidden animate-slide-up">
+<!-- Vehicle Info Card -->
+<div class="bg-white rounded-brand-lg border border-g200 overflow-hidden shadow-sm mb-6">
+<div class="p-6 border-b border-g100 flex flex-col sm:flex-row justify-between items-start gap-4">
+<div>
+<div class="font-heading text-xl font-bold text-brand">Toyota RAV4 2023</div>
+<div class="text-sm text-g400 mt-1">VIN: <span class="font-mono text-g600" id="vin-display">1HGBH41JXMN109186</span></div>
+</div>
+<span class="px-4 py-1.5 bg-brand/10 rounded-full text-[12px] font-semibold text-brand">En transit</span>
+</div>
+<div class="p-6 grid grid-cols-2 sm:grid-cols-4 gap-6">
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Marque</div>
+<div class="text-sm font-semibold text-brand">Toyota</div>
+</div>
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Modèle</div>
+<div class="text-sm font-semibold text-brand">RAV4 XLE</div>
+</div>
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Année</div>
+<div class="text-sm font-semibold text-brand">2023</div>
+</div>
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Couleur</div>
+<div class="text-sm font-semibold text-brand">Blanc Nacré</div>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="bg-white rounded-brand-lg border border-g200 p-6 shadow-sm mb-6">
+<div class="flex justify-between items-center mb-3">
+<span class="text-sm font-semibold text-brand">Progression</span>
+<span class="text-sm font-bold text-brand">65%</span>
+</div>
+<div class="w-full bg-g100 rounded-full h-3">
+<div class="bg-brand h-3 rounded-full animate-progress" style="width: 65%"></div>
+</div>
+<div class="flex justify-between mt-3">
+<span class="text-[11px] text-g400">Départ: Savannah, GA (USA)</span>
+<span class="text-[11px] text-g400">Arrivée estimée: 08 Avr 2026</span>
+</div>
+</div>
+<!-- Timeline -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm">
+<h4 class="font-heading text-base font-bold text-brand mb-8">Historique du suivi</h4>
+<div class="space-y-0">
+<!-- Step 1 - Done -->
+<div class="track-step">
+<div class="step-line done" style="height: calc(100% - 18px);"></div>
+<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">Achat confirmé</h5>
+<p class="text-[12px] text-g400 mt-0.5">12 Mars 2026 - Copart, Savannah GA</p>
+<p class="text-[13px] text-g500 mt-2">Véhicule acheté aux enchères. Titre de propriété reçu.</p>
+</div>
+</div>
+<!-- Step 2 - Done -->
+<div class="track-step">
+<div class="step-line done" style="height: calc(100% - 18px);"></div>
+<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">Embarquement</h5>
+<p class="text-[12px] text-g400 mt-0.5">18 Mars 2026 - Port de Savannah</p>
+<p class="text-[13px] text-g500 mt-2">Chargé sur navire MSC LUCIA. Bill of Lading émis.</p>
+</div>
+</div>
+<!-- Step 3 - Current -->
+<div class="track-step">
+<div class="step-line" style="height: calc(100% - 18px);"></div>
+<div class="step-dot current animate-blink"><span class="material-symbols-outlined !text-[16px]">sailing</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">Transit Maritime</h5>
+<p class="text-[12px] text-g400 mt-0.5">En cours - Atlantique</p>
+<p class="text-[13px] text-g500 mt-2">Navire en mer. Position actuelle : large des Canaries. ETA Cotonou : 05 Avr 2026.</p>
+</div>
+</div>
+<!-- Step 4 - Waiting -->
+<div class="track-step">
+<div class="step-line" style="height: calc(100% - 18px);"></div>
+<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">anchor</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-g400">Arrivée au Port de Cotonou</h5>
+<p class="text-[12px] text-g300 mt-0.5">Prévue le 05 Avr 2026</p>
+</div>
+</div>
+<!-- Step 5 - Waiting -->
+<div class="track-step">
+<div class="step-line" style="height: calc(100% - 18px);"></div>
+<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">gavel</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-g400">Dédouanement</h5>
+<p class="text-[12px] text-g300 mt-0.5">En attente</p>
+</div>
+</div>
+<!-- Step 6 - Waiting -->
+<div class="track-step">
+<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">check_circle</span></div>
+<div class="pb-2">
+<h5 class="text-[15px] font-semibold text-g400">Livré</h5>
+<p class="text-[12px] text-g300 mt-0.5">En attente</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== TAB 2: CONTAINER ========== -->
+<div id="panel-container" class="tab-panel hidden">
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-8">
+<h3 class="font-heading text-lg font-bold text-brand mb-1">Recherche par conteneur</h3>
+<p class="text-sm text-g400 mb-6">Entrez le numéro de conteneur ou le Bill of Lading pour suivre votre cargaison.</p>
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-[13px] font-semibold text-g600">Numéro de conteneur *</label>
+<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="containerInput" placeholder="Ex: MSCU1234567" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-[13px] font-semibold text-g600">Bill of Lading <span class="text-g400 font-normal">(optionnel)</span></label>
+<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="blInput" placeholder="Ex: MSCUHAM123456" type="text"/>
+</div>
+<button class="btn-brand btn-brand-dark w-full justify-center mt-2" onclick="searchContainer()">
+Rechercher <span class="material-symbols-outlined !text-sm">search</span>
+</button>
+</div>
+</div>
+<!-- Container Results -->
+<div id="container-result" class="hidden animate-slide-up">
+<!-- Container Info Card -->
+<div class="bg-white rounded-brand-lg border border-g200 overflow-hidden shadow-sm mb-6">
+<div class="p-6 border-b border-g100 flex flex-col sm:flex-row justify-between items-start gap-4">
+<div>
+<div class="font-heading text-xl font-bold text-brand">Conteneur <span class="font-mono" id="container-display">MSCU1234567</span></div>
+<div class="text-sm text-g400 mt-1">B/L: MSCUHAM789012 &mdash; MSC Mediterranean Shipping</div>
+</div>
+<span class="px-4 py-1.5 bg-brand/10 rounded-full text-[12px] font-semibold text-brand">En mer</span>
+</div>
+<div class="p-6 grid grid-cols-2 sm:grid-cols-4 gap-6">
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Type</div>
+<div class="text-sm font-semibold text-brand">40' HC (High Cube)</div>
+</div>
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Poids</div>
+<div class="text-sm font-semibold text-brand">18 250 kg</div>
+</div>
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Origine</div>
+<div class="text-sm font-semibold text-brand">Guangzhou, Chine</div>
+</div>
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Destination</div>
+<div class="text-sm font-semibold text-brand">Cotonou, Bénin</div>
+</div>
+</div>
+</div>
+<!-- Route Info -->
+<div class="bg-white rounded-brand-lg border border-g200 p-6 shadow-sm mb-6">
+<div class="flex justify-between items-center mb-4">
+<span class="text-sm font-semibold text-brand">Progression du voyage</span>
+<span class="text-sm font-bold text-brand">48%</span>
+</div>
+<div class="w-full bg-g100 rounded-full h-3 mb-4">
+<div class="bg-brand h-3 rounded-full animate-progress" style="width: 48%"></div>
+</div>
+<!-- Route Text Map -->
+<div class="flex flex-wrap items-center justify-between gap-2 text-[12px] font-semibold">
+<span class="text-brand">Guangzhou</span>
+<span class="text-g300">&rarr;</span>
+<span class="text-g400">Singapour</span>
+<span class="text-g300">&rarr;</span>
+<span class="text-brand underline">Canal de Suez</span>
+<span class="text-g300">&rarr;</span>
+<span class="text-g400">Tanger Med</span>
+<span class="text-g300">&rarr;</span>
+<span class="text-g400">Cotonou</span>
+</div>
+<div class="mt-4 p-4 bg-g50 rounded-brand-sm flex items-center gap-3">
+<span class="material-symbols-outlined text-brand !text-xl">schedule</span>
+<div>
+<div class="text-[13px] font-semibold text-brand">ETA : 15 Avril 2026</div>
+<div class="text-[12px] text-g400">Navire: MSC AURORA III &mdash; Voyage: FA612E</div>
+</div>
+</div>
+</div>
+<!-- Timeline -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm">
+<h4 class="font-heading text-base font-bold text-brand mb-8">Historique du suivi</h4>
+<div class="space-y-0">
+<div class="track-step">
+<div class="step-line done" style="height: calc(100% - 18px);"></div>
+<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">Chargement</h5>
+<p class="text-[12px] text-g400 mt-0.5">05 Mars 2026 - Port de Guangzhou, Chine</p>
+<p class="text-[13px] text-g500 mt-2">Conteneur chargé et scellé. Seal: MSCUL892341.</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-line done" style="height: calc(100% - 18px);"></div>
+<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">Transbordement Singapour</h5>
+<p class="text-[12px] text-g400 mt-0.5">14 Mars 2026 - Port de Singapour</p>
+<p class="text-[13px] text-g500 mt-2">Transbordement effectué vers MSC AURORA III.</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-line" style="height: calc(100% - 18px);"></div>
+<div class="step-dot current animate-blink"><span class="material-symbols-outlined !text-[16px]">sailing</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">En mer</h5>
+<p class="text-[12px] text-g400 mt-0.5">En cours - Canal de Suez</p>
+<p class="text-[13px] text-g500 mt-2">Traversée du Canal de Suez en cours. Prochaine escale : Tanger Med.</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-line" style="height: calc(100% - 18px);"></div>
+<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">anchor</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-g400">Arrivée Cotonou</h5>
+<p class="text-[12px] text-g300 mt-0.5">Prévue le 15 Avr 2026</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-line" style="height: calc(100% - 18px);"></div>
+<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">gavel</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-g400">Dédouanement</h5>
+<p class="text-[12px] text-g300 mt-0.5">En attente</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-line" style="height: calc(100% - 18px);"></div>
+<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">deployed_code</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-g400">Dépotage</h5>
+<p class="text-[12px] text-g300 mt-0.5">En attente</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">local_shipping</span></div>
+<div class="pb-2">
+<h5 class="text-[15px] font-semibold text-g400">Livraison</h5>
+<p class="text-[12px] text-g300 mt-0.5">En attente</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ========== TAB 3: DÉDOUANEMENT ========== -->
+<div id="panel-dedouanement" class="tab-panel hidden">
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-8">
+<h3 class="font-heading text-lg font-bold text-brand mb-1">Suivi de dossier de dédouanement</h3>
+<p class="text-sm text-g400 mb-6">Consultez l'avancement de votre dossier de dédouanement en saisissant votre référence.</p>
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-[13px] font-semibold text-g600">Référence dossier *</label>
+<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="dedouanementInput" placeholder="Ex: ADTL-2026-0142" type="text"/>
+</div>
+<button class="btn-brand btn-brand-dark w-full justify-center mt-2" onclick="searchDedouanement()">
+Consulter <span class="material-symbols-outlined !text-sm">search</span>
+</button>
+</div>
+</div>
+<!-- Dedouanement Results -->
+<div id="dedouanement-result" class="hidden animate-slide-up">
+<!-- Dossier Info -->
+<div class="bg-white rounded-brand-lg border border-g200 overflow-hidden shadow-sm mb-6">
+<div class="p-6 border-b border-g100 flex flex-col sm:flex-row justify-between items-start gap-4">
+<div>
+<div class="font-heading text-xl font-bold text-brand" id="ded-ref">#ADTL-2026-0158</div>
+<div class="text-sm text-g400 mt-1">Dédouanement conteneur &mdash; Marchandises diverses</div>
+</div>
+<span class="px-4 py-1.5 bg-brand/10 rounded-full text-[12px] font-semibold text-brand">En cours</span>
+</div>
+<div class="p-6 grid grid-cols-2 sm:grid-cols-4 gap-6">
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Type</div>
+<div class="text-sm font-semibold text-brand">Import définitif</div>
+</div>
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Client</div>
+<div class="text-sm font-semibold text-brand">ETS KOFFI & Fils</div>
+</div>
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Date ouverture</div>
+<div class="text-sm font-semibold text-brand">20 Mars 2026</div>
+</div>
+<div>
+<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Agent</div>
+<div class="text-sm font-semibold text-brand">M. Adékambi</div>
+</div>
+</div>
+</div>
+<!-- Status Steps -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-6">
+<h4 class="font-heading text-base font-bold text-brand mb-8">Étapes du dédouanement</h4>
+<div class="space-y-0">
+<div class="track-step">
+<div class="step-line done" style="height: calc(100% - 18px);"></div>
+<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">Réception des documents</h5>
+<p class="text-[12px] text-g400 mt-0.5">20 Mars 2026</p>
+<p class="text-[13px] text-g500 mt-2">Dossier complet reçu et vérifié par notre équipe.</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-line done" style="height: calc(100% - 18px);"></div>
+<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">Déclaration GUCE</h5>
+<p class="text-[12px] text-g400 mt-0.5">21 Mars 2026</p>
+<p class="text-[13px] text-g500 mt-2">Déclaration soumise au Guichet Unique. Numéro : DI-2026-41872.</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-line done" style="height: calc(100% - 18px);"></div>
+<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">Liquidation</h5>
+<p class="text-[12px] text-g400 mt-0.5">24 Mars 2026</p>
+<p class="text-[13px] text-g500 mt-2">Droits et taxes liquidés. Montant total : 2 845 000 FCFA.</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-line" style="height: calc(100% - 18px);"></div>
+<div class="step-dot current animate-blink"><span class="material-symbols-outlined !text-[16px]">payments</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-brand">Paiement des droits</h5>
+<p class="text-[12px] text-g400 mt-0.5">En attente de paiement client</p>
+<p class="text-[13px] text-g500 mt-2">Avis de paiement envoyé au client. En attente de virement bancaire.</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-line" style="height: calc(100% - 18px);"></div>
+<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">fact_check</span></div>
+<div class="pb-8">
+<h5 class="text-[15px] font-semibold text-g400">Bon à enlever (BAE)</h5>
+<p class="text-[12px] text-g300 mt-0.5">En attente</p>
+</div>
+</div>
+<div class="track-step">
+<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">task_alt</span></div>
+<div class="pb-2">
+<h5 class="text-[15px] font-semibold text-g400">Terminé</h5>
+<p class="text-[12px] text-g300 mt-0.5">En attente</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Documents Checklist -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-6">
+<h4 class="font-heading text-base font-bold text-brand mb-6">Checklist documents</h4>
+<div class="grid sm:grid-cols-2 gap-3">
+<div class="doc-item">
+<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
+<span class="text-sm text-g700">Bill of Lading (B/L)</span>
+</div>
+<div class="doc-item">
+<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
+<span class="text-sm text-g700">Facture commerciale</span>
+</div>
+<div class="doc-item">
+<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
+<span class="text-sm text-g700">Packing list</span>
+</div>
+<div class="doc-item">
+<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
+<span class="text-sm text-g700">Attestation de valeur</span>
+</div>
+<div class="doc-item">
+<span class="material-symbols-outlined text-amber-500 !text-xl">schedule</span>
+<span class="text-sm text-g700">Certificat d'origine</span>
+<span class="text-[11px] text-amber-600 font-semibold ml-auto">En cours</span>
+</div>
+<div class="doc-item">
+<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
+<span class="text-sm text-g700">Certificat de conformité</span>
+</div>
+<div class="doc-item">
+<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
+<span class="text-sm text-g700">Note de fret</span>
+</div>
+<div class="doc-item">
+<span class="material-symbols-outlined text-g300 !text-xl">radio_button_unchecked</span>
+<span class="text-sm text-g400">Quittance de paiement</span>
+<span class="text-[11px] text-g400 font-semibold ml-auto">En attente</span>
+</div>
+</div>
+</div>
+<!-- Agent Contact -->
+<div class="bg-white rounded-brand-lg border border-g200 p-6 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-4">
+<div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">AA</div>
+<div class="flex-1">
+<div class="text-sm font-bold text-brand">Agent assigné : M. Adékambi Arnaud</div>
+<div class="text-[13px] text-g500 mt-0.5">Spécialiste dédouanement conteneurs</div>
+</div>
+<a href="https://wa.me/22997500555?text=Bonjour%2C%20je%20souhaite%20des%20infos%20sur%20mon%20dossier%20ADTL-2026-0158" target="_blank" class="btn-brand btn-brand-dark px-5 py-2.5 text-[13px]">
+<span class="material-symbols-outlined !text-[16px]">chat</span> Contacter
+</a>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ===================== CTA SECTION ===================== -->
+<section class="py-20 bg-brand text-white">
+<div class="container mx-auto px-6 text-center">
+<h2 class="font-heading text-3xl lg:text-4xl font-bold mb-4">Besoin d'aide pour votre suivi ?</h2>
+<p class="text-white/40 text-lg mb-10 max-w-xl mx-auto">Notre équipe est disponible pour vous accompagner et répondre à toutes vos questions sur vos expéditions.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a class="btn-brand btn-brand-white" href="/#devis">Demander un devis gratuit <span class="material-symbols-outlined !text-sm">arrow_forward</span></a>
+<a class="btn-brand bg-white/10 border border-white/20 text-white hover:bg-white/20" href="https://wa.me/22997500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20j%27ai%20besoin%20d%27aide%20pour%20le%20suivi%20de%20mon%20expédition." target="_blank">Nous contacter via WhatsApp</a>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-g50 border-t border-g200 py-16">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<!-- Company Info -->
+<div>
+<div class="font-heading font-bold text-base text-brand mb-6">AD TRANS LOGISTICS</div>
+<p class="text-sm text-g500 mb-4">SURL specialisée en transit douanier, importation de véhicules et logistique portuaire au port de Cotonou, Bénin.</p>
+<div class="space-y-2 text-[13px] text-g600">
+<p><strong>IFU:</strong> 3202113824203</p>
+<p><strong>RCCM:</strong> RB/COT/21 B 31505</p>
+</div>
+</div>
+<!-- Quick Links -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Services</h4>
+<ul class="space-y-3 text-[13px]">
+<li><a href="/#services" class="text-g500 hover:text-brand transition-colors">Transit Douanier</a></li>
+<li><a href="/#services" class="text-g500 hover:text-brand transition-colors">Logistique Portuaire</a></li>
+<li><a href="/negoce" class="text-g500 hover:text-brand transition-colors">Négoce Matières Premières</a></li>
+<li><a href="/vehicules" class="text-g500 hover:text-brand transition-colors">Achat & Import Véhicules</a></li>
+<li><a href="/#formation" class="text-g500 hover:text-brand transition-colors">Formation & Conseil</a></li>
+</ul>
+</div>
+<!-- Resources -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Ressources</h4>
+<ul class="space-y-3 text-[13px]">
+<li><a href="/#simulateur" class="text-g500 hover:text-brand transition-colors">Simulateur de coûts</a></li>
+<li><a href="/suivi" class="text-g500 hover:text-brand transition-colors font-semibold">Suivi en temps réel</a></li>
+<li><a href="/#faq" class="text-g500 hover:text-brand transition-colors">Questions fréquentes</a></li>
+<li><a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="text-g500 hover:text-brand transition-colors">Chaîne YouTube</a></li>
+</ul>
+</div>
+<!-- Contact & Social -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Contact</h4>
+<ul class="space-y-3 text-[13px] mb-6">
+<li><a href="tel:+22997500555" class="text-g500 hover:text-brand transition-colors">+229 97 50 05 55</a></li>
+<li><a href="mailto:adtranslogistic@hotmail.com" class="text-g500 hover:text-brand transition-colors">adtranslogistic@hotmail.com</a></li>
+<li class="text-g600">Port Autonome de Cotonou<br/>Cotonou, Bénin</li>
+</ul>
+<div class="flex gap-3">
+<a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+</a>
+<a href="#" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">facebook</span>
+</a>
+<a href="https://wa.me/22997500555" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">message</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Footer Bottom -->
+<div class="border-t border-g200 pt-8">
+<p class="text-center text-[13px] text-g500">&copy; 2026 AD TRANS LOGISTICS. Tous droits réservés. | Transit douanier au Bénin avec expertise et pédagogie.</p>
+</div>
+</footer>
+
+<script>
+// Mobile Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+});
+
+function closeMobile() {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+}
+
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Toast Notification
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// ============ TAB SWITCHING ============
+function switchTab(tabName) {
+    // Update pill styles
+    document.querySelectorAll('.tab-pill').forEach(pill => pill.classList.remove('active'));
+    document.getElementById('tab-' + tabName).classList.add('active');
+    // Show/hide panels
+    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
+    document.getElementById('panel-' + tabName).classList.remove('hidden');
+}
+
+// ============ VIN SEARCH ============
+function searchVIN() {
+    const vin = document.getElementById('vinInput').value.trim();
+    if (!vin) {
+        showToast('Veuillez entrer un numéro VIN.');
+        return;
+    }
+    // Show demo result
+    document.getElementById('vin-display').textContent = vin.toUpperCase();
+    const resultDiv = document.getElementById('vin-result');
+    resultDiv.classList.remove('hidden');
+    // Re-trigger animation
+    resultDiv.classList.remove('animate-slide-up');
+    void resultDiv.offsetWidth;
+    resultDiv.classList.add('animate-slide-up');
+    // Re-trigger progress animation
+    resultDiv.querySelectorAll('.animate-progress').forEach(bar => {
+        bar.style.animation = 'none';
+        void bar.offsetWidth;
+        bar.style.animation = '';
+    });
+    // Scroll to result
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ============ CONTAINER SEARCH ============
+function searchContainer() {
+    const container = document.getElementById('containerInput').value.trim();
+    if (!container) {
+        showToast('Veuillez entrer un numéro de conteneur.');
+        return;
+    }
+    document.getElementById('container-display').textContent = container.toUpperCase();
+    const resultDiv = document.getElementById('container-result');
+    resultDiv.classList.remove('hidden');
+    resultDiv.classList.remove('animate-slide-up');
+    void resultDiv.offsetWidth;
+    resultDiv.classList.add('animate-slide-up');
+    resultDiv.querySelectorAll('.animate-progress').forEach(bar => {
+        bar.style.animation = 'none';
+        void bar.offsetWidth;
+        bar.style.animation = '';
+    });
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ============ DEDOUANEMENT SEARCH ============
+function searchDedouanement() {
+    const ref = document.getElementById('dedouanementInput').value.trim();
+    if (!ref) {
+        showToast('Veuillez entrer une référence dossier.');
+        return;
+    }
+    document.getElementById('ded-ref').textContent = '#' + ref.toUpperCase();
+    const resultDiv = document.getElementById('dedouanement-result');
+    resultDiv.classList.remove('hidden');
+    resultDiv.classList.remove('animate-slide-up');
+    void resultDiv.offsetWidth;
+    resultDiv.classList.add('animate-slide-up');
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Allow Enter key to trigger search
+document.getElementById('vinInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchVIN(); });
+document.getElementById('containerInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchContainer(); });
+document.getElementById('dedouanementInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchDedouanement(); });
+</script>
+
+</body>
+</html>
