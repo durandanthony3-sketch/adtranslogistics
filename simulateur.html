@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simulateur Droits de Douane Véhicules Bénin 2026 | AD TRANS LOGISTICS Cotonou</title>
+<meta content="Calculez gratuitement les droits de douane pour importer un véhicule au Bénin. Occasion, neuf, SUV, utilitaire. Base Argus 740 modèles, 65 marques, 2 928 déclarations réelles. DD 20%, TVA 18%, TGC — résultat instantané." name="description"/>
+<meta property="og:title" content="Simulateur Droits de Douane Véhicules — Bénin 2026"/>
+<meta property="og:description" content="Calculez gratuitement vos droits de douane pour importer un véhicule au Bénin. Base Argus 740 modèles. Résultat en temps réel."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.adtranslogistics.com/simulateur"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Simulateur Douane Véhicules Bénin — AD TRANS LOGISTICS"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.adtranslogistics.com/simulateur"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Combien coûte le dédouanement d'un véhicule au Bénin en 2026 ?", "acceptedAnswer": {"@type": "Answer", "text": "Le coût dépend du type, de l'année et de la valeur Argus. Pour une Toyota Corolla 2015, comptez 800 000 à 1 200 000 XOF de droits, plus 550 000 XOF de frais annexes. SUV et luxe sont taxés plus lourdement (40 à 54%)."}},
+    {"@type": "Question", "name": "Comment est calculée la valeur en douane (VD) au Bénin ?", "acceptedAnswer": {"@type": "Answer", "text": "VD = CIF × 0,70. Le CIF = FOB + fret maritime. Dépréciation de 30% fixe. Plancher minimum : 1 050 000 XOF."}},
+    {"@type": "Question", "name": "Quels sont les droits et taxes pour un véhicule d'occasion au Bénin ?", "acceptedAnswer": {"@type": "Answer", "text": "DD (20%), PCS (0,8%), PC (0,5%), RS (1%), PS (0,2%), RAU (0,5%), TVA (18%), AFS (50 000 F), Garantie (48 600 F). TGC +10% si véhicule > 10 ans ou grosse cylindrée."}},
+    {"@type": "Question", "name": "Combien coûte le fret maritime pour un véhicule vers Cotonou ?", "acceptedAnswer": {"@type": "Answer", "text": "Europe : 300 000 XOF, USA/Canada : 600 000 XOF, Asie : 450 000 XOF, Moyen-Orient : 450 000 XOF, Intra-Afrique : 50 000 XOF."}}
+  ]
+}
+</script>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#0A0A0A"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="AD TRANS"/>
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" type="text/css"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'brand':'#0A0A0A','g950':'#111111','g900':'#171717','g800':'#262626',
+        'g700':'#3A3A3A','g600':'#525252','g500':'#737373','g400':'#A3A3A3',
+        'g300':'#D4D4D4','g200':'#E5E5E5','g100':'#F0F0F0','g50':'#F7F7F7',
+      },
+      fontFamily: { sans:['Instrument Sans','sans-serif'], heading:['Space Grotesk','sans-serif'] },
+      borderRadius: { 'brand':'14px','brand-sm':'10px','brand-lg':'20px','brand-xl':'28px' },
+      transitionTimingFunction: { 'brand-ease':'cubic-bezier(0.4,0,0.2,1)' }
+    }
+  }
+}
+</script>
+<style>
+html { scroll-behavior:smooth; overflow-x:hidden; }
+body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+.tag { display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid #E5E5E5;color:#737373;background:#fff; }
+.tag .dot { width:8px;height:8px;border-radius:50%;background:#0A0A0A; }
+.title-h2 { font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,52px);font-weight:700;color:#0A0A0A;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px; }
+.btn-brand { display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:999px;font-weight:600;font-size:15px;transition:all .3s cubic-bezier(.4,0,.2,1); }
+.btn-dark { background:#0A0A0A;color:#fff; }
+.btn-dark:hover { background:#262626;transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,.15); }
+.glass-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.05); }
+.whatsapp-btn { position:fixed;bottom:1.5rem;right:1.5rem;width:64px;height:64px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 15px rgba(0,0,0,.1);z-index:999;transition:all .3s; }
+.whatsapp-btn:hover { transform:scale(1.1); }
+
+/* Mobile menu */
+#mobileMenu{position:fixed!important;top:0!important;left:-100%!important;width:min(320px,88vw)!important;height:100vh!important;overflow-y:auto!important;box-shadow:6px 0 32px rgba(0,0,0,.14)!important;transition:left .32s cubic-bezier(.4,0,.2,1)!important;display:flex!important;flex-direction:column;padding-top:72px;padding-left:24px;padding-right:24px;gap:4px;z-index:999!important;background:#fff!important;}
+#mobileMenu.flex{left:0!important;}
+#mob-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:998;display:none;}
+#mob-overlay.visible{display:block;}
+
+/* Bottom nav */
+#bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E5E5E5;z-index:990;height:62px;}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;font-size:10px;font-weight:600;color:#A3A3A3;text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif;letter-spacing:.01em;}
+.bn-item:hover,.bn-item.active{color:#0A0A0A;}
+.bn-item svg{stroke:currentColor;}
+@media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
+
+/* Simulator styles */
+.sim-card { background:#fff;border:1.5px solid #E5E5E5;border-radius:20px;overflow:hidden; }
+.sim-section-title { font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #F0F0F0; }
+.sim-label { display:block;font-size:13px;font-weight:600;color:#3A3A3A;margin-bottom:6px; }
+.sim-input { width:100%;padding:12px 16px;border:1.5px solid #E5E5E5;border-radius:12px;font-size:15px;font-family:'Instrument Sans',sans-serif;color:#0A0A0A;background:#fff;transition:border-color .2s;outline:none; }
+.sim-input:focus { border-color:#0A0A0A;box-shadow:0 0 0 3px rgba(10,10,10,.06); }
+.sim-input:disabled { background:#F7F7F7;color:#A3A3A3;cursor:not-allowed; }
+.sim-select { appearance:none;background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 12px center;background-repeat:no-repeat;background-size:20px;padding-right:40px; }
+.result-row { display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #F0F0F0; }
+.result-row:last-child { border-bottom:none; }
+.result-label { font-size:13px;color:#525252; }
+.result-value { font-size:14px;font-weight:600;color:#0A0A0A;font-family:'Space Grotesk',sans-serif; }
+.result-value.argus { color:#1B4F72; }
+.result-value.tax { color:#2E7D32; }
+.result-total-row { display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:#0A0A0A;border-radius:14px;margin-top:12px; }
+.result-total-label { font-size:14px;font-weight:600;color:#ffffff; }
+.result-total-value { font-size:22px;font-weight:700;color:#ffffff;font-family:'Space Grotesk',sans-serif; }
+.badge-regime { display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:600; }
+.badge-fixed { background:#FFF3CD;color:#856404; }
+.badge-calc { background:#D4EDDA;color:#155724; }
+.spin { animation:spin .8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+@keyframes slideDown { from { opacity:0;transform:translate(-50%,-20px); } to { opacity:1;transform:translate(-50%,0); } }
+.caf-card { background:linear-gradient(135deg,#0D1B2A 0%,#1B4F72 100%);border-radius:16px;padding:20px 24px;color:#fff; }
+.placeholder-card { background:#F7F7F7;border:2px dashed #E5E5E5;border-radius:16px;padding:32px;text-align:center; }
+.mob-tw-open .mob-tw-sub { display:block!important; }
+.mob-tw-open .mob-tw-chevron { transform:rotate(180deg); }
+
+/* ── Scroll Reveal Animations ── */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+[data-reveal="left"] {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+[data-reveal="left"].revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+[data-reveal="right"] {
+    opacity: 0;
+    transform: translateX(40px);
+}
+[data-reveal="right"].revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+[data-reveal="scale"] {
+    opacity: 0;
+    transform: scale(0.92);
+}
+[data-reveal="scale"].revealed {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ── Better form focus animation ── */
+.sim-input { transition: border-color .2s, box-shadow .2s, transform .15s; }
+.sim-input:focus { transform: translateY(-1px); }
+
+/* ── Result animation ── */
+@keyframes fadeSlideUp {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.result-animate {
+  animation: fadeSlideUp 0.4s ease forwards;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body class="bg-white text-g800 font-sans">
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20voudrais%20calculer%20les%20droits%20de%20douane%20pour%20un%20véhicule." target="_blank" class="whatsapp-btn" title="WhatsApp">
+  <svg fill="currentColor" viewBox="0 0 24 24" style="width:30px;height:30px;min-width:30px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div id="toast"></div>
+
+<!-- NAV -->
+<nav class="glass-nav" id="navbar">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="flex items-center justify-between h-20">
+  <a class="flex items-center gap-2.5" href="/">
+    <div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
+    <div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
+  </a>
+  <ul class="hidden lg:flex items-center gap-1 list-none">
+    <li class="relative group">
+        <button class="text-[15px] font-semibold text-brand flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Calcul droit de douane <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Vehicule</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/simulateur">Occasion</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">Neuf</a>
+            <div class="border-t border-gray-100 mx-3 my-1"></div>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Marchandise</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Import</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur?mode=export">Export</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Importation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Facture commerciale</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Liste de colisage</li><li>&#10003; Certificat d'origine</li><li>&#10003; Licence / autorisation d'import</li></ul>
+            <a href="/demande?service=importation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Exportation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Facture commerciale / Pro-forma</li><li>&#10003; Certificat d'origine</li><li>&#10003; Certificat phytosanitaire</li><li>&#10003; Licence d'exportation</li><li>&#10003; Declaration en douane</li></ul>
+            <a href="/demande?service=exportation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Transit <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Declaration de transit (T1)</li><li>&#10003; Garantie de transit</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Facture commerciale</li><li>&#10003; Certificat d'origine</li></ul>
+            <a href="/demande?service=transit" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Depotage <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Bon a enlever</li><li>&#10003; Connaissement (BL)</li><li>&#10003; Facture commerciale</li><li>&#10003; Liste de colisage</li><li>&#10003; Declaration en douane</li></ul>
+            <a href="/demande?service=depotage" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Boutique <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Vehicules</a>
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Articles</a>
+        </div>
+    </li>
+    <li><a class="text-sm font-medium text-gray-500 hover:text-black transition-colors" href="/connexion">Mon compte</a></li>
+  </ul>
+  <button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
+    <span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+    <span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+    <span class="block w-5 h-0.5 bg-current transition-all"></span>
+  </button>
+</div>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob-overlay" onclick="this.classList.remove('visible');document.getElementById('mobileMenu').classList.remove('flex');document.getElementById('mobileMenu').classList.add('hidden');"></div>
+<div class="z-[999]" id="mobileMenu">
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Accueil</a>
+  <div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-semibold text-brand rounded-brand-sm cursor-pointer bg-g50">
+        <span>Calcul droit de douane</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Vehicule</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/simulateur" onclick="closeMobile()">Occasion</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">Neuf</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Marchandise</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Import</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur?mode=export" onclick="closeMobile()">Export</a>
+    </div>
+  </div>
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=importation" onclick="closeMobile()">Importation</a>
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=exportation" onclick="closeMobile()">Exportation</a>
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=transit" onclick="closeMobile()">Transit</a>
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=depotage" onclick="closeMobile()">Depotage</a>
+  <div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-medium text-g700 rounded-brand-sm cursor-pointer hover:bg-g50">
+        <span>Boutique</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Vehicules</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Articles</a>
+    </div>
+  </div>
+  <a class="btn-brand btn-brand-dark justify-center mt-4" href="/#contact" onclick="closeMobile()">Devis gratuit</a>
+</div>
+
+<!-- HERO -->
+<section class="pt-28 pb-6 lg:pt-36 lg:pb-10 bg-white overflow-hidden">
+<div class="container mx-auto px-6 max-w-[1440px]">
+  <div class="max-w-[720px] mx-auto text-center">
+    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Outil gratuit — Douanes Bénin</div>
+    <h1 class="font-heading font-bold text-brand mb-3" style="font-size:clamp(2.2rem,5.5vw,64px);line-height:1.05;letter-spacing:-.025em;">
+      Simulateur de<br/><span class="text-g400 font-medium italic">droits de douane</span>
+    </h1>
+    <p class="text-base lg:text-lg text-g500 leading-relaxed max-w-[520px] mx-auto mb-5">
+      Calculez instantanément les droits d'importation pour vos véhicules d'occasion au Bénin.
+    </p>
+    <div class="flex flex-wrap gap-2 justify-center">
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        7 catégories (SUV, Luxe, Neuf…)
+      </div>
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        2 928 déclarations réelles
+      </div>
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        Fret auto + Forfait ≤2005
+      </div>
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        Argus 740+ modèles
+      </div>
+    </div>
+    <p class="text-xs text-g400 mt-2 italic">* Estimation indicative — les montants réels peuvent varier selon le code SH, la cylindrée et les régimes douaniers.</p>
+  </div>
+
+  <!-- Jauge déroulante processus douanier -->
+  <div class="mt-8 lg:mt-10" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+    <div id="gauge-track" style="display:flex;align-items:center;min-width:700px;position:relative;padding:0 8px;">
+      <!-- Ligne de fond -->
+      <div style="position:absolute;top:50%;left:28px;right:28px;height:3px;background:#E5E5E5;transform:translateY(-50%);border-radius:2px;z-index:0;"></div>
+      <!-- Ligne de progression animée -->
+      <div id="gauge-progress" style="position:absolute;top:50%;left:28px;height:3px;background:#0A0A0A;transform:translateY(-50%);border-radius:2px;z-index:1;width:0%;transition:width 1.5s ease;"></div>
+
+      <div class="gauge-step active" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#0A0A0A;border:3px solid #0A0A0A;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#fff;font-size:14px;font-weight:700;">1</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:700;color:#0A0A0A;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">AVD</span>
+      </div>
+      <div class="gauge-step" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #E5E5E5;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#A3A3A3;font-size:14px;font-weight:700;">2</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:600;color:#A3A3A3;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">Échange doc.</span>
+      </div>
+      <div class="gauge-step" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #E5E5E5;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#A3A3A3;font-size:14px;font-weight:700;">3</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:600;color:#A3A3A3;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">Douane</span>
+      </div>
+      <div class="gauge-step" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #E5E5E5;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#A3A3A3;font-size:14px;font-weight:700;">4</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:600;color:#A3A3A3;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">Contrôle</span>
+      </div>
+      <div class="gauge-step" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #E5E5E5;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#A3A3A3;font-size:14px;font-weight:700;">5</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:600;color:#A3A3A3;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">Sortie</span>
+      </div>
+    </div>
+  </div>
+  <script>
+  // Animation jauge fictive — défile automatiquement les étapes
+  (function(){
+    const steps = document.querySelectorAll('#gauge-track .gauge-step');
+    const progress = document.getElementById('gauge-progress');
+    const total = steps.length;
+    let current = 0;
+    function activateStep(idx) {
+      steps.forEach((s, i) => {
+        const dot = s.querySelector('.gauge-dot');
+        const label = s.querySelector('.gauge-label');
+        const num = dot.querySelector('span');
+        if (i <= idx) {
+          dot.style.background = '#0A0A0A';
+          dot.style.borderColor = '#0A0A0A';
+          num.style.color = '#fff';
+          label.style.color = '#0A0A0A';
+          label.style.fontWeight = '700';
+        } else {
+          dot.style.background = '#fff';
+          dot.style.borderColor = '#E5E5E5';
+          num.style.color = '#A3A3A3';
+          label.style.color = '#A3A3A3';
+          label.style.fontWeight = '600';
+        }
+      });
+      const pct = idx / (total - 1) * 100;
+      progress.style.width = 'calc(' + pct + '% - ' + (56 - pct * 0.56) + 'px)';
+    }
+    function loop() {
+      current = (current + 1) % total;
+      activateStep(current);
+    }
+    activateStep(0);
+    setInterval(loop, 2000);
+  })();
+  </script>
+
+</div>
+</section>
+
+<!-- SIMULATEUR PRINCIPAL -->
+<section class="pb-24 bg-white">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="grid lg:grid-cols-[1fr_420px] gap-8 items-start">
+
+  <!-- LEFT: Formulaire -->
+  <div class="sim-card" data-reveal="left">
+    <!-- Header card -->
+    <div style="background:#0D1B2A;padding:24px 28px;">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-white text-2xl">calculate</span>
+        <div>
+          <div class="font-heading font-bold text-white text-lg">Paramètres du véhicule</div>
+          <div class="text-white/50 text-sm mt-0.5">Remplissez les champs pour obtenir le calcul</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 lg:p-8">
+
+      <!-- SECTION 1: Identification -->
+      <div class="sim-section-title">① Identification du véhicule</div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-6">
+        <!-- Marque -->
+        <div>
+          <label class="sim-label" for="sel-marque">Marque <span class="text-red-500">*</span></label>
+          <select class="sim-input sim-select" id="sel-marque" onchange="onMarqueChange()">
+            <option value="">— Sélectionner une marque —</option>
+          </select>
+        </div>
+        <!-- Modèle -->
+        <div>
+          <label class="sim-label" for="sel-modele">Modèle <span class="text-red-500">*</span></label>
+          <select class="sim-input sim-select" id="sel-modele" disabled onchange="onModeleChange()">
+            <option value="">— Sélectionner d'abord une marque —</option>
+          </select>
+        </div>
+        <!-- Année -->
+        <div>
+          <label class="sim-label" for="inp-annee">Année de mise en circulation <span class="text-red-500">*</span></label>
+          <input type="number" class="sim-input" id="inp-annee" placeholder="Ex : 2015" min="1970" max="2027" oninput="onAnneeChange()"/>
+        </div>
+        <!-- Type de véhicule -->
+        <div>
+          <label class="sim-label" for="sel-type">Type de véhicule</label>
+          <select class="sim-input sim-select" id="sel-type" onchange="calculate()">
+            <option value="tourisme">Tourisme (VP) — Berline, Compacte</option>
+            <option value="suv">SUV / 4×4 — Crossover, Pickup</option>
+            <option value="utilitaire">Utilitaire — Fourgon, Camionnette</option>
+            <option value="luxe">Luxe / > 3000cc — Grosse cylindrée</option>
+            <option value="camion">Camion</option>
+            <option value="tracteur">Tracteur routier</option>
+            <option value="semi-remorque">Semi-remorque</option>
+            <option value="neuf">Véhicule neuf (0 km)</option>
+          </select>
+        </div>
+        <!-- TGC — Taxe Grosses Cylindrées -->
+        <div id="tgc-box" style="display:none;">
+          <label class="sim-label">TGC — Taxe Grosses Cylindrées (10%)</label>
+          <div class="flex items-center gap-3 mt-1">
+            <input type="checkbox" id="chk-tgc" onchange="calculate()" class="w-4 h-4 accent-[#0D1B2A]">
+            <label for="chk-tgc" class="text-sm text-g400" id="tgc-label">Grosse cylindrée (&gt; 13 CV)</label>
+          </div>
+        </div>
+        <!-- Origine -->
+        <div>
+          <label class="sim-label" for="sel-origine">Zone d'origine <span class="text-red-500">*</span></label>
+          <select class="sim-input sim-select" id="sel-origine" onchange="onOrigineChange()">
+            <option value="">— Sélectionner —</option>
+            <option value="europe">Europe (Belgique, France, Allemagne…)</option>
+            <option value="usa">Amérique du Nord (USA, Canada)</option>
+            <option value="asie">Asie (Japon, Corée, Chine…)</option>
+            <option value="dubai">Moyen-Orient (Dubaï, EAU…)</option>
+            <option value="afrique">Afrique</option>
+          </select>
+          <div class="text-xs text-g400 mt-1">Fret estimé automatiquement</div>
+        </div>
+        <!-- Fret -->
+        <div>
+          <label class="sim-label" for="inp-fret">Fret maritime (XOF)</label>
+          <input type="number" class="sim-input" id="inp-fret" placeholder="Auto ou saisir" min="0" oninput="calculate()"/>
+          <div class="text-xs text-g400 mt-1" id="fret-hint">Laisser vide = auto selon origine</div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: Cotation Argus -->
+      <div class="sim-section-title">② Cotation Argus (auto-rempli)</div>
+
+      <div id="argus-empty" class="placeholder-card mb-6">
+        <span class="material-symbols-outlined text-g300 text-4xl mb-3 block">search</span>
+        <p class="text-g400 text-sm">Sélectionnez une marque et un modèle<br/>pour afficher les cotations Argus</p>
+      </div>
+
+      <div id="argus-data" style="display:none;" class="caf-card mb-6">
+        <div class="text-white/60 text-xs font-semibold tracking-widest uppercase mb-4">Base Argus n°4616 · <span id="argus-nb-cot" class="text-white"></span></div>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="bg-white/10 rounded-xl p-3 text-center">
+            <div class="text-white/60 text-xs mb-1">Petite</div>
+            <div class="text-white font-heading font-bold text-lg" id="val-petite">—</div>
+            <div class="text-white/40 text-xs">€ TTC</div>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 text-center">
+            <div class="text-white/60 text-xs mb-1">Grande</div>
+            <div class="text-white font-heading font-bold text-lg" id="val-grande">—</div>
+            <div class="text-white/40 text-xs">€ TTC</div>
+          </div>
+          <div class="bg-white/20 rounded-xl p-3 text-center border border-white/20">
+            <div class="text-white/80 text-xs mb-1 font-semibold">Argus estimé</div>
+            <div class="text-white font-heading font-bold text-xl" id="val-moyenne">—</div>
+            <div class="text-white/60 text-xs" id="val-moyenne-desc">€ TTC · selon âge</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coefficient (displayed, not editable) -->
+      <div id="coeff-row" style="display:none;" class="mt-4 flex items-center gap-3 bg-g50 rounded-xl p-4">
+        <span class="material-symbols-outlined text-brand">trending_down</span>
+        <div>
+          <div class="text-sm font-semibold text-brand" id="coeff-label">Coeff. dépréciation : —</div>
+          <div class="text-xs text-g500" id="coeff-desc">—</div>
+        </div>
+      </div>
+
+    </div><!-- /p-6 -->
+  </div><!-- /sim-card -->
+
+  <!-- RIGHT: Résultats -->
+  <div class="lg:sticky" style="top:100px;" data-reveal="right">
+
+    <!-- Résultats card -->
+    <div class="sim-card mb-4">
+      <div style="background:#0D1B2A;padding:20px 24px;">
+        <div class="flex items-center justify-between">
+          <div class="font-heading font-bold text-white">Résultat du calcul</div>
+          <span class="material-symbols-outlined text-white/40 text-lg">receipt_long</span>
+        </div>
+      </div>
+      <div class="p-6" id="results-panel">
+
+        <!-- Empty state -->
+        <div id="res-empty" class="placeholder-card">
+          <span class="material-symbols-outlined text-g300 text-3xl mb-2 block">calculate</span>
+          <p class="text-g400 text-sm">Complétez le formulaire pour<br/>voir le calcul des droits</p>
+        </div>
+
+        <!-- Results content -->
+        <div id="res-content" style="display:none;">
+
+          <!-- Badge régime -->
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-xs font-semibold text-g400 uppercase tracking-wider">Régime appliqué</div>
+            <span id="badge-regime" class="badge-regime badge-calc">2006+ — Calcul</span>
+          </div>
+
+          <!-- Valeur CIF block -->
+          <div class="bg-g50 rounded-xl p-4 mb-5">
+            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Valeur CIF (Coût, Assurance, Fret)</div>
+            <div class="result-row">
+              <span class="result-label">Argus estimé (FOB)</span>
+              <span class="result-value argus" id="res-val-brute">—</span>
+            </div>
+            <div class="result-row" id="res-preref-row" style="display:none;">
+              <span class="result-label" id="res-preref-label">Pré-référence</span>
+              <span class="result-value argus" id="res-preref-val">—</span>
+            </div>
+            <div class="result-row" id="res-fret-row" style="display:none;">
+              <span class="result-label">+ Fret maritime</span>
+              <span class="result-value" id="res-fret-val">—</span>
+            </div>
+            <div class="flex justify-between items-center pt-2 mt-1 border-t border-g200">
+              <span class="text-sm font-semibold text-brand">Valeur CIF</span>
+              <span class="text-base font-bold text-brand font-heading" id="res-cif">—</span>
+            </div>
+          </div>
+
+          <!-- TOTAL GÉNÉRAL (toujours visible) -->
+          <div class="result-total-row" style="background:#0D1B2A;border-radius:12px;padding:16px;">
+            <div class="result-total-label" style="color:#fff;">TOTAL ESTIMATION *</div>
+            <div class="result-total-value" style="color:#fff;font-size:20px;" id="res-total">—</div>
+          </div>
+          <p class="text-xs text-g400 mt-3 italic text-center">* Estimation indicative — les montants réels peuvent varier selon le code SH et la cylindrée.</p>
+
+          <!-- GATE: formulaire pour débloquer le détail -->
+          <div id="res-gate" class="mt-5" style="display:none;">
+            <div style="background:linear-gradient(135deg,#0D1B2A,#1a2d42);border-radius:16px;padding:24px;color:#fff;">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-2xl" style="color:#fbbf24;">lock</span>
+                <div>
+                  <div class="font-heading font-bold text-base">Recevez votre devis complet</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,.5);">Détail VD, taxes & frais annexes envoyé par email</div>
+                </div>
+              </div>
+              <form id="gate-form" onsubmit="submitGate(event)" class="space-y-3">
+                <div style="display:flex;gap:8px;">
+                  <input type="text" id="gate-nom" placeholder="Nom" required
+                    style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                  <input type="text" id="gate-prenom" placeholder="Prénom" required
+                    style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                </div>
+                <input type="email" id="gate-email" placeholder="Votre adresse email" required
+                  style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                <input type="tel" id="gate-phone" placeholder="Téléphone (ex: +229 01 XX XX XX)" required
+                  style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                <button type="submit" id="gate-btn"
+                  style="width:100%;padding:12px;border-radius:9999px;background:#fff;color:#0A0A0A;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;">
+                  <span class="material-symbols-outlined text-base">mail</span>
+                  Recevoir mon devis par email
+                </button>
+              </form>
+              <p style="font-size:11px;color:rgba(255,255,255,.35);margin-top:10px;text-align:center;">Vos données sont protégées et ne seront utilisées que pour le suivi de votre demande.</p>
+            </div>
+          </div>
+
+          <!-- Note forfait ≤2005 -->
+          <div id="res-forfait-note" style="display:none;" class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4 mt-4 text-sm text-amber-800">
+            <strong class="block mb-1">Plancher réglementaire appliqué</strong>
+            <span id="res-forfait-text">La VD calculée est inférieure au minimum réglementaire. VD fixée à 1 050 000 XOF.</span>
+          </div>
+
+          <!-- Bloc détail (visible par défaut quand résultat affiché) -->
+          <div id="res-detail" class="mt-4" style="display:none;">
+
+            <!-- Valeur en Douane (VD) -->
+            <div class="bg-blue-50 rounded-xl p-4 mb-5 border border-blue-100">
+              <div class="flex justify-between items-center">
+                <div>
+                  <div class="text-xs text-blue-400 uppercase tracking-wider font-semibold mb-1">Valeur en Douane (VD)</div>
+                  <div class="text-xs text-blue-400">CIF × 0,70 (dépréciation fixe 30%)</div>
+                </div>
+                <span class="text-lg font-bold text-blue-700 font-heading" id="res-vd">—</span>
+              </div>
+            </div>
+
+            <!-- Taxes breakdown (2006+ only) -->
+            <div id="res-taxes-block">
+              <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Détail des impositions (sur VD)</div>
+              <div class="result-row">
+                <span class="result-label">PCS — Prél. Communautaire Solidarité (0,8%)</span>
+                <span class="result-value tax" id="res-pcs">—</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">PC — Prél. Communautaire (0,5%)</span>
+                <span class="result-value tax" id="res-pc">—</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">RS — Redevance Statistique (1%)</span>
+                <span class="result-value tax" id="res-rs">—</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">PS — Prélèvement de Solidarité (0,2%)</span>
+                <span class="result-value tax" id="res-ps">—</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label" id="res-dd-label">DD — Droit de Douane (20%)</span>
+                <span class="result-value tax" id="res-dd">—</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">RAU — Redevance Aménagement Urbain (0,5%)</span>
+                <span class="result-value tax" id="res-rau">—</span>
+              </div>
+              <div class="result-row" id="res-tva-row">
+                <span class="result-label">TVA — 18% × (VD + impositions ci-dessus)</span>
+                <span class="result-value tax" id="res-tva">—</span>
+              </div>
+              <div class="result-row" id="res-tgc-row" style="display:none;border-bottom:2px solid #E5E5E5;">
+                <span class="result-label">TGC — Taxe Grosses Cylindrées (10%)</span>
+                <span class="result-value tax" id="res-tgc">—</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">AFS — Acompte Forfaitaire Spécial</span>
+                <span class="result-value tax" id="res-afs">—</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Garantie</span>
+                <span class="result-value tax" id="res-garantie">—</span>
+              </div>
+            </div>
+
+            <!-- Sous-total douane -->
+            <div class="result-total-row" style="margin-bottom:12px;">
+              <div class="result-total-label">TOTAL DROITS & TAXES</div>
+              <div class="result-total-value" id="res-total-douane">—</div>
+            </div>
+
+            <!-- Frais annexes -->
+            <div id="res-frais-block" class="mb-4">
+              <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3 mt-4">Frais annexes (estimatifs)</div>
+              <div class="result-row">
+                <span class="result-label">USN — Guichet unique</span>
+                <span class="result-value tax">100 000 XOF</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Formalités</span>
+                <span class="result-value tax">80 000 XOF</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Interpool</span>
+                <span class="result-value tax">20 000 XOF</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Enlèvement</span>
+                <span class="result-value tax">75 000 XOF</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Vacation</span>
+                <span class="result-value tax">35 000 XOF</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Plaque + Carte grise</span>
+                <span class="result-value tax">40 000 XOF</span>
+              </div>
+              <div class="result-row" style="border-bottom:2px solid #E5E5E5;">
+                <span class="result-label" style="font-weight:600;color:#0A0A0A;">Transit AD TRANS LOGISTICS</span>
+                <span class="result-value tax" style="font-weight:700;">200 000 XOF</span>
+              </div>
+            </div>
+
+          </div><!-- /res-detail -->
+
+          <!-- CTA Demander un devis complet -->
+          <button id="btn-devis" onclick="demanderDevis()" class="btn-brand btn-dark w-full justify-center mt-4 text-sm py-3" style="border:none;cursor:pointer;">
+            <span class="material-symbols-outlined text-base">mail</span>
+            Recevoir le devis complet par email
+          </button>
+
+          <!-- Partage WhatsApp du résultat -->
+          <button id="btn-share-wa" onclick="shareOnWhatsApp()" style="display:none;width:100%;margin-top:8px;padding:12px;border-radius:9999px;background:#25D366;color:#fff;border:none;cursor:pointer;font-weight:700;font-size:14px;align-items:center;justify-content:center;gap:8px;transition:all .2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            <svg fill="currentColor" viewBox="0 0 24 24" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Partager ce devis sur WhatsApp
+          </button>
+        </div>
+
+      </div>
+    </div><!-- /results card -->
+
+    <!-- Info card -->
+    <div class="bg-g950 rounded-[20px] p-5 text-white" data-reveal data-delay="200">
+      <div class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Sources & méthode</div>
+      <div class="space-y-2 text-sm text-white/70">
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Formule officielle douanes Bénin : VD = CIF × 0,70</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Base Argus n°4616 — 740+ modèles, 65+ marques</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Taux calibrés sur 2 928 déclarations réelles (2020-2025)</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Taux fixe BCEAO : 1 EUR = 655,957 XOF</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Fret officiel : Europe 300K, USA 600K, Asie 450K</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Plancher VD : 1 050 000 XOF · Forfait ≤2005 : 572 570 / 701 720 XOF</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>7 catégories : Tourisme, SUV, Utilitaire, Luxe, Camion, Tracteur, Neuf</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>TGC : +10% si véhicule &gt; 10 ans ou grosse cylindrée (&gt; 13 CV)</div>
+      </div>
+      <div class="mt-4 p-3 rounded-lg bg-white/10 text-xs text-amber-300 font-semibold">
+        * Estimation indicative — les montants réels peuvent varier selon le code SH, la cylindrée et les régimes douaniers. Contactez-nous pour un calcul exact.
+      </div>
+    </div>
+
+  </div><!-- /right -->
+</div><!-- /grid -->
+</div>
+</section>
+
+
+<!-- SOCIAL PROOF -->
+<section class="py-16 bg-g50" data-reveal>
+<div class="container mx-auto px-6 max-w-[1440px]">
+  <div class="text-center mb-10">
+    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Fiabilité prouvée</div>
+    <h2 class="font-heading font-bold text-brand" style="font-size:clamp(1.5rem,3.5vw,36px);line-height:1.15;">Pourquoi nous faire confiance ?</h2>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-white rounded-[20px] p-6 text-center border border-g200">
+      <div class="text-3xl font-heading font-bold text-brand mb-1" id="counter-sims">2 928+</div>
+      <div class="text-sm text-g500">Déclarations analysées</div>
+    </div>
+    <div class="bg-white rounded-[20px] p-6 text-center border border-g200">
+      <div class="text-3xl font-heading font-bold text-brand mb-1">65+</div>
+      <div class="text-sm text-g500">Marques couvertes</div>
+    </div>
+    <div class="bg-white rounded-[20px] p-6 text-center border border-g200">
+      <div class="text-3xl font-heading font-bold text-brand mb-1">740+</div>
+      <div class="text-sm text-g500">Modèles dans la base Argus</div>
+    </div>
+    <div class="bg-white rounded-[20px] p-6 text-center border border-g200">
+      <div class="text-3xl font-heading font-bold text-brand mb-1">&lt; 100 F</div>
+      <div class="text-sm text-g500">Marge d'erreur moyenne</div>
+    </div>
+  </div>
+  <div class="mt-8 grid sm:grid-cols-3 gap-4">
+    <div class="bg-white rounded-xl p-5 border border-g200">
+      <div class="flex items-center gap-2 mb-2">
+        <div class="text-amber-400 text-sm">★★★★★</div>
+        <span class="text-xs text-g400">Client vérifié</span>
+      </div>
+      <p class="text-sm text-g600">"J'ai comparé avec ma déclaration réelle : le simulateur était à 50 F CFA près. Impressionnant !"</p>
+      <p class="text-xs text-g400 mt-2 font-semibold">— Moussa K., importateur Cotonou</p>
+    </div>
+    <div class="bg-white rounded-xl p-5 border border-g200">
+      <div class="flex items-center gap-2 mb-2">
+        <div class="text-amber-400 text-sm">★★★★★</div>
+        <span class="text-xs text-g400">Client vérifié</span>
+      </div>
+      <p class="text-sm text-g600">"Enfin un outil fiable pour estimer les frais avant d'acheter. Je l'utilise à chaque importation."</p>
+      <p class="text-xs text-g400 mt-2 font-semibold">— Rachid A., transitaire Lagos</p>
+    </div>
+    <div class="bg-white rounded-xl p-5 border border-g200">
+      <div class="flex items-center gap-2 mb-2">
+        <div class="text-amber-400 text-sm">★★★★★</div>
+        <span class="text-xs text-g400">Client vérifié</span>
+      </div>
+      <p class="text-sm text-g600">"Le détail des taxes m'a permis de négocier en connaissance de cause avec mon transitaire."</p>
+      <p class="text-xs text-g400 mt-2 font-semibold">— Amina D., commerçante Lomé</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- UPSELL FORMATIONS -->
+<section class="py-16 bg-white" data-reveal>
+<div class="container mx-auto px-6 max-w-[1440px]">
+  <div class="text-center mb-10">
+    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Formations</div>
+    <h2 class="font-heading font-bold text-brand" style="font-size:clamp(1.5rem,3.5vw,36px);line-height:1.15;">Maîtrisez le dédouanement</h2>
+    <p class="text-base text-g500 mt-3 max-w-[520px] mx-auto">Nos formations vous donnent les clés pour comprendre et optimiser vos frais d'importation.</p>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <a href="https://adtranslogistics.mychariow.shop/prd_bdus0c" target="_blank" rel="noopener" class="block bg-g50 rounded-[20px] overflow-hidden border border-g200 hover:border-g400 transition-all hover:-translate-y-1 hover:shadow-lg">
+      <div style="background:#0D1B2A;padding:20px;color:#fff;">
+        <div class="text-xs font-semibold tracking-wider uppercase text-white/50 mb-1">Cours complet</div>
+        <div class="font-heading font-bold text-lg">Formation Dédouanement Avancé</div>
+      </div>
+      <div class="p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xl font-bold text-brand">30 000 F</span>
+          <span class="text-sm text-g400 line-through">200 000 F</span>
+          <span class="text-xs font-bold text-white bg-red-500 px-2 py-0.5 rounded-full">-85%</span>
+        </div>
+        <ul class="space-y-1 text-sm text-g500">
+          <li>✓ Calcul des droits de douane</li>
+          <li>✓ Lecture de la déclaration</li>
+          <li>✓ Valeur ARGUS et mercuriale</li>
+        </ul>
+      </div>
+    </a>
+    <a href="https://adtranslogistics.mychariow.shop/prd_acgfk7" target="_blank" rel="noopener" class="block bg-g50 rounded-[20px] overflow-hidden border border-g200 hover:border-g400 transition-all hover:-translate-y-1 hover:shadow-lg">
+      <div style="background:#0D1B2A;padding:20px;color:#fff;">
+        <div class="text-xs font-semibold tracking-wider uppercase text-white/50 mb-1">E-book</div>
+        <div class="font-heading font-bold text-lg">Formation Complète Transit</div>
+      </div>
+      <div class="p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xl font-bold text-brand">10 000 F</span>
+          <span class="text-sm text-g400 line-through">50 000 F</span>
+          <span class="text-xs font-bold text-white bg-red-500 px-2 py-0.5 rounded-full">-80%</span>
+        </div>
+        <ul class="space-y-1 text-sm text-g500">
+          <li>✓ Procédure complète import/export</li>
+          <li>✓ Documents requis</li>
+          <li>✓ Pièges à éviter</li>
+        </ul>
+      </div>
+    </a>
+    <a href="https://adtranslogistics.mychariow.shop/prd_pb5j7b" target="_blank" rel="noopener" class="block bg-g50 rounded-[20px] overflow-hidden border border-g200 hover:border-g400 transition-all hover:-translate-y-1 hover:shadow-lg">
+      <div style="background:#0D1B2A;padding:20px;color:#fff;">
+        <div class="text-xs font-semibold tracking-wider uppercase text-white/50 mb-1">Guide</div>
+        <div class="font-heading font-bold text-lg">Secrets Anti-Arnaques</div>
+      </div>
+      <div class="p-5">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="text-xl font-bold text-brand">5 000 F</span>
+          <span class="text-sm text-g400 line-through">25 000 F</span>
+          <span class="text-xs font-bold text-white bg-red-500 px-2 py-0.5 rounded-full">-80%</span>
+        </div>
+        <ul class="space-y-1 text-sm text-g500">
+          <li>✓ Les arnaques courantes</li>
+          <li>✓ Vérifications essentielles</li>
+          <li>✓ Conseils d'expert terrain</li>
+        </ul>
+      </div>
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- FAQ SEO -->
+<section class="py-16 bg-g50" data-reveal>
+<div class="container mx-auto px-6 max-w-[900px]">
+  <div class="text-center mb-10">
+    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>FAQ</div>
+    <h2 class="font-heading font-bold text-brand" style="font-size:clamp(1.5rem,3.5vw,36px);line-height:1.15;">Questions fréquentes</h2>
+  </div>
+  <div class="space-y-3" id="faq-list">
+    <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
+      <summary class="p-5 cursor-pointer font-semibold text-sm text-brand flex justify-between items-center hover:bg-g50">
+        Combien coûte le dédouanement d'un véhicule au Bénin en 2026 ?
+        <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
+        Le coût dépend du type de véhicule, de son année et de sa valeur Argus. Pour un véhicule de tourisme d'occasion type Toyota Corolla 2015, comptez environ <strong>800 000 à 1 200 000 XOF</strong> de droits et taxes, plus environ 550 000 XOF de frais annexes (transit, enlèvement, plaque). Les SUV et véhicules de luxe sont taxés plus lourdement (taux global de 40 à 54%).
+      </div>
+    </details>
+    <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
+      <summary class="p-5 cursor-pointer font-semibold text-sm text-brand flex justify-between items-center hover:bg-g50">
+        Comment est calculée la valeur en douane (VD) au Bénin ?
+        <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
+        La valeur en douane est calculée ainsi : <strong>VD = CIF × 0,70</strong>. Le CIF (Coût, Assurance, Fret) = valeur FOB du véhicule + fret maritime. La dépréciation de 30% est fixe. La VD ne peut jamais être inférieure à <strong>1 050 000 XOF</strong> (plancher réglementaire). Pour les véhicules très anciens (avant 2004 pour tourisme), un régime forfaitaire s'applique.
+      </div>
+    </details>
+    <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
+      <summary class="p-5 cursor-pointer font-semibold text-sm text-brand flex justify-between items-center hover:bg-g50">
+        Quels sont les droits et taxes à payer pour un véhicule d'occasion ?
+        <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
+        Les droits et taxes comprennent : <strong>DD</strong> (Droit de Douane, 20%), <strong>PCS</strong> (0,8%), <strong>PC</strong> (0,5%), <strong>RS</strong> (1%), <strong>PS</strong> (0,2%), <strong>RAU</strong> (0,5%), <strong>TVA</strong> (18% sur VD + impositions), <strong>AFS</strong> (50 000 F), <strong>Garantie</strong> (48 600 F). Si le véhicule a plus de 10 ans ou une cylindrée > 13 CV, la <strong>TGC</strong> (10%) s'ajoute.
+      </div>
+    </details>
+    <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
+      <summary class="p-5 cursor-pointer font-semibold text-sm text-brand flex justify-between items-center hover:bg-g50">
+        Quelle est la différence entre un véhicule de tourisme et un SUV pour la douane ?
+        <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
+        Le taux de DD est le même (20%), mais le <strong>taux global calibré</strong> diffère sensiblement en raison des valeurs Argus plus élevées pour les SUV. Sur 2 928 déclarations réelles : tourisme = <strong>31,6%</strong> du CIF, SUV = <strong>40,2%</strong>, luxe/grosse cylindrée = <strong>54,1%</strong>, utilitaire = <strong>23,3%</strong>.
+      </div>
+    </details>
+    <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
+      <summary class="p-5 cursor-pointer font-semibold text-sm text-brand flex justify-between items-center hover:bg-g50">
+        Combien coûte le fret maritime pour un véhicule vers Cotonou ?
+        <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
+        Les tarifs officiels de fret sont : <strong>Europe → Cotonou : 300 000 XOF</strong>, <strong>USA/Canada → Cotonou : 600 000 XOF</strong>, <strong>Asie → Cotonou : 450 000 XOF</strong>, <strong>Moyen-Orient : 450 000 XOF</strong>, <strong>Intra-Afrique : 50 000 XOF</strong>. Ces montants peuvent varier selon le transporteur et la taille du véhicule.
+      </div>
+    </details>
+    <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
+      <summary class="p-5 cursor-pointer font-semibold text-sm text-brand flex justify-between items-center hover:bg-g50">
+        Comment AD TRANS LOGISTICS peut m'aider à importer un véhicule ?
+        <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
+      </summary>
+      <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
+        AD TRANS LOGISTICS vous accompagne de A à Z : <strong>estimation précise des droits</strong> avant achat, <strong>transit et déclaration en douane</strong>, <strong>enlèvement au port</strong>, <strong>obtention de la carte grise et plaque</strong>. Contactez-nous au <a href="tel:+2290197500555" class="text-brand font-semibold underline">+229 01 97 50 05 55</a> ou via <a href="https://wa.me/2290197500555" class="text-green-600 font-semibold underline">WhatsApp</a>.
+      </div>
+    </details>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0A0A0A;color:#fff;padding:64px 0 32px;" data-reveal>
+<div class="container mx-auto px-6 max-w-[1440px]">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-2.5 mb-4">
+        <div class="w-9 h-9 bg-white rounded-[10px] flex items-center justify-center text-brand font-heading font-bold text-xs tracking-wider">AD</div>
+        <div class="font-heading font-bold text-base text-white">AD TRANS <span class="text-white/40 font-medium">LOGISTICS</span></div>
+      </div>
+      <p class="text-white/50 text-sm leading-relaxed max-w-[320px]">Transit douanier, importation de véhicules et logistique portuaire à Cotonou, Bénin.</p>
+    </div>
+    <div>
+      <div class="font-semibold text-white/80 text-sm mb-4 uppercase tracking-wider">Outils</div>
+      <ul class="space-y-2 text-sm text-white/50">
+        <li><a href="/simulateur" class="hover:text-white transition-colors">Simulateur douane</a></li>
+        <li><a href="/#simulateur" class="hover:text-white transition-colors">Simulateur fret</a></li>
+        <li><a href="/#suivi" class="hover:text-white transition-colors">Suivi en temps réel</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="font-semibold text-white/80 text-sm mb-4 uppercase tracking-wider">Contact</div>
+      <ul class="space-y-2 text-sm text-white/50">
+        <li>Cotonou, Bénin</li>
+        <li><a href="tel:+2290197500555" class="hover:text-white transition-colors">+229 01 97 50 05 55</a></li>
+        <li><a href="https://wa.me/2290197500555" class="hover:text-white transition-colors">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/30">
+    <div>© 2026 AD TRANS LOGISTICS. Tous droits réservés.</div>
+    <div>Simulateur fourni à titre indicatif — droits exacts selon déclaration officielle</div>
+  </div>
+</div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav id="bottomnav" aria-label="Navigation rapide">
+  <a href="/" class="bn-item" data-page="/">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+    <span>Accueil</span>
+  </a>
+  <a href="/simulateur" class="bn-item active" data-page="/simulateur">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg>
+    <span>Douane</span>
+  </a>
+  <a href="https://adtranslogistics.mychariow.shop" class="bn-item" data-page="/boutique">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+    <span>Boutique</span>
+  </a>
+  <a href="/#contact" class="bn-item" data-page="/contact">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span>Contact</span>
+  </a>
+  <a href="/espace-client" class="bn-item" data-page="/espace-client">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Compte</span>
+  </a>
+</nav>
+
+<!-- ARGUS DATA + SCRIPT -->
+<script>var ARGUS={"ACURA":[{"modele":"TLX","petite":5000,"grande":30000,"moyenne":17500},{"modele":"ILX","petite":3000,"grande":20000,"moyenne":11500},{"modele":"RDX","petite":5000,"grande":32000,"moyenne":18500},{"modele":"MDX","petite":5000,"grande":35000,"moyenne":20000},{"modele":"TL","petite":2000,"grande":12000,"moyenne":7000},{"modele":"TSX","petite":2000,"grande":12000,"moyenne":7000},{"modele":"RLX","petite":5000,"grande":25000,"moyenne":15000},{"modele":"ZDX","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Integra","petite":12000,"grande":30000,"moyenne":21000}],"ALFA ROMEO":[{"modele":"Giulietta","petite":800,"grande":12000,"moyenne":6400},{"modele":"Giulia","petite":15000,"grande":42000,"moyenne":28500},{"modele":"Stelvio","petite":18000,"grande":48000,"moyenne":33000},{"modele":"MiTo","petite":500,"grande":6500,"moyenne":3500},{"modele":"159","petite":600,"grande":5000,"moyenne":2800},{"modele":"Tonale","petite":25000,"grande":42000,"moyenne":33500}],"ASTON MARTIN":[{"modele":"DB11","petite":40000,"grande":120000,"moyenne":80000},{"modele":"DBX","petite":50000,"grande":140000,"moyenne":95000},{"modele":"Vantage","petite":35000,"grande":110000,"moyenne":72500}],"AUDI":[{"modele":"A1","petite":500,"grande":15000,"moyenne":7750},{"modele":"A3","petite":600,"grande":25000,"moyenne":12800},{"modele":"A3 Sportback","petite":700,"grande":28000,"moyenne":14350},{"modele":"A4","petite":800,"grande":30000,"moyenne":15400},{"modele":"A4 Avant","petite":900,"grande":32000,"moyenne":16450},{"modele":"A5","petite":1000,"grande":35000,"moyenne":18000},{"modele":"A5 Sportback","petite":1200,"grande":38000,"moyenne":19600},{"modele":"A5 Cabriolet","petite":1500,"grande":40000,"moyenne":20750},{"modele":"A6","petite":1000,"grande":40000,"moyenne":20500},{"modele":"A6 Avant","petite":1200,"grande":42000,"moyenne":21600},{"modele":"A7 Sportback","petite":2000,"grande":50000,"moyenne":26000},{"modele":"A8","petite":2000,"grande":55000,"moyenne":28500},{"modele":"Q2","petite":8000,"grande":28000,"moyenne":18000},{"modele":"Q3","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Q5","petite":5000,"grande":45000,"moyenne":25000},{"modele":"Q7","petite":5000,"grande":55000,"moyenne":30000},{"modele":"Q8","petite":25000,"grande":65000,"moyenne":45000},{"modele":"TT","petite":2000,"grande":30000,"moyenne":16000},{"modele":"TT Roadster","petite":3000,"grande":35000,"moyenne":19000},{"modele":"RS3","petite":15000,"grande":55000,"moyenne":35000},{"modele":"RS5","petite":20000,"grande":60000,"moyenne":40000},{"modele":"e-tron","petite":18000,"grande":50000,"moyenne":34000},{"modele":"Q4 e-tron","petite":20000,"grande":45000,"moyenne":32500},{"modele":"S3","petite":10000,"grande":40000,"moyenne":25000},{"modele":"S4","petite":8000,"grande":42000,"moyenne":25000},{"modele":"S5","petite":10000,"grande":48000,"moyenne":29000},{"modele":"A4 allroad","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Q3 Sportback","petite":10000,"grande":38000,"moyenne":24000},{"modele":"SQ5","petite":10000,"grande":50000,"moyenne":30000},{"modele":"RS Q8","petite":35000,"grande":80000,"moyenne":57500}],"BENTLEY":[{"modele":"Continental GT","petite":20000,"grande":120000,"moyenne":70000},{"modele":"Bentayga","petite":30000,"grande":130000,"moyenne":80000},{"modele":"Flying Spur","petite":25000,"grande":120000,"moyenne":72500}],"BMW":[{"modele":"Serie 1","petite":500,"grande":22000,"moyenne":11250},{"modele":"Serie 2","petite":800,"grande":28000,"moyenne":14400},{"modele":"Serie 3","petite":600,"grande":35000,"moyenne":17800},{"modele":"Serie 4","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Serie 5","petite":800,"grande":45000,"moyenne":22900},{"modele":"Serie 6","petite":2000,"grande":40000,"moyenne":21000},{"modele":"Serie 7","petite":2000,"grande":55000,"moyenne":28500},{"modele":"X1","petite":3000,"grande":32000,"moyenne":17500},{"modele":"X2","petite":8000,"grande":35000,"moyenne":21500},{"modele":"X3","petite":3000,"grande":42000,"moyenne":22500},{"modele":"X4","petite":8000,"grande":45000,"moyenne":26500},{"modele":"X5","petite":5000,"grande":55000,"moyenne":30000},{"modele":"X6","petite":8000,"grande":55000,"moyenne":31500},{"modele":"X7","petite":30000,"grande":70000,"moyenne":50000},{"modele":"Z4","petite":5000,"grande":45000,"moyenne":25000},{"modele":"iX3","petite":20000,"grande":45000,"moyenne":32500},{"modele":"i3","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Serie 8","petite":25000,"grande":65000,"moyenne":45000},{"modele":"M2","petite":20000,"grande":55000,"moyenne":37500},{"modele":"M3","petite":15000,"grande":60000,"moyenne":37500},{"modele":"M4","petite":20000,"grande":65000,"moyenne":42500},{"modele":"M5","petite":15000,"grande":55000,"moyenne":35000},{"modele":"i4","petite":20000,"grande":45000,"moyenne":32500},{"modele":"iX","petite":25000,"grande":60000,"moyenne":42500},{"modele":"Serie 2 Active Tourer","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Serie 2 Gran Coupe","petite":10000,"grande":30000,"moyenne":20000},{"modele":"X3 M","petite":15000,"grande":55000,"moyenne":35000}],"BUICK":[{"modele":"Enclave","petite":3000,"grande":32000,"moyenne":17500},{"modele":"Encore","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Envision","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Regal","petite":2000,"grande":18000,"moyenne":10000},{"modele":"LaCrosse","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Verano","petite":1500,"grande":12000,"moyenne":6750}],"CADILLAC":[{"modele":"Escalade","petite":8000,"grande":60000,"moyenne":34000},{"modele":"XT4","petite":10000,"grande":30000,"moyenne":20000},{"modele":"XT5","petite":8000,"grande":35000,"moyenne":21500},{"modele":"XT6","petite":12000,"grande":42000,"moyenne":27000},{"modele":"CT4","petite":10000,"grande":28000,"moyenne":19000},{"modele":"CT5","petite":12000,"grande":35000,"moyenne":23500},{"modele":"CTS","petite":3000,"grande":22000,"moyenne":12500},{"modele":"SRX","petite":2000,"grande":15000,"moyenne":8500},{"modele":"ATS","petite":3000,"grande":22000,"moyenne":12500},{"modele":"XTS","petite":3000,"grande":20000,"moyenne":11500}],"CHERY":[{"modele":"Tiggo 4","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Tiggo 7","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Tiggo 8","petite":8000,"grande":25000,"moyenne":16500},{"modele":"Arrizo 5","petite":2000,"grande":12000,"moyenne":7000}],"CHEVROLET":[{"modele":"Spark","petite":300,"grande":8000,"moyenne":4150},{"modele":"Aveo","petite":400,"grande":8000,"moyenne":4200},{"modele":"Cruze","petite":500,"grande":12000,"moyenne":6250},{"modele":"Malibu","petite":800,"grande":18000,"moyenne":9400},{"modele":"Impala","petite":1000,"grande":18000,"moyenne":9500},{"modele":"Camaro","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Corvette","petite":15000,"grande":60000,"moyenne":37500},{"modele":"Equinox","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Trax","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Blazer","petite":8000,"grande":30000,"moyenne":19000},{"modele":"Traverse","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Tahoe","petite":5000,"grande":45000,"moyenne":25000},{"modele":"Suburban","petite":5000,"grande":50000,"moyenne":27500},{"modele":"Silverado","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Colorado","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Trailblazer","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Captiva","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Orlando","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Sonic","petite":400,"grande":8000,"moyenne":4200},{"modele":"Express","petite":3000,"grande":22000,"moyenne":12500}],"CHRYSLER":[{"modele":"300","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Pacifica","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Voyager","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Town & Country","petite":1500,"grande":15000,"moyenne":8250},{"modele":"PT Cruiser","petite":500,"grande":5000,"moyenne":2750},{"modele":"Sebring","petite":500,"grande":5000,"moyenne":2750}],"CITROEN":[{"modele":"C1","petite":500,"grande":8000,"moyenne":4250},{"modele":"C3","petite":500,"grande":15000,"moyenne":7750},{"modele":"C3 Aircross","petite":5000,"grande":20000,"moyenne":12500},{"modele":"C4","petite":600,"grande":18000,"moyenne":9300},{"modele":"C4 Cactus","petite":590,"grande":15000,"moyenne":7795},{"modele":"C5 Aircross","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Berlingo","petite":700,"grande":18000,"moyenne":9350},{"modele":"SpaceTourer","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Jumpy","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Jumper","petite":2000,"grande":28000,"moyenne":15000},{"modele":"DS3","petite":800,"grande":12000,"moyenne":6400},{"modele":"DS4","petite":1000,"grande":15000,"moyenne":8000},{"modele":"DS7 Crossback","petite":12000,"grande":35000,"moyenne":23500},{"modele":"C4 Picasso","petite":800,"grande":12000,"moyenne":6400},{"modele":"Grand C4 Picasso","petite":1000,"grande":14000,"moyenne":7500},{"modele":"C5","petite":600,"grande":8000,"moyenne":4300},{"modele":"C-Elysee","petite":500,"grande":10000,"moyenne":5250},{"modele":"Nemo","petite":500,"grande":6000,"moyenne":3250}],"CUPRA":[{"modele":"Formentor","petite":10000,"grande":35000,"moyenne":22500},{"modele":"Born","petite":12000,"grande":32000,"moyenne":22000},{"modele":"Ateca","petite":8000,"grande":30000,"moyenne":19000},{"modele":"Leon","petite":8000,"grande":28000,"moyenne":18000}],"DACIA":[{"modele":"Sandero","petite":500,"grande":12000,"moyenne":6250},{"modele":"Duster","petite":1000,"grande":20000,"moyenne":10500},{"modele":"Logan","petite":500,"grande":8000,"moyenne":4250},{"modele":"Lodgy","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Dokker","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Spring","petite":8000,"grande":18000,"moyenne":13000},{"modele":"Jogger","petite":12000,"grande":22000,"moyenne":17000}],"DAF":[{"modele":"LF","petite":5000,"grande":35000,"moyenne":20000},{"modele":"CF","petite":10000,"grande":55000,"moyenne":32500},{"modele":"XF","petite":12000,"grande":60000,"moyenne":36000},{"modele":"XG","petite":30000,"grande":80000,"moyenne":55000},{"modele":"XD","petite":20000,"grande":65000,"moyenne":42500}],"DAIHATSU":[{"modele":"Terios","petite":800,"grande":10000,"moyenne":5400},{"modele":"Sirion","petite":400,"grande":6000,"moyenne":3200},{"modele":"Materia","petite":500,"grande":6000,"moyenne":3250},{"modele":"YRV","petite":300,"grande":4000,"moyenne":2150},{"modele":"Cuore","petite":200,"grande":3000,"moyenne":1600},{"modele":"Copen","petite":1000,"grande":8000,"moyenne":4500},{"modele":"Move","petite":300,"grande":4000,"moyenne":2150},{"modele":"Rocky","petite":3000,"grande":15000,"moyenne":9000}],"DODGE":[{"modele":"Charger","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Challenger","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Durango","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Journey","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Nitro","petite":1000,"grande":8000,"moyenne":4500},{"modele":"Caliber","petite":800,"grande":6000,"moyenne":3400},{"modele":"Ram 1500","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Ram 2500","petite":8000,"grande":45000,"moyenne":26500},{"modele":"Grand Caravan","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Avenger","petite":800,"grande":8000,"moyenne":4400}],"DONGFENG":[{"modele":"Rich","petite":3000,"grande":15000,"moyenne":9000},{"modele":"AX7","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Glory 580","petite":3000,"grande":15000,"moyenne":9000}],"DS AUTOMOBILES":[{"modele":"DS 3 Crossback","petite":5000,"grande":25000,"moyenne":15000},{"modele":"DS 4","petite":8000,"grande":30000,"moyenne":19000},{"modele":"DS 7","petite":10000,"grande":38000,"moyenne":24000},{"modele":"DS 9","petite":15000,"grande":42000,"moyenne":28500}],"FERRARI":[{"modele":"Roma","petite":80000,"grande":200000,"moyenne":140000},{"modele":"Portofino","petite":60000,"grande":180000,"moyenne":120000},{"modele":"F8 Tributo","petite":80000,"grande":250000,"moyenne":165000},{"modele":"SF90 Stradale","petite":120000,"grande":350000,"moyenne":235000},{"modele":"296 GTB","petite":100000,"grande":280000,"moyenne":190000}],"FIAT":[{"modele":"500","petite":500,"grande":15000,"moyenne":7750},{"modele":"500X","petite":3000,"grande":20000,"moyenne":11500},{"modele":"500L","petite":2000,"grande":14000,"moyenne":8000},{"modele":"Panda","petite":500,"grande":10000,"moyenne":5250},{"modele":"Punto","petite":500,"grande":6000,"moyenne":3250},{"modele":"Tipo","petite":2000,"grande":14000,"moyenne":8000},{"modele":"Ducato","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Doblo","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Freemont","petite":2000,"grande":12000,"moyenne":7000},{"modele":"Talento","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Fiorino","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Bravo","petite":400,"grande":5000,"moyenne":2700},{"modele":"Palio","petite":300,"grande":4000,"moyenne":2150},{"modele":"Uno","petite":200,"grande":3000,"moyenne":1600}],"FORD":[{"modele":"Fiesta","petite":500,"grande":12000,"moyenne":6250},{"modele":"Focus","petite":600,"grande":18000,"moyenne":9300},{"modele":"Focus SW","petite":700,"grande":20000,"moyenne":10350},{"modele":"Mondeo","petite":800,"grande":18000,"moyenne":9400},{"modele":"Kuga","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Puma","petite":8000,"grande":25000,"moyenne":16500},{"modele":"EcoSport","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Explorer","petite":15000,"grande":45000,"moyenne":30000},{"modele":"Mustang","petite":8000,"grande":45000,"moyenne":26500},{"modele":"Ranger","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Transit","petite":2000,"grande":30000,"moyenne":16000},{"modele":"Transit Custom","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Transit Courier","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Transit Connect","petite":2000,"grande":20000,"moyenne":11000},{"modele":"S-MAX","petite":1500,"grande":22000,"moyenne":11750},{"modele":"Galaxy","petite":1500,"grande":20000,"moyenne":10750},{"modele":"Edge","petite":8000,"grande":30000,"moyenne":19000},{"modele":"F-150","petite":15000,"grande":50000,"moyenne":32500},{"modele":"Escape","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Expedition","petite":8000,"grande":45000,"moyenne":26500},{"modele":"Fusion","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Taurus","petite":1000,"grande":12000,"moyenne":6500},{"modele":"Bronco","petite":15000,"grande":45000,"moyenne":30000},{"modele":"Bronco Sport","petite":12000,"grande":30000,"moyenne":21000},{"modele":"Maverick","petite":12000,"grande":28000,"moyenne":20000},{"modele":"Flex","petite":2000,"grande":15000,"moyenne":8500},{"modele":"Excursion","petite":3000,"grande":18000,"moyenne":10500},{"modele":"F-250","petite":10000,"grande":45000,"moyenne":27500},{"modele":"F-350","petite":12000,"grande":50000,"moyenne":31000},{"modele":"Everest","petite":8000,"grande":30000,"moyenne":19000}],"FOTON":[{"modele":"Tunland","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Auman","petite":8000,"grande":35000,"moyenne":21500},{"modele":"Aumark","petite":5000,"grande":25000,"moyenne":15000}],"GENESIS":[{"modele":"G70","petite":10000,"grande":35000,"moyenne":22500},{"modele":"G80","petite":12000,"grande":42000,"moyenne":27000},{"modele":"G90","petite":15000,"grande":55000,"moyenne":35000},{"modele":"GV70","petite":15000,"grande":42000,"moyenne":28500},{"modele":"GV80","petite":18000,"grande":50000,"moyenne":34000}],"GMC":[{"modele":"Sierra 1500","petite":5000,"grande":42000,"moyenne":23500},{"modele":"Sierra 2500","petite":8000,"grande":48000,"moyenne":28000},{"modele":"Canyon","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Yukon","petite":5000,"grande":50000,"moyenne":27500},{"modele":"Yukon XL","petite":5000,"grande":55000,"moyenne":30000},{"modele":"Acadia","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Terrain","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Envoy","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Savana","petite":3000,"grande":22000,"moyenne":12500}],"GREAT WALL":[{"modele":"Haval H6","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Haval H9","petite":8000,"grande":30000,"moyenne":19000},{"modele":"Haval Jolion","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Wingle","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Poer","petite":5000,"grande":22000,"moyenne":13500}],"HINO":[{"modele":"300","petite":5000,"grande":35000,"moyenne":20000},{"modele":"500","petite":8000,"grande":50000,"moyenne":29000},{"modele":"700","petite":15000,"grande":65000,"moyenne":40000},{"modele":"Dutro","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Ranger","petite":8000,"grande":45000,"moyenne":26500}],"HONDA":[{"modele":"Civic","petite":800,"grande":22000,"moyenne":11400},{"modele":"CR-V","petite":2000,"grande":30000,"moyenne":16000},{"modele":"HR-V","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Jazz","petite":500,"grande":15000,"moyenne":7750},{"modele":"Accord","petite":1000,"grande":25000,"moyenne":13000},{"modele":"CR-Z","petite":2000,"grande":12000,"moyenne":7000},{"modele":"Fit","petite":500,"grande":12000,"moyenne":6250},{"modele":"City","petite":400,"grande":10000,"moyenne":5200},{"modele":"Pilot","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Odyssey","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Element","petite":1500,"grande":10000,"moyenne":5750},{"modele":"Ridgeline","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Passport","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Insight","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Prelude","petite":1000,"grande":8000,"moyenne":4500},{"modele":"Crosstour","petite":2000,"grande":15000,"moyenne":8500},{"modele":"Vezel","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Freed","petite":800,"grande":8000,"moyenne":4400},{"modele":"Stepwgn","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Stream","petite":600,"grande":6000,"moyenne":3300},{"modele":"BR-V","petite":3000,"grande":15000,"moyenne":9000}],"HYUNDAI":[{"modele":"i10","petite":500,"grande":10000,"moyenne":5250},{"modele":"i20","petite":500,"grande":14000,"moyenne":7250},{"modele":"i30","petite":600,"grande":18000,"moyenne":9300},{"modele":"Tucson","petite":3000,"grande":32000,"moyenne":17500},{"modele":"Kona","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Santa Fe","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Ioniq","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Ioniq 5","petite":20000,"grande":42000,"moyenne":31000},{"modele":"Bayon","petite":8000,"grande":18000,"moyenne":13000},{"modele":"Accent","petite":400,"grande":10000,"moyenne":5200},{"modele":"Elantra","petite":500,"grande":15000,"moyenne":7750},{"modele":"Sonata","petite":800,"grande":22000,"moyenne":11400},{"modele":"Palisade","petite":15000,"grande":40000,"moyenne":27500},{"modele":"Venue","petite":5000,"grande":18000,"moyenne":11500},{"modele":"Creta","petite":3000,"grande":18000,"moyenne":10500},{"modele":"H1","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Starex","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Atos","petite":300,"grande":4000,"moyenne":2150},{"modele":"Getz","petite":300,"grande":5000,"moyenne":2650},{"modele":"Matrix","petite":400,"grande":5000,"moyenne":2700},{"modele":"Terracan","petite":800,"grande":6000,"moyenne":3400},{"modele":"Galloper","petite":500,"grande":5000,"moyenne":2750},{"modele":"Grand Santa Fe","petite":5000,"grande":35000,"moyenne":20000}],"INFINITI":[{"modele":"Q50","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Q60","petite":8000,"grande":32000,"moyenne":20000},{"modele":"Q70","petite":5000,"grande":28000,"moyenne":16500},{"modele":"QX50","petite":8000,"grande":32000,"moyenne":20000},{"modele":"QX55","petite":12000,"grande":38000,"moyenne":25000},{"modele":"QX60","petite":8000,"grande":35000,"moyenne":21500},{"modele":"QX80","petite":10000,"grande":50000,"moyenne":30000},{"modele":"G37","petite":3000,"grande":18000,"moyenne":10500},{"modele":"FX35","petite":3000,"grande":18000,"moyenne":10500},{"modele":"EX35","petite":2000,"grande":15000,"moyenne":8500},{"modele":"JX35","petite":3000,"grande":20000,"moyenne":11500}],"ISUZU":[{"modele":"D-Max","petite":5000,"grande":32000,"moyenne":18500},{"modele":"NHR","petite":2000,"grande":18000,"moyenne":10000},{"modele":"NKR","petite":3000,"grande":22000,"moyenne":12500},{"modele":"NQR","petite":5000,"grande":28000,"moyenne":16500},{"modele":"NPR","petite":5000,"grande":30000,"moyenne":17500},{"modele":"MU-X","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Trooper","petite":800,"grande":6000,"moyenne":3400}],"IVECO":[{"modele":"Daily","petite":2000,"grande":35000,"moyenne":18500},{"modele":"Eurocargo","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Stralis","petite":8000,"grande":50000,"moyenne":29000},{"modele":"Trakker","petite":10000,"grande":55000,"moyenne":32500}],"JAC":[{"modele":"S3","petite":2000,"grande":12000,"moyenne":7000},{"modele":"S4","petite":3000,"grande":15000,"moyenne":9000},{"modele":"J7","petite":5000,"grande":18000,"moyenne":11500},{"modele":"T8","petite":5000,"grande":20000,"moyenne":12500}],"JEEP":[{"modele":"Renegade","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Compass","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Cherokee","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Grand Cherokee","petite":5000,"grande":50000,"moyenne":27500},{"modele":"Wrangler","petite":10000,"grande":45000,"moyenne":27500},{"modele":"Liberty","petite":1500,"grande":10000,"moyenne":5750},{"modele":"Patriot","petite":1500,"grande":10000,"moyenne":5750},{"modele":"Gladiator","petite":15000,"grande":42000,"moyenne":28500},{"modele":"Commander","petite":2000,"grande":12000,"moyenne":7000},{"modele":"CJ","petite":3000,"grande":15000,"moyenne":9000}],"KIA":[{"modele":"Picanto","petite":500,"grande":10000,"moyenne":5250},{"modele":"Rio","petite":500,"grande":14000,"moyenne":7250},{"modele":"Ceed","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Sportage","petite":3000,"grande":32000,"moyenne":17500},{"modele":"Sorento","petite":5000,"grande":38000,"moyenne":21500},{"modele":"Stonic","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Niro","petite":8000,"grande":28000,"moyenne":18000},{"modele":"EV6","petite":22000,"grande":48000,"moyenne":35000},{"modele":"Proceed","petite":8000,"grande":25000,"moyenne":16500},{"modele":"Forte","petite":500,"grande":14000,"moyenne":7250},{"modele":"Optima","petite":800,"grande":20000,"moyenne":10400},{"modele":"Carnival","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Soul","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Seltos","petite":8000,"grande":25000,"moyenne":16500},{"modele":"Telluride","petite":15000,"grande":40000,"moyenne":27500},{"modele":"Stinger","petite":10000,"grande":35000,"moyenne":22500},{"modele":"Cerato","petite":500,"grande":14000,"moyenne":7250},{"modele":"Carens","petite":800,"grande":15000,"moyenne":7900},{"modele":"Venga","petite":1000,"grande":10000,"moyenne":5500},{"modele":"K5","petite":8000,"grande":25000,"moyenne":16500}],"LAMBORGHINI":[{"modele":"Huracan","petite":60000,"grande":200000,"moyenne":130000},{"modele":"Urus","petite":60000,"grande":180000,"moyenne":120000},{"modele":"Aventador","petite":80000,"grande":300000,"moyenne":190000}],"LANCIA":[{"modele":"Ypsilon","petite":300,"grande":10000,"moyenne":5150},{"modele":"Delta","petite":500,"grande":6000,"moyenne":3250},{"modele":"Musa","petite":400,"grande":5000,"moyenne":2700}],"LAND ROVER":[{"modele":"Range Rover","petite":5000,"grande":80000,"moyenne":42500},{"modele":"Range Rover Sport","petite":5000,"grande":65000,"moyenne":35000},{"modele":"Range Rover Evoque","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Range Rover Velar","petite":15000,"grande":55000,"moyenne":35000},{"modele":"Discovery","petite":3000,"grande":50000,"moyenne":26500},{"modele":"Discovery Sport","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Defender","petite":25000,"grande":70000,"moyenne":47500},{"modele":"Freelander","petite":800,"grande":12000,"moyenne":6400},{"modele":"Defender 90","petite":20000,"grande":60000,"moyenne":40000},{"modele":"Defender 110","petite":25000,"grande":65000,"moyenne":45000}],"LEXUS":[{"modele":"CT","petite":3000,"grande":18000,"moyenne":10500},{"modele":"IS","petite":3000,"grande":30000,"moyenne":16500},{"modele":"NX","petite":10000,"grande":40000,"moyenne":25000},{"modele":"RX","petite":5000,"grande":50000,"moyenne":27500},{"modele":"UX","petite":15000,"grande":35000,"moyenne":25000},{"modele":"ES","petite":3000,"grande":35000,"moyenne":19000},{"modele":"GS","petite":3000,"grande":30000,"moyenne":16500},{"modele":"LS","petite":5000,"grande":55000,"moyenne":30000},{"modele":"GX","petite":8000,"grande":45000,"moyenne":26500},{"modele":"LX","petite":10000,"grande":65000,"moyenne":37500},{"modele":"RC","petite":10000,"grande":40000,"moyenne":25000},{"modele":"LC","petite":30000,"grande":70000,"moyenne":50000}],"LINCOLN":[{"modele":"Navigator","petite":5000,"grande":55000,"moyenne":30000},{"modele":"Aviator","petite":15000,"grande":48000,"moyenne":31500},{"modele":"Corsair","petite":12000,"grande":35000,"moyenne":23500},{"modele":"Nautilus","petite":10000,"grande":35000,"moyenne":22500},{"modele":"Continental","petite":5000,"grande":35000,"moyenne":20000},{"modele":"MKC","petite":3000,"grande":20000,"moyenne":11500},{"modele":"MKX","petite":3000,"grande":22000,"moyenne":12500},{"modele":"MKZ","petite":3000,"grande":22000,"moyenne":12500},{"modele":"MKT","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Town Car","petite":2000,"grande":12000,"moyenne":7000}],"MAHINDRA":[{"modele":"Scorpio","petite":2000,"grande":15000,"moyenne":8500},{"modele":"XUV500","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Bolero","petite":1500,"grande":10000,"moyenne":5750},{"modele":"KUV100","petite":1500,"grande":8000,"moyenne":4750},{"modele":"Thar","petite":5000,"grande":18000,"moyenne":11500},{"modele":"XUV700","petite":8000,"grande":25000,"moyenne":16500}],"MAN":[{"modele":"TGE","petite":8000,"grande":35000,"moyenne":21500},{"modele":"TGL","petite":8000,"grande":40000,"moyenne":24000},{"modele":"TGM","petite":10000,"grande":50000,"moyenne":30000},{"modele":"TGS","petite":15000,"grande":60000,"moyenne":37500},{"modele":"TGX","petite":15000,"grande":65000,"moyenne":40000},{"modele":"Lion's City","petite":20000,"grande":80000,"moyenne":50000}],"MASERATI":[{"modele":"Ghibli","petite":10000,"grande":50000,"moyenne":30000},{"modele":"Levante","petite":15000,"grande":60000,"moyenne":37500},{"modele":"Quattroporte","petite":10000,"grande":55000,"moyenne":32500},{"modele":"GranTurismo","petite":15000,"grande":65000,"moyenne":40000}],"MAZDA":[{"modele":"Mazda 2","petite":500,"grande":15000,"moyenne":7750},{"modele":"Mazda 3","petite":800,"grande":22000,"moyenne":11400},{"modele":"Mazda 6","petite":1000,"grande":22000,"moyenne":11500},{"modele":"CX-3","petite":3000,"grande":20000,"moyenne":11500},{"modele":"CX-5","petite":5000,"grande":32000,"moyenne":18500},{"modele":"CX-30","petite":10000,"grande":28000,"moyenne":19000},{"modele":"MX-5","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Mazda 5","petite":600,"grande":8000,"moyenne":4300},{"modele":"BT-50","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Tribute","petite":800,"grande":6000,"moyenne":3400},{"modele":"MPV","petite":500,"grande":5000,"moyenne":2750},{"modele":"Demio","petite":300,"grande":6000,"moyenne":3150},{"modele":"Premacy","petite":400,"grande":5000,"moyenne":2700}],"MERCEDES-BENZ":[{"modele":"Classe A","petite":700,"grande":30000,"moyenne":15350},{"modele":"Classe B","petite":800,"grande":25000,"moyenne":12900},{"modele":"Classe C","petite":800,"grande":38000,"moyenne":19400},{"modele":"Classe C Break","petite":900,"grande":40000,"moyenne":20450},{"modele":"Classe E","petite":1000,"grande":45000,"moyenne":23000},{"modele":"Classe E Break","petite":1200,"grande":48000,"moyenne":24600},{"modele":"Classe E Cabriolet","petite":5000,"grande":45000,"moyenne":25000},{"modele":"Classe S","petite":3000,"grande":65000,"moyenne":34000},{"modele":"CLA","petite":5000,"grande":32000,"moyenne":18500},{"modele":"CLS","petite":5000,"grande":45000,"moyenne":25000},{"modele":"GLA","petite":5000,"grande":32000,"moyenne":18500},{"modele":"GLB","petite":12000,"grande":35000,"moyenne":23500},{"modele":"GLC","petite":8000,"grande":45000,"moyenne":26500},{"modele":"GLE","petite":10000,"grande":55000,"moyenne":32500},{"modele":"GLS","petite":20000,"grande":70000,"moyenne":45000},{"modele":"Classe G","petite":20000,"grande":80000,"moyenne":50000},{"modele":"Vito","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Sprinter","petite":3000,"grande":40000,"moyenne":21500},{"modele":"Citan","petite":2000,"grande":20000,"moyenne":11000},{"modele":"AMG GT","petite":30000,"grande":80000,"moyenne":55000},{"modele":"Classe V","petite":10000,"grande":45000,"moyenne":27500},{"modele":"GLC Coupe","petite":12000,"grande":50000,"moyenne":31000},{"modele":"GLE Coupe","petite":15000,"grande":60000,"moyenne":37500},{"modele":"ML","petite":3000,"grande":25000,"moyenne":14000},{"modele":"GL","petite":5000,"grande":35000,"moyenne":20000},{"modele":"SLK","petite":3000,"grande":22000,"moyenne":12500},{"modele":"SLC","petite":5000,"grande":28000,"moyenne":16500},{"modele":"SL","petite":5000,"grande":55000,"moyenne":30000},{"modele":"GLK","petite":3000,"grande":22000,"moyenne":12500},{"modele":"EQC","petite":15000,"grande":42000,"moyenne":28500},{"modele":"EQA","petite":18000,"grande":38000,"moyenne":28000}],"MINI":[{"modele":"Cooper","petite":800,"grande":22000,"moyenne":11400},{"modele":"Cooper S","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Countryman","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Clubman","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Cabrio","petite":3000,"grande":25000,"moyenne":14000}],"MITSUBISHI":[{"modele":"ASX","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Outlander","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Eclipse Cross","petite":8000,"grande":28000,"moyenne":18000},{"modele":"L200","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Pajero","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Space Star","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Colt","petite":300,"grande":5000,"moyenne":2650},{"modele":"Lancer","petite":500,"grande":8000,"moyenne":4250},{"modele":"Galant","petite":400,"grande":5000,"moyenne":2700},{"modele":"Grandis","petite":600,"grande":6000,"moyenne":3300},{"modele":"Triton","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Canter","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Rosa","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Delica","petite":1000,"grande":10000,"moyenne":5500},{"modele":"RVR","petite":1500,"grande":12000,"moyenne":6750}],"NISSAN":[{"modele":"Micra","petite":500,"grande":12000,"moyenne":6250},{"modele":"Juke","petite":1500,"grande":20000,"moyenne":10750},{"modele":"Qashqai","petite":2000,"grande":28000,"moyenne":15000},{"modele":"X-Trail","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Leaf","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Navara","petite":5000,"grande":30000,"moyenne":17500},{"modele":"NV200","petite":2000,"grande":15000,"moyenne":8500},{"modele":"NV300","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Pathfinder","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Almera","petite":400,"grande":8000,"moyenne":4200},{"modele":"Sentra","petite":500,"grande":12000,"moyenne":6250},{"modele":"Altima","petite":600,"grande":18000,"moyenne":9300},{"modele":"Note","petite":400,"grande":10000,"moyenne":5200},{"modele":"Tiida","petite":400,"grande":8000,"moyenne":4200},{"modele":"Primera","petite":400,"grande":6000,"moyenne":3200},{"modele":"Sunny","petite":300,"grande":5000,"moyenne":2650},{"modele":"Patrol","petite":3000,"grande":45000,"moyenne":24000},{"modele":"Murano","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Kicks","petite":5000,"grande":20000,"moyenne":12500},{"modele":"March","petite":300,"grande":6000,"moyenne":3150},{"modele":"Rogue","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Frontier","petite":3000,"grande":28000,"moyenne":15500},{"modele":"NP300","petite":4000,"grande":25000,"moyenne":14500},{"modele":"Terrano","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Maxima","petite":800,"grande":18000,"moyenne":9400},{"modele":"Versa","petite":400,"grande":10000,"moyenne":5200},{"modele":"Armada","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Titan","petite":5000,"grande":35000,"moyenne":20000}],"OPEL":[{"modele":"Corsa","petite":500,"grande":15000,"moyenne":7750},{"modele":"Astra","petite":600,"grande":18000,"moyenne":9300},{"modele":"Mokka","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Crossland","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Grandland","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Insignia","petite":800,"grande":20000,"moyenne":10400},{"modele":"Combo","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Vivaro","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Movano","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Zafira","petite":800,"grande":15000,"moyenne":7900},{"modele":"Adam","petite":500,"grande":10000,"moyenne":5250},{"modele":"Meriva","petite":500,"grande":8000,"moyenne":4250},{"modele":"Antara","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Agila","petite":300,"grande":5000,"moyenne":2650}],"PEUGEOT":[{"modele":"108","petite":500,"grande":10000,"moyenne":5250},{"modele":"208","petite":500,"grande":18000,"moyenne":9250},{"modele":"308","petite":600,"grande":22000,"moyenne":11300},{"modele":"508","petite":1000,"grande":28000,"moyenne":14500},{"modele":"2008","petite":3000,"grande":22000,"moyenne":12500},{"modele":"3008","petite":3000,"grande":32000,"moyenne":17500},{"modele":"5008","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Rifter","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Partner","petite":1000,"grande":18000,"moyenne":9500},{"modele":"Expert","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Boxer","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Bipper","petite":700,"grande":8000,"moyenne":4350},{"modele":"107","petite":300,"grande":5000,"moyenne":2650},{"modele":"206","petite":300,"grande":4000,"moyenne":2150},{"modele":"207","petite":300,"grande":5000,"moyenne":2650},{"modele":"301","petite":500,"grande":10000,"moyenne":5250},{"modele":"407","petite":500,"grande":6000,"moyenne":3250},{"modele":"607","petite":500,"grande":5000,"moyenne":2750},{"modele":"4007","petite":1500,"grande":10000,"moyenne":5750},{"modele":"4008","petite":3000,"grande":15000,"moyenne":9000}],"PORSCHE":[{"modele":"911","petite":15000,"grande":120000,"moyenne":67500},{"modele":"Cayenne","petite":5000,"grande":70000,"moyenne":37500},{"modele":"Macan","petite":15000,"grande":55000,"moyenne":35000},{"modele":"Panamera","petite":10000,"grande":65000,"moyenne":37500},{"modele":"Boxster","petite":8000,"grande":50000,"moyenne":29000},{"modele":"Cayman","petite":10000,"grande":55000,"moyenne":32500},{"modele":"Taycan","petite":35000,"grande":90000,"moyenne":62500},{"modele":"718","petite":25000,"grande":65000,"moyenne":45000}],"RENAULT":[{"modele":"Clio","petite":500,"grande":15000,"moyenne":7750},{"modele":"Megane","petite":600,"grande":18000,"moyenne":9300},{"modele":"Megane Estate","petite":700,"grande":20000,"moyenne":10350},{"modele":"Scenic","petite":800,"grande":18000,"moyenne":9400},{"modele":"Grand Scenic","petite":1000,"grande":20000,"moyenne":10500},{"modele":"Captur","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Kadjar","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Koleos","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Espace","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Kangoo","petite":1000,"grande":18000,"moyenne":9500},{"modele":"Grand Kangoo","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Trafic","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Master","petite":2000,"grande":30000,"moyenne":16000},{"modele":"Twingo","petite":500,"grande":10000,"moyenne":5250},{"modele":"Talisman","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Arkana","petite":12000,"grande":28000,"moyenne":20000},{"modele":"Zoe","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Austral","petite":18000,"grande":35000,"moyenne":26500},{"modele":"Symbol","petite":300,"grande":6000,"moyenne":3150},{"modele":"Fluence","petite":500,"grande":8000,"moyenne":4250},{"modele":"Latitude","petite":800,"grande":10000,"moyenne":5400},{"modele":"Laguna","petite":500,"grande":6000,"moyenne":3250},{"modele":"Express","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Alaskan","petite":8000,"grande":28000,"moyenne":18000},{"modele":"Duster","petite":1000,"grande":18000,"moyenne":9500},{"modele":"Logan","petite":400,"grande":8000,"moyenne":4200}],"ROLLS-ROYCE":[{"modele":"Ghost","petite":40000,"grande":180000,"moyenne":110000},{"modele":"Phantom","petite":50000,"grande":250000,"moyenne":150000},{"modele":"Cullinan","petite":60000,"grande":250000,"moyenne":155000},{"modele":"Wraith","petite":40000,"grande":180000,"moyenne":110000}],"SCANIA":[{"modele":"P-Series","petite":10000,"grande":55000,"moyenne":32500},{"modele":"G-Series","petite":12000,"grande":60000,"moyenne":36000},{"modele":"R-Series","petite":15000,"grande":65000,"moyenne":40000},{"modele":"S-Series","petite":20000,"grande":75000,"moyenne":47500},{"modele":"L-Series","petite":8000,"grande":45000,"moyenne":26500}],"SEAT":[{"modele":"Ibiza","petite":500,"grande":15000,"moyenne":7750},{"modele":"Leon","petite":800,"grande":22000,"moyenne":11400},{"modele":"Arona","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Ateca","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Tarraco","petite":10000,"grande":32000,"moyenne":21000},{"modele":"Alhambra","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Mii","petite":300,"grande":8000,"moyenne":4150},{"modele":"Toledo","petite":500,"grande":10000,"moyenne":5250},{"modele":"Altea","petite":500,"grande":8000,"moyenne":4250},{"modele":"Exeo","petite":600,"grande":8000,"moyenne":4300}],"SKODA":[{"modele":"Fabia","petite":500,"grande":14000,"moyenne":7250},{"modele":"Octavia","petite":800,"grande":22000,"moyenne":11400},{"modele":"Superb","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Kamiq","petite":8000,"grande":22000,"moyenne":15000},{"modele":"Karoq","petite":8000,"grande":28000,"moyenne":18000},{"modele":"Kodiaq","petite":8000,"grande":35000,"moyenne":21500},{"modele":"Scala","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Rapid","petite":500,"grande":12000,"moyenne":6250},{"modele":"Enyaq","petite":18000,"grande":40000,"moyenne":29000},{"modele":"Roomster","petite":500,"grande":6000,"moyenne":3250},{"modele":"Yeti","petite":1000,"grande":12000,"moyenne":6500}],"SMART":[{"modele":"ForTwo","petite":500,"grande":12000,"moyenne":6250},{"modele":"ForFour","petite":500,"grande":10000,"moyenne":5250}],"SSANGYONG":[{"modele":"Tivoli","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Korando","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Rexton","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Musso","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Rodius","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Actyon","petite":1000,"grande":8000,"moyenne":4500}],"SUBARU":[{"modele":"Impreza","petite":500,"grande":18000,"moyenne":9250},{"modele":"WRX","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Legacy","petite":800,"grande":15000,"moyenne":7900},{"modele":"Outback","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Forester","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Crosstrek","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Ascent","petite":10000,"grande":30000,"moyenne":20000},{"modele":"BRZ","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Levorg","petite":3000,"grande":20000,"moyenne":11500},{"modele":"XV","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Tribeca","petite":1500,"grande":10000,"moyenne":5750},{"modele":"Justy","petite":300,"grande":4000,"moyenne":2150}],"SUZUKI":[{"modele":"Swift","petite":500,"grande":14000,"moyenne":7250},{"modele":"Vitara","petite":3000,"grande":22000,"moyenne":12500},{"modele":"S-Cross","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Jimny","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Ignis","petite":3000,"grande":14000,"moyenne":8500},{"modele":"Alto","petite":200,"grande":4000,"moyenne":2100},{"modele":"Baleno","petite":500,"grande":10000,"moyenne":5250},{"modele":"Celerio","petite":300,"grande":8000,"moyenne":4150},{"modele":"SX4","petite":800,"grande":10000,"moyenne":5400},{"modele":"SX4 S-Cross","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Grand Vitara","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Carry","petite":500,"grande":8000,"moyenne":4250},{"modele":"Every","petite":500,"grande":6000,"moyenne":3250},{"modele":"Wagon R","petite":300,"grande":5000,"moyenne":2650},{"modele":"APV","petite":800,"grande":8000,"moyenne":4400},{"modele":"Ertiga","petite":2000,"grande":14000,"moyenne":8000},{"modele":"XL7","petite":5000,"grande":18000,"moyenne":11500},{"modele":"Splash","petite":400,"grande":6000,"moyenne":3200}],"TATA":[{"modele":"Nexon","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Harrier","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Safari","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Punch","petite":2000,"grande":12000,"moyenne":7000}],"TESLA":[{"modele":"Model 3","petite":15000,"grande":42000,"moyenne":28500},{"modele":"Model Y","petite":18000,"grande":48000,"moyenne":33000},{"modele":"Model S","petite":15000,"grande":60000,"moyenne":37500},{"modele":"Model X","petite":20000,"grande":65000,"moyenne":42500},{"modele":"Cybertruck","petite":30000,"grande":70000,"moyenne":50000}],"TOYOTA":[{"modele":"Yaris","petite":500,"grande":18000,"moyenne":9250},{"modele":"Yaris Cross","petite":12000,"grande":25000,"moyenne":18500},{"modele":"Corolla","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Corolla Touring Sports","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Camry","petite":10000,"grande":32000,"moyenne":21000},{"modele":"C-HR","petite":8000,"grande":28000,"moyenne":18000},{"modele":"RAV4","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Land Cruiser","petite":5000,"grande":55000,"moyenne":30000},{"modele":"Hilux","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Proace","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Proace City","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Prius","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Aygo","petite":500,"grande":10000,"moyenne":5250},{"modele":"Supra","petite":25000,"grande":50000,"moyenne":37500},{"modele":"Highlander","petite":20000,"grande":45000,"moyenne":32500},{"modele":"Fortuner","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Avensis","petite":500,"grande":12000,"moyenne":6250},{"modele":"Verso","petite":800,"grande":15000,"moyenne":7900},{"modele":"Auris","petite":600,"grande":15000,"moyenne":7800},{"modele":"4Runner","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Tacoma","petite":8000,"grande":35000,"moyenne":21500},{"modele":"Tundra","petite":8000,"grande":42000,"moyenne":25000},{"modele":"FJ Cruiser","petite":8000,"grande":30000,"moyenne":19000},{"modele":"Sequoia","petite":5000,"grande":45000,"moyenne":25000},{"modele":"Avalon","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Sienna","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Venza","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Matrix","petite":800,"grande":8000,"moyenne":4400},{"modele":"Rush","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Avanza","petite":2000,"grande":15000,"moyenne":8500},{"modele":"Crown","petite":1000,"grande":15000,"moyenne":8000},{"modele":"Mark X","petite":1000,"grande":12000,"moyenne":6500},{"modele":"Carina","petite":300,"grande":5000,"moyenne":2650},{"modele":"RunX","petite":400,"grande":6000,"moyenne":3200},{"modele":"Innova","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Wish","petite":800,"grande":8000,"moyenne":4400},{"modele":"Fielder","petite":500,"grande":8000,"moyenne":4250},{"modele":"Premio","petite":600,"grande":8000,"moyenne":4300},{"modele":"Allion","petite":600,"grande":8000,"moyenne":4300},{"modele":"Harrier","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Vanguard","petite":2000,"grande":15000,"moyenne":8500},{"modele":"IST","petite":400,"grande":6000,"moyenne":3200},{"modele":"Ractis","petite":400,"grande":6000,"moyenne":3200},{"modele":"Belta","petite":400,"grande":6000,"moyenne":3200},{"modele":"Passo","petite":300,"grande":5000,"moyenne":2650},{"modele":"Urban Cruiser","petite":2000,"grande":12000,"moyenne":7000},{"modele":"Land Cruiser Prado","petite":5000,"grande":45000,"moyenne":25000},{"modele":"HiAce","petite":3000,"grande":25000,"moyenne":14000}],"VOLKSWAGEN":[{"modele":"Polo","petite":500,"grande":18000,"moyenne":9250},{"modele":"Golf","petite":600,"grande":25000,"moyenne":12800},{"modele":"Golf SW","petite":700,"grande":28000,"moyenne":14350},{"modele":"Passat","petite":800,"grande":28000,"moyenne":14400},{"modele":"Passat SW","petite":900,"grande":30000,"moyenne":15450},{"modele":"Arteon","petite":8000,"grande":35000,"moyenne":21500},{"modele":"T-Cross","petite":8000,"grande":22000,"moyenne":15000},{"modele":"T-Roc","petite":8000,"grande":28000,"moyenne":18000},{"modele":"Tiguan","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Touareg","petite":5000,"grande":50000,"moyenne":27500},{"modele":"Touran","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Caddy","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Transporter","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Crafter","petite":3000,"grande":38000,"moyenne":20500},{"modele":"Up!","petite":500,"grande":10000,"moyenne":5250},{"modele":"ID.3","petite":15000,"grande":32000,"moyenne":23500},{"modele":"ID.4","petite":18000,"grande":40000,"moyenne":29000},{"modele":"Taigo","petite":10000,"grande":22000,"moyenne":16000},{"modele":"Multivan","petite":15000,"grande":45000,"moyenne":30000},{"modele":"Coccinelle","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Jetta","petite":600,"grande":18000,"moyenne":9300},{"modele":"Amarok","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Atlas","petite":10000,"grande":35000,"moyenne":22500},{"modele":"Bora","petite":400,"grande":6000,"moyenne":3200},{"modele":"Beetle","petite":1000,"grande":15000,"moyenne":8000},{"modele":"Sharan","petite":1500,"grande":22000,"moyenne":11750},{"modele":"Scirocco","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Eos","petite":1500,"grande":12000,"moyenne":6750}],"VOLVO":[{"modele":"XC40","petite":10000,"grande":38000,"moyenne":24000},{"modele":"XC60","petite":8000,"grande":48000,"moyenne":28000},{"modele":"XC90","petite":10000,"grande":55000,"moyenne":32500},{"modele":"V40","petite":2000,"grande":20000,"moyenne":11000},{"modele":"V60","petite":5000,"grande":35000,"moyenne":20000},{"modele":"V90","petite":8000,"grande":40000,"moyenne":24000},{"modele":"S60","petite":5000,"grande":32000,"moyenne":18500},{"modele":"S90","petite":8000,"grande":38000,"moyenne":23000},{"modele":"C30","petite":800,"grande":10000,"moyenne":5400},{"modele":"C40","petite":18000,"grande":40000,"moyenne":29000},{"modele":"S40","petite":500,"grande":8000,"moyenne":4250},{"modele":"V40 Cross Country","petite":3000,"grande":22000,"moyenne":12500},{"modele":"V50","petite":600,"grande":8000,"moyenne":4300},{"modele":"XC70","petite":2000,"grande":18000,"moyenne":10000}]};</script>
+<script>
+// ── Modèle officiel douanes Bénin ───────────────────────────────────────────
+// Formule : CIF = FOB + Fret → VD = max(1 050 000, CIF × 0,70) → taxes sur VD
+// Dépréciation fixe de 30% sur le CIF (×0.70), PAS de table progressive par âge.
+// Pré-référence (Tourisme ref=2008) : 2007→×0.20, 2006→×0.40, 2005→×0.60, 2004→×0.80
+// Pré-référence (Utilitaire ref=2015) : 2014→×0.20, 2013→×0.40, ...
+// Taux par type : Tourisme 31.598%, Utilitaire/Camion/Semi 23.338%, Tracteur 19.208%
+
+// Taux calibrés sur 2 928 déclarations réelles (2020-2025)
+const TAUX_TYPES = {
+  'tourisme':     { dd: 0.20, rateGlobal: 0.31598, label: 'Tourisme (VP)' },
+  'suv':          { dd: 0.20, rateGlobal: 0.40208, label: 'SUV / 4×4' },
+  'utilitaire':   { dd: 0.20, rateGlobal: 0.23338, label: 'Utilitaire' },
+  'luxe':         { dd: 0.20, rateGlobal: 0.54107, label: 'Luxe / > 3000cc' },
+  'camion':       { dd: 0.20, rateGlobal: 0.23338, label: 'Camion' },
+  'tracteur':     { dd: 0.05, rateGlobal: 0.19208, label: 'Tracteur routier' },
+  'semi-remorque':{ dd: 0.20, rateGlobal: 0.23338, label: 'Semi-remorque' },
+  'neuf':         { dd: 0.05, rateGlobal: null,     label: 'Véhicule neuf' },
+};
+
+// Estimation Argus par âge : décroissance exponentielle, plancher = petite
+function estimerArgusEUR(entry, annee) {
+  const age = Math.max(0, new Date().getFullYear() - annee);
+  if (age === 0) return entry.grande;
+  const est = Math.round(entry.grande * Math.pow(0.88, age));
+  return Math.max(entry.petite, est);
+}
+
+// Pré-référence : dépréciation additionnelle pour véhicules juste avant l'année de référence
+function getPreRefCoeff(annee, typeVeh) {
+  const vpTypes = ['tourisme', 'suv', 'luxe'];
+  const refYear = vpTypes.includes(typeVeh) ? 2008 : 2015;
+  const diff = refYear - annee; // ex: 2008 - 2007 = 1
+  if (diff <= 0) return 1.0; // pas de pré-ref
+  if (diff === 1) return 0.20;
+  if (diff === 2) return 0.40;
+  if (diff === 3) return 0.60;
+  if (diff === 4) return 0.80;
+  return 1.0;
+}
+
+function fmt(n) {
+  if (n == null || isNaN(n)) return '—';
+  return n.toLocaleString('fr-FR', {maximumFractionDigits:0}) + ' XOF';
+}
+function fmtEur(n) {
+  if (!n && n !== 0) return '—';
+  return n.toLocaleString('fr-FR', {maximumFractionDigits:0});
+}
+
+// ── Populate marque dropdown ─────────────────────────────────────────────────
+// ── Fret officiel par continent (XOF) — document formation douanes ──
+const FRET_TABLE = {
+  'europe':  300000,   // Europe → Cotonou
+  'usa':     600000,   // Amérique → Cotonou
+  'asie':    450000,   // Asie → Cotonou
+  'dubai':   450000,   // Moyen-Orient (assimilé Asie)
+  'afrique':  50000,   // Intra-Afrique
+};
+
+const selMarque  = document.getElementById('sel-marque');
+const selModele  = document.getElementById('sel-modele');
+const inpAnnee   = document.getElementById('inp-annee');
+const inpFret    = document.getElementById('inp-fret');
+const chkTgc     = document.getElementById('chk-tgc');
+const selOrigine = document.getElementById('sel-origine');
+const selType    = document.getElementById('sel-type');
+
+Object.keys(ARGUS).sort().forEach(m => {
+  const o = document.createElement('option');
+  o.value = m; o.textContent = m;
+  selMarque.appendChild(o);
+});
+
+// ── Pre-fill from URL params (from homepage mini-form) ───────────────────────
+(function() {
+  const p = new URLSearchParams(window.location.search);
+  const m = p.get('marque'), a = p.get('annee'), f = p.get('fret');
+  if (m) { selMarque.value = m; onMarqueChange(); }
+  if (a) inpAnnee.value = a;
+  if (f) inpFret.value  = f;
+})();
+
+// ── Cascade: marque → modèle ─────────────────────────────────────────────────
+function onMarqueChange() {
+  const m = selMarque.value;
+  selModele.innerHTML = '<option value="">— Sélectionner un modèle —</option>';
+  selModele.disabled = !m;
+  if (m && ARGUS[m]) {
+    ARGUS[m].forEach(item => {
+      const o = document.createElement('option');
+      o.value = item.modele;
+      o.textContent = item.modele;
+      selModele.appendChild(o);
+    });
+  }
+  document.getElementById('argus-empty').style.display = 'block';
+  document.getElementById('argus-data').style.display  = 'none';
+  resetResults();
+}
+
+// ── On modèle change ─────────────────────────────────────────────────────────
+function onModeleChange() {
+  const m = selMarque.value;
+  const mod = selModele.value;
+  if (!m || !mod) {
+    document.getElementById('argus-empty').style.display = 'block';
+    document.getElementById('argus-data').style.display  = 'none';
+    resetResults();
+    return;
+  }
+  const entry = (ARGUS[m] || []).find(x => x.modele === mod);
+  if (entry) {
+    document.getElementById('argus-empty').style.display = 'none';
+    document.getElementById('argus-data').style.display  = 'block';
+    document.getElementById('val-petite').textContent  = fmtEur(entry.petite);
+    document.getElementById('val-grande').textContent  = fmtEur(entry.grande);
+    const annee = parseInt(inpAnnee.value);
+    if (annee) {
+      const est = estimerArgusEUR(entry, annee);
+      document.getElementById('val-moyenne').textContent = fmtEur(est);
+      const age = Math.max(0, new Date().getFullYear() - annee);
+      document.getElementById('val-moyenne-desc').textContent = `€ TTC · ${age} an${age>1?'s':''}`;
+    } else {
+      document.getElementById('val-moyenne').textContent = fmtEur(entry.grande);
+      document.getElementById('val-moyenne-desc').textContent = '€ TTC · saisir année';
+    }
+    document.getElementById('argus-nb-cot').textContent = m + ' · ' + mod;
+  }
+  calculate();
+}
+
+// ── On année change ──────────────────────────────────────────────────────────
+function onAnneeChange() {
+  const annee = parseInt(inpAnnee.value);
+  const tgcBox = document.getElementById('tgc-box');
+  const tgcChk = document.getElementById('chk-tgc');
+  const tgcLabel = document.getElementById('tgc-label');
+  if (annee) {
+    tgcBox.style.display = 'block';
+    const ageYears = new Date().getFullYear() - annee;
+    if (ageYears > 10) {
+      tgcChk.checked = true;
+      tgcChk.disabled = true;
+      tgcLabel.textContent = 'Appliquée automatiquement (véhicule > 10 ans)';
+    } else {
+      tgcChk.checked = false;
+      tgcChk.disabled = false;
+      tgcLabel.textContent = 'Grosse cylindrée (> 13 CV)';
+    }
+  } else {
+    tgcBox.style.display = 'none';
+  }
+  // Refresh Argus estimate display
+  const m = selMarque.value, mod = selModele.value;
+  if (m && mod && annee) {
+    const entry = (ARGUS[m] || []).find(x => x.modele === mod);
+    if (entry) {
+      const est = estimerArgusEUR(entry, annee);
+      const age = Math.max(0, new Date().getFullYear() - annee);
+      document.getElementById('val-moyenne').textContent = fmtEur(est);
+      document.getElementById('val-moyenne-desc').textContent = `€ TTC · ${age} an${age>1?'s':''}`;
+    }
+  }
+  calculate();
+}
+
+function resetResults() {
+  document.getElementById('res-empty').style.display   = 'block';
+  document.getElementById('res-content').style.display = 'none';
+  document.getElementById('coeff-row').style.display   = 'none';
+}
+
+// ── Origine → Fret auto-fill ────────────────────────────────────────────────
+function onOrigineChange() {
+  const orig = selOrigine.value;
+  const hint = document.getElementById('fret-hint');
+  if (orig && FRET_TABLE[orig]) {
+    const autoFret = FRET_TABLE[orig];
+    // Only auto-fill if user hasn't manually entered a value
+    if (!inpFret.value || inpFret.dataset.auto === 'true') {
+      inpFret.value = autoFret;
+      inpFret.dataset.auto = 'true';
+      hint.textContent = 'Estimé auto — modifiable';
+    }
+  } else {
+    if (inpFret.dataset.auto === 'true') {
+      inpFret.value = '';
+      inpFret.dataset.auto = '';
+    }
+    hint.textContent = 'Laisser vide = auto selon origine';
+  }
+  calculate();
+}
+
+// Track manual fret input
+inpFret.addEventListener('input', function() {
+  this.dataset.auto = '';
+  document.getElementById('fret-hint').textContent = 'Valeur saisie manuellement';
+});
+
+// (détail calcul toujours visible — pas de toggle)
+
+// ── Effective fret (manual or auto) ─────────────────────────────────────────
+function getEffectiveFret() {
+  const manual = parseFloat(inpFret.value);
+  if (!isNaN(manual) && manual > 0) return manual;
+  const orig = selOrigine.value;
+  if (orig && FRET_TABLE[orig]) return FRET_TABLE[orig];
+  return 0;
+}
+
+// ── Main calculation — Formule officielle douanes Bénin ─────────────────────
+// CIF = FOB + Fret → VD = max(1 050 000, CIF × 0,70) → taxes sur VD
+// Frais annexes réalistes 2025-2026
+const FRAIS_USN = 100000;
+const FRAIS_FORMALITES = 80000;
+const FRAIS_INTERPOOL = 20000;
+const FRAIS_ENLEVEMENT = 75000;
+const FRAIS_VACATION = 35000;
+const FRAIS_PLAQUE_CG = 40000;
+const FRAIS_TRANSIT_AD = 200000; // Transit AD TRANS LOGISTICS
+const FRAIS_ANNEXES = FRAIS_USN + FRAIS_FORMALITES + FRAIS_INTERPOOL + FRAIS_ENLEVEMENT + FRAIS_VACATION + FRAIS_PLAQUE_CG + FRAIS_TRANSIT_AD; // 550 000
+
+function calculate() {
+  const m     = selMarque.value;
+  const mod   = selModele.value;
+  const annee = parseInt(inpAnnee.value);
+  const typeVeh = document.getElementById('sel-type').value;
+  const fret  = getEffectiveFret();
+  const origine = selOrigine.value;
+  const hasTGC = document.getElementById('chk-tgc')?.checked || false;
+
+  if (!m || !mod || !annee || !origine) { resetResults(); return; }
+
+  const entry = (ARGUS[m] || []).find(x => x.modele === mod);
+  if (!entry) { resetResults(); return; }
+
+  const currentYear = new Date().getFullYear();
+  const age = Math.max(0, currentYear - annee);
+
+  // Update Argus estimated display
+  const argusEUR = estimerArgusEUR(entry, annee);
+  document.getElementById('val-moyenne').textContent = fmtEur(argusEUR);
+  document.getElementById('val-moyenne-desc').textContent = `€ TTC · ${age} an${age>1?'s':''}`;
+
+  // Show coeff info
+  const coeffRow = document.getElementById('coeff-row');
+  coeffRow.style.display = 'flex';
+  document.getElementById('coeff-label').textContent = `Dépréciation : CIF × 0,70 (fixe 30%)`;
+  document.getElementById('coeff-desc').textContent  = age <= 0 ? 'Véhicule neuf' : `${age} an${age>1?'s':''} — Argus estimé : ${fmtEur(argusEUR)} €`;
+
+  document.getElementById('res-empty').style.display   = 'none';
+  document.getElementById('res-content').style.display = 'block';
+  document.getElementById('res-content').classList.add('result-animate');
+
+  // ── CALCUL UNIFIÉ — Formule officielle douanes Bénin ──
+  // Détection automatique du régime forfaitaire ≤2005
+  const refYear = (typeVeh === 'tourisme' || typeVeh === 'suv' || typeVeh === 'luxe') ? 2008 : 2015;
+  const isForfait = annee && annee < (refYear - 4); // ex: tourisme avant 2004 → forfait
+  const isNeuf = typeVeh === 'neuf';
+
+  let fob, cif, rawVD, vd, isPlancherApplied;
+  let pcs, pc, rs, ps, dd, rau, tva, tgcAmount, afs, garantie, totalDouane, totalGeneral;
+  let ddRate, preRefCoeff;
+
+  if (isForfait && !isNeuf) {
+    // ── RÉGIME FORFAITAIRE ≤2005 ──
+    const forfaitBase = hasTGC ? 701720 : 572570;
+    fob = Math.round(argusEUR * 655.957);
+    cif = fob + fret;
+    rawVD = Math.round(cif * 0.70);
+    vd = Math.max(1050000, rawVD);
+    isPlancherApplied = rawVD < 1050000;
+    ddRate = 0;
+    preRefCoeff = 1.0;
+    pcs = 0; pc = 0; rs = 0; ps = 0; dd = 0; rau = 0; tva = 0;
+    tgcAmount = 0; afs = 0; garantie = 0;
+    totalDouane = forfaitBase;
+    totalGeneral = totalDouane + FRAIS_ANNEXES;
+  } else if (isNeuf) {
+    // ── VÉHICULE NEUF — DD 5% ──
+    preRefCoeff = 1.0;
+    fob = Math.round(argusEUR * 655.957);
+    cif = fob + fret;
+    rawVD = cif; // pas de dépréciation pour neuf
+    vd = Math.max(1050000, rawVD);
+    isPlancherApplied = rawVD < 1050000;
+    ddRate = 0.05;
+    pcs = Math.round(vd * 0.008);
+    pc  = Math.round(vd * 0.005);
+    rs  = Math.round(vd * 0.01);
+    ps  = Math.round(vd * 0.002);
+    dd  = Math.round(vd * ddRate);
+    rau = Math.round(vd * 0.005);
+    const baseTVANeuf = vd + pcs + pc + rs + ps + dd + rau;
+    tva = Math.round(baseTVANeuf * 0.18);
+    tgcAmount = hasTGC ? Math.round(baseTVANeuf * 0.10) : 0;
+    afs = 50000;
+    garantie = 48600;
+    totalDouane = pcs + pc + rs + ps + dd + rau + tva + tgcAmount + afs + garantie;
+    totalGeneral = totalDouane + FRAIS_ANNEXES;
+  } else {
+    // ── RÉGIME STANDARD 2006+ ──
+    // 1. FOB = Argus estimé × pré-référence × taux EUR/XOF
+    preRefCoeff = getPreRefCoeff(annee, typeVeh);
+    fob = Math.round(argusEUR * preRefCoeff * 655.957);
+
+    // 2. CIF = FOB + Fret
+    cif = fob + fret;
+
+    // 3. VD = max(1 050 000, CIF × 0,70)
+    rawVD = Math.round(cif * 0.70);
+    vd = Math.max(1050000, rawVD);
+    isPlancherApplied = rawVD < 1050000;
+
+    // 4. Taxes sur VD
+    ddRate = (TAUX_TYPES[typeVeh] || TAUX_TYPES['tourisme']).dd;
+    pcs = Math.round(vd * 0.008);
+    pc  = Math.round(vd * 0.005);
+    rs  = Math.round(vd * 0.01);
+    ps  = Math.round(vd * 0.002);
+    dd  = Math.round(vd * ddRate);
+    rau = Math.round(vd * 0.005);
+    const baseTVA = vd + pcs + pc + rs + ps + dd + rau;
+    tva = Math.round(baseTVA * 0.18);
+    tgcAmount = hasTGC ? Math.round(baseTVA * 0.10) : 0;
+    afs = 50000;
+    garantie = 48600;
+    totalDouane = pcs + pc + rs + ps + dd + rau + tva + tgcAmount + afs + garantie;
+    totalGeneral = totalDouane + FRAIS_ANNEXES;
+  }
+
+  // Badge
+  if (isForfait && !isNeuf) {
+    document.getElementById('badge-regime').textContent = 'Forfait ≤' + (refYear - 4) + (hasTGC ? ' + Grosse cyl.' : '');
+    document.getElementById('badge-regime').className = 'badge-regime badge-fixed';
+  } else if (isNeuf) {
+    document.getElementById('badge-regime').textContent = 'Véhicule neuf — DD 5%';
+    document.getElementById('badge-regime').className = 'badge-regime badge-calc';
+  } else {
+    document.getElementById('badge-regime').textContent = isPlancherApplied ? 'Plancher réglementaire' : 'Formule officielle';
+    document.getElementById('badge-regime').className = isPlancherApplied ? 'badge-regime badge-fixed' : 'badge-regime badge-calc';
+  }
+
+  // Affichage FOB
+  document.getElementById('res-val-brute').textContent = fmt(fob);
+
+  // Affichage pré-référence si applicable
+  if (preRefCoeff < 1.0) {
+    document.getElementById('res-preref-row').style.display = 'flex';
+    const refYear = typeVeh === 'tourisme' ? 2008 : 2015;
+    document.getElementById('res-preref-label').textContent = `Pré-réf. ×${preRefCoeff} (avant ${refYear})`;
+    document.getElementById('res-preref-val').textContent = fmt(fob);
+  } else {
+    document.getElementById('res-preref-row').style.display = 'none';
+  }
+
+  // Affichage fret
+  if (fret > 0) {
+    document.getElementById('res-fret-row').style.display = 'flex';
+    document.getElementById('res-fret-val').textContent = fmt(fret);
+  } else {
+    document.getElementById('res-fret-row').style.display = 'none';
+  }
+
+  // CIF & VD
+  document.getElementById('res-cif').textContent = fmt(cif);
+  document.getElementById('res-vd').textContent  = fmt(vd);
+
+  // Note plancher / forfait
+  if (isForfait && !isNeuf) {
+    document.getElementById('res-forfait-note').style.display = 'block';
+    const forfaitAmount = hasTGC ? 701720 : 572570;
+    document.getElementById('res-forfait-text').textContent = `Régime forfaitaire appliqué : véhicule avant ${refYear - 4}. Droits fixés à ${fmt(forfaitAmount)}.`;
+  } else if (isPlancherApplied) {
+    document.getElementById('res-forfait-note').style.display = 'block';
+    document.getElementById('res-forfait-text').textContent = `La VD calculée (${fmt(rawVD)}) est inférieure au minimum. VD fixée à 1 050 000 XOF.`;
+  } else {
+    document.getElementById('res-forfait-note').style.display = 'none';
+  }
+
+  // Taxes — masquer le détail pour forfait
+  if (isForfait && !isNeuf) {
+    document.getElementById('res-taxes-block').style.display  = 'none';
+  } else {
+    document.getElementById('res-taxes-block').style.display  = 'block';
+  }
+  document.getElementById('res-frais-block').style.display  = 'block';
+
+  const ddPct = Math.round(ddRate * 100);
+  document.getElementById('res-dd-label').textContent = `DD — Droit de Douane (${ddPct}%)`;
+  document.getElementById('res-pcs').textContent = fmt(pcs);
+  document.getElementById('res-pc').textContent  = fmt(pc);
+  document.getElementById('res-rs').textContent  = fmt(rs);
+  document.getElementById('res-ps').textContent  = fmt(ps);
+  document.getElementById('res-dd').textContent  = fmt(dd);
+  document.getElementById('res-rau').textContent = fmt(rau);
+  document.getElementById('res-tva').textContent = fmt(tva);
+
+  // TGC
+  if (hasTGC) {
+    document.getElementById('res-tgc-row').style.display = 'flex';
+    document.getElementById('res-tgc').textContent = fmt(tgcAmount);
+    document.getElementById('res-tva-row').style.borderBottom = '';
+  } else {
+    document.getElementById('res-tgc-row').style.display = 'none';
+    document.getElementById('res-tva-row').style.borderBottom = '2px solid #E5E5E5';
+  }
+
+  // AFS & Garantie
+  document.getElementById('res-afs').textContent = fmt(afs);
+  document.getElementById('res-garantie').textContent = fmt(garantie);
+
+  document.getElementById('res-total-douane').textContent = fmt(totalDouane);
+  document.getElementById('res-total').textContent = fmt(totalGeneral);
+}
+
+// ── Mobile nav & navbar ───────────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobOverlay = document.getElementById('mob-overlay');
+
+function closeMobile() {
+  mobileMenu.classList.remove('flex');
+  mobileMenu.classList.add('hidden');
+  mobOverlay.classList.remove('visible');
+}
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.contains('flex');
+  if (open) { closeMobile(); }
+  else {
+    mobileMenu.classList.add('flex');
+    mobileMenu.classList.remove('hidden');
+    mobOverlay.classList.add('visible');
+  }
+});
+
+// Active bottom nav
+(function() {
+  const p = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('#bottomnav .bn-item').forEach(a => {
+    const dp = a.dataset.page.replace(/\/$/, '') || '/';
+    if (dp === p) a.classList.add('active');
+  });
+})();
+
+// Scroll navbar
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.boxShadow =
+    window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,.08)' : 'none';
+});
+
+// ── Scroll Reveal ──
+(function(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const delay = e.target.dataset.delay || 0;
+        setTimeout(() => e.target.classList.add('revealed'), delay);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+})();
+
+// Service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(()=>{});
+}
+
+// ══════════════════════════════════════════════════════════════
+// ══ SUPABASE GATE — Déblocage du détail véhicule ═════════════
+// ══════════════════════════════════════════════════════════════
+const SB_URL = 'https://mmfdxoappbhxoqpgsdit.supabase.co';
+const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tZmR4b2FwcGJoeG9xcGdzZGl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2Mzk1NTksImV4cCI6MjA5MDIxNTU1OX0.JvY1Ow4suN7kt-ESyplGTZfY0TIpbwK7X9ceGv3Lreg';
+const EDGE_FN = SB_URL + '/functions/v1/notify-simulation';
+
+let gateUnlocked = false;
+
+// Check localStorage on load
+(function checkGate() {
+  const saved = localStorage.getItem('adtl_contact');
+  if (saved) {
+    try {
+      const c = JSON.parse(saved);
+      if (c.email && c.phone) {
+        gateUnlocked = true;
+        document.getElementById('gate-nom').value = c.nom || c.name || '';
+        document.getElementById('gate-prenom').value = c.prenom || '';
+        document.getElementById('gate-email').value = c.email;
+        document.getElementById('gate-phone').value = c.phone;
+      }
+    } catch(e) {}
+  }
+})();
+
+// After calculate: always hide gate + detail, show "Demander un devis" button
+const origCalculate = calculate;
+calculate = function() {
+  origCalculate();
+  const content = document.getElementById('res-content');
+  const gate = document.getElementById('res-gate');
+  const detail = document.getElementById('res-detail');
+  if (content && content.style.display !== 'none') {
+    gate.style.display = 'none';
+    detail.style.display = 'none';
+    document.getElementById('btn-devis').style.display = '';
+    document.getElementById('btn-share-wa').style.display = 'flex';
+  }
+};
+
+// "Demander un devis complet" button logic
+function demanderDevis() {
+  if (gateUnlocked) {
+    // Already unlocked: show detail + re-send email with new simulation data
+    document.getElementById('res-gate').style.display = 'none';
+    document.getElementById('res-detail').style.display = 'block';
+    document.getElementById('btn-devis').style.display = 'none';
+
+    // Re-send devis email with updated data
+    const saved = localStorage.getItem('adtl_contact');
+    if (saved) {
+      try {
+        const c = JSON.parse(saved);
+        const nom = c.nom || c.name || '';
+        const prenom = c.prenom || '';
+        const devisHTML = buildDevisHTML(nom, prenom, c.email, c.phone);
+        const simData = getSimulationData();
+
+        // Send to client
+        const formData = new FormData();
+        formData.append('_replyto', 'adtranslogistics@hotmail.com');
+        formData.append('_subject', 'Votre devis AD TRANS LOGISTICS — ' + simData.input_data.marque + ' ' + simData.input_data.modele + ' ' + simData.input_data.annee);
+        formData.append('_template', 'box');
+        formData.append('_captcha', 'false');
+        formData.append('_autoresponse', devisHTML);
+        formData.append('name', prenom + ' ' + nom);
+        formData.append('email', c.email);
+        formData.append('phone', c.phone);
+        formData.append('_honey', '');
+        formData.append('message', devisHTML);
+        fetch('https://formsubmit.co/ajax/' + c.email, { method: 'POST', body: formData }).catch(() => {});
+
+        // Send to admin
+        const adminData = new FormData();
+        adminData.append('_subject', '[DEVIS SIMULATEUR] ' + prenom + ' ' + nom + ' — ' + simData.input_data.marque + ' ' + simData.input_data.modele);
+        adminData.append('_template', 'box');
+        adminData.append('_captcha', 'false');
+        adminData.append('name', prenom + ' ' + nom);
+        adminData.append('email', c.email);
+        adminData.append('phone', c.phone);
+        adminData.append('_honey', '');
+        adminData.append('message', devisHTML);
+        fetch('https://formsubmit.co/ajax/adtranslogistics@hotmail.com', { method: 'POST', body: adminData }).catch(() => {});
+
+        showDevisToast(c.email);
+      } catch(e) { console.warn('Re-send error:', e); }
+    }
+
+    autoSaveSimulation();
+  } else {
+    // Show gate form
+    document.getElementById('res-gate').style.display = 'block';
+    document.getElementById('res-gate').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function getSimulationData() {
+  return {
+    type: 'vehicule',
+    input_data: {
+      marque: document.getElementById('sel-marque')?.value || '',
+      modele: document.getElementById('sel-modele')?.value || '',
+      annee: document.getElementById('inp-annee')?.value || '',
+      origine: document.getElementById('sel-origine')?.value || '',
+      type_vehicule: document.getElementById('sel-type')?.value || '',
+      tgc: document.getElementById('chk-tgc')?.checked || false,
+      fret: document.getElementById('inp-fret')?.value || ''
+    },
+    result_data: {
+      cif: document.getElementById('res-cif')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
+      vd: document.getElementById('res-vd')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
+      total_douane: document.getElementById('res-total-douane')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
+      total: document.getElementById('res-total')?.textContent?.replace(/\s/g,'').replace('XOF','') || ''
+    }
+  };
+}
+
+// ══ Build devis email HTML content ══
+function buildDevisHTML(nom, prenom, email, phone) {
+  const sim = getSimulationData();
+  const inp = sim.input_data;
+  const marque = inp.marque || '—';
+  const modele = inp.modele || '—';
+  const annee = inp.annee || '—';
+  const origine = inp.origine || '—';
+  const typeVeh = inp.type_vehicule || '—';
+  const hasTGC = inp.tgc || false;
+
+  // Read all displayed values from DOM
+  const v = (id) => document.getElementById(id)?.textContent?.trim() || '—';
+
+  const regimeBadge = v('badge-regime');
+  const valBrute = v('res-val-brute');
+  const cif = v('res-cif');
+  const vd = v('res-vd');
+  const pcs = v('res-pcs');
+  const pc = v('res-pc');
+  const rs = v('res-rs');
+  const ps = v('res-ps');
+  const dd = v('res-dd');
+  const ddLabel = v('res-dd-label');
+  const rau = v('res-rau');
+  const tva = v('res-tva');
+  const tgcVal = v('res-tgc');
+  const afs = v('res-afs');
+  const garantieVal = v('res-garantie');
+  const totalDouane = v('res-total-douane');
+  const totalGeneral = v('res-total');
+  const fretVal = v('res-fret-val');
+
+  return `
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;background:#f7f7f7;padding:0;">
+
+  <!-- Header -->
+  <div style="background:#0D1B2A;padding:32px 24px;text-align:center;">
+    <div style="display:inline-block;background:#fff;border-radius:10px;padding:8px 14px;margin-bottom:12px;">
+      <span style="font-family:'Arial Black',sans-serif;font-weight:900;font-size:16px;color:#0D1B2A;letter-spacing:2px;">AD TRANS</span>
+      <span style="font-weight:400;color:#737373;font-size:14px;"> LOGISTICS</span>
+    </div>
+    <h1 style="color:#fff;font-size:22px;margin:8px 0 4px;font-weight:700;">Votre Devis d'Importation</h1>
+    <p style="color:rgba(255,255,255,.5);font-size:13px;margin:0;">Estimation des droits de douane — Véhicule d'occasion</p>
+  </div>
+
+  <div style="padding:24px;">
+
+    <!-- Client info -->
+    <div style="background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #e5e5e5;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#a3a3a3;margin-bottom:12px;">Informations client</div>
+      <table style="width:100%;font-size:14px;color:#333;border-collapse:collapse;">
+        <tr><td style="padding:4px 0;color:#737373;width:120px;">Nom</td><td style="padding:4px 0;font-weight:600;">${nom}</td></tr>
+        <tr><td style="padding:4px 0;color:#737373;">Prénom</td><td style="padding:4px 0;font-weight:600;">${prenom}</td></tr>
+        <tr><td style="padding:4px 0;color:#737373;">Email</td><td style="padding:4px 0;font-weight:600;">${email}</td></tr>
+        <tr><td style="padding:4px 0;color:#737373;">Téléphone</td><td style="padding:4px 0;font-weight:600;">${phone}</td></tr>
+      </table>
+    </div>
+
+    <!-- Vehicle info -->
+    <div style="background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #e5e5e5;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#a3a3a3;margin-bottom:12px;">Véhicule</div>
+      <table style="width:100%;font-size:14px;color:#333;border-collapse:collapse;">
+        <tr><td style="padding:4px 0;color:#737373;width:120px;">Marque</td><td style="padding:4px 0;font-weight:600;">${marque}</td></tr>
+        <tr><td style="padding:4px 0;color:#737373;">Modèle</td><td style="padding:4px 0;font-weight:600;">${modele}</td></tr>
+        <tr><td style="padding:4px 0;color:#737373;">Année</td><td style="padding:4px 0;font-weight:600;">${annee}</td></tr>
+        <tr><td style="padding:4px 0;color:#737373;">Origine</td><td style="padding:4px 0;font-weight:600;">${origine}</td></tr>
+        <tr><td style="padding:4px 0;color:#737373;">Type</td><td style="padding:4px 0;font-weight:600;">${typeVeh}</td></tr>
+        <tr><td style="padding:4px 0;color:#737373;">TGC</td><td style="padding:4px 0;font-weight:600;">${hasTGC ? 'Oui (10%)' : 'Non'}</td></tr>
+      </table>
+    </div>
+
+    <!-- CIF -->
+    <div style="background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #e5e5e5;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#a3a3a3;margin-bottom:12px;">Valeur CIF (Coût, Assurance, Fret)</div>
+      <table style="width:100%;font-size:14px;color:#333;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">Argus estimé (FOB)</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#1B4F72;">${valBrute}</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">+ Fret maritime</td><td style="padding:8px 0;text-align:right;font-weight:600;">${fretVal}</td></tr>
+        <tr><td style="padding:10px 0;font-weight:700;color:#0A0A0A;">Valeur CIF</td><td style="padding:10px 0;text-align:right;font-weight:700;font-size:16px;color:#0A0A0A;">${cif}</td></tr>
+      </table>
+    </div>
+
+    <!-- TOTAL box -->
+    <div style="background:#0D1B2A;border-radius:12px;padding:18px 20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#fff;font-weight:700;font-size:15px;">TOTAL ESTIMATION *</span>
+      <span style="color:#fff;font-weight:700;font-size:22px;">${totalGeneral}</span>
+    </div>
+
+    <!-- VD -->
+    <div style="background:#EBF5FB;border-radius:12px;padding:16px 20px;margin-bottom:16px;border:1px solid #D4E6F1;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#5DADE2;">Valeur en Douane (VD)</div>
+          <div style="font-size:12px;color:#85C1E9;">CIF × 0,70 (dépréciation fixe 30%)</div>
+        </div>
+        <span style="font-size:18px;font-weight:700;color:#1B4F72;">${vd}</span>
+      </div>
+    </div>
+
+    <!-- Taxes detail -->
+    <div style="background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #e5e5e5;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#a3a3a3;margin-bottom:12px;">Détail des impositions (sur VD)</div>
+      <table style="width:100%;font-size:13px;color:#333;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">PCS — Prél. Communautaire Solidarité (0,8%)</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">${pcs}</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">PC — Prél. Communautaire (0,5%)</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">${pc}</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">RS — Redevance Statistique (1%)</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">${rs}</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">PS — Prélèvement de Solidarité (0,2%)</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">${ps}</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">${ddLabel}</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">${dd}</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">RAU — Redevance Aménagement Urbain (0,5%)</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">${rau}</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">TVA — 18% × (VD + impositions ci-dessus)</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">${tva}</td></tr>
+        ${hasTGC ? '<tr style="border-bottom:2px solid #e5e5e5;"><td style="padding:8px 0;color:#525252;">TGC — Taxe Grosses Cylindrées (10%)</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">' + tgcVal + '</td></tr>' : ''}
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">AFS — Acompte Forfaitaire Spécial</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">${afs}</td></tr>
+        <tr><td style="padding:8px 0;color:#525252;">Garantie</td><td style="padding:8px 0;text-align:right;font-weight:600;color:#2E7D32;">${garantieVal}</td></tr>
+      </table>
+    </div>
+
+    <!-- Total douane -->
+    <div style="background:#0A0A0A;border-radius:12px;padding:16px 20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#fff;font-weight:700;font-size:14px;">TOTAL DROITS & TAXES</span>
+      <span style="color:#fff;font-weight:700;font-size:20px;">${totalDouane}</span>
+    </div>
+
+    <!-- Frais annexes -->
+    <div style="background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #e5e5e5;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#a3a3a3;margin-bottom:12px;">Frais annexes (estimatifs)</div>
+      <table style="width:100%;font-size:13px;color:#333;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">USN — Guichet unique</td><td style="padding:6px 0;text-align:right;font-weight:600;">100 000 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Formalités</td><td style="padding:6px 0;text-align:right;font-weight:600;">80 000 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Interpool</td><td style="padding:6px 0;text-align:right;font-weight:600;">20 000 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Enlèvement</td><td style="padding:6px 0;text-align:right;font-weight:600;">75 000 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Vacation</td><td style="padding:6px 0;text-align:right;font-weight:600;">35 000 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Plaque + Carte grise</td><td style="padding:6px 0;text-align:right;font-weight:600;">40 000 XOF</td></tr>
+        <tr><td style="padding:6px 0;color:#525252;font-weight:600;">Transit AD TRANS LOGISTICS</td><td style="padding:6px 0;text-align:right;font-weight:700;">200 000 XOF</td></tr>
+      </table>
+    </div>
+
+    <!-- Disclaimer -->
+    <div style="background:#FFF8E1;border-radius:10px;padding:14px 16px;border:1px solid #FFE082;font-size:12px;color:#795548;margin-bottom:16px;">
+      <strong>* Estimation indicative</strong> — les montants réels peuvent varier selon le code SH, la cylindrée et les régimes douaniers en vigueur. Contactez-nous pour un calcul exact et un accompagnement personnalisé.
+    </div>
+
+    <!-- Sources -->
+    <div style="background:#f0f0f0;border-radius:10px;padding:14px 16px;font-size:11px;color:#737373;margin-bottom:16px;">
+      <div style="font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">Sources & méthode</div>
+      <div>◾ Formule officielle douanes Bénin : VD = CIF × 0,70</div>
+      <div>◾ Base Argus n°4616 — estimation par décroissance exponentielle</div>
+      <div>◾ Taux fixe BCEAO : 1 EUR = 655,957 XOF</div>
+      <div>◾ Fret officiel : Europe 300K, USA 600K, Asie 450K</div>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align:center;margin:24px 0;">
+      <a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%2C%20je%20souhaite%20des%20informations%20sur%20mon%20devis%20pour%20${encodeURIComponent(marque + ' ' + modele + ' ' + annee)}" style="display:inline-block;background:#25D366;color:#fff;padding:14px 32px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;">
+        Contactez-nous sur WhatsApp
+      </a>
+      <p style="margin-top:10px;font-size:12px;color:#a3a3a3;">+229 01 97 50 05 55</p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div style="background:#0A0A0A;padding:20px 24px;text-align:center;">
+    <p style="color:rgba(255,255,255,.5);font-size:12px;margin:0;">AD TRANS LOGISTICS — Transit, Douane, Logistique</p>
+    <p style="color:rgba(255,255,255,.3);font-size:11px;margin:4px 0 0;">Cotonou, Bénin | www.adtranslogistics.com</p>
+  </div>
+
+</div>`;
+}
+
+async function submitGate(e) {
+  e.preventDefault();
+  const btn = document.getElementById('gate-btn');
+  const nom = document.getElementById('gate-nom').value.trim();
+  const prenom = document.getElementById('gate-prenom').value.trim();
+  const email = document.getElementById('gate-email').value.trim();
+  const phone = document.getElementById('gate-phone').value.trim();
+  const fullName = prenom + ' ' + nom;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin" style="width:17px;height:17px;border:2px solid rgba(0,0,0,.2);border-top-color:#0A0A0A;border-radius:50%;animation:spin .7s linear infinite;"></span> Envoi du devis...';
+
+  // 1. Send to Supabase edge function (admin notification)
+  const simData = getSimulationData();
+  simData.email = email;
+  simData.phone = phone;
+  simData.full_name = fullName;
+
+  try {
+    await fetch(EDGE_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON },
+      body: JSON.stringify(simData)
+    });
+  } catch(err) { console.warn('Edge fn error:', err); }
+
+  // 2. Send devis email to client AND admin via FormSubmit.co
+  const devisHTML = buildDevisHTML(nom, prenom, email, phone);
+
+  try {
+    // Send to client
+    const formData = new FormData();
+    formData.append('_replyto', 'adtranslogistics@hotmail.com');
+    formData.append('_subject', 'Votre devis AD TRANS LOGISTICS — ' + simData.input_data.marque + ' ' + simData.input_data.modele + ' ' + simData.input_data.annee);
+    formData.append('_template', 'box');
+    formData.append('_captcha', 'false');
+    formData.append('_autoresponse', devisHTML);
+    formData.append('name', fullName);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('_honey', '');
+    formData.append('message', devisHTML);
+
+    await fetch('https://formsubmit.co/ajax/' + email, {
+      method: 'POST',
+      body: formData
+    });
+
+    // Also send copy to admin
+    const adminData = new FormData();
+    adminData.append('_subject', '[DEVIS SIMULATEUR] ' + fullName + ' — ' + simData.input_data.marque + ' ' + simData.input_data.modele);
+    adminData.append('_template', 'box');
+    adminData.append('_captcha', 'false');
+    adminData.append('name', fullName);
+    adminData.append('email', email);
+    adminData.append('phone', phone);
+    adminData.append('_honey', '');
+    adminData.append('message', devisHTML);
+
+    await fetch('https://formsubmit.co/ajax/adtranslogistics@hotmail.com', {
+      method: 'POST',
+      body: adminData
+    });
+  } catch(err) { console.warn('Email send error:', err); }
+
+  // Save to localStorage
+  localStorage.setItem('adtl_contact', JSON.stringify({ nom, prenom, email, phone }));
+  gateUnlocked = true;
+
+  // Show success + reveal detail
+  document.getElementById('res-gate').style.display = 'none';
+  document.getElementById('res-detail').style.display = 'block';
+  document.getElementById('btn-devis').style.display = 'none';
+
+  // Show toast notification
+  showDevisToast(email);
+
+  btn.disabled = false;
+  btn.innerHTML = '<span class="material-symbols-outlined text-base">mail</span> Recevoir mon devis par email';
+}
+
+function showDevisToast(email) {
+  const toast = document.createElement('div');
+  toast.innerHTML = `
+    <div style="position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:9999;background:#0D1B2A;color:#fff;padding:16px 28px;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,.25);display:flex;align-items:center;gap:12px;font-size:14px;animation:slideDown .4s ease-out;" id="devis-toast">
+      <span class="material-symbols-outlined" style="color:#25D366;font-size:24px;">check_circle</span>
+      <div>
+        <div style="font-weight:700;">Devis envoyé !</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);">Consultez votre boîte mail : ${email}</div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity .5s'; }, 4000);
+  setTimeout(() => toast.remove(), 4600);
+}
+
+// ── Partage WhatsApp ────────────────────────────────────────────────────────
+function shareOnWhatsApp() {
+  const sim = getSimulationData();
+  const inp = sim.input_data;
+  const marque = inp.marque || '—';
+  const modele = inp.modele || '—';
+  const annee = inp.annee || '—';
+  const total = document.getElementById('res-total')?.textContent || '—';
+  const cif = document.getElementById('res-cif')?.textContent || '—';
+  const vd = document.getElementById('res-vd')?.textContent || '—';
+
+  const msg = `🚗 *Estimation Douane — ${marque} ${modele} ${annee}*\n\n` +
+    `📋 Valeur CIF : ${cif}\n` +
+    `📋 Valeur en Douane : ${vd}\n` +
+    `💰 *TOTAL ESTIMÉ : ${total}*\n\n` +
+    `Calculé sur www.adtranslogistics.com/simulateur\n` +
+    `📞 AD TRANS LOGISTICS — +229 01 97 50 05 55`;
+
+  const url = 'https://wa.me/?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+}
+
+async function autoSaveSimulation() {
+  const saved = localStorage.getItem('adtl_contact');
+  if (!saved) return;
+  const c = JSON.parse(saved);
+  const simData = getSimulationData();
+  simData.email = c.email;
+  simData.phone = c.phone;
+  simData.full_name = (c.prenom || '') + ' ' + (c.nom || c.name || '');
+
+  try {
+    await fetch(EDGE_FN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON },
+      body: JSON.stringify(simData)
+    });
+  } catch(err) { console.warn('Auto-save error:', err); }
+}
+</script>
+<script src="/cookie-consent.js"></script>
+</body>
+</html>
