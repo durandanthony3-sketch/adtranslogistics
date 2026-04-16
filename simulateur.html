@@ -1525,10 +1525,10 @@ function demanderDevis() {
         const devisHTML = buildDevisHTML(nom, prenom, c.email, c.phone);
         const simData = getSimulationData();
 
-        // Send to client
+        // Send to admin (activated) — _autoresponse sends devis to client
         const formData = new FormData();
-        formData.append('_replyto', 'adtranslogistics@hotmail.com');
-        formData.append('_subject', 'Votre devis AD TRANS LOGISTICS — ' + simData.input_data.marque + ' ' + simData.input_data.modele + ' ' + simData.input_data.annee);
+        formData.append('_subject', '[DEVIS SIMULATEUR] ' + prenom + ' ' + nom + ' — ' + simData.input_data.marque + ' ' + simData.input_data.modele + ' ' + simData.input_data.annee);
+        formData.append('_replyto', c.email);
         formData.append('_template', 'box');
         formData.append('_captcha', 'false');
         formData.append('_autoresponse', devisHTML);
@@ -1537,19 +1537,7 @@ function demanderDevis() {
         formData.append('phone', c.phone);
         formData.append('_honey', '');
         formData.append('message', devisHTML);
-        fetch('https://formsubmit.co/ajax/' + c.email, { method: 'POST', body: formData }).catch(() => {});
-
-        // Send to admin
-        const adminData = new FormData();
-        adminData.append('_subject', '[DEVIS SIMULATEUR] ' + prenom + ' ' + nom + ' — ' + simData.input_data.marque + ' ' + simData.input_data.modele);
-        adminData.append('_template', 'box');
-        adminData.append('_captcha', 'false');
-        adminData.append('name', prenom + ' ' + nom);
-        adminData.append('email', c.email);
-        adminData.append('phone', c.phone);
-        adminData.append('_honey', '');
-        adminData.append('message', devisHTML);
-        fetch('https://formsubmit.co/ajax/adtranslogistics@hotmail.com', { method: 'POST', body: adminData }).catch(() => {});
+        fetch('https://formsubmit.co/ajax/adtranslogistics@hotmail.com', { method: 'POST', body: formData }).catch(() => {});
 
         showDevisToast(c.email);
       } catch(e) { console.warn('Re-send error:', e); }
@@ -1779,14 +1767,15 @@ async function submitGate(e) {
     });
   } catch(err) { console.warn('Edge fn error:', err); }
 
-  // 2. Send devis email to client AND admin via FormSubmit.co
+  // 2. Send devis email via FormSubmit.co
+  // All submissions go to admin (already activated on FormSubmit).
+  // _autoresponse sends the devis HTML back to the client's email automatically.
   const devisHTML = buildDevisHTML(nom, prenom, email, phone);
 
   try {
-    // Send to client
     const formData = new FormData();
-    formData.append('_replyto', 'adtranslogistics@hotmail.com');
-    formData.append('_subject', 'Votre devis AD TRANS LOGISTICS — ' + simData.input_data.marque + ' ' + simData.input_data.modele + ' ' + simData.input_data.annee);
+    formData.append('_subject', '[DEVIS SIMULATEUR] ' + fullName + ' — ' + simData.input_data.marque + ' ' + simData.input_data.modele + ' ' + simData.input_data.annee);
+    formData.append('_replyto', email);
     formData.append('_template', 'box');
     formData.append('_captcha', 'false');
     formData.append('_autoresponse', devisHTML);
@@ -1796,25 +1785,9 @@ async function submitGate(e) {
     formData.append('_honey', '');
     formData.append('message', devisHTML);
 
-    await fetch('https://formsubmit.co/ajax/' + email, {
-      method: 'POST',
-      body: formData
-    });
-
-    // Also send copy to admin
-    const adminData = new FormData();
-    adminData.append('_subject', '[DEVIS SIMULATEUR] ' + fullName + ' — ' + simData.input_data.marque + ' ' + simData.input_data.modele);
-    adminData.append('_template', 'box');
-    adminData.append('_captcha', 'false');
-    adminData.append('name', fullName);
-    adminData.append('email', email);
-    adminData.append('phone', phone);
-    adminData.append('_honey', '');
-    adminData.append('message', devisHTML);
-
     await fetch('https://formsubmit.co/ajax/adtranslogistics@hotmail.com', {
       method: 'POST',
-      body: adminData
+      body: formData
     });
   } catch(err) { console.warn('Email send error:', err); }
 
