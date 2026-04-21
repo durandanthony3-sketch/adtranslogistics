@@ -1,0 +1,23 @@
+{
+  "name": "tiktok-editions-eveil",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vidéo TikTok de présentation — Éditions Éveil",
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion render Main out/editions-eveil.mp4 --codec=h264",
+    "build:webm": "remotion render Main out/editions-eveil.webm --codec=vp9",
+    "still": "remotion still Main out/cover.png --frame=90"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.290",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.290"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "typescript": "5.8.2"
+  }
+}
