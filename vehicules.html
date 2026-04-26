@@ -5,6 +5,15 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Achat & Import de Vehicules | AD TRANS LOGISTICS - Cotonou</title>
     <meta content="Commandez et importez vos vehicules depuis les USA, Europe, Asie et Dubai. Encheres Copart/IAAI, fret maritime, transit douanier. AD TRANS LOGISTICS, Cotonou." name="description"/>
+    <!-- PWA / Application Mobile -->
+    <link rel="manifest" href="/manifest.json"/>
+    <meta name="theme-color" content="#0A0A0A"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-title" content="AD TRANS"/>
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
     <!-- Fonts: Space Grotesk for Headings, Instrument Sans for Body -->
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -49,8 +58,8 @@
         }
     </script>
     <style>
-        html { scroll-behavior: smooth; }
-        body { -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth; overflow-x:hidden; }
+        body { -webkit-font-smoothing: antialiased; overflow-x:hidden; }
 
         .tag { @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wider uppercase border border-g200 text-g500 bg-white; }
         .tag .dot { @apply w-2 h-2 rounded-full bg-brand; }
@@ -81,11 +90,19 @@
         .faq-chevron { transition: transform 0.3s ease; }
         .faq-chevron.open { transform: rotate(180deg); }
     </style>
+<style>
+#mobileMenu{position:fixed!important;top:0!important;left:-100%!important;width:min(320px,88vw)!important;height:100vh!important;overflow-y:auto!important;box-shadow:6px 0 32px rgba(0,0,0,.14)!important;transition:left .32s cubic-bezier(.4,0,.2,1)!important;display:flex!important;flex-direction:column;padding-top:72px;padding-left:24px;padding-right:24px;gap:4px;z-index:999!important;background:#fff!important;}
+#mobileMenu.flex{left:0!important;}
+#mob-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:998;display:none;}
+#mob-overlay.visible{display:block;}
+.mob-tw-open .mob-tw-sub { display:block!important; }
+.mob-tw-open .mob-tw-chevron { transform:rotate(180deg); }
+</style>
 </head>
 <body class="bg-white text-g800 font-sans">
 
 <!-- WHATSAPP BUTTON -->
-<a href="https://wa.me/22997500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20souhaite%20commander%20un%20v%C3%A9hicule." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
+<a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20souhaite%20commander%20un%20v%C3%A9hicule." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
     <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="width:32px;height:32px;min-width:32px;min-height:32px;">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
@@ -102,17 +119,59 @@
 <div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
 <div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
 </a>
-<ul class="hidden lg:flex items-center gap-8 list-none">
-<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/">Accueil</a></li>
-<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#services">Services</a></li>
-<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#simulateur">Simulateur</a></li>
-<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#suivi">Suivi</a></li>
-<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#formation">Formation</a></li>
-<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/#apropos">A propos</a></li>
-<li><a class="text-[15px] font-medium text-g500 hover:text-brand transition-colors" href="/negoce">Negoce</a></li>
-<li><a class="text-[15px] font-medium text-brand transition-colors" href="/vehicules">Vehicules</a></li>
-<li><a class="text-[14px] font-medium text-g500 hover:text-brand transition-colors mr-2" href="/#contact">Contact</a></li>
-<li><a class="btn-brand btn-brand-dark px-5 py-2 text-[13px]" href="/#devis">Devis gratuit</a></li>
+<ul class="hidden lg:flex items-center gap-1 list-none">
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Calcul droit de douane <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Vehicule</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/simulateur">Occasion</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">Neuf</a>
+            <div class="border-t border-gray-100 mx-3 my-1"></div>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Marchandise</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Import</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur?mode=export">Export</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Importation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Facture commerciale</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Liste de colisage</li><li>&#10003; Certificat d'origine</li><li>&#10003; Licence / autorisation d'import</li></ul>
+            <a href="/demande?service=importation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Exportation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Facture commerciale / Pro-forma</li><li>&#10003; Certificat d'origine</li><li>&#10003; Certificat phytosanitaire</li><li>&#10003; Licence d'exportation</li><li>&#10003; Declaration en douane</li></ul>
+            <a href="/demande?service=exportation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Transit <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Declaration de transit (T1)</li><li>&#10003; Garantie de transit</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Facture commerciale</li><li>&#10003; Certificat d'origine</li></ul>
+            <a href="/demande?service=transit" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Depotage <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Bon a enlever</li><li>&#10003; Connaissement (BL)</li><li>&#10003; Facture commerciale</li><li>&#10003; Liste de colisage</li><li>&#10003; Declaration en douane</li></ul>
+            <a href="/demande?service=depotage" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Boutique <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Vehicules</a>
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Articles</a>
+        </div>
+    </li>
+    <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/connexion">Mon compte</a></li>
 </ul>
 <button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
 <span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
@@ -124,17 +183,38 @@
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="hidden fixed inset-0 z-[999] bg-white pt-20 px-6 flex-col gap-1" id="mobileMenu">
+<div id="mob-overlay" onclick="this.classList.remove('visible');document.getElementById('mobileMenu').classList.remove('flex');document.getElementById('mobileMenu').classList.add('hidden');"></div>
+<div class="z-[999]" id="mobileMenu">
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Accueil</a>
-<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#services" onclick="closeMobile()">Services</a>
-<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#simulateur" onclick="closeMobile()">Simulateur</a>
-<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#suivi" onclick="closeMobile()">Suivi</a>
-<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#formation" onclick="closeMobile()">Formation</a>
-<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#apropos" onclick="closeMobile()">A propos</a>
-<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/negoce" onclick="closeMobile()">Negoce</a>
-<a class="block p-4 text-base font-medium text-brand rounded-brand-sm bg-g50" href="/vehicules" onclick="closeMobile()">Vehicules</a>
-<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/#contact" onclick="closeMobile()">Contact</a>
-<a class="btn-brand btn-brand-dark justify-center mt-4" href="/#devis" onclick="closeMobile()">Devis gratuit</a>
+<div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-medium text-g700 rounded-brand-sm cursor-pointer hover:bg-g50">
+        <span>Calcul droit de douane</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Vehicule</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/simulateur" onclick="closeMobile()">Occasion</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">Neuf</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Marchandise</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Import</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur?mode=export" onclick="closeMobile()">Export</a>
+    </div>
+</div>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=importation" onclick="closeMobile()">Importation</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=exportation" onclick="closeMobile()">Exportation</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=transit" onclick="closeMobile()">Transit</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=depotage" onclick="closeMobile()">Depotage</a>
+<div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-medium text-g700 rounded-brand-sm cursor-pointer hover:bg-g50">
+        <span>Boutique</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Vehicules</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Articles</a>
+    </div>
+</div>
+<a class="btn-brand btn-brand-dark justify-center mt-4" href="/#contact" onclick="closeMobile()">Devis gratuit</a>
 </div>
 
 <!-- ============================================================ -->
@@ -240,7 +320,15 @@ USA, Europe, Asie, Dubai. Nous sourcons, achetons et importons votre vehicule de
 
 <style>
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-</style>
+
+/* ── Bottom nav bar (mobile only) ── */
+#bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E5E5E5;z-index:990;height:62px;}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;font-size:10px;font-weight:600;color:#A3A3A3;text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif;letter-spacing:.01em;}
+.bn-item:hover,.bn-item.active{color:#0A0A0A;}
+.bn-item svg{stroke:currentColor;}
+@media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
+
+    </style>
 
 <!-- ============================================================ -->
 <!-- 2. CATEGORIES -->
@@ -549,13 +637,13 @@ Envoyer ma demande <span class="material-symbols-outlined !text-sm">send</span>
 <h3 class="font-heading text-lg font-semibold text-brand mb-4">Besoin d'aide ?</h3>
 <p class="text-[14px] text-g500 mb-6">Contactez directement notre equipe pour un accompagnement personnalise.</p>
 <div class="space-y-3">
-<a href="https://wa.me/22997500555" target="_blank" class="flex items-center gap-3 text-sm text-g700 hover:text-brand transition-colors">
+<a href="https://wa.me/2290197500555" target="_blank" class="flex items-center gap-3 text-sm text-g700 hover:text-brand transition-colors">
 <span class="material-symbols-outlined text-lg">chat</span>
-+229 97 50 05 55
++229 01 97 50 05 55
 </a>
-<a href="mailto:adtranslogistic@hotmail.com" class="flex items-center gap-3 text-sm text-g700 hover:text-brand transition-colors">
+<a href="mailto:adtranslogistics@hotmail.com" class="flex items-center gap-3 text-sm text-g700 hover:text-brand transition-colors">
 <span class="material-symbols-outlined text-lg">mail</span>
-adtranslogistic@hotmail.com
+adtranslogistics@hotmail.com
 </a>
 </div>
 </div>
@@ -565,103 +653,216 @@ adtranslogistic@hotmail.com
 </section>
 
 <!-- ============================================================ -->
-<!-- 5. COST SIMULATOR -->
-<!-- ============================================================ -->
+<!-- 5. CUSTOMS DUTY CALCULATOR -->
 <section class="py-24 bg-white" id="simulateur-vehicule">
 <div class="container mx-auto px-6 max-w-[1440px]">
 <div class="mb-12">
-<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Simulateur</div>
-<h2 class="title-h2">Estimez le cout total d'importation</h2>
-<p class="subtitle">Estimation indicative incluant le prix, le fret maritime, les droits de douane et les frais de transit.</p>
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Calculatrice Douaniere</div>
+<h2 class="title-h2">Calculez vos droits de douane</h2>
+<p class="subtitle">Estimateur complet incluant tous les frais : droits, taxes, inspection et transit jusqu'à la livraison.</p>
 </div>
+
+<!-- Step 1: SELECT REGIME -->
+<div id="calcStep1" class="mb-12">
+<h3 class="font-heading text-xl font-semibold text-brand mb-6">Étape 1 — Sélectionnez votre régime</h3>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Occasion ≤2005 Standard -->
+<label class="relative cursor-pointer group">
+<input type="radio" name="regime" value="occasion_old_standard" class="hidden peer"/>
+<div class="bg-white border-2 border-g200 rounded-brand-lg p-6 peer-checked:border-brand peer-checked:bg-g50 transition-all peer-checked:shadow-lg">
+<div class="material-symbols-outlined text-4xl text-g300 group-hover:text-brand transition-colors mb-3">vintage_car</div>
+<h4 class="font-heading text-[15px] font-semibold text-brand mb-1">Occasion ≤2005</h4>
+<p class="text-xs text-g500">572 570 FCFA — Forfait fixe</p>
+</div>
+</label>
+
+<!-- Occasion ≤2005 + Grosse Cylindrée -->
+<label class="relative cursor-pointer group">
+<input type="radio" name="regime" value="occasion_old_cylinder" class="hidden peer"/>
+<div class="bg-white border-2 border-g200 rounded-brand-lg p-6 peer-checked:border-brand peer-checked:bg-g50 transition-all peer-checked:shadow-lg">
+<div class="material-symbols-outlined text-4xl text-g300 group-hover:text-brand transition-colors mb-3">speed</div>
+<h4 class="font-heading text-[15px] font-semibold text-brand mb-1">≤2005 + >3000cc</h4>
+<p class="text-xs text-g500">701 720 FCFA — Avec surcharge</p>
+</div>
+</label>
+
+<!-- Occasion 2006+ -->
+<label class="relative cursor-pointer group">
+<input type="radio" name="regime" value="occasion_new" class="hidden peer" checked/>
+<div class="bg-white border-2 border-g200 rounded-brand-lg p-6 peer-checked:border-brand peer-checked:bg-g50 transition-all peer-checked:shadow-lg">
+<div class="material-symbols-outlined text-4xl text-g300 group-hover:text-brand transition-colors mb-3">directions_car</div>
+<h4 class="font-heading text-[15px] font-semibold text-brand mb-1">Occasion 2006+</h4>
+<p class="text-xs text-g500">Calcul complet par type</p>
+</div>
+</label>
+
+<!-- Neuf -->
+<label class="relative cursor-pointer group">
+<input type="radio" name="regime" value="neuf" class="hidden peer"/>
+<div class="bg-white border-2 border-g200 rounded-brand-lg p-6 peer-checked:border-brand peer-checked:bg-g50 transition-all peer-checked:shadow-lg">
+<div class="material-symbols-outlined text-4xl text-g300 group-hover:text-brand transition-colors mb-3">new_releases</div>
+<h4 class="font-heading text-[15px] font-semibold text-brand mb-1">Neuf</h4>
+<p class="text-xs text-g500">Tarif réduit DD 5%</p>
+</div>
+</label>
+
+<!-- Transit -->
+<label class="relative cursor-pointer group">
+<input type="radio" name="regime" value="transit" class="hidden peer"/>
+<div class="bg-white border-2 border-g200 rounded-brand-lg p-6 peer-checked:border-brand peer-checked:bg-g50 transition-all peer-checked:shadow-lg">
+<div class="material-symbols-outlined text-4xl text-g300 group-hover:text-brand transition-colors mb-3">local_shipping</div>
+<h4 class="font-heading text-[15px] font-semibold text-brand mb-1">Transit</h4>
+<p class="text-xs text-g500">305 000 FCFA — Forfait</p>
+</div>
+</label>
+</div>
+</div>
+
+<!-- Main Grid: Left Inputs + Right Results -->
 <div class="grid lg:grid-cols-2 gap-8 items-start">
-<!-- Inputs -->
-<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm">
-<h3 class="font-heading text-lg font-bold text-brand mb-1">Parametres du vehicule</h3>
-<p class="text-sm text-g400 mb-8">Renseignez les details pour obtenir une estimation.</p>
-<div class="space-y-5">
+
+<!-- LEFT: INPUTS SECTION -->
+<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm h-fit">
+<h3 class="font-heading text-lg font-bold text-brand mb-8">Paramètres du véhicule</h3>
+
+<!-- Step 2: Vehicle Selection from DB -->
+<div id="calcStep2" class="mb-8 pb-8 border-b border-g200">
+<h4 class="text-sm font-semibold text-g700 mb-4">Étape 2 — Sélection depuis base Argus</h4>
+<div class="space-y-4">
 <div>
-<label class="block text-sm font-semibold text-g700 mb-2">Prix du vehicule (USD) *</label>
-<input type="number" id="simPrixUSD" placeholder="Ex: 8000" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
-</div>
-<div>
-<label class="block text-sm font-semibold text-g700 mb-2">Marche d'origine *</label>
-<select id="simOrigine" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
-<option value="">Selectionnez</option>
-<option value="USA">USA</option>
-<option value="Europe">Europe</option>
-<option value="Asie">Asie (Japon/Coree)</option>
-<option value="Dubai">Dubai</option>
+<label class="block text-sm font-semibold text-g700 mb-2">Marque</label>
+<select id="dbMarque" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="">Sélectionnez une marque</option>
 </select>
 </div>
 <div>
-<label class="block text-sm font-semibold text-g700 mb-2">Type de vehicule</label>
-<select id="simTypeVehicule" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
-<option value="voiture">Voiture / SUV</option>
-<option value="camion">Camion / Utilitaire</option>
-<option value="moto">Moto</option>
-<option value="engin">Engin BTP</option>
+<label class="block text-sm font-semibold text-g700 mb-2">Modèle</label>
+<select id="dbModele" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="">Sélectionnez un modèle</option>
 </select>
 </div>
 <div>
-<label class="block text-sm font-semibold text-g700 mb-2">Etat du vehicule</label>
-<select id="simEtat" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
-<option value="occasion">Occasion</option>
-<option value="neuf">Neuf</option>
-<option value="accidente">Accidente / Salvage</option>
+<label class="block text-sm font-semibold text-g700 mb-2">Année</label>
+<select id="dbAnnee" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="">Sélectionnez une année</option>
 </select>
 </div>
+<button type="button" onclick="loadFromDB()" class="w-full px-4 py-2.5 rounded-brand-sm bg-brand/10 text-brand font-semibold text-sm hover:bg-brand/20 transition-all">Charger valeur Argus</button>
+</div>
+</div>
+
+<!-- Step 3: Manual Inputs -->
+<div id="calcStep3" class="space-y-5">
+<h4 class="text-sm font-semibold text-g700 mb-4">Étape 3 — Ou renseignez manuellement</h4>
+
 <div>
-<label class="block text-sm font-semibold text-g700 mb-2">Annee du vehicule</label>
-<select id="simAnnee" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
-<option value="2026">2026</option>
-<option value="2025">2025</option>
-<option value="2024">2024</option>
-<option value="2023" selected>2023</option>
-<option value="2022">2022</option>
-<option value="2021">2021</option>
-<option value="2020">2020</option>
-<option value="2019">2019</option>
-<option value="2018">2018</option>
-<option value="2017">2017</option>
-<option value="2016">2016</option>
-<option value="2015">2015 ou plus ancien</option>
+<label class="block text-sm font-semibold text-g700 mb-2">Prix FOB (Coût avant fret)</label>
+<div class="flex gap-2">
+<input type="number" id="priceFOB" placeholder="Ex: 8000" class="flex-1 px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
+<select id="currencyFOB" class="px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="USD">USD</option>
+<option value="EUR">EUR</option>
+<option value="GBP">GBP</option>
+<option value="XOF">XOF</option>
 </select>
 </div>
-<div class="flex gap-4">
-<button onclick="simulerCoutVehicule()" class="btn-brand btn-brand-dark flex-1 justify-center">
+<p class="text-xs text-g400 mt-1">Taux: 1 USD = 605 XOF | 1 EUR = 655.957 XOF | 1 GBP = 770 XOF</p>
+</div>
+
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Fret maritime (XOF)</label>
+<input type="number" id="freightCost" placeholder="Ex: 900000" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
+</div>
+
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Assurance</label>
+<div class="flex gap-2">
+<input type="number" id="insuranceCost" placeholder="Ex: 500000" class="flex-1 px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 placeholder:text-g400 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"/>
+<button type="button" onclick="autoInsurance()" class="px-4 py-2.5 rounded-brand-sm bg-g100 text-g700 font-semibold text-sm hover:bg-g200 transition-all whitespace-nowrap">Auto (3%)</button>
+</div>
+<p class="text-xs text-g400 mt-1">Laisser vide pour calcul automatique à 3% du CIF</p>
+</div>
+
+<div>
+<label class="block text-sm font-semibold text-g700 mb-2">Type de véhicule</label>
+<select id="vehicleType" class="w-full px-4 py-3 rounded-brand-sm border border-g200 text-sm text-g700 bg-white focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all">
+<option value="tourisme">Tourisme</option>
+<option value="suv">SUV</option>
+<option value="utilitaire">Utilitaire</option>
+<option value="luxe">Luxe</option>
+</select>
+</div>
+
+<!-- Grosse Cylindrée checkbox for Occasion ≤2005 -->
+<div id="cylinderCheck" class="hidden">
+<label class="flex items-center gap-3 px-4 py-3 rounded-brand-sm border border-g200 cursor-pointer hover:bg-g50 transition-all">
+<input type="checkbox" id="groseCylindre" class="w-4 h-4 text-brand border-g300 focus:ring-brand"/>
+<span class="text-sm text-g700">Grosse cylindrée (>3000cc)</span>
+</label>
+</div>
+
+<div class="pt-4 flex gap-3">
+<button type="button" onclick="calculateDuty()" class="flex-1 btn-brand btn-brand-dark justify-center">
 Calculer <span class="material-symbols-outlined !text-sm">calculate</span>
 </button>
-<button onclick="resetSimVehicule()" class="btn-brand btn-brand-ghost px-5">
+<button type="button" onclick="resetCalculator()" class="px-5 btn-brand btn-brand-ghost">
 <span class="material-symbols-outlined !text-sm">refresh</span>
 </button>
 </div>
 </div>
 </div>
-<!-- Results -->
+
+<!-- RIGHT: RESULTS SECTION -->
 <div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm">
 <!-- Empty state -->
-<div id="simVResultEmpty" class="text-center py-12">
-<span class="material-symbols-outlined text-6xl text-g200 mb-4">directions_car</span>
-<h3 class="font-heading text-lg font-semibold text-g400 mb-2">Estimation du cout total</h3>
-<p class="text-sm text-g400">Remplissez les parametres et cliquez sur "Calculer" pour obtenir une estimation detaillee.</p>
+<div id="resultEmpty" class="text-center py-12">
+<span class="material-symbols-outlined text-6xl text-g200 mb-4">calculate</span>
+<h3 class="font-heading text-lg font-semibold text-g400 mb-2">Estimation douanière</h3>
+<p class="text-sm text-g400">Remplissez les paramètres et cliquez sur "Calculer"</p>
 </div>
-<!-- Result data -->
-<div id="simVResultData" class="hidden">
-<h3 class="font-heading text-lg font-bold text-brand mb-6">Estimation detaillee</h3>
-<div class="space-y-2" id="simVResultLines"></div>
-<div class="mt-6 p-5 bg-brand rounded-brand-sm text-white flex justify-between items-center">
-<span class="font-semibold text-[15px]">COUT TOTAL ESTIME</span>
-<span class="font-heading text-2xl font-bold" id="simVTotal">0 FCFA</span>
+
+<!-- Results data -->
+<div id="resultData" class="hidden space-y-6">
+<!-- A. TOTAL DOUANE -->
+<div>
+<h4 class="font-heading text-base font-bold text-brand mb-4">A. Droits et Taxes (Total Douane)</h4>
+<div class="space-y-2" id="resultDD"></div>
+<div class="mt-4 p-4 bg-brand/10 rounded-brand-sm border border-brand/20">
+<div class="flex justify-between items-center">
+<span class="font-semibold text-sm text-g700">Sous-Total: Droits & Taxes</span>
+<span class="font-heading text-lg font-bold text-brand" id="subtotalDD">0 FCFA</span>
 </div>
-<p class="text-[12px] text-g400 mt-4 leading-relaxed">* Estimation indicative. Les montants reels peuvent varier selon le taux de change du jour, les frais portuaires et la valeur en douane retenue. Taux applique : 1 USD = 600 FCFA.</p>
+</div>
+</div>
+
+<!-- B. TOTAL GÉNÉRAL -->
+<div class="pt-6 border-t border-g200">
+<h4 class="font-heading text-base font-bold text-brand mb-4">B. Total Général (Jusqu'à sortie)</h4>
+<div class="space-y-2" id="resultGeneral"></div>
+<div class="mt-4 p-5 bg-brand rounded-brand-lg text-white">
+<div class="flex justify-between items-center mb-2">
+<span class="font-semibold text-[15px]">GRAND TOTAL</span>
+<span class="font-heading text-3xl font-bold" id="grandTotal">0 FCFA</span>
+</div>
+<p class="text-xs text-white/70">Montant total à prévoir jusqu'à la livraison</p>
+</div>
+</div>
+
+<!-- WhatsApp CTA -->
+<div class="mt-8 pt-6 border-t border-g200">
+<a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20j%27aimerais%20confirmer%20une%20commande." target="_blank" class="flex items-center justify-center gap-2 w-full px-5 py-3 rounded-brand-lg bg-[#25D366] text-white font-semibold hover:bg-[#20BA5B] transition-all">
+<span class="material-symbols-outlined">chat</span> Confirmer via WhatsApp
+</a>
+</div>
+
+<!-- Source Badge -->
+<div class="mt-6 pt-6 border-t border-g200 text-center">
+<p class="text-xs text-g400">Base Argus N°4616 — 175 marques</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-
-<!-- ============================================================ -->
 <!-- 6. TIMELINE -->
 <!-- ============================================================ -->
 <section class="py-24 bg-brand text-white">
@@ -931,7 +1132,7 @@ Le Benin n'impose pas de limite d'age stricte pour l'importation de vehicules, c
 <p class="text-lg text-white/50 max-w-[550px] mx-auto leading-relaxed mb-10">Contactez-nous des maintenant pour lancer votre importation. Devis gratuit sous 24h.</p>
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
 <a class="btn-brand btn-brand-white" href="#commander">Commander maintenant <span class="material-symbols-outlined !text-sm">arrow_forward</span></a>
-<a class="btn-brand bg-transparent text-white border-[1.5px] border-white/30 hover:bg-white/10" href="https://wa.me/22997500555?text=Bonjour%2C%20je%20souhaite%20importer%20un%20v%C3%A9hicule." target="_blank">Contacter via WhatsApp</a>
+<a class="btn-brand bg-transparent text-white border-[1.5px] border-white/30 hover:bg-white/10" href="https://wa.me/2290197500555?text=Bonjour%2C%20je%20souhaite%20importer%20un%20v%C3%A9hicule." target="_blank">Contacter via WhatsApp</a>
 </div>
 </div>
 </section>
@@ -975,9 +1176,9 @@ Le Benin n'impose pas de limite d'age stricte pour l'importation de vehicules, c
 <div>
 <h4 class="font-heading font-bold text-sm text-brand mb-6">Contact</h4>
 <ul class="space-y-3 text-[13px] mb-6">
-<li><a href="tel:+22997500555" class="text-g500 hover:text-brand transition-colors">+229 97 50 05 55</a></li>
-<li><a href="mailto:adtranslogistic@hotmail.com" class="text-g500 hover:text-brand transition-colors">adtranslogistic@hotmail.com</a></li>
-<li class="text-g600">Port Autonome de Cotonou<br/>Cotonou, Benin</li>
+<li><a href="tel:+22997500555" class="text-g500 hover:text-brand transition-colors">+229 01 97 50 05 55</a></li>
+<li><a href="mailto:adtranslogistics@hotmail.com" class="text-g500 hover:text-brand transition-colors">adtranslogistics@hotmail.com</a></li>
+<li class="text-g600">Missessin C/6<br/>Cotonou, Bénin</li>
 </ul>
 <div class="flex gap-3">
 <a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
@@ -986,7 +1187,7 @@ Le Benin n'impose pas de limite d'age stricte pour l'importation de vehicules, c
 <a href="#" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
 <span class="material-symbols-outlined text-sm">facebook</span>
 </a>
-<a href="https://wa.me/22997500555" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<a href="https://wa.me/2290197500555" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
 <span class="material-symbols-outlined text-sm">message</span>
 </a>
 </div>
@@ -999,19 +1200,26 @@ Le Benin n'impose pas de limite d'age stricte pour l'importation de vehicules, c
 </div>
 </footer>
 
+<!-- VEHICLE DATABASE ARGUS -->
+<script src="vehicles_db.js"></script>
+
 <script>
 // Mobile Menu Toggle
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 
 hamburger.addEventListener('click', () => {
+    const overlay = document.getElementById('mob-overlay');
     mobileMenu.classList.toggle('hidden');
     mobileMenu.classList.toggle('flex');
+    if(overlay) overlay.classList.toggle('visible');
 });
 
 function closeMobile() {
     mobileMenu.classList.add('hidden');
     mobileMenu.classList.remove('flex');
+    const overlay = document.getElementById('mob-overlay');
+    if(overlay) overlay.classList.remove('visible');
 }
 
 // Navbar Scroll Effect
@@ -1035,126 +1243,208 @@ function showToast(message) {
 }
 
 // ============================================================
-// COST SIMULATOR
+// CALCDOUANE - CALCULATEUR DE DROITS DE DOUANE
 // ============================================================
-function simulerCoutVehicule() {
-    const prixUSD = parseFloat(document.getElementById('simPrixUSD').value) || 0;
-    const origine = document.getElementById('simOrigine').value;
-    const typeVehicule = document.getElementById('simTypeVehicule').value;
-    const etat = document.getElementById('simEtat').value;
-    const annee = parseInt(document.getElementById('simAnnee').value) || 2023;
 
-    if (!prixUSD || !origine) {
-        showToast('Veuillez renseigner le prix et le marche d\'origine.');
-        return;
+const TAUX_CHANGE = { XOF: 1, EUR: 655.957, USD: 605, GBP: 770 };
+const RATES = { utilitaire: 0.23338, tourisme: 0.31598, suv: 0.40208, luxe: 0.54107 };
+const FIXED_2025 = 98600;
+const CIF_FLOOR = 1500000;
+const FORFAIT_OLD = 572570;
+const FORFAIT_OLD_BIG = 701720;
+const FORFAIT_TRANSIT = 305000;
+const FRAIS_IMF = 25000;
+const FRAIS_ENLEVEMENT = 50000;
+const FRAIS_VACATION = 15000;
+const FRAIS_PLAQUE = 13000;
+const FRAIS_TRANSIT_AD = 305000;
+const fmt = n => Math.round(n).toLocaleString('fr-FR');
+
+
+// --- POPULATE DROPDOWNS FROM VEHICLES_DB ---
+const dbMarque = document.getElementById('dbMarque');
+const dbModele = document.getElementById('dbModele');
+const dbAnnee  = document.getElementById('dbAnnee');
+
+if (typeof VEHICLES_DB !== 'undefined') {
+    Object.keys(VEHICLES_DB).sort().forEach(make => {
+        const opt = document.createElement('option');
+        opt.value = make; opt.textContent = make;
+        dbMarque.appendChild(opt);
+    });
+}
+
+dbMarque.addEventListener('change', () => {
+    dbModele.innerHTML = '<option value="">Selectionnez un modele</option>';
+    dbAnnee.innerHTML = '<option value="">Selectionnez une annee</option>';
+    const make = dbMarque.value;
+    if (make && typeof VEHICLES_DB !== 'undefined' && VEHICLES_DB[make]) {
+        Object.keys(VEHICLES_DB[make]).sort().forEach(model => {
+            const opt = document.createElement('option');
+            opt.value = model; opt.textContent = model;
+            dbModele.appendChild(opt);
+        });
     }
+});
 
-    const tauxChange = 600; // 1 USD = 600 XOF
+dbModele.addEventListener('change', () => {
+    dbAnnee.innerHTML = '<option value="">Selectionnez une annee</option>';
+    const make = dbMarque.value, model = dbModele.value;
+    if (make && model && typeof VEHICLES_DB !== 'undefined' && VEHICLES_DB[make] && VEHICLES_DB[make][model]) {
+        VEHICLES_DB[make][model].v.forEach((v, i) => {
+            const opt = document.createElement('option');
+            opt.value = i; opt.textContent = v.p;
+            dbAnnee.appendChild(opt);
+        });
+    }
+});
 
-    // Fret maritime (USD) par origine et type
-    const fretRates = {
-        'USA': { voiture: 1500, camion: 2500, moto: 800, engin: 3500 },
-        'Europe': { voiture: 1000, camion: 1800, moto: 600, engin: 2500 },
-        'Asie': { voiture: 2000, camion: 3000, moto: 1000, engin: 4000 },
-        'Dubai': { voiture: 800, camion: 1500, moto: 500, engin: 2000 }
-    };
-
-    const fretUSD = fretRates[origine] ? (fretRates[origine][typeVehicule] || 1500) : 1500;
-    const prixFCFA = prixUSD * tauxChange;
-    const fretFCFA = fretUSD * tauxChange;
-
-    // Assurance 1.5%
-    const assurance = (prixFCFA + fretFCFA) * 0.015;
-
-    // CIF = Prix + Fret + Assurance
-    const cif = prixFCFA + fretFCFA + assurance;
-
-    // Droits de douane
-    const tauxDD = etat === 'neuf' ? 0.15 : 0.20;
-    const dd = cif * tauxDD;
-
-    // RS 1%
-    const rs = cif * 0.01;
-
-    // PC 1%
-    const pc = cif * 0.01;
-
-    // TVA 18%
-    const tva = (cif + dd + rs + pc) * 0.18;
-
-    // Surcharge age (> 5 ans)
-    const anneeRef = new Date().getFullYear();
-    const ageVehicule = anneeRef - annee;
-    const surchargeAge = ageVehicule > 5 ? cif * 0.15 : 0;
-
-    // Frais transit fixe
-    const fraisTransit = 250000;
-
-    // Total
-    const total = cif + dd + rs + pc + tva + surchargeAge + fraisTransit;
-
-    // Build results
-    const fmt = (n) => Math.round(n).toLocaleString('fr-FR');
-
-    const lines = document.getElementById('simVResultLines');
-    lines.innerHTML = `
-        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
-            <span class="text-sm text-g600">Prix vehicule</span>
-            <span class="font-semibold text-brand">${fmt(prixFCFA)} FCFA</span>
-        </div>
-        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
-            <span class="text-sm text-g600">Fret maritime (${origine})</span>
-            <span class="font-semibold text-brand">${fmt(fretFCFA)} FCFA</span>
-        </div>
-        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
-            <span class="text-sm text-g600">Assurance (1.5%)</span>
-            <span class="font-semibold text-brand">${fmt(assurance)} FCFA</span>
-        </div>
-        <div class="flex justify-between items-center p-4 bg-brand/5 rounded-brand-sm border border-brand/10">
-            <span class="text-sm text-g700 font-semibold">Valeur CIF</span>
-            <span class="font-semibold text-brand">${fmt(cif)} FCFA</span>
-        </div>
-        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
-            <span class="text-sm text-g600">Droit de Douane (DD ${Math.round(tauxDD*100)}%)</span>
-            <span class="font-semibold text-brand">${fmt(dd)} FCFA</span>
-        </div>
-        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
-            <span class="text-sm text-g600">Redevance Statistique (RS 1%)</span>
-            <span class="font-semibold text-brand">${fmt(rs)} FCFA</span>
-        </div>
-        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
-            <span class="text-sm text-g600">Prelevement Communautaire (PC 1%)</span>
-            <span class="font-semibold text-brand">${fmt(pc)} FCFA</span>
-        </div>
-        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
-            <span class="text-sm text-g600">TVA (18%)</span>
-            <span class="font-semibold text-brand">${fmt(tva)} FCFA</span>
-        </div>
-        ${surchargeAge > 0 ? `
-        <div class="flex justify-between items-center p-4 bg-orange-50 rounded-brand-sm border border-orange-200">
-            <span class="text-sm text-orange-700">Surcharge age +${ageVehicule} ans (15%)</span>
-            <span class="font-semibold text-orange-700">${fmt(surchargeAge)} FCFA</span>
-        </div>` : ''}
-        <div class="flex justify-between items-center p-4 bg-g50 rounded-brand-sm">
-            <span class="text-sm text-g600">Frais de transit</span>
-            <span class="font-semibold text-brand">${fmt(fraisTransit)} FCFA</span>
-        </div>
-    `;
-
-    document.getElementById('simVTotal').textContent = `${fmt(total)} FCFA`;
-    document.getElementById('simVResultEmpty').classList.add('hidden');
-    document.getElementById('simVResultData').classList.remove('hidden');
+function loadFromDB() {
+    const make = dbMarque.value, model = dbModele.value, idx = dbAnnee.value;
+    if (!make || !model || idx === '') { showToast('Selectionnez marque, modele et annee'); return; }
+    if (typeof VEHICLES_DB === 'undefined' || !VEHICLES_DB[make] || !VEHICLES_DB[make][model]) return;
+    const entry = VEHICLES_DB[make][model];
+    const variant = entry.v[parseInt(idx)];
+    document.getElementById('priceFOB').value = Math.round(variant.c);
+    document.getElementById('currencyFOB').value = 'XOF';
+    document.getElementById('vehicleType').value = entry.t || 'tourisme';
+    showToast('Valeur Argus chargee : ' + fmt(variant.c) + ' FCFA (' + entry.t + ')');
 }
 
-function resetSimVehicule() {
-    document.getElementById('simPrixUSD').value = '';
-    document.getElementById('simOrigine').value = '';
-    document.getElementById('simTypeVehicule').value = 'voiture';
-    document.getElementById('simEtat').value = 'occasion';
-    document.getElementById('simAnnee').value = '2023';
-    document.getElementById('simVResultEmpty').classList.remove('hidden');
-    document.getElementById('simVResultData').classList.add('hidden');
+function autoInsurance() {
+    const fob = parseFloat(document.getElementById('priceFOB').value) || 0;
+    const devise = document.getElementById('currencyFOB').value;
+    const taux = TAUX_CHANGE[devise] || 1;
+    const fret = parseFloat(document.getElementById('freightCost').value) || 0;
+    const assur = Math.round((fob * taux + fret) * 0.03);
+    document.getElementById('insuranceCost').value = assur;
+    showToast('Assurance calculee : ' + fmt(assur) + ' FCFA');
 }
+
+// --- REGIME VISIBILITY ---
+document.querySelectorAll('input[name="regime"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        const regime = document.querySelector('input[name="regime"]:checked').value;
+        const step2 = document.getElementById('calcStep2');
+        const step3 = document.getElementById('calcStep3');
+        if (regime === 'occasion_old_standard' || regime === 'occasion_old_cylinder' || regime === 'transit') {
+            step2.style.display = 'none';
+            step3.style.display = 'none';
+        } else {
+            step2.style.display = '';
+            step3.style.display = '';
+        }
+    });
+});
+
+
+// --- MAIN CALCULATION ---
+function calculateDuty() {
+    const regime = document.querySelector('input[name="regime"]:checked')?.value;
+    if (!regime) { showToast('Selectionnez un regime.'); return; }
+
+    if (regime === 'occasion_old_standard') { displaySimple(FORFAIT_OLD, 'Occasion \u22642005 Standard'); return; }
+    if (regime === 'occasion_old_cylinder') { displaySimple(FORFAIT_OLD_BIG, 'Occasion \u22642005 + Grosse Cylindree'); return; }
+    if (regime === 'transit') { displaySimple(FORFAIT_TRANSIT, 'Transit International'); return; }
+
+    const devise = document.getElementById('currencyFOB').value;
+    const taux = TAUX_CHANGE[devise] || 1;
+    const fobRaw = parseFloat(document.getElementById('priceFOB').value) || 0;
+    const fretRaw = parseFloat(document.getElementById('freightCost').value) || 0;
+    let assurRaw = parseFloat(document.getElementById('insuranceCost').value);
+    if (isNaN(assurRaw) || assurRaw === 0) assurRaw = (fobRaw * taux + fretRaw) * 0.03;
+
+    const fob = fobRaw * taux;
+    const cifCalc = fob + fretRaw + assurRaw;
+    if (cifCalc <= 0) { showToast('Renseignez le prix du vehicule.'); return; }
+
+    const cif = Math.max(cifCalc, CIF_FLOOR);
+    const vehicleType = document.getElementById('vehicleType').value;
+
+    if (regime === 'neuf') {
+        const dd = Math.round(cif * 0.05);
+        const rs = Math.round(cif * 0.01);
+        const pc = Math.round(cif * 0.01);
+        const pcs = Math.round(cif * 0.005);
+        const aib = Math.round(cif * 0.03);
+        const tva = Math.round((cif + dd + rs) * 0.18);
+        const totalDouane = dd + rs + pc + pcs + aib + tva + FIXED_2025;
+        displayFull(cif, dd, rs, pc, pcs, aib, tva, FIXED_2025, totalDouane, 'Vehicule Neuf');
+    } else {
+        const rate = RATES[vehicleType] || RATES.tourisme;
+        const totalCalibrated = Math.round(rate * cif + FIXED_2025);
+        const rs = Math.round(cif * 0.01);
+        const pc = Math.round(cif * 0.01);
+        const pcs = Math.round(cif * 0.005);
+        const aib = Math.round(cif * 0.03);
+        const xNum = (totalCalibrated - FIXED_2025) - rs*1.18 - pc - pcs - aib - 0.18*cif;
+        const dd = Math.max(0, Math.round(xNum / 1.18));
+        const tva = Math.round(0.18 * (cif + dd + rs));
+        const totalDouane = dd + rs + pc + pcs + aib + tva + FIXED_2025;
+        displayFull(cif, dd, rs, pc, pcs, aib, tva, FIXED_2025, totalDouane, 'Occasion 2006+ (' + vehicleType + ')');
+    }
+}
+
+function mkRow(label, value) {
+    return '<div class="flex justify-between items-center p-3 bg-g50 rounded-brand-sm"><span class="text-sm text-g600">' + label + '</span><span class="font-semibold text-brand">' + fmt(value) + ' FCFA</span></div>';
+}
+
+
+function displaySimple(forfait, label) {
+    const totalGeneral = forfait + FRAIS_IMF + FRAIS_ENLEVEMENT + FRAIS_VACATION + FRAIS_PLAQUE + FRAIS_TRANSIT_AD;
+    document.getElementById('resultDD').innerHTML = mkRow(label, forfait);
+    document.getElementById('subtotalDD').textContent = fmt(forfait) + ' FCFA';
+    document.getElementById('resultGeneral').innerHTML =
+        mkRow('Total Douane', forfait) +
+        mkRow('IMF (Inspection)', FRAIS_IMF) +
+        mkRow('Enlevement', FRAIS_ENLEVEMENT) +
+        mkRow('Vacation', FRAIS_VACATION) +
+        mkRow('Plaque', FRAIS_PLAQUE) +
+        mkRow('Transit AD TRANS', FRAIS_TRANSIT_AD);
+    document.getElementById('grandTotal').textContent = fmt(totalGeneral) + ' FCFA';
+    document.getElementById('resultEmpty').classList.add('hidden');
+    document.getElementById('resultData').classList.remove('hidden');
+    document.getElementById('resultData').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function displayFull(cif, dd, rs, pc, pcs, aib, tva, fixed, totalDouane, label) {
+    const totalGeneral = totalDouane + FRAIS_IMF + FRAIS_ENLEVEMENT + FRAIS_VACATION + FRAIS_PLAQUE + FRAIS_TRANSIT_AD;
+    document.getElementById('resultDD').innerHTML =
+        '<div class="flex justify-between items-center p-3 bg-brand/5 rounded-brand-sm border border-brand/10"><span class="text-sm text-g700 font-semibold">Valeur CIF retenue</span><span class="font-semibold text-brand">' + fmt(cif) + ' FCFA</span></div>' +
+        mkRow('Droit de Douane (DD)', dd) +
+        mkRow('Redevance Statistique (RS) 1%', rs) +
+        mkRow('Prelevement Communautaire (PC) 1%', pc) +
+        mkRow('Prelevement CEDEAO (PCS) 0.5%', pcs) +
+        mkRow('Acompte IR (AIB) 3%', aib) +
+        mkRow('TVA 18%', tva) +
+        mkRow('Frais fixes 2025', fixed);
+    document.getElementById('subtotalDD').textContent = fmt(totalDouane) + ' FCFA';
+    document.getElementById('resultGeneral').innerHTML =
+        mkRow('Total Douane', totalDouane) +
+        mkRow('IMF (Inspection)', FRAIS_IMF) +
+        mkRow('Enlevement', FRAIS_ENLEVEMENT) +
+        mkRow('Vacation', FRAIS_VACATION) +
+        mkRow('Plaque', FRAIS_PLAQUE) +
+        mkRow('Transit AD TRANS', FRAIS_TRANSIT_AD);
+    document.getElementById('grandTotal').textContent = fmt(totalGeneral) + ' FCFA';
+    document.getElementById('resultEmpty').classList.add('hidden');
+    document.getElementById('resultData').classList.remove('hidden');
+    document.getElementById('resultData').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetCalculator() {
+    document.getElementById('priceFOB').value = '';
+    document.getElementById('freightCost').value = '';
+    document.getElementById('insuranceCost').value = '';
+    document.getElementById('currencyFOB').value = 'USD';
+    document.getElementById('vehicleType').value = 'tourisme';
+    document.getElementById('dbMarque').value = '';
+    document.getElementById('dbModele').innerHTML = '<option value="">Selectionnez un modele</option>';
+    document.getElementById('dbAnnee').innerHTML = '<option value="">Selectionnez une annee</option>';
+    document.getElementById('resultEmpty').classList.remove('hidden');
+    document.getElementById('resultData').classList.add('hidden');
+}
+
 
 // ============================================================
 // FAQ ACCORDION
@@ -1208,10 +1498,45 @@ function submitOrder(e) {
     if (commentaires) msg += `\n*Commentaires :*\n${commentaires}\n`;
 
     const encoded = encodeURIComponent(msg);
-    window.open(`https://wa.me/22997500555?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/2290197500555?text=${encoded}`, '_blank');
     showToast('Demande envoyee via WhatsApp !');
 }
 </script>
 
+    <!-- Enregistrement du Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('[PWA] SW enregistre:', reg.scope))
+            .catch(err => console.warn('[PWA] SW echec:', err));
+        });
+      }
+    </script>
+<!-- ── Bottom Navigation Mobile ── -->
+<nav id="bottomnav" aria-label="Navigation rapide">
+  <a href="/" class="bn-item" data-page="/">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+    <span>Accueil</span>
+  </a>
+  <a href="/simulateur" class="bn-item" data-page="/simulateur">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg>
+    <span>Douane</span>
+  </a>
+  <a href="https://adtranslogistics.mychariow.shop" class="bn-item" data-page="/boutique">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+    <span>Boutique</span>
+  </a>
+  <a href="/#contact" class="bn-item" data-page="/contact">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span>Contact</span>
+  </a>
+  <a href="/espace-client" class="bn-item" data-page="/espace-client">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Compte</span>
+  </a>
+</nav>
+<script src="/cookie-consent.js"></script>
 </body>
 </html>
+

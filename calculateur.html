@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculateur Droits de Douane Marchandises | AD TRANS LOGISTICS — Cotonou, Bénin</title>
+<meta content="Calculez les droits de douane pour vos marchandises importées au Bénin. Tarif TEC-CEDEAO SH2022, DD 0-35%, TVA 18%, RS, PCS — résultats en temps réel." name="description"/>
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#0A0A0A"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="AD TRANS"/>
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+<link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" type="text/css"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'brand':'#0A0A0A','g950':'#111111','g900':'#171717','g800':'#262626',
+        'g700':'#3A3A3A','g600':'#525252','g500':'#737373','g400':'#A3A3A3',
+        'g300':'#D4D4D4','g200':'#E5E5E5','g100':'#F0F0F0','g50':'#F7F7F7',
+      },
+      fontFamily: { sans:['Instrument Sans','sans-serif'], heading:['Space Grotesk','sans-serif'] },
+      borderRadius: { 'brand':'14px','brand-sm':'10px','brand-lg':'20px','brand-xl':'28px' },
+      transitionTimingFunction: { 'brand-ease':'cubic-bezier(0.4,0,0.2,1)' }
+    }
+  }
+}
+</script>
+<style>
+html { scroll-behavior:smooth; overflow-x:hidden; }
+body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+.tag { display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid #E5E5E5;color:#737373;background:#fff; }
+.tag .dot { width:8px;height:8px;border-radius:50%;background:#0A0A0A; }
+.btn-brand { display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:999px;font-weight:600;font-size:15px;transition:all .3s cubic-bezier(.4,0,.2,1); }
+.btn-dark { background:#0A0A0A;color:#fff; }
+.btn-dark:hover { background:#262626;transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,.15); }
+.glass-nav { position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(0,0,0,.05); }
+.whatsapp-btn { position:fixed;bottom:1.5rem;right:1.5rem;width:64px;height:64px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 15px rgba(0,0,0,.1);z-index:999;transition:all .3s; }
+.whatsapp-btn:hover { transform:scale(1.1); }
+#mobileMenu{position:fixed!important;top:0!important;left:-100%!important;width:min(320px,88vw)!important;height:100vh!important;overflow-y:auto!important;box-shadow:6px 0 32px rgba(0,0,0,.14)!important;transition:left .32s cubic-bezier(.4,0,.2,1)!important;display:flex!important;flex-direction:column;padding-top:72px;padding-left:24px;padding-right:24px;gap:4px;z-index:999!important;background:#fff!important;}
+#mobileMenu.flex{left:0!important;}
+#mob-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:998;display:none;}
+#mob-overlay.visible{display:block;}
+#bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E5E5E5;z-index:990;height:62px;}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;font-size:10px;font-weight:600;color:#A3A3A3;text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif;letter-spacing:.01em;}
+.bn-item:hover,.bn-item.active{color:#0A0A0A;}
+.bn-item svg{stroke:currentColor;}
+@media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
+.sim-card { background:#fff;border:1.5px solid #E5E5E5;border-radius:20px;overflow:hidden; }
+.sim-section-title { font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #F0F0F0; }
+.sim-label { display:block;font-size:13px;font-weight:600;color:#3A3A3A;margin-bottom:6px; }
+.sim-input { width:100%;padding:12px 16px;border:1.5px solid #E5E5E5;border-radius:12px;font-size:15px;font-family:'Instrument Sans',sans-serif;color:#0A0A0A;background:#fff;transition:border-color .2s, box-shadow .2s, transform .15s;outline:none; }
+.sim-input:focus { border-color:#0A0A0A;box-shadow:0 0 0 3px rgba(10,10,10,.06);transform:translateY(-1px); }
+.sim-select { appearance:none;background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 12px center;background-repeat:no-repeat;background-size:20px;padding-right:40px; }
+.result-row { display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #F0F0F0; }
+.result-row:last-child { border-bottom:none; }
+.result-label { font-size:13px;color:#525252; }
+.result-value { font-size:14px;font-weight:600;color:#0A0A0A;font-family:'Space Grotesk',sans-serif; }
+.result-value.tax { color:#2E7D32; }
+.result-total-row { display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:#0A0A0A;border-radius:14px;margin-top:12px; }
+.result-total-label { font-size:14px;font-weight:600;color:#ffffff; }
+.result-total-value { font-size:22px;font-weight:700;color:#ffffff;font-family:'Space Grotesk',sans-serif; }
+.placeholder-card { background:#F7F7F7;border:2px dashed #E5E5E5;border-radius:16px;padding:32px;text-align:center; }
+.mob-tw-open .mob-tw-sub { display:block!important; }
+.mob-tw-open .mob-tw-chevron { transform:rotate(180deg); }
+[data-reveal]{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+[data-reveal].revealed{opacity:1;transform:translateY(0);}
+[data-reveal="left"]{opacity:0;transform:translateX(-40px);}[data-reveal="left"].revealed{opacity:1;transform:translateX(0);}
+[data-reveal="right"]{opacity:0;transform:translateX(40px);}[data-reveal="right"].revealed{opacity:1;transform:translateX(0);}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.result-animate{animation:fadeSlideUp .4s ease forwards;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body class="bg-white text-g800 font-sans">
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20voudrais%20calculer%20les%20droits%20de%20douane%20pour%20des%20marchandises." target="_blank" class="whatsapp-btn" title="WhatsApp">
+  <svg fill="currentColor" viewBox="0 0 24 24" style="width:30px;height:30px;min-width:30px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav class="glass-nav" id="navbar">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="flex items-center justify-between h-20">
+  <a class="flex items-center gap-2.5" href="/">
+    <div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
+    <div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
+  </a>
+  <ul class="hidden lg:flex items-center gap-1 list-none">
+    <li class="relative group">
+        <button class="text-[15px] font-semibold text-brand flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Calcul droit de douane <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Vehicule</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/simulateur">Occasion</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">Neuf</a>
+            <div class="border-t border-gray-100 mx-3 my-1"></div>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Marchandise</div>
+            <a class="block px-4 py-2 text-sm font-semibold text-black bg-gray-50" href="/calculateur">Calculateur TEC-CEDEAO</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Importation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Facture commerciale</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Liste de colisage</li><li>&#10003; Certificat d'origine</li><li>&#10003; Licence / autorisation d'import</li></ul>
+            <a href="/demande?service=importation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Exportation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Facture commerciale / Pro-forma</li><li>&#10003; Certificat d'origine</li><li>&#10003; Certificat phytosanitaire</li><li>&#10003; Licence d'exportation</li><li>&#10003; Declaration en douane</li></ul>
+            <a href="/demande?service=exportation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Transit <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Declaration de transit (T1)</li><li>&#10003; Garantie de transit</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Facture commerciale</li><li>&#10003; Certificat d'origine</li></ul>
+            <a href="/demande?service=transit" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Depotage <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Bon a enlever</li><li>&#10003; Connaissement (BL)</li><li>&#10003; Facture commerciale</li><li>&#10003; Liste de colisage</li><li>&#10003; Declaration en douane</li></ul>
+            <a href="/demande?service=depotage" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Boutique <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Vehicules</a>
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Articles</a>
+        </div>
+    </li>
+    <li><a class="text-sm font-medium text-gray-500 hover:text-black transition-colors" href="/connexion">Mon compte</a></li>
+  </ul>
+  <button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
+    <span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+    <span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+    <span class="block w-5 h-0.5 bg-current transition-all"></span>
+  </button>
+</div>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob-overlay" onclick="this.classList.remove('visible');document.getElementById('mobileMenu').classList.remove('flex');document.getElementById('mobileMenu').classList.add('hidden');"></div>
+<div class="z-[999]" id="mobileMenu">
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Accueil</a>
+  <div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-semibold text-brand rounded-brand-sm cursor-pointer bg-g50">
+        <span>Calcul droit de douane</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Vehicule</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/simulateur" onclick="closeMobile()">Occasion</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">Neuf</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Marchandise</div>
+        <a class="block p-3 text-sm font-semibold text-black" href="/calculateur" onclick="closeMobile()">Calculateur TEC-CEDEAO</a>
+    </div>
+  </div>
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=importation" onclick="closeMobile()">Importation</a>
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=exportation" onclick="closeMobile()">Exportation</a>
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=transit" onclick="closeMobile()">Transit</a>
+  <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=depotage" onclick="closeMobile()">Depotage</a>
+  <div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-medium text-g700 rounded-brand-sm cursor-pointer hover:bg-g50">
+        <span>Boutique</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Vehicules</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Articles</a>
+    </div>
+  </div>
+  <a class="btn-brand btn-brand-dark justify-center mt-4" href="/#contact" onclick="closeMobile()">Devis gratuit</a>
+</div>
+
+<!-- HERO -->
+<section class="pt-28 pb-6 lg:pt-36 lg:pb-10 bg-white overflow-hidden">
+<div class="container mx-auto px-6 max-w-[1440px]">
+  <div class="max-w-[720px] mx-auto text-center">
+    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Tarif TEC-CEDEAO SH2022</div>
+    <h1 class="font-heading font-bold text-brand mb-3" style="font-size:clamp(2.2rem,5.5vw,64px);line-height:1.05;letter-spacing:-.025em;">
+      Calculateur<br/><span class="text-g400 font-medium italic">droits de douane marchandises</span>
+    </h1>
+    <p class="text-base lg:text-lg text-g500 leading-relaxed max-w-[520px] mx-auto mb-5">
+      Calculez les droits et taxes pour vos marchandises au Bénin — import ou export.
+    </p>
+
+    <!-- Toggle Import / Export -->
+    <div class="flex gap-1 bg-g100 rounded-full p-1 max-w-[320px] mx-auto mb-5">
+      <button onclick="switchMode('import')" id="btn-mode-import" class="flex-1 py-2.5 px-4 rounded-full text-sm font-bold transition-all bg-brand text-white shadow">
+        <span class="material-symbols-outlined text-sm align-middle mr-1">south_east</span>Import
+      </button>
+      <button onclick="switchMode('export')" id="btn-mode-export" class="flex-1 py-2.5 px-4 rounded-full text-sm font-bold transition-all text-g500">
+        <span class="material-symbols-outlined text-sm align-middle mr-1">north_east</span>Export
+      </button>
+    </div>
+
+    <!-- Badges Import -->
+    <div id="badges-import" class="flex flex-wrap gap-2 justify-center">
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        DD 0% - 35%
+      </div>
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        TVA 18%
+      </div>
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        RS 1% + PCS 0,8%
+      </div>
+    </div>
+    <!-- Badges Export -->
+    <div id="badges-export" class="flex flex-wrap gap-2 justify-center" style="display:none;">
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        Taxe de Voirie 0,80%
+      </div>
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        Sur valeur CFR
+      </div>
+      <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
+        <span class="material-symbols-outlined text-base text-brand">check_circle</span>
+        Unique taxe export
+      </div>
+    </div>
+    <p class="text-xs text-g400 mt-2 italic" id="note-import">* Estimation indicative — le taux exact dépend du code SH (nomenclature tarifaire) de votre marchandise.</p>
+    <p class="text-xs text-g400 mt-2 italic" id="note-export" style="display:none;">* La taxe de voirie (0,80% CFR) est la seule taxe applicable à l'exportation au Bénin.</p>
+  </div>
+
+  <!-- Jauge déroulante processus douanier marchandises -->
+  <div class="mt-8 lg:mt-10" style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+    <div id="gauge-track" style="display:flex;align-items:center;min-width:700px;position:relative;padding:0 8px;">
+      <!-- Ligne de fond -->
+      <div style="position:absolute;top:50%;left:28px;right:28px;height:3px;background:#E5E5E5;transform:translateY(-50%);border-radius:2px;z-index:0;"></div>
+      <!-- Ligne de progression animée -->
+      <div id="gauge-progress" style="position:absolute;top:50%;left:28px;height:3px;background:#0A0A0A;transform:translateY(-50%);border-radius:2px;z-index:1;width:0%;transition:width 1.5s ease;"></div>
+
+      <div class="gauge-step active" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#0A0A0A;border:3px solid #0A0A0A;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#fff;font-size:14px;font-weight:700;">1</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:700;color:#0A0A0A;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">AVD</span>
+      </div>
+      <div class="gauge-step" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #E5E5E5;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#A3A3A3;font-size:14px;font-weight:700;">2</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:600;color:#A3A3A3;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">Échange doc.</span>
+      </div>
+      <div class="gauge-step" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #E5E5E5;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#A3A3A3;font-size:14px;font-weight:700;">3</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:600;color:#A3A3A3;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">Douane</span>
+      </div>
+      <div class="gauge-step" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #E5E5E5;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#A3A3A3;font-size:14px;font-weight:700;">4</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:600;color:#A3A3A3;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">Contrôle</span>
+      </div>
+      <div class="gauge-step" style="flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;">
+        <div class="gauge-dot" style="width:38px;height:38px;border-radius:50%;background:#fff;border:3px solid #E5E5E5;display:flex;align-items:center;justify-content:center;transition:all .5s;">
+          <span style="color:#A3A3A3;font-size:14px;font-weight:700;">5</span>
+        </div>
+        <span class="gauge-label" style="margin-top:10px;font-size:11px;font-weight:600;color:#A3A3A3;text-transform:uppercase;letter-spacing:.06em;text-align:center;white-space:nowrap;">Sortie</span>
+      </div>
+    </div>
+  </div>
+  <script>
+  // Animation jauge — défile automatiquement les étapes
+  (function(){
+    const steps = document.querySelectorAll('#gauge-track .gauge-step');
+    const progress = document.getElementById('gauge-progress');
+    const total = steps.length;
+    let current = 0;
+    function activateStep(idx) {
+      steps.forEach((s, i) => {
+        const dot = s.querySelector('.gauge-dot');
+        const label = s.querySelector('.gauge-label');
+        const num = dot.querySelector('span');
+        if (i <= idx) {
+          dot.style.background = '#0A0A0A';
+          dot.style.borderColor = '#0A0A0A';
+          num.style.color = '#fff';
+          label.style.color = '#0A0A0A';
+          label.style.fontWeight = '700';
+        } else {
+          dot.style.background = '#fff';
+          dot.style.borderColor = '#E5E5E5';
+          num.style.color = '#A3A3A3';
+          label.style.color = '#A3A3A3';
+          label.style.fontWeight = '600';
+        }
+      });
+      const pct = idx / (total - 1) * 100;
+      progress.style.width = 'calc(' + pct + '% - ' + (56 - pct * 0.56) + 'px)';
+    }
+    function loop() {
+      current = (current + 1) % total;
+      activateStep(current);
+    }
+    activateStep(0);
+    setInterval(loop, 2000);
+  })();
+  </script>
+
+  <div class="mt-6 flex justify-center gap-3">
+    <a href="/simulateur" class="inline-flex items-center gap-2 text-sm text-g500 hover:text-brand transition-colors border border-g200 rounded-full px-5 py-2.5 font-semibold">
+      <span class="material-symbols-outlined text-base">directions_car</span>Véhicules d'occasion
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- CALCULATEUR PRINCIPAL -->
+<section class="pb-24 bg-white">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="grid lg:grid-cols-[1fr_420px] gap-8 items-start">
+
+  <!-- LEFT: Formulaire IMPORT -->
+  <div class="sim-card" data-reveal="left" id="form-import">
+    <div style="background:#0D1B2A;padding:24px 28px;">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-white text-2xl">inventory_2</span>
+        <div>
+          <div class="font-heading font-bold text-white text-lg">Paramètres de la marchandise</div>
+          <div class="text-white/50 text-sm mt-0.5">Remplissez les champs pour obtenir le calcul</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 lg:p-8">
+
+      <!-- SECTION 1: Type de marchandise -->
+      <div class="sim-section-title">① Catégorie de marchandise</div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-6">
+        <!-- Catégorie principale -->
+        <div class="sm:col-span-2">
+          <label class="sim-label" for="sel-categorie">Catégorie <span class="text-red-500">*</span></label>
+          <select class="sim-input sim-select" id="sel-categorie" onchange="onCategorieChange()">
+            <option value="">— Sélectionner une catégorie —</option>
+          </select>
+        </div>
+        <!-- Sous-catégorie -->
+        <div class="sm:col-span-2">
+          <label class="sim-label" for="sel-produit">Produit / Sous-catégorie <span class="text-red-500">*</span></label>
+          <select class="sim-input sim-select" id="sel-produit" disabled onchange="onProduitChange()">
+            <option value="">— Sélectionner d'abord une catégorie —</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Code SH (optionnel) -->
+      <div class="mb-6">
+        <label class="sim-label" for="inp-sh">Code SH (optionnel)</label>
+        <input type="text" class="sim-input" id="inp-sh" placeholder="Ex : 8703.23.20.00" maxlength="15" oninput="onShInput()"/>
+        <div class="text-xs text-g400 mt-1">Si vous connaissez le code SH exact, saisissez-le pour un taux précis</div>
+      </div>
+
+      <!-- SECTION 2: Valeur -->
+      <div class="sim-section-title">② Valeur de la marchandise</div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-6">
+        <!-- Valeur FOB -->
+        <div>
+          <label class="sim-label" for="inp-fob">Valeur FOB <span class="text-red-500">*</span></label>
+          <input type="number" class="sim-input" id="inp-fob" placeholder="Montant" min="0" oninput="calcMarch()"/>
+        </div>
+        <!-- Devise -->
+        <div>
+          <label class="sim-label" for="sel-devise">Devise</label>
+          <select class="sim-input sim-select" id="sel-devise" onchange="calcMarch()">
+            <option value="XOF">XOF (Franc CFA)</option>
+            <option value="EUR">EUR (Euro)</option>
+            <option value="USD">USD (Dollar US)</option>
+          </select>
+        </div>
+        <!-- Fret -->
+        <div>
+          <label class="sim-label" for="inp-fret-m">Fret (transport)</label>
+          <input type="number" class="sim-input" id="inp-fret-m" placeholder="0" min="0" oninput="calcMarch()"/>
+          <div class="text-xs text-g400 mt-1">Dans la même devise que FOB</div>
+        </div>
+        <!-- Assurance -->
+        <div>
+          <label class="sim-label" for="inp-assurance">Assurance</label>
+          <input type="number" class="sim-input" id="inp-assurance" placeholder="0" min="0" oninput="calcMarch()"/>
+          <div class="text-xs text-g400 mt-1">Dans la même devise que FOB</div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: Taux -->
+      <div class="sim-section-title">③ Taux applicables (auto selon catégorie)</div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+        <div class="bg-g50 rounded-xl p-4 text-center">
+          <div class="text-xs text-g400 font-semibold mb-1">DD</div>
+          <div class="text-xl font-bold font-heading text-brand" id="disp-dd">—</div>
+        </div>
+        <div class="bg-g50 rounded-xl p-4 text-center">
+          <div class="text-xs text-g400 font-semibold mb-1">RS</div>
+          <div class="text-xl font-bold font-heading text-brand" id="disp-rs">1%</div>
+        </div>
+        <div class="bg-g50 rounded-xl p-4 text-center">
+          <div class="text-xs text-g400 font-semibold mb-1">PCS</div>
+          <div class="text-xl font-bold font-heading text-brand" id="disp-pcs">0,8%</div>
+        </div>
+        <div class="bg-g50 rounded-xl p-4 text-center">
+          <div class="text-xs text-g400 font-semibold mb-1">TVA</div>
+          <div class="text-xl font-bold font-heading text-brand" id="disp-tva">18%</div>
+        </div>
+      </div>
+      <div class="text-xs text-g400 mb-2">
+        <strong>Bandes tarifaires TEC-CEDEAO :</strong> Cat. 0 (0%) — Cat. 1 (5%) — Cat. 2 (10%) — Cat. 3 (20%) — Cat. 4 (35%)
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEFT: Formulaire EXPORT -->
+  <div class="sim-card" data-reveal="left" id="form-export" style="display:none;">
+    <div style="background:#0D1B2A;padding:24px 28px;">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-white text-2xl">north_east</span>
+        <div>
+          <div class="font-heading font-bold text-white text-lg">Paramètres de l'exportation</div>
+          <div class="text-white/50 text-sm mt-0.5">Taxe de Voirie = 0,80% de la valeur CFR</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 lg:p-8">
+
+      <!-- SECTION 1: Description -->
+      <div class="sim-section-title">① Description de la marchandise</div>
+
+      <div class="mb-6">
+        <label class="sim-label" for="inp-desc-exp">Nature de la marchandise</label>
+        <input type="text" class="sim-input" id="inp-desc-exp" placeholder="Ex: Noix de cajou, coton, karité..." oninput="calcExport()"/>
+      </div>
+
+      <!-- SECTION 2: Valeur CFR -->
+      <div class="sim-section-title">② Valeur CFR (Coût + Fret)</div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-6">
+        <div>
+          <label class="sim-label" for="inp-fob-exp">Valeur FOB <span class="text-red-500">*</span></label>
+          <input type="number" class="sim-input" id="inp-fob-exp" placeholder="Montant" min="0" oninput="calcExport()"/>
+        </div>
+        <div>
+          <label class="sim-label" for="sel-devise-exp">Devise</label>
+          <select class="sim-input sim-select" id="sel-devise-exp" onchange="calcExport()">
+            <option value="XOF">XOF (Franc CFA)</option>
+            <option value="EUR">EUR (Euro)</option>
+            <option value="USD">USD (Dollar US)</option>
+          </select>
+        </div>
+        <div>
+          <label class="sim-label" for="inp-fret-exp">Fret (transport)</label>
+          <input type="number" class="sim-input" id="inp-fret-exp" placeholder="0" min="0" oninput="calcExport()"/>
+          <div class="text-xs text-g400 mt-1">Dans la même devise que FOB</div>
+        </div>
+      </div>
+
+      <!-- Taux affiché -->
+      <div class="sim-section-title">③ Taxe applicable</div>
+      <div class="bg-g50 rounded-xl p-4 text-center mb-4">
+        <div class="text-xs text-g400 font-semibold mb-1">Taxe de Voirie</div>
+        <div class="text-3xl font-bold font-heading text-brand">0,80%</div>
+        <div class="text-xs text-g400 mt-1">Sur la valeur CFR (FOB + Fret)</div>
+      </div>
+      <div class="text-xs text-g400">
+        <strong>Export Bénin :</strong> La taxe de voirie est la seule taxe applicable. Pas de DD, TVA, RS, PCS ni autres prélèvements.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT: Résultats -->
+  <div class="lg:sticky" style="top:100px;" data-reveal="right">
+
+    <!-- Résultats IMPORT -->
+    <div class="sim-card mb-4" id="results-import">
+      <div style="background:#0D1B2A;padding:20px 24px;">
+        <div class="flex items-center justify-between">
+          <div class="font-heading font-bold text-white">Résultat du calcul</div>
+          <span class="material-symbols-outlined text-white/40 text-lg">receipt_long</span>
+        </div>
+      </div>
+      <div class="p-6" id="results-panel">
+
+        <!-- Empty state -->
+        <div id="res-empty" class="placeholder-card">
+          <span class="material-symbols-outlined text-g300 text-3xl mb-2 block">calculate</span>
+          <p class="text-g400 text-sm">Complétez le formulaire pour<br/>voir le calcul des droits</p>
+        </div>
+
+        <!-- Results content -->
+        <div id="res-content" style="display:none;">
+
+          <!-- Badge catégorie -->
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-xs font-semibold text-g400 uppercase tracking-wider">Catégorie TEC</div>
+            <span id="badge-cat" class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">Cat. 3 — DD 20%</span>
+          </div>
+
+          <!-- Valeur CIF -->
+          <div class="bg-g50 rounded-xl p-4 mb-5">
+            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Valeur CIF (XOF)</div>
+            <div class="result-row">
+              <span class="result-label">Valeur FOB</span>
+              <span class="result-value" id="res-fob-m">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">+ Fret</span>
+              <span class="result-value" id="res-fret-m">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">+ Assurance</span>
+              <span class="result-value" id="res-ass-m">—</span>
+            </div>
+            <div class="flex justify-between items-center pt-2 mt-1 border-t border-g200">
+              <span class="text-sm font-semibold text-brand">Valeur CIF</span>
+              <span class="text-base font-bold text-brand font-heading" id="res-cif-m">—</span>
+            </div>
+          </div>
+
+          <!-- TOTAL -->
+          <div class="result-total-row" style="background:#0D1B2A;border-radius:12px;padding:16px;">
+            <div class="result-total-label" style="color:#fff;">TOTAL DROITS & TAXES</div>
+            <div class="result-total-value" style="color:#fff;font-size:20px;" id="res-total-m">—</div>
+          </div>
+          <p class="text-xs text-g400 mt-3 italic text-center">* Estimation indicative — le taux exact dépend du code SH précis.</p>
+
+          <!-- GATE: formulaire pour débloquer le détail -->
+          <div id="res-gate-m" class="mt-5" style="display:none;">
+            <div style="background:linear-gradient(135deg,#0D1B2A,#1a2d42);border-radius:16px;padding:24px;color:#fff;">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-2xl" style="color:#fbbf24;">lock</span>
+                <div>
+                  <div class="font-heading font-bold text-base">Débloquer le détail complet</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,.5);">Taxes, droits détaillés, coût rendu — gratuit</div>
+                </div>
+              </div>
+              <form id="gate-form-m" onsubmit="submitGateM(event)" class="space-y-3">
+                <input type="text" id="gate-name-m" placeholder="Votre nom complet" required
+                  style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                <input type="email" id="gate-email-m" placeholder="Votre adresse email" required
+                  style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                <input type="tel" id="gate-phone-m" placeholder="Téléphone (ex: +229 01 XX XX XX)" required
+                  style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                <button type="submit" id="gate-btn-m"
+                  style="width:100%;padding:12px;border-radius:9999px;background:#fff;color:#0A0A0A;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;">
+                  <span class="material-symbols-outlined text-base">lock_open</span>
+                  Voir le détail des calculs
+                </button>
+              </form>
+              <p style="font-size:11px;color:rgba(255,255,255,.35);margin-top:10px;text-align:center;">Vos données sont protégées et ne seront utilisées que pour le suivi de votre demande.</p>
+            </div>
+          </div>
+
+          <!-- Détail des taxes (hidden by default, unlocked by gate) -->
+          <div id="res-detail-m" style="display:none;">
+          <div class="mt-4">
+            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Détail des impositions (sur valeur CIF)</div>
+            <div class="result-row">
+              <span class="result-label">PCS — Prél. Communautaire Solidarité (0,8%)</span>
+              <span class="result-value tax" id="res-pcs-m">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">PC — Prél. Communautaire (0,5%)</span>
+              <span class="result-value tax" id="res-pc-m">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">RS — Redevance Statistique (1%)</span>
+              <span class="result-value tax" id="res-rs-m">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">PS — Prélèvement de Solidarité (0,2%)</span>
+              <span class="result-value tax" id="res-ps-m">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label" id="res-dd-label-m">DD — Droit de Douane (20%)</span>
+              <span class="result-value tax" id="res-dd-m">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">RAU — Redevance Aménagement Urbain (0,5%)</span>
+              <span class="result-value tax" id="res-rau-m">—</span>
+            </div>
+            <div class="result-row" style="border-bottom:2px solid #E5E5E5;">
+              <span class="result-label">TVA — 18% sur (CIF + droits ci-dessus)</span>
+              <span class="result-value tax" id="res-tva-m">—</span>
+            </div>
+          </div>
+
+          <!-- Coût total rendu -->
+          <div class="result-total-row mt-3">
+            <div class="result-total-label">COÛT TOTAL RENDU</div>
+            <div class="result-total-value" id="res-rendu-m">—</div>
+          </div>
+          <p class="text-xs text-g400 mt-2 italic text-center">CIF + droits & taxes = coût rendu Cotonou</p>
+
+          <!-- CTA WhatsApp -->
+          <a href="https://wa.me/2290197500555?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20le%20dédouanement%20de%20marchandises." target="_blank" class="btn-brand btn-dark w-full justify-center mt-4 text-sm py-3">
+            <span class="material-symbols-outlined text-base">support_agent</span>
+            Demander un devis complet
+          </a>
+          </div><!-- closes res-detail-m -->
+        </div>
+
+      </div>
+    </div><!-- /results-import -->
+
+    <!-- Résultats EXPORT -->
+    <div class="sim-card mb-4" id="results-export" style="display:none;">
+      <div style="background:#0D1B2A;padding:20px 24px;">
+        <div class="flex items-center justify-between">
+          <div class="font-heading font-bold text-white">Résultat — Export</div>
+          <span class="material-symbols-outlined text-white/40 text-lg">north_east</span>
+        </div>
+      </div>
+      <div class="p-6">
+
+        <!-- Empty state export -->
+        <div id="res-empty-exp" class="placeholder-card">
+          <span class="material-symbols-outlined text-g300 text-3xl mb-2 block">calculate</span>
+          <p class="text-g400 text-sm">Saisissez la valeur FOB et le fret<br/>pour calculer la taxe de voirie</p>
+        </div>
+
+        <!-- Results export -->
+        <div id="res-content-exp" style="display:none;">
+
+          <!-- Badge -->
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-xs font-semibold text-g400 uppercase tracking-wider">Régime</div>
+            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Export — Taxe de Voirie</span>
+          </div>
+
+          <!-- Valeur CFR -->
+          <div class="bg-g50 rounded-xl p-4 mb-5">
+            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Valeur CFR (XOF)</div>
+            <div class="result-row">
+              <span class="result-label">Valeur FOB</span>
+              <span class="result-value" id="res-fob-exp">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">+ Fret</span>
+              <span class="result-value" id="res-fret-exp">—</span>
+            </div>
+            <div class="flex justify-between items-center pt-2 mt-1 border-t border-g200">
+              <span class="text-sm font-semibold text-brand">Valeur CFR</span>
+              <span class="text-base font-bold text-brand font-heading" id="res-cfr-exp">—</span>
+            </div>
+          </div>
+
+          <!-- Taxe de Voirie -->
+          <div class="bg-emerald-50 rounded-xl p-4 mb-5 border border-emerald-100">
+            <div class="flex justify-between items-center">
+              <div>
+                <div class="text-xs text-emerald-500 uppercase tracking-wider font-semibold mb-1">Taxe de Voirie</div>
+                <div class="text-xs text-emerald-400">CFR × 0,80%</div>
+              </div>
+              <span class="text-lg font-bold text-emerald-700 font-heading" id="res-voirie-exp">—</span>
+            </div>
+          </div>
+
+          <!-- TOTAL -->
+          <div class="result-total-row" style="background:#0D1B2A;border-radius:12px;padding:16px;">
+            <div class="result-total-label" style="color:#fff;">TOTAL TAXE EXPORT</div>
+            <div class="result-total-value" style="color:#fff;font-size:20px;" id="res-total-exp">—</div>
+          </div>
+          <p class="text-xs text-g400 mt-3 italic text-center">* La taxe de voirie (0,80%) est l'unique taxe à l'exportation au Bénin.</p>
+
+          <!-- CTA WhatsApp -->
+          <a href="https://wa.me/2290197500555?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20une%20exportation%20de%20marchandises." target="_blank" class="btn-brand btn-dark w-full justify-center mt-4 text-sm py-3">
+            <span class="material-symbols-outlined text-base">support_agent</span>
+            Demander un devis export
+          </a>
+        </div>
+
+      </div>
+    </div><!-- /results-export -->
+
+    <!-- Info card -->
+    <div class="bg-g950 rounded-[20px] p-5 text-white" data-reveal data-delay="200">
+      <div class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Sources & méthode</div>
+      <div class="space-y-2 text-sm text-white/70">
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Tarif Extérieur Commun TEC-CEDEAO SH2022</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>5 bandes tarifaires : 0%, 5%, 10%, 20%, 35%</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>RS 1% + PCS 0,8% + PC 0,5% + PS 0,2%</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>TVA 18% sur (CIF + droits)</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Taux BCEAO : 1 EUR = 655,957 XOF</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Taux USD indicatif : 1 USD ≈ 600 XOF</div>
+      </div>
+      <div class="mt-4 p-3 rounded-lg bg-white/10 text-xs text-amber-300 font-semibold">
+        * Le taux de DD dépend du code SH exact de votre marchandise. Contactez-nous pour une classification précise.
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0A0A0A;color:#fff;padding:64px 0 32px;" data-reveal>
+<div class="container mx-auto px-6 max-w-[1440px]">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-2.5 mb-4">
+        <div class="w-9 h-9 bg-white rounded-[10px] flex items-center justify-center text-brand font-heading font-bold text-xs tracking-wider">AD</div>
+        <div class="font-heading font-bold text-base text-white">AD TRANS <span class="text-white/40 font-medium">LOGISTICS</span></div>
+      </div>
+      <p class="text-white/50 text-sm leading-relaxed max-w-[320px]">Transit douanier, importation de véhicules et logistique portuaire à Cotonou, Bénin.</p>
+    </div>
+    <div>
+      <div class="font-semibold text-white/80 text-sm mb-4 uppercase tracking-wider">Outils</div>
+      <ul class="space-y-2 text-sm text-white/50">
+        <li><a href="/simulateur" class="hover:text-white transition-colors">Simulateur véhicules</a></li>
+        <li><a href="/calculateur" class="hover:text-white transition-colors text-white font-semibold">Calculateur marchandises</a></li>
+        <li><a href="/#suivi" class="hover:text-white transition-colors">Suivi en temps réel</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="font-semibold text-white/80 text-sm mb-4 uppercase tracking-wider">Contact</div>
+      <ul class="space-y-2 text-sm text-white/50">
+        <li>Cotonou, Bénin</li>
+        <li><a href="tel:+2290197500555" class="hover:text-white transition-colors">+229 01 97 50 05 55</a></li>
+        <li><a href="https://wa.me/2290197500555" class="hover:text-white transition-colors">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/30">
+    <div>© 2026 AD TRANS LOGISTICS. Tous droits réservés.</div>
+    <div>Calculateur fourni à titre indicatif — droits exacts selon classification officielle</div>
+  </div>
+</div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav id="bottomnav">
+  <a class="bn-item" href="/" data-page="/">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+    Accueil
+  </a>
+  <a class="bn-item" href="/simulateur" data-page="/simulateur">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 7h6M9 11h6M9 15h4M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/></svg>
+    Véhicules
+  </a>
+  <a class="bn-item active" href="/calculateur" data-page="/calculateur">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+    Marchandises
+  </a>
+  <a class="bn-item" href="/demande" data-page="/demande">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Demande
+  </a>
+  <a href="/espace-client" class="bn-item" data-page="/espace-client">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Compte</span>
+  </a>
+</nav>
+
+<script>
+// ═══ TARIF TEC-CEDEAO — Base de données catégories ═══
+// Structure : { catégorie: { label, produits: [{ label, dd, rs, chapitres }] } }
+// DD = Droit de Douane (0%, 5%, 10%, 20%, 35%)
+// RS = Redevance Statistique (toujours 1%)
+
+const CATEGORIES = {
+  "animaux_vivants": {
+    label: "Animaux vivants & produits animaux (Ch. 01-05)",
+    produits: [
+      { label: "Reproducteurs de race pure", dd: 5, chapitres: "0101-0104" },
+      { label: "Autres animaux vivants", dd: 10, chapitres: "0101-0106" },
+      { label: "Viandes fraîches ou réfrigérées", dd: 20, chapitres: "02.01-02.10" },
+      { label: "Viandes congelées", dd: 35, chapitres: "02.02-02.10" },
+      { label: "Poissons vivants / alevins", dd: 5, chapitres: "03.01" },
+      { label: "Poissons frais, réfrigérés, congelés", dd: 10, chapitres: "03.02-03.04" },
+      { label: "Poissons séchés, fumés, salés", dd: 20, chapitres: "03.05" },
+      { label: "Lait et produits laitiers", dd: 10, chapitres: "04.01-04.06" },
+      { label: "Oeufs d'oiseaux", dd: 20, chapitres: "04.07-04.08" }
+    ]
+  },
+  "vegetaux": {
+    label: "Produits végétaux (Ch. 06-14)",
+    produits: [
+      { label: "Semences et plants", dd: 5, chapitres: "06.01-07.13, 12.09" },
+      { label: "Légumes frais ou réfrigérés", dd: 10, chapitres: "07.01-07.09" },
+      { label: "Légumes congelés, conservés", dd: 20, chapitres: "07.10-07.14" },
+      { label: "Fruits frais", dd: 10, chapitres: "08.01-08.10" },
+      { label: "Fruits séchés, conservés", dd: 20, chapitres: "08.11-08.14" },
+      { label: "Céréales (riz, blé, maïs, sorgho)", dd: 10, chapitres: "10.01-10.08" },
+      { label: "Farine de blé / maïs", dd: 10, chapitres: "11.01-11.02" },
+      { label: "Graines oléagineuses", dd: 10, chapitres: "12.01-12.07" }
+    ]
+  },
+  "alimentaires": {
+    label: "Produits alimentaires transformés (Ch. 15-24)",
+    produits: [
+      { label: "Huiles végétales brutes", dd: 10, chapitres: "15.07-15.15" },
+      { label: "Huiles végétales raffinées", dd: 20, chapitres: "15.07-15.15" },
+      { label: "Sucre de canne / betterave", dd: 10, chapitres: "17.01" },
+      { label: "Confiseries, chocolat", dd: 20, chapitres: "17.04, 18.06" },
+      { label: "Préparations alimentaires", dd: 20, chapitres: "19.01-21.06" },
+      { label: "Boissons (jus, sodas, eau)", dd: 20, chapitres: "22.01-22.02" },
+      { label: "Boissons alcoolisées (bière, vin)", dd: 20, chapitres: "22.03-22.08" },
+      { label: "Tabacs et cigarettes", dd: 20, chapitres: "24.01-24.03" },
+      { label: "Conserves de viande / poisson", dd: 20, chapitres: "16.01-16.05" }
+    ]
+  },
+  "chimiques": {
+    label: "Produits chimiques & pharmaceutiques (Ch. 28-38)",
+    produits: [
+      { label: "Produits chimiques inorganiques", dd: 5, chapitres: "28.01-28.53" },
+      { label: "Produits chimiques organiques", dd: 5, chapitres: "29.01-29.42" },
+      { label: "Produits pharmaceutiques / médicaments", dd: 0, chapitres: "30.01-30.06" },
+      { label: "Engrais", dd: 5, chapitres: "31.01-31.05" },
+      { label: "Insecticides, herbicides, fongicides", dd: 5, chapitres: "38.08" },
+      { label: "Savons et détergents", dd: 20, chapitres: "34.01-34.02" },
+      { label: "Parfums et cosmétiques", dd: 20, chapitres: "33.03-33.07" },
+      { label: "Peintures et vernis", dd: 10, chapitres: "32.08-32.10" }
+    ]
+  },
+  "plastiques_caoutchouc": {
+    label: "Plastiques, caoutchouc (Ch. 39-40)",
+    produits: [
+      { label: "Matières plastiques brutes (résines)", dd: 5, chapitres: "39.01-39.14" },
+      { label: "Articles en plastique (emballages, sacs)", dd: 20, chapitres: "39.15-39.26" },
+      { label: "Caoutchouc brut / synthétique", dd: 5, chapitres: "40.01-40.06" },
+      { label: "Pneumatiques neufs", dd: 10, chapitres: "40.11" },
+      { label: "Pneumatiques rechapés / usagés", dd: 20, chapitres: "40.12" },
+      { label: "Articles en caoutchouc", dd: 10, chapitres: "40.07-40.17" }
+    ]
+  },
+  "textiles": {
+    label: "Textiles & vêtements (Ch. 50-63)",
+    produits: [
+      { label: "Coton brut, fibres textiles", dd: 5, chapitres: "52.01-52.03, 53-55" },
+      { label: "Fils et tissus", dd: 10, chapitres: "52.04-52.12" },
+      { label: "Vêtements et accessoires (neufs)", dd: 20, chapitres: "61-62" },
+      { label: "Friperie (vêtements usagés)", dd: 35, chapitres: "63.09" },
+      { label: "Linge de maison, rideaux", dd: 20, chapitres: "63.01-63.08" },
+      { label: "Tapis et revêtements de sol", dd: 20, chapitres: "57.01-57.05" }
+    ]
+  },
+  "materiaux_construction": {
+    label: "Matériaux de construction (Ch. 25, 68-70, 72-73)",
+    produits: [
+      { label: "Ciment", dd: 10, chapitres: "25.23" },
+      { label: "Sable, gravier, pierres", dd: 5, chapitres: "25.05-25.17" },
+      { label: "Fer et acier (brut, barres, profilés)", dd: 10, chapitres: "72.06-72.28" },
+      { label: "Tôles, tubes et profilés en acier", dd: 10, chapitres: "73.01-73.06" },
+      { label: "Articles en fer/acier (quincaillerie)", dd: 20, chapitres: "73.07-73.26" },
+      { label: "Aluminium brut", dd: 5, chapitres: "76.01" },
+      { label: "Articles en aluminium", dd: 20, chapitres: "76.04-76.16" },
+      { label: "Verre et articles en verre", dd: 10, chapitres: "70.01-70.20" },
+      { label: "Céramique, carrelage", dd: 20, chapitres: "69.01-69.14" }
+    ]
+  },
+  "machines_equipements": {
+    label: "Machines & équipements industriels (Ch. 84-85)",
+    produits: [
+      { label: "Machines agricoles (tracteurs, moissonneuses)", dd: 5, chapitres: "84.32-84.37" },
+      { label: "Machines-outils industrielles", dd: 5, chapitres: "84.56-84.65" },
+      { label: "Machines de BTP (pelleteuses, grues)", dd: 5, chapitres: "84.26-84.30" },
+      { label: "Pompes, compresseurs", dd: 5, chapitres: "84.13-84.14" },
+      { label: "Groupes électrogènes", dd: 10, chapitres: "85.02" },
+      { label: "Moteurs et turbines", dd: 5, chapitres: "84.06-84.12" },
+      { label: "Matériel informatique (PC, serveurs)", dd: 5, chapitres: "84.71-84.73" },
+      { label: "Matériel de télécommunications", dd: 5, chapitres: "85.17" },
+      { label: "Téléphones portables", dd: 5, chapitres: "85.17.13" },
+      { label: "Appareils électroménagers", dd: 20, chapitres: "84.50-84.52, 85.08-85.16" },
+      { label: "Câbles et fils électriques", dd: 10, chapitres: "85.44" },
+      { label: "Panneaux solaires", dd: 5, chapitres: "85.41" },
+      { label: "Batteries et accumulateurs", dd: 10, chapitres: "85.06-85.07" },
+      { label: "Transformateurs électriques", dd: 5, chapitres: "85.04" }
+    ]
+  },
+  "vehicules": {
+    label: "Véhicules & transport (Ch. 87)",
+    produits: [
+      { label: "Tracteurs (neufs)", dd: 5, chapitres: "87.01" },
+      { label: "Tracteurs (usagés)", dd: 5, chapitres: "87.01" },
+      { label: "Autobus / minibus (neufs, ≥10 places)", dd: 10, chapitres: "87.02" },
+      { label: "Autobus / minibus (usagés)", dd: 10, chapitres: "87.02" },
+      { label: "Voitures de tourisme (neuves)", dd: 20, chapitres: "87.03" },
+      { label: "Voitures de tourisme (usagées)", dd: 20, chapitres: "87.03" },
+      { label: "Camions, camionnettes (neufs)", dd: 10, chapitres: "87.04" },
+      { label: "Camions, camionnettes (usagés)", dd: 10, chapitres: "87.04" },
+      { label: "Véhicules spéciaux (pompiers, grues)", dd: 5, chapitres: "87.05" },
+      { label: "Motocycles / cyclomoteurs (neufs, CKD)", dd: 5, chapitres: "87.11" },
+      { label: "Motocycles / cyclomoteurs (autres)", dd: 20, chapitres: "87.11" },
+      { label: "Bicyclettes", dd: 20, chapitres: "87.12" },
+      { label: "Remorques et semi-remorques", dd: 10, chapitres: "87.16" },
+      { label: "Pièces et accessoires auto", dd: 10, chapitres: "87.08" }
+    ]
+  },
+  "electronique": {
+    label: "Électronique & optique (Ch. 85, 90, 95)",
+    produits: [
+      { label: "Téléviseurs", dd: 20, chapitres: "85.28" },
+      { label: "Récepteurs radio", dd: 20, chapitres: "85.27" },
+      { label: "Haut-parleurs, écouteurs", dd: 20, chapitres: "85.18" },
+      { label: "Appareils photo, caméras", dd: 20, chapitres: "85.25, 90.06" },
+      { label: "Instruments de mesure / labo", dd: 5, chapitres: "90.01-90.33" },
+      { label: "Instruments médicaux / chirurgicaux", dd: 0, chapitres: "90.18-90.22" },
+      { label: "Jeux vidéo, jouets", dd: 20, chapitres: "95.03-95.05" }
+    ]
+  },
+  "papier_bois": {
+    label: "Bois, papier, carton (Ch. 44-49)",
+    produits: [
+      { label: "Bois brut (grumes)", dd: 5, chapitres: "44.03" },
+      { label: "Bois sciés, contreplaqués", dd: 10, chapitres: "44.07-44.12" },
+      { label: "Meubles en bois", dd: 20, chapitres: "94.01-94.03" },
+      { label: "Papier et carton", dd: 10, chapitres: "48.01-48.23" },
+      { label: "Livres, journaux (imprimés)", dd: 0, chapitres: "49.01-49.11" }
+    ]
+  },
+  "divers": {
+    label: "Autres marchandises",
+    produits: [
+      { label: "Matériel montage industriel (CKD)", dd: 5, chapitres: "Divers" },
+      { label: "Biens sociaux essentiels (cat. 0)", dd: 0, chapitres: "Divers" },
+      { label: "Matières premières de base (cat. 1)", dd: 5, chapitres: "Divers" },
+      { label: "Intrants et produits intermédiaires (cat. 2)", dd: 10, chapitres: "Divers" },
+      { label: "Biens de consommation courante (cat. 3)", dd: 20, chapitres: "Divers" },
+      { label: "Biens de consommation finale spécifiques (cat. 4)", dd: 35, chapitres: "Divers" }
+    ]
+  }
+};
+
+// ═══ Taux de change ═══
+const TAUX_CHANGE = {
+  'XOF': 1,
+  'EUR': 655.957,
+  'USD': 600,
+};
+
+// ═══ Fonctions utilitaires ═══
+function fmt(n) {
+  if (n == null || isNaN(n)) return '—';
+  return n.toLocaleString('fr-FR', {maximumFractionDigits:0}) + ' XOF';
+}
+
+// ═══ Populate catégorie dropdown ═══
+const selCat = document.getElementById('sel-categorie');
+const selProd = document.getElementById('sel-produit');
+
+Object.keys(CATEGORIES).forEach(key => {
+  const o = document.createElement('option');
+  o.value = key;
+  o.textContent = CATEGORIES[key].label;
+  selCat.appendChild(o);
+});
+
+function onCategorieChange() {
+  const cat = selCat.value;
+  selProd.innerHTML = '<option value="">— Sélectionner un produit —</option>';
+  selProd.disabled = !cat;
+  if (cat && CATEGORIES[cat]) {
+    CATEGORIES[cat].produits.forEach((p, i) => {
+      const o = document.createElement('option');
+      o.value = i;
+      o.textContent = p.label + ' — DD ' + p.dd + '%';
+      selProd.appendChild(o);
+    });
+  }
+  resetResults();
+}
+
+function onProduitChange() {
+  const cat = selCat.value;
+  const idx = selProd.value;
+  if (cat && idx !== '' && CATEGORIES[cat]) {
+    const prod = CATEGORIES[cat].produits[parseInt(idx)];
+    document.getElementById('disp-dd').textContent = prod.dd + '%';
+  }
+  calcMarch();
+}
+
+function onShInput() {
+  // Code SH manual — no auto-detect for now, just recalc
+  calcMarch();
+}
+
+function resetResults() {
+  document.getElementById('res-empty').style.display = 'block';
+  document.getElementById('res-content').style.display = 'none';
+}
+
+function calcMarch() {
+  const cat = selCat.value;
+  const idx = selProd.value;
+  const fobRaw = parseFloat(document.getElementById('inp-fob').value);
+  const devise = document.getElementById('sel-devise').value;
+  const fretRaw = parseFloat(document.getElementById('inp-fret-m').value) || 0;
+  const assRaw = parseFloat(document.getElementById('inp-assurance').value) || 0;
+
+  if (!cat || idx === '' || !fobRaw || fobRaw <= 0) {
+    resetResults();
+    return;
+  }
+
+  const prod = CATEGORIES[cat].produits[parseInt(idx)];
+  if (!prod) { resetResults(); return; }
+
+  const taux = TAUX_CHANGE[devise] || 1;
+  const fobXOF = Math.round(fobRaw * taux);
+  const fretXOF = Math.round(fretRaw * taux);
+  const assXOF = Math.round(assRaw * taux);
+  const cif = fobXOF + fretXOF + assXOF;
+
+  // Taxes sur CIF
+  const ddRate = prod.dd / 100;
+  const pcs = Math.round(cif * 0.008);
+  const pc  = Math.round(cif * 0.005);
+  const rs  = Math.round(cif * 0.01);
+  const ps  = Math.round(cif * 0.002);
+  const dd  = Math.round(cif * ddRate);
+  const rau = Math.round(cif * 0.005);
+  const baseTVA = cif + pcs + pc + rs + ps + dd + rau;
+  const tva = Math.round(baseTVA * 0.18);
+  const totalDroits = pcs + pc + rs + ps + dd + rau + tva;
+  const totalRendu = cif + totalDroits;
+
+  // Affichage
+  document.getElementById('res-empty').style.display = 'none';
+  document.getElementById('res-content').style.display = 'block';
+  document.getElementById('res-content').classList.add('result-animate');
+
+  // Badge catégorie
+  const catNum = prod.dd === 0 ? 0 : prod.dd === 5 ? 1 : prod.dd === 10 ? 2 : prod.dd === 20 ? 3 : 4;
+  const colors = ['bg-blue-100 text-blue-800','bg-teal-100 text-teal-800','bg-yellow-100 text-yellow-800','bg-green-100 text-green-800','bg-red-100 text-red-800'];
+  document.getElementById('badge-cat').textContent = 'Cat. ' + catNum + ' — DD ' + prod.dd + '%';
+  document.getElementById('badge-cat').className = 'inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ' + colors[catNum];
+
+  // CIF
+  document.getElementById('res-fob-m').textContent = fmt(fobXOF);
+  document.getElementById('res-fret-m').textContent = fmt(fretXOF);
+  document.getElementById('res-ass-m').textContent = fmt(assXOF);
+  document.getElementById('res-cif-m').textContent = fmt(cif);
+
+  // Total
+  document.getElementById('res-total-m').textContent = fmt(totalDroits);
+
+  // Détail
+  document.getElementById('res-dd-label-m').textContent = 'DD — Droit de Douane (' + prod.dd + '%)';
+  document.getElementById('res-pcs-m').textContent = fmt(pcs);
+  document.getElementById('res-pc-m').textContent = fmt(pc);
+  document.getElementById('res-rs-m').textContent = fmt(rs);
+  document.getElementById('res-ps-m').textContent = fmt(ps);
+  document.getElementById('res-dd-m').textContent = fmt(dd);
+  document.getElementById('res-rau-m').textContent = fmt(rau);
+  document.getElementById('res-tva-m').textContent = fmt(tva);
+
+  // Rendu
+  document.getElementById('res-rendu-m').textContent = fmt(totalRendu);
+
+  // Update display boxes
+  document.getElementById('disp-dd').textContent = prod.dd + '%';
+
+  // Gate management
+  const gateM = document.getElementById('res-gate-m');
+  const detailM = document.getElementById('res-detail-m');
+  if (gateUnlockedM) {
+    gateM.style.display = 'none';
+    detailM.style.display = 'block';
+    autoSaveSimulationM();
+  } else {
+    gateM.style.display = 'block';
+    detailM.style.display = 'none';
+  }
+}
+
+// ═══ Mobile nav ═══
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobOverlay = document.getElementById('mob-overlay');
+
+function closeMobile() {
+  mobileMenu.classList.remove('flex');
+  mobileMenu.classList.add('hidden');
+  mobOverlay.classList.remove('visible');
+}
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.contains('flex');
+  if (open) { closeMobile(); }
+  else {
+    mobileMenu.classList.add('flex');
+    mobileMenu.classList.remove('hidden');
+    mobOverlay.classList.add('visible');
+  }
+});
+
+// Active bottom nav
+(function() {
+  const p = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('#bottomnav .bn-item').forEach(a => {
+    const dp = a.dataset.page.replace(/\/$/, '') || '/';
+    if (dp === p) a.classList.add('active');
+    else a.classList.remove('active');
+  });
+})();
+
+// Scroll navbar
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.boxShadow =
+    window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,.08)' : 'none';
+});
+
+// Scroll reveal
+(function(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const delay = e.target.dataset.delay || 0;
+        setTimeout(() => e.target.classList.add('revealed'), delay);
+      }
+    });
+  }, { threshold:0.08 });
+  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+})();
+
+// ══════════════════════════════════════════════════════════════
+// ══ SUPABASE GATE — Déblocage du détail marchandise ══════════
+// ══════════════════════════════════════════════════════════════
+const SB_URL_M = 'https://mmfdxoappbhxoqpgsdit.supabase.co';
+const SB_ANON_M = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tZmR4b2FwcGJoeG9xcGdzZGl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2Mzk1NTksImV4cCI6MjA5MDIxNTU1OX0.JvY1Ow4suN7kt-ESyplGTZfY0TIpbwK7X9ceGv3Lreg';
+const EDGE_FN_M = SB_URL_M + '/functions/v1/notify-simulation';
+
+let gateUnlockedM = false;
+
+// Check localStorage on load
+(function checkGateM() {
+  const saved = localStorage.getItem('adtl_contact');
+  if (saved) {
+    try {
+      const c = JSON.parse(saved);
+      if (c.email && c.phone) {
+        gateUnlockedM = true;
+        document.getElementById('gate-name-m').value = c.name || '';
+        document.getElementById('gate-email-m').value = c.email;
+        document.getElementById('gate-phone-m').value = c.phone;
+      }
+    } catch(e) {}
+  }
+})();
+
+function getSimulationDataM() {
+  const selCat = document.getElementById('sel-categorie');
+  const selProd = document.getElementById('sel-produit');
+  return {
+    type: 'marchandise',
+    input_data: {
+      categorie: selCat?.options[selCat.selectedIndex]?.text || '',
+      produit: selProd?.options[selProd.selectedIndex]?.text || '',
+      fob: document.getElementById('inp-fob')?.value || '',
+      devise: document.getElementById('sel-devise')?.value || 'XOF',
+      fret: document.getElementById('inp-fret-m')?.value || '0',
+      assurance: document.getElementById('inp-assurance')?.value || '0',
+      dd_rate: document.getElementById('disp-dd')?.textContent?.replace('%','') || ''
+    },
+    result_data: {
+      cif: document.getElementById('res-cif-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
+      total: document.getElementById('res-total-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
+      rendu: document.getElementById('res-rendu-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || ''
+    }
+  };
+}
+
+async function submitGateM(e) {
+  e.preventDefault();
+  const btn = document.getElementById('gate-btn-m');
+  const name = document.getElementById('gate-name-m').value.trim();
+  const email = document.getElementById('gate-email-m').value.trim();
+  const phone = document.getElementById('gate-phone-m').value.trim();
+
+  btn.disabled = true;
+  btn.innerHTML = '<span style="display:inline-block;width:17px;height:17px;border:2px solid rgba(0,0,0,.2);border-top-color:#0A0A0A;border-radius:50%;animation:spin .7s linear infinite;"></span> Envoi...';
+
+  const simData = getSimulationDataM();
+  simData.email = email;
+  simData.phone = phone;
+  simData.full_name = name;
+
+  try {
+    await fetch(EDGE_FN_M, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON_M },
+      body: JSON.stringify(simData)
+    });
+  } catch(err) { console.warn('Edge fn error:', err); }
+
+  // Save to localStorage
+  localStorage.setItem('adtl_contact', JSON.stringify({ name, email, phone }));
+  gateUnlockedM = true;
+
+  // Reveal detail
+  document.getElementById('res-gate-m').style.display = 'none';
+  document.getElementById('res-detail-m').style.display = 'block';
+
+  btn.disabled = false;
+  btn.innerHTML = '<span class="material-symbols-outlined text-base">lock_open</span> Voir le détail des calculs';
+}
+
+async function autoSaveSimulationM() {
+  const saved = localStorage.getItem('adtl_contact');
+  if (!saved) return;
+  const c = JSON.parse(saved);
+  const simData = getSimulationDataM();
+  simData.email = c.email;
+  simData.phone = c.phone;
+  simData.full_name = c.name || '';
+
+  try {
+    await fetch(EDGE_FN_M, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON_M },
+      body: JSON.stringify(simData)
+    });
+  } catch(err) { console.warn('Auto-save error:', err); }
+}
+
+// ══════════════════════════════════════════════════════════════
+// ══ MODE IMPORT / EXPORT ═════════════════════════════════════
+// ══════════════════════════════════════════════════════════════
+let currentMode = 'import';
+
+function switchMode(mode) {
+  currentMode = mode;
+  const btnImport = document.getElementById('btn-mode-import');
+  const btnExport = document.getElementById('btn-mode-export');
+  const formImport = document.getElementById('form-import');
+  const formExport = document.getElementById('form-export');
+  const resImport = document.getElementById('results-import');
+  const resExport = document.getElementById('results-export');
+  const badgesImport = document.getElementById('badges-import');
+  const badgesExport = document.getElementById('badges-export');
+  const noteImport = document.getElementById('note-import');
+  const noteExport = document.getElementById('note-export');
+
+  if (mode === 'import') {
+    btnImport.className = 'flex-1 py-2.5 px-4 rounded-full text-sm font-bold transition-all bg-brand text-white shadow';
+    btnExport.className = 'flex-1 py-2.5 px-4 rounded-full text-sm font-bold transition-all text-g500';
+    formImport.style.display = '';
+    formExport.style.display = 'none';
+    resImport.style.display = '';
+    resExport.style.display = 'none';
+    badgesImport.style.display = '';
+    badgesExport.style.display = 'none';
+    noteImport.style.display = '';
+    noteExport.style.display = 'none';
+  } else {
+    btnExport.className = 'flex-1 py-2.5 px-4 rounded-full text-sm font-bold transition-all bg-brand text-white shadow';
+    btnImport.className = 'flex-1 py-2.5 px-4 rounded-full text-sm font-bold transition-all text-g500';
+    formImport.style.display = 'none';
+    formExport.style.display = '';
+    resImport.style.display = 'none';
+    resExport.style.display = '';
+    badgesImport.style.display = 'none';
+    badgesExport.style.display = '';
+    noteImport.style.display = 'none';
+    noteExport.style.display = '';
+  }
+}
+
+// ══ Calcul Export ═══
+const EUR_XOF_EXP = 655.957;
+const USD_XOF_EXP = 600;
+
+function calcExport() {
+  const fobRaw = parseFloat(document.getElementById('inp-fob-exp').value) || 0;
+  const fretRaw = parseFloat(document.getElementById('inp-fret-exp').value) || 0;
+  const devise = document.getElementById('sel-devise-exp').value;
+
+  if (!fobRaw) {
+    document.getElementById('res-empty-exp').style.display = 'block';
+    document.getElementById('res-content-exp').style.display = 'none';
+    return;
+  }
+
+  // Conversion en XOF
+  const rate = devise === 'EUR' ? EUR_XOF_EXP : devise === 'USD' ? USD_XOF_EXP : 1;
+  const fobXOF = Math.round(fobRaw * rate);
+  const fretXOF = Math.round(fretRaw * rate);
+  const cfr = fobXOF + fretXOF;
+
+  // Taxe de Voirie = 0,80% du CFR
+  const voirie = Math.round(cfr * 0.008);
+  const totalExp = voirie;
+
+  // Affichage
+  document.getElementById('res-empty-exp').style.display = 'none';
+  document.getElementById('res-content-exp').style.display = 'block';
+
+  document.getElementById('res-fob-exp').textContent = fmt(fobXOF);
+  document.getElementById('res-fret-exp').textContent = fmt(fretXOF);
+  document.getElementById('res-cfr-exp').textContent = fmt(cfr);
+  document.getElementById('res-voirie-exp').textContent = fmt(voirie);
+  document.getElementById('res-total-exp').textContent = fmt(totalExp);
+}
+
+// Check URL param for mode
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('mode') === 'export') switchMode('export');
+})();
+</script>
+<script src="/cookie-consent.js"></script>
+</body>
+</html>

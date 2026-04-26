@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.adtranslogistics.app",
+    "sha256_cert_fingerprints": [
+      "3E:04:A4:B7:68:EF:AA:27:5F:8A:3B:31:B3:A5:25:02:38:72:CB:46:25:E4:C6:55:B7:55:89:4A:33:07:0D:B9"
+    ]
+  }
+}]

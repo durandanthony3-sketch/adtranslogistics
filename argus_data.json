@@ -1,0 +1,1992 @@
+{
+  "ALFA ROMEO": [
+    {
+      "modele": "Ar Grand Veyager",
+      "petite": 921,
+      "grande": 4950,
+      "moyenne": 2935.5
+    },
+    {
+      "modele": "Espace",
+      "petite": 2088,
+      "grande": 5250,
+      "moyenne": 3669.0
+    },
+    {
+      "modele": "Frestander",
+      "petite": 5210,
+      "grande": 5210,
+      "moyenne": 5210.0
+    },
+    {
+      "modele": "Lagan MEV",
+      "petite": 2260,
+      "grande": 2260,
+      "moyenne": 2260.0
+    },
+    {
+      "modele": "Mite",
+      "petite": 3950,
+      "grande": 25530,
+      "moyenne": 14740.0
+    },
+    {
+      "modele": "Mualtiovan",
+      "petite": 4510,
+      "grande": 4510,
+      "moyenne": 4510.0
+    },
+    {
+      "modele": "Passat SW",
+      "petite": 908,
+      "grande": 9050,
+      "moyenne": 4979.0
+    },
+    {
+      "modele": "Prius Rechargeable",
+      "petite": 700,
+      "grande": 3540,
+      "moyenne": 2120.0
+    },
+    {
+      "modele": "RSS Sportback",
+      "petite": 525,
+      "grande": 53026,
+      "moyenne": 26775.5
+    }
+  ],
+  "AUDI": [
+    {
+      "modele": "Classe SL",
+      "petite": 600,
+      "grande": 53000,
+      "moyenne": 26800.0
+    },
+    {
+      "modele": "Fabia Break",
+      "petite": 1288,
+      "grande": 2080,
+      "moyenne": 1684.0
+    },
+    {
+      "modele": "Roomester",
+      "petite": 905,
+      "grande": 40640,
+      "moyenne": 20772.5
+    },
+    {
+      "modele": "Seicento",
+      "petite": 709,
+      "grande": 27051,
+      "moyenne": 13880.0
+    },
+    {
+      "modele": "Sumper",
+      "petite": 1080,
+      "grande": 1930,
+      "moyenne": 1505.0
+    },
+    {
+      "modele": "col Pleanto",
+      "petite": 525,
+      "grande": 30265,
+      "moyenne": 15395.0
+    }
+  ],
+  "CITROEN": [
+    {
+      "modele": "C4 Cactus",
+      "petite": 590,
+      "grande": 9050,
+      "moyenne": 4820.0
+    },
+    {
+      "modele": "Eyyermme",
+      "petite": 7050,
+      "grande": 36200,
+      "moyenne": 21625.0
+    }
+  ],
+  "DACIA": [
+    {
+      "modele": "Duster",
+      "petite": 1000,
+      "grande": 25025,
+      "moyenne": 13012.5
+    },
+    {
+      "modele": "Grand Chereiee",
+      "petite": 3320,
+      "grande": 3480,
+      "moyenne": 3400.0
+    },
+    {
+      "modele": "SH 20000 Camare Cabeietet",
+      "petite": 709,
+      "grande": 740,
+      "moyenne": 724.5
+    },
+    {
+      "modele": "TT Roadster",
+      "petite": 500,
+      "grande": 7030,
+      "moyenne": 3765.0
+    }
+  ],
+  "FIAT": [
+    {
+      "modele": "A3 Sporthack",
+      "petite": 1072,
+      "grande": 23844,
+      "moyenne": 12458.0
+    },
+    {
+      "modele": "AG Sporthack",
+      "petite": 1900,
+      "grande": 42088,
+      "moyenne": 21994.0
+    },
+    {
+      "modele": "AS Awant",
+      "petite": 12300,
+      "grande": 43008,
+      "moyenne": 27654.0
+    },
+    {
+      "modele": "AS Cabetotet",
+      "petite": 790,
+      "grande": 1700,
+      "moyenne": 1245.0
+    },
+    {
+      "modele": "Al Sportback",
+      "petite": 520,
+      "grande": 9280,
+      "moyenne": 4900.0
+    },
+    {
+      "modele": "BS 7 Crosshack",
+      "petite": 10700,
+      "grande": 10700,
+      "moyenne": 10700.0
+    },
+    {
+      "modele": "Bertinge",
+      "petite": 520,
+      "grande": 7250,
+      "moyenne": 3885.0
+    },
+    {
+      "modele": "Brave",
+      "petite": 1840,
+      "grande": 1840,
+      "moyenne": 1840.0
+    },
+    {
+      "modele": "Carawalie",
+      "petite": 700,
+      "grande": 20000,
+      "moyenne": 10350.0
+    },
+    {
+      "modele": "Ducato Combi",
+      "petite": 2000,
+      "grande": 2000,
+      "moyenne": 2000.0
+    },
+    {
+      "modele": "Ducato Fa",
+      "petite": 700,
+      "grande": 28800,
+      "moyenne": 14750.0
+    },
+    {
+      "modele": "Ducato Panersma",
+      "petite": 2360,
+      "grande": 2360,
+      "moyenne": 2360.0
+    },
+    {
+      "modele": "E-Pace",
+      "petite": 1000,
+      "grande": 58000,
+      "moyenne": 29500.0
+    },
+    {
+      "modele": "ExoSport",
+      "petite": 3200,
+      "grande": 10875,
+      "moyenne": 7037.5
+    },
+    {
+      "modele": "Fiesta",
+      "petite": 2600,
+      "grande": 3220,
+      "moyenne": 2910.0
+    },
+    {
+      "modele": "Freemont",
+      "petite": 2340,
+      "grande": 4121,
+      "moyenne": 3230.5
+    },
+    {
+      "modele": "Kom",
+      "petite": 630,
+      "grande": 20704,
+      "moyenne": 10667.0
+    },
+    {
+      "modele": "M6 Cabriolet",
+      "petite": 523,
+      "grande": 523,
+      "moyenne": 523.0
+    },
+    {
+      "modele": "Master Fy",
+      "petite": 520,
+      "grande": 19100,
+      "moyenne": 9810.0
+    },
+    {
+      "modele": "Megane",
+      "petite": 11700,
+      "grande": 11700,
+      "moyenne": 11700.0
+    },
+    {
+      "modele": "Megane Estate",
+      "petite": 11400,
+      "grande": 20456,
+      "moyenne": 15928.0
+    },
+    {
+      "modele": "Panamera Spt Tertame",
+      "petite": 751,
+      "grande": 10200,
+      "moyenne": 5475.5
+    },
+    {
+      "modele": "Panda",
+      "petite": 500,
+      "grande": 36300,
+      "moyenne": 18400.0
+    },
+    {
+      "modele": "Panda 414",
+      "petite": 1041,
+      "grande": 2480,
+      "moyenne": 1760.5
+    },
+    {
+      "modele": "Panda 4x4 Cress",
+      "petite": 4000,
+      "grande": 4500,
+      "moyenne": 4250.0
+    },
+    {
+      "modele": "Punto Ste",
+      "petite": 750,
+      "grande": 7750,
+      "moyenne": 4250.0
+    },
+    {
+      "modele": "Q70",
+      "petite": 2510,
+      "grande": 32800,
+      "moyenne": 17655.0
+    },
+    {
+      "modele": "RS3 Sporthack",
+      "petite": 900,
+      "grande": 30004,
+      "moyenne": 15452.0
+    },
+    {
+      "modele": "Range Rewer Sport",
+      "petite": 900,
+      "grande": 34500,
+      "moyenne": 17700.0
+    },
+    {
+      "modele": "Renegade",
+      "petite": 730,
+      "grande": 36800,
+      "moyenne": 18765.0
+    },
+    {
+      "modele": "SS Sperthack",
+      "petite": 513,
+      "grande": 775,
+      "moyenne": 644.0
+    },
+    {
+      "modele": "SS Sportback",
+      "petite": 500,
+      "grande": 35600,
+      "moyenne": 18050.0
+    },
+    {
+      "modele": "Sediel",
+      "petite": 22409,
+      "grande": 22409,
+      "moyenne": 22409.0
+    },
+    {
+      "modele": "Sette",
+      "petite": 750,
+      "grande": 38800,
+      "moyenne": 19775.0
+    },
+    {
+      "modele": "Sportbrale",
+      "petite": 560,
+      "grande": 40108,
+      "moyenne": 20334.0
+    },
+    {
+      "modele": "Talento Fy",
+      "petite": 648,
+      "grande": 7800,
+      "moyenne": 4224.0
+    },
+    {
+      "modele": "Tues",
+      "petite": 18400,
+      "grande": 18400,
+      "moyenne": 18400.0
+    },
+    {
+      "modele": "ack",
+      "petite": 35900,
+      "grande": 42000,
+      "moyenne": 38950.0
+    },
+    {
+      "modele": "emect",
+      "petite": 10600,
+      "grande": 10600,
+      "moyenne": 10600.0
+    },
+    {
+      "modele": "exo",
+      "petite": 3200,
+      "grande": 24300,
+      "moyenne": 13750.0
+    },
+    {
+      "modele": "ma",
+      "petite": 804,
+      "grande": 12200,
+      "moyenne": 6502.0
+    },
+    {
+      "modele": "me",
+      "petite": 2370,
+      "grande": 2370,
+      "moyenne": 2370.0
+    },
+    {
+      "modele": "my 140 SWE",
+      "petite": 714,
+      "grande": 6241,
+      "moyenne": 3477.5
+    },
+    {
+      "modele": "na",
+      "petite": 610,
+      "grande": 20728,
+      "moyenne": 10669.0
+    },
+    {
+      "modele": "purer",
+      "petite": 500,
+      "grande": 39000,
+      "moyenne": 19750.0
+    },
+    {
+      "modele": "tite",
+      "petite": 7000,
+      "grande": 22170,
+      "moyenne": 14585.0
+    },
+    {
+      "modele": "urer",
+      "petite": 580,
+      "grande": 21300,
+      "moyenne": 10940.0
+    }
+  ],
+  "FORD": [
+    {
+      "modele": "A foram",
+      "petite": 5450,
+      "grande": 5450,
+      "moyenne": 5450.0
+    },
+    {
+      "modele": "AA Aiiroat",
+      "petite": 2000,
+      "grande": 52508,
+      "moyenne": 27254.0
+    },
+    {
+      "modele": "Ab Atroad",
+      "petite": 920,
+      "grande": 30000,
+      "moyenne": 15460.0
+    },
+    {
+      "modele": "Abashoan",
+      "petite": 780,
+      "grande": 56500,
+      "moyenne": 28640.0
+    },
+    {
+      "modele": "Al Sportback",
+      "petite": 1000,
+      "grande": 13600,
+      "moyenne": 7300.0
+    },
+    {
+      "modele": "Amen",
+      "petite": 2010,
+      "grande": 5450,
+      "moyenne": 3730.0
+    },
+    {
+      "modele": "Arona",
+      "petite": 1000,
+      "grande": 15800,
+      "moyenne": 8400.0
+    },
+    {
+      "modele": "Bertinge Muttispace",
+      "petite": 1880,
+      "grande": 4200,
+      "moyenne": 3040.0
+    },
+    {
+      "modele": "CLS Shooting Brake",
+      "petite": 1500,
+      "grande": 46328,
+      "moyenne": 23914.0
+    },
+    {
+      "modele": "Classe E Cabriolet",
+      "petite": 11000,
+      "grande": 37174,
+      "moyenne": 24087.0
+    },
+    {
+      "modele": "Classe Sk",
+      "petite": 19100,
+      "grande": 19100,
+      "moyenne": 19100.0
+    },
+    {
+      "modele": "Cocctnalle",
+      "petite": 2400,
+      "grande": 38000,
+      "moyenne": 20200.0
+    },
+    {
+      "modele": "Compass",
+      "petite": 800,
+      "grande": 2808,
+      "moyenne": 1804.0
+    },
+    {
+      "modele": "CrossTouran",
+      "petite": 520,
+      "grande": 19400,
+      "moyenne": 9960.0
+    },
+    {
+      "modele": "CrossiPebe",
+      "petite": 956,
+      "grande": 13300,
+      "moyenne": 7128.0
+    },
+    {
+      "modele": "Damp",
+      "petite": 1190,
+      "grande": 2530,
+      "moyenne": 1860.0
+    },
+    {
+      "modele": "Dede Maxi",
+      "petite": 560,
+      "grande": 22808,
+      "moyenne": 11684.0
+    },
+    {
+      "modele": "Espace",
+      "petite": 4060,
+      "grande": 4060,
+      "moyenne": 4060.0
+    },
+    {
+      "modele": "Eveque Cabrictet",
+      "petite": 11300,
+      "grande": 40800,
+      "moyenne": 26050.0
+    },
+    {
+      "modele": "Focus",
+      "petite": 3230,
+      "grande": 4520,
+      "moyenne": 3875.0
+    },
+    {
+      "modele": "Focus SW",
+      "petite": 836,
+      "grande": 30861,
+      "moyenne": 15848.5
+    },
+    {
+      "modele": "Grand C-MAK",
+      "petite": 1435,
+      "grande": 5850,
+      "moyenne": 3642.5
+    },
+    {
+      "modele": "Grand C4 Peasse",
+      "petite": 3080,
+      "grande": 4000,
+      "moyenne": 3540.0
+    },
+    {
+      "modele": "Grand C4 Pieasse",
+      "petite": 902,
+      "grande": 6900,
+      "moyenne": 3901.0
+    },
+    {
+      "modele": "Grand Espace",
+      "petite": 2000,
+      "grande": 5715,
+      "moyenne": 3857.5
+    },
+    {
+      "modele": "Grand Kangoo",
+      "petite": 10200,
+      "grande": 10200,
+      "moyenne": 10200.0
+    },
+    {
+      "modele": "GressPole",
+      "petite": 6750,
+      "grande": 6750,
+      "moyenne": 6750.0
+    },
+    {
+      "modele": "Kadjar",
+      "petite": 600,
+      "grande": 13300,
+      "moyenne": 6950.0
+    },
+    {
+      "modele": "Kampee",
+      "petite": 1000,
+      "grande": 12600,
+      "moyenne": 6800.0
+    },
+    {
+      "modele": "Kangoo Express",
+      "petite": 1075,
+      "grande": 27090,
+      "moyenne": 14082.5
+    },
+    {
+      "modele": "Kauga",
+      "petite": 6950,
+      "grande": 6950,
+      "moyenne": 6950.0
+    },
+    {
+      "modele": "Kemi",
+      "petite": 500,
+      "grande": 36700,
+      "moyenne": 18600.0
+    },
+    {
+      "modele": "Koleos",
+      "petite": 1105,
+      "grande": 20008,
+      "moyenne": 10556.5
+    },
+    {
+      "modele": "Lady",
+      "petite": 905,
+      "grande": 4900,
+      "moyenne": 2902.5
+    },
+    {
+      "modele": "Laguna Estate",
+      "petite": 4540,
+      "grande": 4540,
+      "moyenne": 4540.0
+    },
+    {
+      "modele": "Leon X-Perienes",
+      "petite": 5250,
+      "grande": 19008,
+      "moyenne": 12129.0
+    },
+    {
+      "modele": "Leon X-Pertence",
+      "petite": 607,
+      "grande": 23900,
+      "moyenne": 12253.5
+    },
+    {
+      "modele": "Lesa ST",
+      "petite": 776,
+      "grande": 40056,
+      "moyenne": 20416.0
+    },
+    {
+      "modele": "Looe",
+      "petite": 5000,
+      "grande": 8080,
+      "moyenne": 6540.0
+    },
+    {
+      "modele": "MOS RE",
+      "petite": 525,
+      "grande": 11207,
+      "moyenne": 5866.0
+    },
+    {
+      "modele": "Mondeo",
+      "petite": 22080,
+      "grande": 22080,
+      "moyenne": 22080.0
+    },
+    {
+      "modele": "Ortando",
+      "petite": 5050,
+      "grande": 20001,
+      "moyenne": 12525.5
+    },
+    {
+      "modele": "Pleanto",
+      "petite": 570,
+      "grande": 25131,
+      "moyenne": 12850.5
+    },
+    {
+      "modele": "Poe",
+      "petite": 15400,
+      "grande": 15400,
+      "moyenne": 15400.0
+    },
+    {
+      "modele": "R54 fant",
+      "petite": 11100,
+      "grande": 11100,
+      "moyenne": 11100.0
+    },
+    {
+      "modele": "RSS Cabriolet",
+      "petite": 628,
+      "grande": 18400,
+      "moyenne": 9514.0
+    },
+    {
+      "modele": "RSS Sporthack",
+      "petite": 780,
+      "grande": 53548,
+      "moyenne": 27164.0
+    },
+    {
+      "modele": "Range Rewer",
+      "petite": 595,
+      "grande": 10200,
+      "moyenne": 5397.5
+    },
+    {
+      "modele": "Ranger",
+      "petite": 530,
+      "grande": 12600,
+      "moyenne": 6565.0
+    },
+    {
+      "modele": "S-MAX",
+      "petite": 575,
+      "grande": 57900,
+      "moyenne": 29237.5
+    },
+    {
+      "modele": "S-RMAX",
+      "petite": 2045,
+      "grande": 4210,
+      "moyenne": 3127.5
+    },
+    {
+      "modele": "S3 Sportback",
+      "petite": 1150,
+      "grande": 15400,
+      "moyenne": 8275.0
+    },
+    {
+      "modele": "SS Sportieack",
+      "petite": 32080,
+      "grande": 32080,
+      "moyenne": 32080.0
+    },
+    {
+      "modele": "Soremta",
+      "petite": 910,
+      "grande": 11000,
+      "moyenne": 5955.0
+    },
+    {
+      "modele": "Thea",
+      "petite": 2100,
+      "grande": 7400,
+      "moyenne": 4750.0
+    },
+    {
+      "modele": "Traffe Combi",
+      "petite": 20150,
+      "grande": 20150,
+      "moyenne": 20150.0
+    },
+    {
+      "modele": "Trafie Mavette",
+      "petite": 900,
+      "grande": 29600,
+      "moyenne": 15250.0
+    },
+    {
+      "modele": "Transit Courter",
+      "petite": 700,
+      "grande": 21200,
+      "moyenne": 10950.0
+    },
+    {
+      "modele": "Transit Custem Fy",
+      "petite": 900,
+      "grande": 35000,
+      "moyenne": 17950.0
+    },
+    {
+      "modele": "Transit Custom Fy",
+      "petite": 900,
+      "grande": 7350,
+      "moyenne": 4125.0
+    },
+    {
+      "modele": "V40 Crows Country",
+      "petite": 610,
+      "grande": 9250,
+      "moyenne": 4930.0
+    },
+    {
+      "modele": "Ypsiion",
+      "petite": 700,
+      "grande": 18900,
+      "moyenne": 9800.0
+    },
+    {
+      "modele": "Yrs",
+      "petite": 900,
+      "grande": 2770,
+      "moyenne": 1835.0
+    },
+    {
+      "modele": "e-Seut",
+      "petite": 500,
+      "grande": 25300,
+      "moyenne": 12900.0
+    },
+    {
+      "modele": "isms0",
+      "petite": 900,
+      "grande": 5380,
+      "moyenne": 3140.0
+    },
+    {
+      "modele": "nv 6 1900  Prinws",
+      "petite": 540,
+      "grande": 36000,
+      "moyenne": 18270.0
+    },
+    {
+      "modele": "rect",
+      "petite": 530,
+      "grande": 4600,
+      "moyenne": 2565.0
+    },
+    {
+      "modele": "tea",
+      "petite": 4540,
+      "grande": 4540,
+      "moyenne": 4540.0
+    },
+    {
+      "modele": "thea ST",
+      "petite": 4620,
+      "grande": 4720,
+      "moyenne": 4670.0
+    },
+    {
+      "modele": "tige",
+      "petite": 525,
+      "grande": 7900,
+      "moyenne": 4212.5
+    }
+  ],
+  "ISUZU": [
+    {
+      "modele": "Transit Courter",
+      "petite": 1070,
+      "grande": 19800,
+      "moyenne": 10435.0
+    }
+  ],
+  "IVECO": [
+    {
+      "modele": "Transit Custom Fy",
+      "petite": 820,
+      "grande": 20500,
+      "moyenne": 10660.0
+    }
+  ],
+  "KIA": [
+    {
+      "modele": "Ab Allroad",
+      "petite": 900,
+      "grande": 58700,
+      "moyenne": 29800.0
+    },
+    {
+      "modele": "Astra",
+      "petite": 768,
+      "grande": 44219,
+      "moyenne": 22493.5
+    },
+    {
+      "modele": "F-Roc Catertetet",
+      "petite": 567,
+      "grande": 36800,
+      "moyenne": 18683.5
+    },
+    {
+      "modele": "Lam Cruiser",
+      "petite": 770,
+      "grande": 32800,
+      "moyenne": 16785.0
+    },
+    {
+      "modele": "Re amo Pate",
+      "petite": 2021,
+      "grande": 49000,
+      "moyenne": 25510.5
+    },
+    {
+      "modele": "TT Roadster",
+      "petite": 1909,
+      "grande": 51700,
+      "moyenne": 26804.5
+    },
+    {
+      "modele": "Talesmam Estate",
+      "petite": 1087,
+      "grande": 42003,
+      "moyenne": 21545.0
+    },
+    {
+      "modele": "aster Combl",
+      "petite": 2090,
+      "grande": 50500,
+      "moyenne": 26295.0
+    },
+    {
+      "modele": "hata",
+      "petite": 530,
+      "grande": 57201,
+      "moyenne": 28865.5
+    },
+    {
+      "modele": "sme",
+      "petite": 900,
+      "grande": 57800,
+      "moyenne": 29350.0
+    },
+    {
+      "modele": "vaedort 452 FOU BE 14200 Debio",
+      "petite": 500,
+      "grande": 38800,
+      "moyenne": 19650.0
+    }
+  ],
+  "LANCIA": [
+    {
+      "modele": "Compass",
+      "petite": 6010,
+      "grande": 6010,
+      "moyenne": 6010.0
+    },
+    {
+      "modele": "Frestander",
+      "petite": 770,
+      "grande": 10700,
+      "moyenne": 5735.0
+    },
+    {
+      "modele": "Musa",
+      "petite": 2000,
+      "grande": 2000,
+      "moyenne": 2000.0
+    }
+  ],
+  "MAZDA": [
+    {
+      "modele": "BS 3 Cabrio",
+      "petite": 545,
+      "grande": 30555,
+      "moyenne": 15550.0
+    },
+    {
+      "modele": "BS 7 Crosshack",
+      "petite": 1507,
+      "grande": 39100,
+      "moyenne": 20303.5
+    },
+    {
+      "modele": "C4 Cactes",
+      "petite": 1150,
+      "grande": 34800,
+      "moyenne": 17975.0
+    },
+    {
+      "modele": "Carawalie",
+      "petite": 8800,
+      "grande": 8800,
+      "moyenne": 8800.0
+    },
+    {
+      "modele": "Classe CLS",
+      "petite": 616,
+      "grande": 8855,
+      "moyenne": 4735.5
+    },
+    {
+      "modele": "Classe E Cabetolet",
+      "petite": 10000,
+      "grande": 10000,
+      "moyenne": 10000.0
+    },
+    {
+      "modele": "Corsa",
+      "petite": 520,
+      "grande": 22500,
+      "moyenne": 11510.0
+    },
+    {
+      "modele": "CrossTouran",
+      "petite": 2070,
+      "grande": 10507,
+      "moyenne": 6288.5
+    },
+    {
+      "modele": "DS 3 Cresshack",
+      "petite": 32500,
+      "grande": 34300,
+      "moyenne": 33400.0
+    },
+    {
+      "modele": "Dobie Maxi",
+      "petite": 5250,
+      "grande": 5250,
+      "moyenne": 5250.0
+    },
+    {
+      "modele": "E60",
+      "petite": 8200,
+      "grande": 10200,
+      "moyenne": 9200.0
+    },
+    {
+      "modele": "ELA Shooting Brake",
+      "petite": 546,
+      "grande": 22600,
+      "moyenne": 11573.0
+    },
+    {
+      "modele": "Eveque Cabrictet",
+      "petite": 500,
+      "grande": 55408,
+      "moyenne": 27954.0
+    },
+    {
+      "modele": "False",
+      "petite": 504,
+      "grande": 31300,
+      "moyenne": 15902.0
+    },
+    {
+      "modele": "Florine Panaraa",
+      "petite": 4660,
+      "grande": 5100,
+      "moyenne": 4880.0
+    },
+    {
+      "modele": "Grand Chereiee",
+      "petite": 1700,
+      "grande": 22004,
+      "moyenne": 11852.0
+    },
+    {
+      "modele": "Insignia Ctry Tourer",
+      "petite": 610,
+      "grande": 22100,
+      "moyenne": 11355.0
+    },
+    {
+      "modele": "Mazda 6",
+      "petite": 2104,
+      "grande": 10700,
+      "moyenne": 6402.0
+    },
+    {
+      "modele": "NX",
+      "petite": 6450,
+      "grande": 7600,
+      "moyenne": 7025.0
+    },
+    {
+      "modele": "Nanda 3 Bortine",
+      "petite": 520,
+      "grande": 57200,
+      "moyenne": 28860.0
+    },
+    {
+      "modele": "TAS Boxster",
+      "petite": 509,
+      "grande": 32500,
+      "moyenne": 16504.5
+    },
+    {
+      "modele": "V40 Cress Country",
+      "petite": 500,
+      "grande": 20903,
+      "moyenne": 10701.5
+    },
+    {
+      "modele": "Yaris",
+      "petite": 500,
+      "grande": 27000,
+      "moyenne": 13750.0
+    },
+    {
+      "modele": "et asia Leaf",
+      "petite": 1500,
+      "grande": 29300,
+      "moyenne": 15400.0
+    },
+    {
+      "modele": "eter",
+      "petite": 5550,
+      "grande": 6100,
+      "moyenne": 5825.0
+    },
+    {
+      "modele": "hiaada 6 FW",
+      "petite": 1007,
+      "grande": 10300,
+      "moyenne": 5653.5
+    },
+    {
+      "modele": "pore",
+      "petite": 607,
+      "grande": 57700,
+      "moyenne": 29153.5
+    }
+  ],
+  "MERCEDES-BENZ": [
+    {
+      "modele": "Citan Comb",
+      "petite": 712,
+      "grande": 20001,
+      "moyenne": 10356.5
+    },
+    {
+      "modele": "CrossTouran",
+      "petite": 720,
+      "grande": 20390,
+      "moyenne": 10555.0
+    },
+    {
+      "modele": "Dusente Fy",
+      "petite": 900,
+      "grande": 35500,
+      "moyenne": 18200.0
+    },
+    {
+      "modele": "Mowane",
+      "petite": 500,
+      "grande": 19800,
+      "moyenne": 10150.0
+    },
+    {
+      "modele": "Transit Courter",
+      "petite": 700,
+      "grande": 33000,
+      "moyenne": 16850.0
+    },
+    {
+      "modele": "WTA00 Cabstar Cb",
+      "petite": 599,
+      "grande": 9450,
+      "moyenne": 5024.5
+    },
+    {
+      "modele": "aston",
+      "petite": 5600,
+      "grande": 5600,
+      "moyenne": 5600.0
+    }
+  ],
+  "MINI": [
+    {
+      "modele": "CLS Shooting Braise",
+      "petite": 6328,
+      "grande": 6328,
+      "moyenne": 6328.0
+    },
+    {
+      "modele": "CLS Shooting Bratee",
+      "petite": 8600,
+      "grande": 8600,
+      "moyenne": 8600.0
+    },
+    {
+      "modele": "Cayenne",
+      "petite": 2500,
+      "grande": 13200,
+      "moyenne": 7850.0
+    },
+    {
+      "modele": "Classe SE",
+      "petite": 528,
+      "grande": 12800,
+      "moyenne": 6664.0
+    },
+    {
+      "modele": "Classe SL",
+      "petite": 500,
+      "grande": 6230,
+      "moyenne": 3365.0
+    },
+    {
+      "modele": "E60",
+      "petite": 6980,
+      "grande": 19100,
+      "moyenne": 13040.0
+    },
+    {
+      "modele": "Lodgy",
+      "petite": 7150,
+      "grande": 7150,
+      "moyenne": 7150.0
+    },
+    {
+      "modele": "Maeda 2",
+      "petite": 600,
+      "grande": 27400,
+      "moyenne": 14000.0
+    },
+    {
+      "modele": "Panto Evo",
+      "petite": 1090,
+      "grande": 27109,
+      "moyenne": 14099.5
+    },
+    {
+      "modele": "cher",
+      "petite": 3520,
+      "grande": 16706,
+      "moyenne": 10113.0
+    },
+    {
+      "modele": "eter",
+      "petite": 1254,
+      "grande": 12582,
+      "moyenne": 6918.0
+    },
+    {
+      "modele": "teal",
+      "petite": 500,
+      "grande": 30900,
+      "moyenne": 15700.0
+    }
+  ],
+  "MITSUBISHI": [
+    {
+      "modele": "Aattara",
+      "petite": 500,
+      "grande": 17700,
+      "moyenne": 9100.0
+    },
+    {
+      "modele": "Aral",
+      "petite": 665,
+      "grande": 35470,
+      "moyenne": 18067.5
+    },
+    {
+      "modele": "Astra Twitap",
+      "petite": 1580,
+      "grande": 1580,
+      "moyenne": 1580.0
+    },
+    {
+      "modele": "Mots",
+      "petite": 3500,
+      "grande": 3500,
+      "moyenne": 3500.0
+    },
+    {
+      "modele": "Transit Custem Fy",
+      "petite": 962,
+      "grande": 34900,
+      "moyenne": 17931.0
+    }
+  ],
+  "NISSAN": [
+    {
+      "modele": "Abashoan",
+      "petite": 500,
+      "grande": 36300,
+      "moyenne": 18400.0
+    },
+    {
+      "modele": "Dusente Fy",
+      "petite": 500,
+      "grande": 19000,
+      "moyenne": 9750.0
+    },
+    {
+      "modele": "Transit Courter",
+      "petite": 2300,
+      "grande": 26900,
+      "moyenne": 14600.0
+    },
+    {
+      "modele": "W300",
+      "petite": 1458,
+      "grande": 15200,
+      "moyenne": 8329.0
+    },
+    {
+      "modele": "signa Ctry Fourve",
+      "petite": 1980,
+      "grande": 5050,
+      "moyenne": 3515.0
+    }
+  ],
+  "OPEL": [
+    {
+      "modele": "Boner Fy",
+      "petite": 700,
+      "grande": 14100,
+      "moyenne": 7400.0
+    },
+    {
+      "modele": "Bravo",
+      "petite": 2000,
+      "grande": 10502,
+      "moyenne": 6251.0
+    },
+    {
+      "modele": "Cayeman",
+      "petite": 900,
+      "grande": 29300,
+      "moyenne": 15100.0
+    },
+    {
+      "modele": "Corsa Affaires",
+      "petite": 545,
+      "grande": 4450,
+      "moyenne": 2497.5
+    },
+    {
+      "modele": "Mowane",
+      "petite": 2000,
+      "grande": 10500,
+      "moyenne": 6250.0
+    },
+    {
+      "modele": "Partear",
+      "petite": 1130,
+      "grande": 46300,
+      "moyenne": 23715.0
+    },
+    {
+      "modele": "Parteer",
+      "petite": 10800,
+      "grande": 10800,
+      "moyenne": 10800.0
+    },
+    {
+      "modele": "Transit Custem Fy",
+      "petite": 530,
+      "grande": 20500,
+      "moyenne": 10515.0
+    },
+    {
+      "modele": "Vivaro Tour",
+      "petite": 506,
+      "grande": 52000,
+      "moyenne": 26253.0
+    }
+  ],
+  "PEUGEOT": [
+    {
+      "modele": "Abashoan",
+      "petite": 500,
+      "grande": 31309,
+      "moyenne": 15904.5
+    },
+    {
+      "modele": "Bipper",
+      "petite": 733,
+      "grande": 8500,
+      "moyenne": 4616.5
+    },
+    {
+      "modele": "Boner Fy",
+      "petite": 2018,
+      "grande": 12000,
+      "moyenne": 7009.0
+    },
+    {
+      "modele": "Expert Fu",
+      "petite": 1798,
+      "grande": 12800,
+      "moyenne": 7299.0
+    },
+    {
+      "modele": "Expert Fy",
+      "petite": 700,
+      "grande": 40220,
+      "moyenne": 20460.0
+    },
+    {
+      "modele": "Expert Tepes",
+      "petite": 2000,
+      "grande": 20700,
+      "moyenne": 11350.0
+    },
+    {
+      "modele": "Partner",
+      "petite": 580,
+      "grande": 5450,
+      "moyenne": 3015.0
+    },
+    {
+      "modele": "W300",
+      "petite": 650,
+      "grande": 39500,
+      "moyenne": 20075.0
+    }
+  ],
+  "PORSCHE": [
+    {
+      "modele": "Dobie",
+      "petite": 3080,
+      "grande": 3080,
+      "moyenne": 3080.0
+    },
+    {
+      "modele": "Doble Maxi",
+      "petite": 5700,
+      "grande": 5700,
+      "moyenne": 5700.0
+    },
+    {
+      "modele": "Florine Passrama",
+      "petite": 1207,
+      "grande": 2780,
+      "moyenne": 1993.5
+    },
+    {
+      "modele": "Mogae Estate",
+      "petite": 1130,
+      "grande": 5000,
+      "moyenne": 3065.0
+    },
+    {
+      "modele": "Panaia 4x4",
+      "petite": 1241,
+      "grande": 1241,
+      "moyenne": 1241.0
+    },
+    {
+      "modele": "signa Ctry Fourve",
+      "petite": 12700,
+      "grande": 34000,
+      "moyenne": 23350.0
+    }
+  ],
+  "RENAULT": [
+    {
+      "modele": "Abashoan",
+      "petite": 508,
+      "grande": 26300,
+      "moyenne": 13404.0
+    },
+    {
+      "modele": "Discovery",
+      "petite": 700,
+      "grande": 700,
+      "moyenne": 700.0
+    },
+    {
+      "modele": "Eapter",
+      "petite": 2015,
+      "grande": 2015,
+      "moyenne": 2015.0
+    },
+    {
+      "modele": "Evegee",
+      "petite": 18000,
+      "grande": 18000,
+      "moyenne": 18000.0
+    },
+    {
+      "modele": "Evogee Cabriolet",
+      "petite": 35700,
+      "grande": 35700,
+      "moyenne": 35700.0
+    },
+    {
+      "modele": "Maeda 2",
+      "petite": 730,
+      "grande": 15500,
+      "moyenne": 8115.0
+    },
+    {
+      "modele": "Master Bus",
+      "petite": 550,
+      "grande": 7700,
+      "moyenne": 4125.0
+    },
+    {
+      "modele": "Master Comb",
+      "petite": 515,
+      "grande": 40056,
+      "moyenne": 20285.5
+    },
+    {
+      "modele": "Master Fy",
+      "petite": 500,
+      "grande": 35080,
+      "moyenne": 17790.0
+    },
+    {
+      "modele": "Panamera",
+      "petite": 570,
+      "grande": 5600,
+      "moyenne": 3085.0
+    },
+    {
+      "modele": "Partner",
+      "petite": 829,
+      "grande": 2350,
+      "moyenne": 1589.5
+    },
+    {
+      "modele": "Range Rover",
+      "petite": 539,
+      "grande": 40000,
+      "moyenne": 20269.5
+    },
+    {
+      "modele": "Whar 2",
+      "petite": 660,
+      "grande": 1400,
+      "moyenne": 1030.0
+    },
+    {
+      "modele": "ia Sta",
+      "petite": 900,
+      "grande": 9680,
+      "moyenne": 5290.0
+    },
+    {
+      "modele": "vOTy MiAwe",
+      "petite": 520,
+      "grande": 3980,
+      "moyenne": 2250.0
+    }
+  ],
+  "SEAT": [
+    {
+      "modele": "AS Bertine",
+      "petite": 2105,
+      "grande": 45000,
+      "moyenne": 23552.5
+    },
+    {
+      "modele": "Ab rant",
+      "petite": 600,
+      "grande": 57200,
+      "moyenne": 28900.0
+    },
+    {
+      "modele": "Astra",
+      "petite": 14309,
+      "grande": 38600,
+      "moyenne": 26454.5
+    },
+    {
+      "modele": "Camaro Cabriobet",
+      "petite": 600,
+      "grande": 46100,
+      "moyenne": 23350.0
+    },
+    {
+      "modele": "Coccinelle Cabriolet",
+      "petite": 3000,
+      "grande": 24200,
+      "moyenne": 13600.0
+    },
+    {
+      "modele": "Dede Maxi",
+      "petite": 5800,
+      "grande": 5800,
+      "moyenne": 5800.0
+    },
+    {
+      "modele": "Ectipse Cross",
+      "petite": 665,
+      "grande": 42000,
+      "moyenne": 21332.5
+    },
+    {
+      "modele": "Espace",
+      "petite": 47123,
+      "grande": 47123,
+      "moyenne": 47123.0
+    },
+    {
+      "modele": "Evoyue Cabriolet",
+      "petite": 19300,
+      "grande": 19300,
+      "moyenne": 19300.0
+    },
+    {
+      "modele": "Florine Comb",
+      "petite": 3820,
+      "grande": 3820,
+      "moyenne": 3820.0
+    },
+    {
+      "modele": "Megane Estate",
+      "petite": 500,
+      "grande": 58200,
+      "moyenne": 29350.0
+    },
+    {
+      "modele": "Mhtza ST",
+      "petite": 960,
+      "grande": 16006,
+      "moyenne": 8483.0
+    },
+    {
+      "modele": "Range Rewer Sport",
+      "petite": 500,
+      "grande": 57200,
+      "moyenne": 28850.0
+    },
+    {
+      "modele": "Range Rover Sport",
+      "petite": 2100,
+      "grande": 26000,
+      "moyenne": 14050.0
+    },
+    {
+      "modele": "Reamge Raver",
+      "petite": 36100,
+      "grande": 36100,
+      "moyenne": 36100.0
+    },
+    {
+      "modele": "Reamge Rover",
+      "petite": 1300,
+      "grande": 36708,
+      "moyenne": 19004.0
+    },
+    {
+      "modele": "Tiguan",
+      "petite": 1900,
+      "grande": 40500,
+      "moyenne": 21200.0
+    },
+    {
+      "modele": "Yaris",
+      "petite": 500,
+      "grande": 45500,
+      "moyenne": 23000.0
+    },
+    {
+      "modele": "ep",
+      "petite": 800,
+      "grande": 30900,
+      "moyenne": 15850.0
+    },
+    {
+      "modele": "yok",
+      "petite": 29500,
+      "grande": 29500,
+      "moyenne": 29500.0
+    }
+  ],
+  "SMART": [
+    {
+      "modele": "Laguna Estate",
+      "petite": 5280,
+      "grande": 7200,
+      "moyenne": 6240.0
+    },
+    {
+      "modele": "Se a Passat",
+      "petite": 870,
+      "grande": 35900,
+      "moyenne": 18385.0
+    },
+    {
+      "modele": "Taz",
+      "petite": 610,
+      "grande": 19040,
+      "moyenne": 9825.0
+    }
+  ],
+  "TOYOTA": [
+    {
+      "modele": "Doble",
+      "petite": 500,
+      "grande": 17700,
+      "moyenne": 9100.0
+    },
+    {
+      "modele": "Fulhack",
+      "petite": 920,
+      "grande": 10008,
+      "moyenne": 5464.0
+    },
+    {
+      "modele": "Gratter",
+      "petite": 700,
+      "grande": 39300,
+      "moyenne": 20000.0
+    },
+    {
+      "modele": "Master Beane",
+      "petite": 3200,
+      "grande": 4060,
+      "moyenne": 3630.0
+    },
+    {
+      "modele": "PROACE",
+      "petite": 500,
+      "grande": 37200,
+      "moyenne": 18850.0
+    },
+    {
+      "modele": "PROACE CITY",
+      "petite": 500,
+      "grande": 35000,
+      "moyenne": 17750.0
+    },
+    {
+      "modele": "dumapy Fy",
+      "petite": 500,
+      "grande": 12300,
+      "moyenne": 6400.0
+    }
+  ],
+  "VOLKSWAGEN": [
+    {
+      "modele": "AS Sporthack",
+      "petite": 770,
+      "grande": 5200,
+      "moyenne": 2985.0
+    },
+    {
+      "modele": "Adame",
+      "petite": 600,
+      "grande": 45500,
+      "moyenne": 23050.0
+    },
+    {
+      "modele": "Beste",
+      "petite": 1680,
+      "grande": 6850,
+      "moyenne": 4265.0
+    },
+    {
+      "modele": "Caddy ABtrack",
+      "petite": 500,
+      "grande": 33600,
+      "moyenne": 17050.0
+    },
+    {
+      "modele": "Caddy Alttrack",
+      "petite": 500,
+      "grande": 51115,
+      "moyenne": 25807.5
+    },
+    {
+      "modele": "Caddy Amtraek",
+      "petite": 2700,
+      "grande": 38400,
+      "moyenne": 20550.0
+    },
+    {
+      "modele": "Caddy Maat",
+      "petite": 3050,
+      "grande": 7500,
+      "moyenne": 5275.0
+    },
+    {
+      "modele": "Caltteenta",
+      "petite": 510,
+      "grande": 7660,
+      "moyenne": 4085.0
+    },
+    {
+      "modele": "Classe E Break",
+      "petite": 1012,
+      "grande": 15090,
+      "moyenne": 8051.0
+    },
+    {
+      "modele": "Crafter Combi",
+      "petite": 650,
+      "grande": 35432,
+      "moyenne": 18041.0
+    },
+    {
+      "modele": "Cveque Cabriotet",
+      "petite": 3370,
+      "grande": 37300,
+      "moyenne": 20335.0
+    },
+    {
+      "modele": "Dobe",
+      "petite": 15200,
+      "grande": 15200,
+      "moyenne": 15200.0
+    },
+    {
+      "modele": "Dotto Maxi",
+      "petite": 5950,
+      "grande": 23098,
+      "moyenne": 14524.0
+    },
+    {
+      "modele": "Dusente Fy",
+      "petite": 800,
+      "grande": 35300,
+      "moyenne": 18050.0
+    },
+    {
+      "modele": "E60",
+      "petite": 2022,
+      "grande": 2022,
+      "moyenne": 2022.0
+    },
+    {
+      "modele": "EooSpert",
+      "petite": 3300,
+      "grande": 3300,
+      "moyenne": 3300.0
+    },
+    {
+      "modele": "Feorine Coma",
+      "petite": 558,
+      "grande": 10407,
+      "moyenne": 5482.5
+    },
+    {
+      "modele": "Fiesta",
+      "petite": 8400,
+      "grande": 9800,
+      "moyenne": 9100.0
+    },
+    {
+      "modele": "Fiesta Netive",
+      "petite": 1067,
+      "grande": 2300,
+      "moyenne": 1683.5
+    },
+    {
+      "modele": "Foous Active SW",
+      "petite": 1570,
+      "grande": 15900,
+      "moyenne": 8735.0
+    },
+    {
+      "modele": "Geanide Puta",
+      "petite": 1000,
+      "grande": 2000,
+      "moyenne": 1500.0
+    },
+    {
+      "modele": "Grand Cherokee",
+      "petite": 970,
+      "grande": 20000,
+      "moyenne": 10485.0
+    },
+    {
+      "modele": "Grandand X",
+      "petite": 620,
+      "grande": 38800,
+      "moyenne": 19710.0
+    },
+    {
+      "modele": "Gross Caddy",
+      "petite": 625,
+      "grande": 18700,
+      "moyenne": 9662.5
+    },
+    {
+      "modele": "Lam Crulsar SW",
+      "petite": 1530,
+      "grande": 3650,
+      "moyenne": 2590.0
+    },
+    {
+      "modele": "Maree Pole",
+      "petite": 620,
+      "grande": 22000,
+      "moyenne": 11310.0
+    },
+    {
+      "modele": "Memdeo",
+      "petite": 1990,
+      "grande": 15500,
+      "moyenne": 8745.0
+    },
+    {
+      "modele": "Mrestang Pastinack",
+      "petite": 19200,
+      "grande": 19200,
+      "moyenne": 19200.0
+    },
+    {
+      "modele": "PROACE",
+      "petite": 10800,
+      "grande": 27900,
+      "moyenne": 19350.0
+    },
+    {
+      "modele": "Range Rever Sport",
+      "petite": 667,
+      "grande": 53501,
+      "moyenne": 27084.0
+    },
+    {
+      "modele": "Range Rover",
+      "petite": 500,
+      "grande": 36000,
+      "moyenne": 18250.0
+    },
+    {
+      "modele": "SH 20000 Camare Cabeietet",
+      "petite": 920,
+      "grande": 34800,
+      "moyenne": 17860.0
+    },
+    {
+      "modele": "Signum",
+      "petite": 1350,
+      "grande": 7630,
+      "moyenne": 4490.0
+    },
+    {
+      "modele": "Speieter",
+      "petite": 2500,
+      "grande": 23500,
+      "moyenne": 13000.0
+    },
+    {
+      "modele": "TT Roadster",
+      "petite": 5700,
+      "grande": 7905,
+      "moyenne": 6802.5
+    },
+    {
+      "modele": "Tramsporter Fig",
+      "petite": 550,
+      "grande": 35500,
+      "moyenne": 18025.0
+    },
+    {
+      "modele": "Transporter",
+      "petite": 673,
+      "grande": 14200,
+      "moyenne": 7436.5
+    },
+    {
+      "modele": "Transporter Fy",
+      "petite": 500,
+      "grande": 8150,
+      "moyenne": 4325.0
+    },
+    {
+      "modele": "V40 Cress Country",
+      "petite": 660,
+      "grande": 49000,
+      "moyenne": 24830.0
+    },
+    {
+      "modele": "ack",
+      "petite": 700,
+      "grande": 53200,
+      "moyenne": 26950.0
+    },
+    {
+      "modele": "col Pleanto",
+      "petite": 1960,
+      "grande": 54650,
+      "moyenne": 28305.0
+    },
+    {
+      "modele": "erer",
+      "petite": 807,
+      "grande": 3300,
+      "moyenne": 2053.5
+    },
+    {
+      "modele": "etasse A",
+      "petite": 700,
+      "grande": 38000,
+      "moyenne": 19350.0
+    },
+    {
+      "modele": "ia Sta",
+      "petite": 2000,
+      "grande": 2000,
+      "moyenne": 2000.0
+    },
+    {
+      "modele": "po xO Sportage",
+      "petite": 20109,
+      "grande": 33200,
+      "moyenne": 26654.5
+    },
+    {
+      "modele": "raw Magame",
+      "petite": 500,
+      "grande": 53200,
+      "moyenne": 26850.0
+    }
+  ]
+}

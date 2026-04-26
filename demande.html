@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Soumettre une demande | AD TRANS LOGISTICS</title>
+    <meta content="Soumettez votre demande d'importation, exportation, transit ou depotage. AD TRANS LOGISTICS - Cotonou, Benin." name="description"/>
+    <link rel="manifest" href="/manifest.json"/>
+    <meta name="theme-color" content="#0A0A0A"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+:root {
+    --black:#0A0A0A;--dark:#171717;--gray800:#262626;--gray600:#525252;--gray500:#737373;
+    --gray400:#A3A3A3;--gray300:#D4D4D4;--gray200:#E5E5E5;--gray100:#F0F0F0;--gray50:#F7F7F7;--white:#FFFFFF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{-webkit-font-smoothing:antialiased;font-family:'Instrument Sans',sans-serif;background:var(--white);color:var(--black);margin:0;}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
+
+/* NAV */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--gray200);}
+.navl{font-size:14px;font-weight:500;color:var(--gray500);text-decoration:none;transition:color .2s;padding:8px 12px;border-radius:8px;}
+.navl:hover{color:var(--black);background:var(--gray100);}
+.nav-btn{font-size:14px;font-weight:500;color:var(--gray500);background:none;border:none;cursor:pointer;display:flex;align-items:center;padding:8px 12px;border-radius:8px;font-family:inherit;transition:all .2s;}
+.nav-btn:hover{color:var(--black);background:var(--gray100);}
+.nav-dropdown{position:relative;}
+.nav-dropdown::after{content:'';position:absolute;top:100%;left:-10px;right:-10px;height:14px;background:transparent;z-index:1999;}
+.nav-drop{display:block;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-4px);background:#fff;border:1px solid var(--gray200);border-radius:14px;padding:8px;min-width:220px;box-shadow:0 8px 32px rgba(0,0,0,.10);z-index:2000;opacity:0;pointer-events:none;transition:opacity .15s ease,transform .15s ease;}
+.nav-dropdown:hover .nav-drop,.nav-dropdown:focus-within .nav-drop{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+.drop-link{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;font-size:13.5px;font-weight:500;color:var(--gray700);text-decoration:none;transition:all .15s;}
+.drop-link:hover{background:var(--gray100);color:var(--black);}
+.drop-icon-s{width:16px;height:16px;flex-shrink:0;fill:none;stroke:var(--gray400);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.nav-drop-wide{min-width:280px;padding:16px;}
+.drop-checklist{list-style:none;padding:0;margin:0 0 12px;}
+.drop-checklist li{font-size:13px;color:var(--gray600);padding:4px 0;display:flex;align-items:center;gap:6px;}
+.drop-checklist li::before{content:'\2713';color:var(--black);font-weight:700;font-size:11px;}
+.drop-cta{display:block;text-align:center;padding:10px 16px;background:var(--black);color:#fff;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:opacity .2s;}
+.drop-cta:hover{opacity:.85;}
+@media(max-width:1023px){#desknav{display:none!important;}#hamburger{display:flex!important;}}
+
+/* MOBILE */
+#mobileMenu{position:fixed;top:0;right:-100%;width:min(85vw,360px);height:100vh;background:#fff;z-index:9999;overflow-y:auto;transition:right .35s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--gray200);}
+#mobileMenu.open{right:0;}
+#mob-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:9998;opacity:0;pointer-events:none;transition:opacity .3s;}
+#mob-overlay.visible{opacity:1;pointer-events:auto;}
+.mob-link{display:flex;align-items:center;gap:12px;padding:15px 20px;font-size:15px;font-weight:500;color:var(--gray700);text-decoration:none;transition:background .15s;}
+.mob-link:hover{background:var(--gray50);color:var(--black);}
+.mob-link-icon{width:20px;height:20px;flex-shrink:0;stroke:var(--gray500);}
+.mob-expandable{border-bottom:1px solid var(--gray100);}
+.mob-chev{width:16px;height:16px;transition:transform .2s;flex-shrink:0;}
+.mob-sub{display:none;padding:0 0 8px 44px;}
+.mob-sub-link{display:block;padding:10px 16px;font-size:14px;color:var(--gray600);text-decoration:none;border-radius:8px;}
+.mob-sub-link:hover{background:var(--gray50);color:var(--black);}
+.mob-open .mob-sub{display:block;}
+.mob-open .mob-chev{transform:rotate(180deg);}
+
+/* BOTTOM NAV */
+#bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--gray200);z-index:990;height:62px;}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;font-size:10px;font-weight:600;color:var(--gray400);text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif;}
+.bn-item:hover,.bn-item.active{color:var(--black);}
+.bn-item svg{stroke:currentColor;}
+@media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
+#hamburger .hb-bar{display:block;width:22px;height:2px;background:var(--black);border-radius:2px;transition:all .3s;}
+
+/* PAGE STYLES */
+.page-hero{padding:120px 24px 60px;background:var(--black);color:#fff;text-align:center;}
+.page-hero h1{font-size:clamp(1.8rem,5vw,48px);font-weight:700;margin:0 0 12px;line-height:1.1;}
+.page-hero p{color:rgba(255,255,255,.6);font-size:17px;max-width:540px;margin:0 auto;}
+
+.form-section{max-width:720px;margin:0 auto;padding:48px 24px 80px;}
+.form-card{background:#fff;border:1px solid var(--gray200);border-radius:16px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,.04);}
+.form-title{font-size:22px;font-weight:700;margin:0 0 24px;}
+
+.info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px;}
+.info-card{background:var(--gray50);border:1px solid var(--gray100);border-radius:12px;padding:20px;}
+.info-card h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--black);margin:0 0 10px;}
+.info-card ul{list-style:none;padding:0;margin:0;}
+.info-card ul li{font-size:13px;color:var(--gray600);padding:3px 0;display:flex;align-items:center;gap:6px;}
+.info-card ul li::before{content:'\2713';color:var(--black);font-weight:700;font-size:10px;}
+
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--gray600);margin-bottom:6px;}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--gray200);border-radius:10px;font-size:14px;font-family:inherit;background:#fff;color:var(--black);outline:none;transition:border-color .2s;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--black);}
+.field textarea{resize:vertical;min-height:100px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:640px){.grid2{grid-template-columns:1fr;}}
+
+.btn-submit{width:100%;padding:14px 24px;background:var(--black);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:opacity .2s;}
+.btn-submit:hover{opacity:.85;}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;}
+
+.success-msg{display:none;text-align:center;padding:40px 20px;}
+.success-msg.show{display:block;}
+.success-msg svg{width:56px;height:56px;stroke:#22c55e;stroke-width:2;fill:none;margin-bottom:16px;}
+.success-msg h3{font-size:20px;margin:0 0 8px;}
+.success-msg p{color:var(--gray500);font-size:14px;}
+
+/* WhatsApp */
+.whatsapp-btn{position:fixed;bottom:1rem;right:1rem;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.25);z-index:900;transition:transform .2s;}
+.whatsapp-btn:hover{transform:scale(1.08);}
+</style>
+</head>
+<body>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS" target="_blank" class="whatsapp-btn" title="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" style="width:28px;height:28px;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.345.223-.643.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="navbar">
+<div style="max-width:1440px;margin:0 auto;padding:0 24px;">
+<div style="display:flex;align-items:center;justify-content:space-between;height:72px;">
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <div style="width:36px;height:36px;border-radius:9px;background:var(--black);display:flex;align-items:center;justify-content:center;color:var(--white);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;letter-spacing:.05em;">AD</div>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--black);">AD TRANS <span style="color:var(--gray400);font-weight:400;">LOGISTICS</span></span>
+    </a>
+    <ul id="desknav" style="display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0;">
+        <li class="nav-dropdown">
+            <button class="navl nav-btn">Calcul droit de douane <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-drop">
+                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Vehicule</div>
+                <a href="/simulateur" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Occasion</a>
+                <a href="/demande?service=vehicule-neuf" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Neuf</a>
+                <div style="border-top:1px solid var(--gray100);margin:4px 8px;"></div>
+                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Marchandise</div>
+                <a href="/calculateur" class="drop-link">Import</a>
+                <a href="/calculateur?mode=export" class="drop-link">Export</a>
+            </div>
+        </li>
+        <li class="nav-dropdown">
+            <button class="navl nav-btn">Importation <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-drop nav-drop-wide">
+                <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">Documents requis</div>
+                <ul class="drop-checklist">
+                    <li>Facture commerciale</li>
+                    <li>Connaissement (BL) ou LTA</li>
+                    <li>Liste de colisage</li>
+                    <li>Certificat d'origine</li>
+                    <li>Licence / autorisation d'import</li>
+                </ul>
+                <a href="/demande?service=importation" class="drop-cta">Soumettre une demande &rarr;</a>
+            </div>
+        </li>
+        <li class="nav-dropdown">
+            <button class="navl nav-btn">Exportation <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-drop nav-drop-wide">
+                <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">Documents requis</div>
+                <ul class="drop-checklist">
+                    <li>Facture commerciale / Pro-forma</li>
+                    <li>Certificat d'origine</li>
+                    <li>Certificat phytosanitaire</li>
+                    <li>Licence d'exportation</li>
+                    <li>Declaration en douane</li>
+                </ul>
+                <a href="/demande?service=exportation" class="drop-cta">Soumettre une demande &rarr;</a>
+            </div>
+        </li>
+        <li class="nav-dropdown">
+            <button class="navl nav-btn">Transit <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-drop nav-drop-wide">
+                <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">Documents requis</div>
+                <ul class="drop-checklist">
+                    <li>Declaration de transit (T1)</li>
+                    <li>Garantie de transit</li>
+                    <li>Connaissement (BL) ou LTA</li>
+                    <li>Facture commerciale</li>
+                    <li>Certificat d'origine</li>
+                </ul>
+                <a href="/demande?service=transit" class="drop-cta">Soumettre une demande &rarr;</a>
+            </div>
+        </li>
+        <li class="nav-dropdown">
+            <button class="navl nav-btn">Depotage <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-drop nav-drop-wide">
+                <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">Documents requis</div>
+                <ul class="drop-checklist">
+                    <li>Bon a enlever</li>
+                    <li>Connaissement (BL)</li>
+                    <li>Facture commerciale</li>
+                    <li>Liste de colisage</li>
+                    <li>Declaration en douane</li>
+                </ul>
+                <a href="/demande?service=depotage" class="drop-cta">Soumettre une demande &rarr;</a>
+            </div>
+        </li>
+        <li class="nav-dropdown">
+            <button class="navl nav-btn">Boutique <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="nav-drop">
+                <a href="https://adtranslogistics.mychariow.shop" target="_blank" class="drop-link">Vehicules</a>
+                <a href="https://adtranslogistics.mychariow.shop" target="_blank" class="drop-link">Articles</a>
+            </div>
+        </li>
+        <li><a class="navl" href="/connexion">Mon compte</a></li>
+    </ul>
+    <button id="hamburger" style="display:none;width:44px;height:44px;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:0;" aria-label="Menu">
+        <span class="hb-bar"></span><span class="hb-bar"></span><span class="hb-bar"></span>
+    </button>
+</div>
+</div>
+</nav>
+
+<!-- MOBILE OVERLAY -->
+<div id="mob-overlay" onclick="closeMobile()"></div>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--gray200);position:sticky;top:0;background:#fff;z-index:1;">
+        <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--black);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;">AD</div>
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--black);">AD TRANS <span style="color:var(--gray400);font-weight:400;">LOGISTICS</span></span>
+        </a>
+        <button onclick="closeMobile()" aria-label="Fermer" style="width:36px;height:36px;border-radius:9px;border:1px solid var(--gray200);background:var(--gray50);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+    <div>
+        <a href="/" class="mob-link"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Accueil</a>
+        <div class="mob-expandable">
+            <button onclick="this.parentElement.classList.toggle('mob-open')" class="mob-link" style="width:100%;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:600;color:var(--black);">
+                <span style="display:flex;align-items:center;gap:12px;"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg> Calcul droit de douane</span>
+                <svg class="mob-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mob-sub">
+                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Vehicule</div>
+                <a href="/simulateur" onclick="closeMobile()" class="mob-sub-link">Occasion</a>
+                <a href="/demande?service=vehicule-neuf" onclick="closeMobile()" class="mob-sub-link">Neuf</a>
+                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Marchandise</div>
+                <a href="/calculateur" onclick="closeMobile()" class="mob-sub-link">Import</a>
+                <a href="/calculateur?mode=export" onclick="closeMobile()" class="mob-sub-link">Export</a>
+            </div>
+        </div>
+        <a href="/demande?service=importation" class="mob-link"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Importation</a>
+        <a href="/demande?service=exportation" class="mob-link"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> Exportation</a>
+        <a href="/demande?service=transit" class="mob-link"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Transit</a>
+        <a href="/demande?service=depotage" class="mob-link"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> Depotage</a>
+        <div class="mob-expandable" style="border-top:2px solid var(--gray100);margin-top:4px;">
+            <button onclick="this.parentElement.classList.toggle('mob-open')" class="mob-link" style="width:100%;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;">
+                <span style="display:flex;align-items:center;gap:12px;"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Boutique</span>
+                <svg class="mob-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mob-sub">
+                <a href="https://adtranslogistics.mychariow.shop" target="_blank" class="mob-sub-link">Vehicules</a>
+                <a href="https://adtranslogistics.mychariow.shop" target="_blank" class="mob-sub-link">Articles</a>
+            </div>
+        </div>
+    </div>
+    <div style="padding:20px 20px 16px;display:flex;flex-direction:column;gap:10px;">
+        <a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:9999px;border:1.5px solid #E5E5E5;font-size:14px;font-weight:600;color:#25D366;text-decoration:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25D366" style="width:18px;height:18px;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.345.223-.643.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            WhatsApp
+        </a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+    <div style="max-width:1440px;margin:0 auto;">
+        <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:12px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:20px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#22c55e;"></span>
+            <span id="hero-tag">Soumettre une demande</span>
+        </div>
+        <h1 id="hero-title">Soumettre une demande</h1>
+        <p id="hero-desc">Remplissez le formulaire ci-dessous et notre equipe vous contactera sous 24h.</p>
+    </div>
+</section>
+
+<!-- FORM SECTION -->
+<section class="form-section">
+    <!-- Info cards (filled by JS based on service) -->
+    <div id="info-section" class="info-cards" style="display:none;"></div>
+
+    <div class="form-card" id="form-card">
+        <h3 class="form-title" id="form-title">Votre demande</h3>
+        <form id="demande-form" action="https://formsubmit.co/adtranslogistics@hotmail.com" method="POST">
+            <!-- FormSubmit config -->
+            <input type="hidden" name="_subject" id="email-subject" value="Nouvelle demande - AD TRANS LOGISTICS"/>
+            <input type="hidden" name="_captcha" value="false"/>
+            <input type="hidden" name="_next" id="form-next"/>
+            <input type="hidden" name="_template" value="table"/>
+            <input type="text" name="_honey" style="display:none"/>
+
+            <div class="field">
+                <label for="f-service">Type de service *</label>
+                <select name="Service" id="f-service" required>
+                    <option value="">-- Choisir un service --</option>
+                    <option value="Importation">Importation</option>
+                    <option value="Exportation">Exportation</option>
+                    <option value="Transit douanier">Transit douanier</option>
+                    <option value="Depotage">Depotage</option>
+                    <option value="Marchandise - Import">Marchandise - Import</option>
+                    <option value="Marchandise - Export">Marchandise - Export</option>
+                    <option value="Marchandise - Transit">Marchandise - Transit</option>
+                </select>
+            </div>
+            <div class="grid2">
+                <div class="field">
+                    <label for="f-nom">Nom complet *</label>
+                    <input type="text" name="Nom" id="f-nom" placeholder="Jean Dupont" required/>
+                </div>
+                <div class="field">
+                    <label for="f-societe">Societe</label>
+                    <input type="text" name="Societe" id="f-societe" placeholder="Nom de votre societe"/>
+                </div>
+            </div>
+            <div class="grid2">
+                <div class="field">
+                    <label for="f-email">Email *</label>
+                    <input type="email" name="Email" id="f-email" placeholder="votre@email.com" required/>
+                </div>
+                <div class="field">
+                    <label for="f-tel">Telephone *</label>
+                    <input type="tel" name="Telephone" id="f-tel" placeholder="+229 01 XX XX XX" required/>
+                </div>
+            </div>
+            <div class="field">
+                <label for="f-marchandise">Description de la marchandise</label>
+                <input type="text" name="Marchandise" id="f-marchandise" placeholder="Nature, type, reference..."/>
+            </div>
+            <div class="grid2">
+                <div class="field">
+                    <label for="f-origine">Pays d'origine</label>
+                    <input type="text" name="Origine" id="f-origine" placeholder="Ex: France, Chine, USA..."/>
+                </div>
+                <div class="field">
+                    <label for="f-destination">Pays de destination</label>
+                    <input type="text" name="Destination" id="f-destination" placeholder="Ex: Benin, Togo, Niger..."/>
+                </div>
+            </div>
+            <div class="grid2">
+                <div class="field">
+                    <label for="f-poids">Poids / Volume</label>
+                    <input type="text" name="Poids_Volume" id="f-poids" placeholder="Ex: 500 kg, 2 conteneurs 20'"/>
+                </div>
+                <div class="field">
+                    <label for="f-incoterm">Incoterm</label>
+                    <select name="Incoterm" id="f-incoterm">
+                        <option value="">-- Optionnel --</option>
+                        <option>FOB</option><option>CIF</option><option>EXW</option>
+                        <option>CFR</option><option>DAP</option><option>DDP</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <label for="f-details">Details complementaires</label>
+                <textarea name="Details" id="f-details" placeholder="Toute information utile pour traiter votre demande..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit" id="btn-submit">Envoyer la demande</button>
+        </form>
+    </div>
+
+    <!-- Success message -->
+    <div class="success-msg" id="success-msg">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>Demande envoyee avec succes !</h3>
+        <p>Notre equipe traitera votre demande et vous contactera sous 24h.</p>
+        <a href="/" style="display:inline-block;margin-top:20px;padding:12px 28px;background:var(--black);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:14px;">Retour a l'accueil</a>
+    </div>
+</section>
+
+<!-- BOTTOM NAV -->
+<nav id="bottomnav" aria-label="Navigation rapide">
+  <a href="/" class="bn-item" data-page="/"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg><span>Accueil</span></a>
+  <a href="/simulateur" class="bn-item" data-page="/simulateur"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg><span>Douane</span></a>
+  <a href="https://adtranslogistics.mychariow.shop" class="bn-item" data-page="/boutique"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg><span>Boutique</span></a>
+  <a href="/#contact" class="bn-item" data-page="/contact"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Contact</span></a>
+  <a href="/espace-client" class="bn-item" data-page="/espace-client">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Compte</span>
+  </a>
+</nav>
+
+<script>
+// Mobile menu
+function openMobile(){document.getElementById('mobileMenu').classList.add('open');document.getElementById('mob-overlay').classList.add('visible');}
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('mob-overlay').classList.remove('visible');}
+document.getElementById('hamburger').addEventListener('click',openMobile);
+
+// Service config
+const SERVICES = {
+    'importation': {
+        title: 'Importation',
+        desc: 'Soumettez votre demande d\'importation de marchandises au Benin.',
+        docs: ['Facture commerciale','Connaissement (BL) ou LTA','Liste de colisage','Certificat d\'origine','Licence / autorisation d\'import','Bon a enlever'],
+        select: 'Importation'
+    },
+    'exportation': {
+        title: 'Exportation',
+        desc: 'Soumettez votre demande d\'exportation de marchandises depuis le Benin.',
+        docs: ['Facture commerciale / Pro-forma','Certificat d\'origine','Certificat phytosanitaire (si applicable)','Licence d\'exportation','Declaration en douane','Connaissement (BL)'],
+        select: 'Exportation'
+    },
+    'transit': {
+        title: 'Transit douanier',
+        desc: 'Soumettez votre demande de transit douanier vers les pays de la sous-region.',
+        docs: ['Declaration de transit (T1)','Garantie de transit','Connaissement (BL) ou LTA','Facture commerciale','Certificat d\'origine','Bon de livraison'],
+        select: 'Transit douanier'
+    },
+    'depotage': {
+        title: 'Depotage',
+        desc: 'Soumettez votre demande de depotage de conteneurs au port de Cotonou.',
+        docs: ['Bon a enlever','Connaissement (BL)','Facture commerciale','Liste de colisage','Declaration en douane','Attestation d\'importation'],
+        select: 'Depotage'
+    },
+    'marchandise-import': {
+        title: 'Calcul droits - Marchandise Import',
+        desc: 'Demandez un calcul de droits de douane pour vos marchandises a l\'import.',
+        docs: ['Facture commerciale','Description detaillee de la marchandise','Code SH / Position tarifaire','Poids et volume','Pays d\'origine'],
+        select: 'Marchandise - Import'
+    },
+    'marchandise-export': {
+        title: 'Calcul droits - Marchandise Export',
+        desc: 'Demandez un calcul de droits pour vos marchandises a l\'export.',
+        docs: ['Facture commerciale','Description detaillee de la marchandise','Pays de destination','Certificat d\'origine','Poids et volume'],
+        select: 'Marchandise - Export'
+    },
+    'vehicule-neuf': {
+        title: 'Dedouanement Vehicule Neuf',
+        desc: 'Soumettez votre demande de dedouanement pour un vehicule neuf importe au Benin (regime 4000 822).',
+        docs: ['Facture commerciale (prix AVD)','Connaissement (BL)','Carte grise / certificat de conformite','Quittance IMF','Attestation IFU du client','Carte CPI du client'],
+        select: 'Vehicule Neuf'
+    }
+};
+
+// Init page based on URL param
+const params = new URLSearchParams(window.location.search);
+const service = params.get('service');
+const cfg = service ? SERVICES[service] : null;
+
+if (cfg) {
+    document.getElementById('hero-title').textContent = cfg.title;
+    document.getElementById('hero-desc').textContent = cfg.desc;
+    document.getElementById('hero-tag').textContent = cfg.title;
+    document.getElementById('form-title').textContent = 'Demande : ' + cfg.title;
+    document.getElementById('email-subject').value = 'Nouvelle demande ' + cfg.title + ' - AD TRANS LOGISTICS';
+    document.title = cfg.title + ' | AD TRANS LOGISTICS';
+
+    // Pre-select service
+    const sel = document.getElementById('f-service');
+    for (let o of sel.options) { if (o.value === cfg.select) { o.selected = true; break; } }
+
+    // Show info card with docs
+    const infoSection = document.getElementById('info-section');
+    infoSection.style.display = 'grid';
+    infoSection.innerHTML = '<div class="info-card"><h4>Documents requis pour ' + cfg.title + '</h4><ul>' +
+        cfg.docs.map(d => '<li>' + d + '</li>').join('') + '</ul></div>';
+}
+
+// Set redirect URL
+document.getElementById('form-next').value = window.location.origin + '/demande?service=' + (service||'') + '&sent=1';
+
+// Show success if redirected back after submission
+if (params.get('sent') === '1') {
+    document.getElementById('form-card').style.display = 'none';
+    document.getElementById('info-section').style.display = 'none';
+    var sm = document.getElementById('success-msg');
+    sm.classList.add('show');
+}
+</script>
+<script src="/cookie-consent.js"></script>
+</body>
+</html>

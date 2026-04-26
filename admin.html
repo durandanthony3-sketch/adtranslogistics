@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Administration | AD TRANS LOGISTICS</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        :root{--black:#0A0A0A;--dark:#171717;--gray800:#262626;--gray700:#404040;--gray600:#525252;--gray500:#737373;--gray400:#A3A3A3;--gray300:#D4D4D4;--gray200:#E5E5E5;--gray100:#F0F0F0;--gray50:#F7F7F7;--white:#FFFFFF;}
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{font-family:'Instrument Sans',sans-serif;background:var(--gray50);color:var(--black);min-height:100vh;}
+        h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;border-radius:9999px;font-weight:600;font-size:14px;font-family:'Instrument Sans',sans-serif;transition:all .25s;cursor:pointer;text-decoration:none;border:none;outline:none;}
+        .btn-dark{background:var(--black);color:var(--white);}
+        .btn-dark:hover{background:var(--gray800);}
+        .btn-dark:disabled{background:var(--gray300);cursor:not-allowed;}
+        .btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--gray300);}
+        .btn-outline:hover{border-color:var(--black);}
+        .btn-sm{padding:7px 14px;font-size:13px;}
+        .fi{width:100%;background:var(--white);border:1px solid var(--gray200);border-radius:10px;color:var(--black);font-size:14px;padding:10px 14px;transition:all .3s;outline:none;font-family:'Instrument Sans',sans-serif;}
+        .fi:focus{border-color:var(--black);box-shadow:0 0 0 3px rgba(10,10,10,.06);}
+        .fi option{background:#fff;}
+        select.fi{appearance:auto;}
+        textarea.fi{resize:vertical;}
+        label{font-size:13px;font-weight:600;color:var(--gray600);display:block;margin-bottom:5px;}
+        .field{margin-bottom:14px;}
+
+        /* Nav */
+        #topbar{position:sticky;top:0;z-index:100;background:var(--black);}
+        .topbar-inner{max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+
+        /* Layout */
+        .page{max-width:1440px;margin:0 auto;padding:28px 24px;}
+
+        /* Stats row */
+        .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
+        .stat-card{background:#fff;border:1px solid var(--gray200);border-radius:14px;padding:18px 20px;}
+        .stat-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin-bottom:3px;}
+        .stat-lbl{font-size:12px;color:var(--gray500);}
+
+        /* Filter bar */
+        .filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px;}
+        .filter-bar input,.filter-bar select{min-width:160px;flex:1;max-width:240px;}
+
+        /* Dossier cards */
+        .dos-card{background:#fff;border:1px solid var(--gray200);border-radius:14px;padding:18px 20px;margin-bottom:10px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:border-color .2s,box-shadow .2s;}
+        .dos-card:hover{border-color:var(--gray400);box-shadow:0 4px 16px rgba(0,0,0,.05);}
+        .dos-card.selected{border-color:var(--black);box-shadow:0 4px 20px rgba(0,0,0,.1);}
+        .dos-main{flex:1;min-width:0;}
+
+        /* Badges */
+        .badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:9999px;font-size:11.5px;font-weight:700;}
+        .badge-import{background:#e0f2fe;color:#0369a1;}
+        .badge-export{background:#dcfce7;color:#15803d;}
+        .badge-transit{background:#fef9c3;color:#854d0e;}
+        .badge-depotage{background:#f3e8ff;color:#7e22ce;}
+        .badge-ouvert{background:var(--gray100);color:var(--gray600);}
+        .badge-en_cours{background:#eff6ff;color:#1d4ed8;}
+        .badge-en_attente{background:#fff7ed;color:#c2410c;}
+        .badge-complete{background:#f0fdf4;color:#16a34a;}
+        .badge-annule{background:#fef2f2;color:#dc2626;}
+
+        /* Progress */
+        .prog-track{height:5px;background:var(--gray100);border-radius:9999px;overflow:hidden;margin:8px 0 4px;}
+        .prog-fill{height:100%;background:var(--black);border-radius:9999px;transition:width .4s ease;}
+
+        /* Edit panel */
+        #panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:998;opacity:0;pointer-events:none;transition:opacity .3s;}
+        #panel-overlay.open{opacity:1;pointer-events:all;}
+        #edit-panel{position:fixed;top:0;left:-100%;width:min(480px,96vw);height:100vh;background:#fff;z-index:999;overflow-y:auto;box-shadow:6px 0 32px rgba(0,0,0,.14);transition:left .32s cubic-bezier(.4,0,.2,1);}
+        #edit-panel.open{right:0;}
+        .panel-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--gray200);position:sticky;top:0;background:#fff;z-index:1;}
+        .panel-body{padding:24px;}
+        .close-btn{width:36px;height:36px;border-radius:9px;border:1px solid var(--gray200);background:var(--gray50);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+
+        /* Step slider */
+        .step-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9999px;background:var(--gray200);outline:none;cursor:pointer;}
+        .step-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--black);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+        .step-slider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--black);cursor:pointer;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+
+        /* Timeline mini */
+        .tl-mini{display:flex;align-items:center;gap:6px;margin:12px 0;overflow-x:auto;padding-bottom:4px;}
+        .tl-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;border:2px solid var(--gray200);color:var(--gray400);}
+        .tl-dot.done{background:var(--black);border-color:var(--black);color:#fff;}
+        .tl-dot.current{background:#fff;border-color:var(--black);color:var(--black);}
+        .tl-line{flex:1;height:2px;background:var(--gray200);flex-shrink:0;min-width:12px;}
+        .tl-line.done{background:var(--black);}
+
+        /* Info row */
+        .info-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--gray100);}
+        .info-row:last-child{border-bottom:none;}
+        .info-key{font-size:13px;color:var(--gray500);}
+        .info-val{font-size:13px;font-weight:600;text-align:right;}
+
+        /* Toast */
+        #toast{position:fixed;bottom:24px;right:24px;background:var(--black);color:#fff;padding:13px 20px;border-radius:12px;box-shadow:0 16px 48px rgba(0,0,0,.25);z-index:2000;opacity:0;transform:translateY(12px);transition:all .3s;font-size:14px;font-weight:500;pointer-events:none;}
+        #toast.show{opacity:1;transform:translateY(0);}
+
+        /* Loading */
+        #loading-page{position:fixed;inset:0;background:var(--gray50);display:flex;align-items:center;justify-content:center;z-index:500;}
+        .loading-logo{width:52px;height:52px;border-radius:14px;background:var(--black);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;}
+        @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.5;}}
+        .loading-logo{animation:pulse 1.5s infinite;}
+        @keyframes spin{to{transform:rotate(360deg);}}
+        .spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;}
+
+        /* Empty */
+        .empty{text-align:center;padding:60px 20px;color:var(--gray400);}
+
+        /* Tabs admin */
+        .admin-tabs{display:flex;gap:4px;background:var(--gray100);border-radius:12px;padding:4px;margin-bottom:20px;}
+        .admin-tab{flex:1;padding:10px;border-radius:9px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:'Instrument Sans',sans-serif;transition:all .2s;background:transparent;color:var(--gray500);}
+        .admin-tab.active{background:#fff;color:var(--black);box-shadow:0 2px 8px rgba(0,0,0,.08);}
+
+        /* Upload zone */
+        .upload-zone{border:2px dashed var(--gray300);border-radius:16px;padding:32px 24px;text-align:center;cursor:pointer;transition:all .3s;background:var(--white);}
+        .upload-zone:hover,.upload-zone.drag-over{border-color:var(--black);background:var(--gray50);}
+        .upload-zone input[type="file"]{display:none;}
+        /* Document cards */
+        .doc-card{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--gray200);border-radius:12px;padding:14px 18px;margin-bottom:8px;transition:border-color .2s;}
+        .doc-card:hover{border-color:var(--gray400);}
+        .doc-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+        .doc-icon.pdf{background:#fef2f2;color:#dc2626;}
+        .doc-icon.img{background:#eff6ff;color:#2563eb;}
+        .doc-icon.other{background:var(--gray100);color:var(--gray500);}
+        .doc-info{flex:1;min-width:0;}
+        .doc-name{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+        .doc-meta{font-size:12px;color:var(--gray400);margin-top:2px;}
+        .doc-actions{display:flex;gap:6px;}
+        .doc-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--gray200);background:var(--gray50);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;}
+        .doc-btn:hover{border-color:var(--black);}
+        /* Client group */
+        .client-group{margin-bottom:24px;}
+        .client-group-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:var(--gray50);border:1px solid var(--gray200);border-radius:12px;margin-bottom:8px;cursor:pointer;}
+        .client-group-head:hover{background:var(--gray100);}
+        .client-group-head h3{font-size:14px;font-weight:700;}
+        .client-group-head .count{font-size:12px;color:var(--gray500);background:var(--gray200);padding:2px 8px;border-radius:9999px;}
+
+        @media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr);}}
+        @media(max-width:600px){.page{padding:18px 14px;}.stats{grid-template-columns:1fr 1fr;}.dos-card{flex-direction:column;align-items:flex-start;}}
+    
+/* ── Bottom nav bar (mobile only) ── */
+#bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E5E5E5;z-index:990;height:62px;}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;font-size:10px;font-weight:600;color:#A3A3A3;text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif;letter-spacing:.01em;}
+.bn-item:hover,.bn-item.active{color:#0A0A0A;}
+.bn-item svg{stroke:currentColor;}
+@media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
+
+    </style>
+    <!-- PWA / Application Mobile -->
+    <link rel="manifest" href="/manifest.json"/>
+    <meta name="theme-color" content="#0A0A0A"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-title" content="AD TRANS"/>
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
+</head>
+<body>
+
+<div id="loading-page"><div class="loading-logo">AD</div></div>
+
+<!-- Top bar (dark theme for admin) -->
+<nav id="topbar">
+    <div class="topbar-inner">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;">AD</div>
+            <div>
+                <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#fff;">Administration</span>
+                <span style="font-size:12px;color:rgba(255,255,255,.45);margin-left:8px;">AD TRANS LOGISTICS</span>
+            </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+            <a href="/" style="font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;">← Site</a>
+            <button onclick="doLogout()" style="padding:8px 16px;border-radius:9999px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.8);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;">Déconnexion</button>
+        </div>
+    </div>
+</nav>
+
+<div class="page" id="main-page" style="display:none;">
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-val" id="s-total">—</div>
+            <div class="stat-lbl">Dossiers total</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val" id="s-cours">—</div>
+            <div class="stat-lbl">En cours</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val" id="s-attente">—</div>
+            <div class="stat-lbl">En attente</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val" id="s-clients">—</div>
+            <div class="stat-lbl">Clients</div>
+        </div>
+    </div>
+
+    <!-- Admin Tabs -->
+    <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('dossiers')" id="atab-dossiers">Dossiers</button>
+        <button class="admin-tab" onclick="switchAdminTab('documents')" id="atab-documents">Documents</button>
+        <button class="admin-tab" onclick="switchAdminTab('catalogue')" id="atab-catalogue">Catalogue</button>
+    </div>
+
+    <!-- ═══ DOSSIERS VIEW ═══ -->
+    <div id="view-dossiers">
+        <!-- Filters -->
+        <div class="filter-bar">
+            <input type="search" class="fi" id="f-search" placeholder="🔍  Référence, client, marchandise…" oninput="filterList()" style="max-width:320px;"/>
+            <select class="fi" id="f-type" onchange="filterList()">
+                <option value="">Tous les types</option>
+                <option value="import">Import</option>
+                <option value="export">Export</option>
+                <option value="transit">Transit</option>
+                <option value="depotage">Dépotage</option>
+            </select>
+            <select class="fi" id="f-statut" onchange="filterList()">
+                <option value="">Tous les statuts</option>
+                <option value="ouvert">Ouvert</option>
+                <option value="en_cours">En cours</option>
+                <option value="en_attente">En attente</option>
+                <option value="complete">Complété</option>
+                <option value="annule">Annulé</option>
+            </select>
+            <button onclick="loadAll()" class="btn btn-outline btn-sm">↺ Actualiser</button>
+        </div>
+        <!-- Dossiers list -->
+        <div id="dos-list"></div>
+    </div>
+
+    <!-- ═══ DOCUMENTS VIEW ═══ -->
+    <div id="view-documents" style="display:none;">
+        <!-- Upload for a specific client -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:20px;">
+            <div style="flex:1;min-width:200px;">
+                <label for="doc-client-select">Envoyer un document au client</label>
+                <select id="doc-client-select" class="fi"></select>
+            </div>
+            <div style="flex-shrink:0;">
+                <button class="btn btn-dark" onclick="document.getElementById('admin-file-input').click()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    Téléverser
+                </button>
+                <input type="file" id="admin-file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.zip" onchange="adminUploadFiles(this.files)" style="display:none;"/>
+            </div>
+            <button onclick="loadAllDocuments()" class="btn btn-outline btn-sm">↺ Actualiser</button>
+        </div>
+        <div id="admin-upload-progress" style="display:none;margin-bottom:16px;"></div>
+        <!-- Search docs -->
+        <div class="filter-bar" style="margin-bottom:16px;">
+            <input type="search" class="fi" id="doc-search" placeholder="🔍 Rechercher un document…" oninput="filterDocs()" style="max-width:320px;"/>
+        </div>
+        <!-- Documents grouped by client -->
+        <div id="admin-doc-list"></div>
+    </div>
+
+    <!-- ═══ CATALOGUE VIEW ═══ -->
+    <div id="view-catalogue" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
+            <div class="filter-bar" style="margin-bottom:0;flex:1;">
+                <input type="search" class="fi" id="cat-search" placeholder="🔍 Rechercher un produit…" oninput="filterProducts()" style="max-width:280px;"/>
+                <select class="fi" id="cat-type" onchange="filterProducts()">
+                    <option value="">Tous</option>
+                    <option value="vehicule">Véhicules</option>
+                    <option value="article">Articles</option>
+                </select>
+                <select class="fi" id="cat-status" onchange="filterProducts()">
+                    <option value="">Tous statuts</option>
+                    <option value="disponible">Disponible</option>
+                    <option value="vendu">Vendu</option>
+                    <option value="reserve">Réservé</option>
+                </select>
+            </div>
+            <button class="btn btn-dark" onclick="openProductPanel()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Ajouter un produit
+            </button>
+        </div>
+        <div id="product-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;"></div>
+    </div>
+</div>
+
+<!-- Product Panel (Add/Edit) -->
+<div id="product-panel-overlay" onclick="closeProductPanel()" style="position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:998;opacity:0;pointer-events:none;transition:opacity .3s;"></div>
+<div id="product-panel" style="position:fixed;top:0;right:-100%;width:min(520px,96vw);height:100vh;background:#fff;z-index:999;overflow-y:auto;box-shadow:-6px 0 32px rgba(0,0,0,.14);transition:right .32s cubic-bezier(.4,0,.2,1);">
+    <div class="panel-head">
+        <div>
+            <h3 style="font-size:16px;font-weight:700;" id="pp-title">Nouveau produit</h3>
+            <p style="font-size:13px;color:var(--gray500);margin-top:2px;">Ajouter au catalogue</p>
+        </div>
+        <button class="close-btn" onclick="closeProductPanel()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+    <div class="panel-body">
+        <form id="product-form" onsubmit="saveProduct(event)">
+            <input type="hidden" id="pp-id"/>
+            <div id="pp-err" style="background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px;border-radius:10px;padding:11px 14px;margin-bottom:16px;display:none;"></div>
+
+            <div class="field">
+                <label>Type *</label>
+                <div style="display:flex;gap:10px;">
+                    <label style="display:flex;align-items:center;gap:8px;font-weight:500;cursor:pointer;background:var(--gray50);border:1.5px solid var(--gray200);border-radius:10px;padding:10px 16px;flex:1;">
+                        <input type="radio" name="pp-type" value="vehicule" checked style="accent-color:var(--black);width:16px;height:16px;"/> Véhicule
+                    </label>
+                    <label style="display:flex;align-items:center;gap:8px;font-weight:500;cursor:pointer;background:var(--gray50);border:1.5px solid var(--gray200);border-radius:10px;padding:10px 16px;flex:1;">
+                        <input type="radio" name="pp-type" value="article" style="accent-color:var(--black);width:16px;height:16px;"/> Article
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="pp-name">Titre / Nom *</label>
+                <input id="pp-name" type="text" class="fi" placeholder="Ex: Toyota Highlander 2018" required/>
+            </div>
+
+            <div class="field">
+                <label for="pp-desc">Description</label>
+                <textarea id="pp-desc" class="fi" rows="3" placeholder="Caractéristiques, état, kilométrage…"></textarea>
+            </div>
+
+            <div class="grid2">
+                <div class="field">
+                    <label for="pp-price">Prix</label>
+                    <input id="pp-price" type="number" class="fi" placeholder="0" min="0"/>
+                </div>
+                <div class="field">
+                    <label for="pp-currency">Devise</label>
+                    <select id="pp-currency" class="fi">
+                        <option value="XOF">XOF (FCFA)</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid2">
+                <div class="field">
+                    <label for="pp-origin">Origine</label>
+                    <input id="pp-origin" type="text" class="fi" placeholder="Ex: USA, Europe, Japon"/>
+                </div>
+                <div class="field">
+                    <label for="pp-category">Catégorie</label>
+                    <input id="pp-category" type="text" class="fi" placeholder="Ex: SUV, Berline, Pièces…"/>
+                </div>
+            </div>
+
+            <div class="grid2">
+                <div class="field">
+                    <label for="pp-badge">Badge</label>
+                    <select id="pp-badge" class="fi">
+                        <option value="">Aucun</option>
+                        <option value="NOUVEAU">NOUVEAU</option>
+                        <option value="HOT">HOT</option>
+                        <option value="PROMO">PROMO</option>
+                        <option value="VEDETTE">VEDETTE</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="pp-status">Statut</label>
+                    <select id="pp-status" class="fi">
+                        <option value="disponible">Disponible</option>
+                        <option value="reserve">Réservé</option>
+                        <option value="vendu">Vendu</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="pp-tags">Tags (séparés par des virgules)</label>
+                <input id="pp-tags" type="text" class="fi" placeholder="Ex: SUV, 4x4, Diesel, Automatique"/>
+            </div>
+
+            <div class="field">
+                <label>Image du produit</label>
+                <div style="border:2px dashed var(--gray300);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:all .3s;" onclick="document.getElementById('pp-image').click()" id="pp-image-zone">
+                    <input type="file" id="pp-image" accept="image/*" onchange="previewProductImage(this)" style="display:none;"/>
+                    <div id="pp-image-preview" style="margin-bottom:8px;"></div>
+                    <p style="font-size:13px;color:var(--gray400);">Cliquez pour ajouter une image</p>
+                </div>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:8px;">
+                <button type="button" onclick="closeProductPanel()" class="btn btn-outline" style="flex:1;">Annuler</button>
+                <button type="submit" id="pp-submit" class="btn btn-dark" style="flex:2;">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Overlay + Edit Panel -->
+<div id="panel-overlay" onclick="closePanel()"></div>
+<div id="edit-panel">
+    <div class="panel-head">
+        <div>
+            <h3 style="font-size:16px;font-weight:700;" id="ep-ref">—</h3>
+            <p style="font-size:13px;color:var(--gray500);margin-top:2px;" id="ep-client">—</p>
+        </div>
+        <button class="close-btn" onclick="closePanel()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+    <div class="panel-body">
+
+        <!-- Info client + dossier -->
+        <div style="background:var(--gray50);border:1px solid var(--gray200);border-radius:12px;padding:16px;margin-bottom:20px;">
+            <h4 style="font-size:13px;font-weight:700;color:var(--gray500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Détails du dossier</h4>
+            <div id="ep-info"></div>
+        </div>
+
+        <!-- Timeline visuelle -->
+        <div style="margin-bottom:20px;">
+            <h4 style="font-size:13px;font-weight:700;color:var(--gray500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">Progression</h4>
+            <div class="tl-mini" id="ep-tl"></div>
+            <p style="font-size:12px;color:var(--gray500);margin-top:4px;" id="ep-step-label">—</p>
+        </div>
+
+        <!-- Formulaire de mise à jour -->
+        <form onsubmit="updateDossier(event)">
+            <div style="background:#fff;border:1px solid var(--gray200);border-radius:12px;padding:16px;margin-bottom:16px;">
+                <h4 style="font-size:13px;font-weight:700;color:var(--gray500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;">Mettre à jour</h4>
+
+                <div class="field">
+                    <label>Étape actuelle : <span id="step-disp" style="color:var(--black);font-weight:700;">1</span> / 7</label>
+                    <input type="range" class="step-slider" id="ep-step" min="1" max="7" value="1" oninput="onStepChange(this.value)"/>
+                    <p style="font-size:12px;color:var(--gray500);margin-top:6px;" id="step-name-disp">—</p>
+                </div>
+
+                <div class="field">
+                    <label for="ep-statut">Statut du dossier</label>
+                    <select id="ep-statut" class="fi">
+                        <option value="ouvert">Ouvert</option>
+                        <option value="en_cours">En cours</option>
+                        <option value="en_attente">En attente (documents manquants…)</option>
+                        <option value="complete">Complété ✓</option>
+                        <option value="annule">Annulé</option>
+                    </select>
+                </div>
+
+                <div class="field" style="margin-bottom:0;">
+                    <label for="ep-notes">Message / Note pour le client</label>
+                    <textarea id="ep-notes" class="fi" rows="4" placeholder="Ex: Documents reçus. En attente de la liquidation douanière. Prévoir 3 à 5 jours."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" id="btn-update" class="btn btn-dark" style="width:100%;">Enregistrer les modifications</button>
+        </form>
+    </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+// ══════════════════════════════════════════════
+const SB_URL = 'https://mmfdxoappbhxoqpgsdit.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tZmR4b2FwcGJoeG9xcGdzZGl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2Mzk1NTksImV4cCI6MjA5MDIxNTU1OX0.JvY1Ow4suN7kt-ESyplGTZfY0TIpbwK7X9ceGv3Lreg';
+const ADMIN  = 'adtranslogistics@hotmail.com';
+// ══════════════════════════════════════════════
+
+const sb = supabase.createClient(SB_URL, SB_KEY);
+let allDossiers = [];
+let allProfiles = {};
+let currentDos  = null;
+
+const STEPS = [
+    'Ouverture du dossier',
+    'Échanges documentaires',
+    'Marchandises chargées / Expédiées',
+    'Liquidation & paiement des droits',
+    'BAE & sortie du port',
+    'En route pour le magasin / entrepôt',
+    'Livraison & remise au client'
+];
+const STATUT_LABELS={ouvert:'Ouvert',en_cours:'En cours',en_attente:'En attente',complete:'Complété',annule:'Annulé'};
+
+// ── Init ──
+(async () => {
+    const {data:{session}} = await sb.auth.getSession();
+    if (!session) { window.location.href='/connexion'; return; }
+    if (session.user.email !== ADMIN) { window.location.href='/espace-client'; return; }
+    await loadAll();
+    document.getElementById('loading-page').style.display='none';
+    document.getElementById('main-page').style.display='block';
+})();
+
+async function loadAll() {
+    // Load all dossiers (admin can see all via RLS policy)
+    const {data:dos,error:e1} = await sb.from('dossiers')
+        .select('*')
+        .order('created_at',{ascending:false});
+    if (e1) { showToast('Erreur chargement dossiers.'); return; }
+    allDossiers = dos||[];
+
+    // Load profiles for client names
+    const {data:profs} = await sb.from('profiles').select('id,full_name,phone,company,email');
+    allProfiles = {};
+    (profs||[]).forEach(p => { allProfiles[p.id]=p; });
+
+    renderStats();
+    filterList();
+}
+
+function renderStats() {
+    document.getElementById('s-total').textContent  = allDossiers.length;
+    document.getElementById('s-cours').textContent  = allDossiers.filter(d=>d.statut==='en_cours').length;
+    document.getElementById('s-attente').textContent= allDossiers.filter(d=>d.statut==='en_attente').length;
+    const clients = new Set(allDossiers.map(d=>d.user_id));
+    document.getElementById('s-clients').textContent = clients.size;
+}
+
+function filterList() {
+    const q  = document.getElementById('f-search').value.toLowerCase();
+    const ty = document.getElementById('f-type').value;
+    const st = document.getElementById('f-statut').value;
+    let list = allDossiers.filter(d => {
+        const p = allProfiles[d.user_id];
+        const hay = [d.reference, d.marchandise, d.origine, d.destination, p?.full_name, p?.company].join(' ').toLowerCase();
+        return (!q || hay.includes(q)) && (!ty || d.type===ty) && (!st || d.statut===st);
+    });
+    renderList(list);
+}
+
+function renderList(list) {
+    const el = document.getElementById('dos-list');
+    if (!list.length) {
+        el.innerHTML='<div class="empty">📂 Aucun dossier trouvé</div>';
+        return;
+    }
+    el.innerHTML = list.map(d => {
+        const p = allProfiles[d.user_id];
+        const client = p?.full_name || p?.email || '—';
+        const company = p?.company ? ` · ${p.company}` : '';
+        const progress = Math.round(((d.current_step-1)/6)*100);
+        const date = new Date(d.created_at).toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
+        const sel = currentDos?.id===d.id ? 'selected' : '';
+        return `<div class="dos-card ${sel}" onclick="openDos('${d.id}')">
+            <div class="dos-main">
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                    <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;">${d.reference}</span>
+                    <span class="badge badge-${d.type}">${d.type.charAt(0).toUpperCase()+d.type.slice(1)}</span>
+                    <span class="badge badge-${d.statut}">${STATUT_LABELS[d.statut]||d.statut}</span>
+                </div>
+                <p style="font-size:13px;font-weight:500;">${d.marchandise}</p>
+                <p style="font-size:12px;color:var(--gray500);margin-top:2px;">👤 ${client}${company} &nbsp;·&nbsp; ${d.origine||'—'} → ${d.destination||'—'}</p>
+                <div class="prog-track"><div class="prog-fill" style="width:${progress}%;"></div></div>
+                <p style="font-size:11px;color:var(--gray400);">Étape ${d.current_step}/7 &nbsp;·&nbsp; ${date}</p>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A3A3A3" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>`;
+    }).join('');
+}
+
+function openDos(id) {
+    currentDos = allDossiers.find(d=>d.id===id);
+    if (!currentDos) return;
+    const p = allProfiles[currentDos.user_id];
+    const client = p?.full_name||'—';
+    const company = p?.company ? ` · ${p.company}` : '';
+    const phone   = p?.phone   ? ` · ${p.phone}` : '';
+
+    // Header
+    document.getElementById('ep-ref').textContent    = currentDos.reference;
+    document.getElementById('ep-client').textContent = `${client}${company}${phone}`;
+
+    // Info block
+    const valStr = currentDos.valeur ? `${Number(currentDos.valeur).toLocaleString('fr-FR')} ${currentDos.devise}` : '—';
+    document.getElementById('ep-info').innerHTML = `
+        <div class="info-row"><span class="info-key">Type</span><span class="info-val">${currentDos.type.charAt(0).toUpperCase()+currentDos.type.slice(1)}</span></div>
+        <div class="info-row"><span class="info-key">Marchandise</span><span class="info-val">${currentDos.marchandise}</span></div>
+        <div class="info-row"><span class="info-key">Trajet</span><span class="info-val">${currentDos.origine||'—'} → ${currentDos.destination||'—'}</span></div>
+        <div class="info-row"><span class="info-key">Valeur</span><span class="info-val">${valStr}</span></div>
+        <div class="info-row"><span class="info-key">Créé le</span><span class="info-val">${new Date(currentDos.created_at).toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'})}</span></div>
+        ${currentDos.description?`<div class="info-row" style="flex-direction:column;gap:4px;"><span class="info-key">Description</span><p style="font-size:13px;line-height:1.5;">${currentDos.description}</p></div>`:''}
+    `;
+
+    // Timeline mini
+    renderPanelTimeline(currentDos.current_step);
+
+    // Form fields
+    document.getElementById('ep-step').value   = currentDos.current_step;
+    document.getElementById('ep-statut').value = currentDos.statut;
+    document.getElementById('ep-notes').value  = currentDos.admin_notes||'';
+    onStepChange(currentDos.current_step);
+
+    // Open panel
+    document.getElementById('edit-panel').classList.add('open');
+    document.getElementById('panel-overlay').classList.add('open');
+    document.body.style.overflow='hidden';
+
+    // Highlight card
+    document.querySelectorAll('.dos-card').forEach(c=>c.classList.remove('selected'));
+    event.currentTarget?.classList.add('selected');
+}
+
+function renderPanelTimeline(step) {
+    const tl = document.getElementById('ep-tl');
+    let html = '';
+    STEPS.forEach((s,i) => {
+        const n=i+1;
+        const state = n<step?'done':n===step?'current':'';
+        html += `<div class="tl-dot ${state}" title="${s}">${state==='done'?'✓':n}</div>`;
+        if (i<STEPS.length-1) html += `<div class="tl-line ${n<step?'done':''}"></div>`;
+    });
+    tl.innerHTML = html;
+    document.getElementById('ep-step-label').textContent = `Étape ${step}/7 — ${STEPS[step-1]}`;
+}
+
+function onStepChange(v) {
+    document.getElementById('step-disp').textContent = v;
+    document.getElementById('step-name-disp').textContent = STEPS[v-1];
+    renderPanelTimeline(parseInt(v));
+}
+
+function closePanel() {
+    document.getElementById('edit-panel').classList.remove('open');
+    document.getElementById('panel-overlay').classList.remove('open');
+    document.body.style.overflow='';
+}
+
+async function updateDossier(e) {
+    e.preventDefault();
+    if (!currentDos) return;
+    const step   = parseInt(document.getElementById('ep-step').value);
+    const statut = document.getElementById('ep-statut').value;
+    const notes  = document.getElementById('ep-notes').value.trim();
+    const btn    = document.getElementById('btn-update');
+    btn.disabled=true; btn.innerHTML='<span class="spin"></span> Enregistrement…';
+    const {error} = await sb.from('dossiers').update({
+        current_step: step,
+        statut,
+        admin_notes: notes||null
+    }).eq('id',currentDos.id);
+    btn.disabled=false; btn.innerHTML='Enregistrer les modifications';
+    if (error) { showToast('Erreur : '+error.message); return; }
+    // Update local data
+    const idx = allDossiers.findIndex(d=>d.id===currentDos.id);
+    if (idx>-1) { allDossiers[idx]={...allDossiers[idx],current_step:step,statut,admin_notes:notes||null}; currentDos=allDossiers[idx]; }
+    renderStats(); filterList();
+    showToast('✓ Dossier '+currentDos.reference+' mis à jour !');
+}
+
+async function doLogout() {
+    await sb.auth.signOut();
+    window.location.href='/connexion';
+}
+
+function showToast(msg) {
+    const t=document.getElementById('toast');
+    t.textContent=msg; t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// ══════════════════════════════════════════════
+// ── Admin Tabs ──
+// ══════════════════════════════════════════════
+function switchAdminTab(tab) {
+    ['dossiers','documents','catalogue'].forEach(t => {
+        document.getElementById('view-'+t).style.display = t===tab ? 'block' : 'none';
+        document.getElementById('atab-'+t).classList.toggle('active', t===tab);
+    });
+    if (tab==='documents') loadAllDocuments();
+    if (tab==='catalogue') loadProducts();
+}
+
+// ══════════════════════════════════════════════
+// ── Documents Admin ──
+// ══════════════════════════════════════════════
+let allDocuments = [];
+
+async function loadAllDocuments() {
+    // Load all documents (admin RLS policy allows this)
+    const {data, error} = await sb.from('documents')
+        .select('*')
+        .order('created_at', {ascending: false});
+    if (error) { showToast('Erreur chargement documents.'); return; }
+    allDocuments = data || [];
+
+    // Populate client selector
+    populateClientSelect();
+    filterDocs();
+}
+
+function populateClientSelect() {
+    const sel = document.getElementById('doc-client-select');
+    const profileArr = Object.values(allProfiles);
+    sel.innerHTML = profileArr.map(p => {
+        const label = `${p.full_name||p.email}${p.company?' · '+p.company:''}`;
+        return `<option value="${p.id}">${label}</option>`;
+    }).join('');
+}
+
+function filterDocs() {
+    const q = (document.getElementById('doc-search')?.value||'').toLowerCase();
+    let filtered = allDocuments;
+    if (q) {
+        filtered = allDocuments.filter(d => {
+            const p = allProfiles[d.uploaded_by];
+            const hay = [d.nom_fichier, d.type_document, p?.full_name, p?.company, p?.email].join(' ').toLowerCase();
+            return hay.includes(q);
+        });
+    }
+    renderAdminDocs(filtered);
+}
+
+function renderAdminDocs(docs) {
+    const el = document.getElementById('admin-doc-list');
+    if (!docs.length) {
+        el.innerHTML = '<div class="empty">📎 Aucun document</div>';
+        return;
+    }
+    // Group by client
+    const groups = {};
+    docs.forEach(d => {
+        const uid = d.uploaded_by || 'unknown';
+        if (!groups[uid]) groups[uid] = [];
+        groups[uid].push(d);
+    });
+
+    let html = '';
+    Object.keys(groups).forEach(uid => {
+        const p = allProfiles[uid];
+        const clientName = p ? `${p.full_name||p.email}${p.company?' · '+p.company:''}` : uid;
+        const clientDocs = groups[uid];
+        html += `<div class="client-group">
+            <div class="client-group-head" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">
+                <h3>👤 ${clientName}</h3>
+                <span class="count">${clientDocs.length} doc${clientDocs.length>1?'s':''}</span>
+            </div>
+            <div>
+                ${clientDocs.map(d => adminDocCard(d)).join('')}
+            </div>
+        </div>`;
+    });
+    el.innerHTML = html;
+}
+
+function adminDocCard(d) {
+    const ext = d.nom_fichier.split('.').pop().toLowerCase();
+    const iconClass = ['pdf'].includes(ext) ? 'pdf' : ['jpg','jpeg','png','gif','webp'].includes(ext) ? 'img' : 'other';
+    const iconText = iconClass==='pdf' ? 'PDF' : iconClass==='img' ? '🖼' : '📄';
+    const size = d.file_size ? formatFileSize(d.file_size) : '';
+    const date = new Date(d.created_at).toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
+    const typeBadge = d.type_document ? `<span class="badge badge-transit" style="font-size:10px;padding:2px 7px;">${d.type_document}</span>` : '';
+    return `<div class="doc-card">
+        <div class="doc-icon ${iconClass}">${iconText}</div>
+        <div class="doc-info">
+            <div class="doc-name">${d.nom_fichier}</div>
+            <div class="doc-meta">${date}${size?' · '+size:''} ${typeBadge}</div>
+        </div>
+        <div class="doc-actions">
+            <button class="doc-btn" onclick="adminDownloadDoc('${d.url}')" title="Télécharger">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </button>
+            <button class="doc-btn" onclick="adminDeleteDoc('${d.id}','${d.url}')" title="Supprimer" style="color:#dc2626;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+            </button>
+        </div>
+    </div>`;
+}
+
+async function adminUploadFiles(files) {
+    if (!files.length) return;
+    const targetUserId = document.getElementById('doc-client-select').value;
+    if (!targetUserId) { showToast('Sélectionnez un client.'); return; }
+    const progEl = document.getElementById('admin-upload-progress');
+    progEl.style.display = 'block';
+    progEl.innerHTML = '';
+    for (const file of files) {
+        if (file.size > 10 * 1024 * 1024) { showToast('Fichier trop volumineux (max 10 Mo) : ' + file.name); continue; }
+        progEl.innerHTML += `<div style="font-size:13px;padding:4px 0;color:var(--gray500);">⏳ ${file.name}…</div>`;
+        try {
+            const ts = Date.now();
+            const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+            const path = `${targetUserId}/${ts}_${safeName}`;
+            const {error: upErr} = await sb.storage.from('documents').upload(path, file);
+            if (upErr) throw upErr;
+            const {error: dbErr} = await sb.from('documents').insert({
+                uploaded_by: targetUserId,
+                nom_fichier: file.name,
+                type_document: guessDocType(file.name),
+                url: path,
+                file_size: file.size
+            });
+            if (dbErr) throw dbErr;
+            showToast('✓ ' + file.name + ' envoyé');
+        } catch (err) {
+            showToast('Erreur : ' + (err.message||err));
+        }
+    }
+    document.getElementById('admin-file-input').value = '';
+    setTimeout(() => { progEl.style.display='none'; progEl.innerHTML=''; }, 2000);
+    await loadAllDocuments();
+}
+
+async function adminDownloadDoc(path) {
+    const {data, error} = await sb.storage.from('documents').createSignedUrl(path, 300);
+    if (error) { showToast('Erreur téléchargement.'); return; }
+    window.open(data.signedUrl, '_blank');
+}
+
+async function adminDeleteDoc(id, path) {
+    if (!confirm('Supprimer ce document ?')) return;
+    await sb.storage.from('documents').remove([path]);
+    await sb.from('documents').delete().eq('id', id);
+    showToast('Document supprimé.');
+    await loadAllDocuments();
+}
+
+function guessDocType(name) {
+    const n = name.toLowerCase();
+    if (n.includes('facture') || n.includes('invoice')) return 'Facture';
+    if (n.includes('bl') || n.includes('connaissement') || n.includes('lading')) return 'BL';
+    if (n.includes('passeport') || n.includes('passport')) return 'Passeport';
+    if (n.includes('carte') && n.includes('grise')) return 'Carte grise';
+    if (n.includes('assurance') || n.includes('insurance')) return 'Assurance';
+    if (n.includes('title') || n.includes('titre')) return 'Titre';
+    return null;
+}
+
+function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' o';
+    if (bytes < 1048576) return (bytes/1024).toFixed(1) + ' Ko';
+    return (bytes/1048576).toFixed(1) + ' Mo';
+}
+
+// ══════════════════════════════════════════════
+// ── Catalogue / Products ──
+// ══════════════════════════════════════════════
+let allProducts = [];
+let editingProductId = null;
+
+async function loadProducts() {
+    const {data, error} = await sb.from('products').select('*').order('created_at', {ascending: false});
+    if (error) { showToast('Erreur chargement catalogue.'); return; }
+    allProducts = data || [];
+    filterProducts();
+}
+
+function filterProducts() {
+    const q = (document.getElementById('cat-search')?.value || '').toLowerCase();
+    const ty = document.getElementById('cat-type')?.value || '';
+    const st = document.getElementById('cat-status')?.value || '';
+    let list = allProducts.filter(p => {
+        const hay = [p.title, p.description, p.category, p.tags, p.origin].join(' ').toLowerCase();
+        return (!q || hay.includes(q)) && (!ty || p.type === ty) && (!st || p.status === st);
+    });
+    renderProducts(list);
+}
+
+function renderProducts(list) {
+    const el = document.getElementById('product-grid');
+    if (!list.length) {
+        el.innerHTML = '<div class="empty" style="grid-column:1/-1;">📦 Aucun produit dans le catalogue</div>';
+        return;
+    }
+    el.innerHTML = list.map(p => productCard(p)).join('');
+}
+
+function productCard(p) {
+    const price = p.price ? Number(p.price).toLocaleString('fr-FR') + ' ' + (p.currency||'XOF') : 'Prix sur demande';
+    const statusColors = {disponible:'#16a34a',vendu:'#dc2626',reserve:'#c2410c'};
+    const statusLabels = {disponible:'Disponible',vendu:'Vendu',reserve:'Réservé'};
+    const badgeColors = {HOT:'#dc2626',NOUVEAU:'#2563eb',PROMO:'#16a34a',VEDETTE:'#7e22ce'};
+    const imgUrl = p.image_url
+        ? SB_URL + '/storage/v1/object/public/products/' + p.image_url
+        : '';
+    const imgStyle = imgUrl
+        ? `background-image:url('${imgUrl}');background-size:cover;background-position:center;`
+        : 'background:var(--gray100);display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--gray300);';
+    const imgContent = imgUrl ? '' : (p.type === 'vehicule' ? '🚗' : '📦');
+
+    return `<div style="background:#fff;border:1px solid var(--gray200);border-radius:14px;overflow:hidden;transition:box-shadow .2s;">
+        <div style="height:180px;position:relative;${imgStyle}">
+            ${imgContent}
+            ${p.badge ? `<span style="position:absolute;top:10px;left:10px;background:${badgeColors[p.badge]||'#0A0A0A'};color:#fff;font-size:10px;font-weight:700;padding:4px 8px;border-radius:6px;">${p.badge}</span>` : ''}
+            <span style="position:absolute;top:10px;right:10px;background:${statusColors[p.status]||'#737373'};color:#fff;font-size:10px;font-weight:700;padding:4px 8px;border-radius:6px;">${statusLabels[p.status]||p.status}</span>
+        </div>
+        <div style="padding:16px;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+                <span class="badge badge-${p.type === 'vehicule' ? 'import' : 'export'}" style="font-size:10px;padding:2px 7px;">${p.type === 'vehicule' ? 'Véhicule' : 'Article'}</span>
+                ${p.category ? `<span style="font-size:11px;color:var(--gray400);">${p.category}</span>` : ''}
+            </div>
+            <h4 style="font-size:15px;font-weight:700;margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.title}</h4>
+            ${p.origin ? `<p style="font-size:12px;color:var(--gray500);margin-bottom:8px;">Origine : ${p.origin}</p>` : ''}
+            <p style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;">${price}</p>
+            <div style="display:flex;gap:6px;">
+                <button onclick="editProduct('${p.id}')" class="btn btn-outline btn-sm" style="flex:1;">Modifier</button>
+                <button onclick="deleteProduct('${p.id}')" class="btn btn-outline btn-sm" style="color:#dc2626;border-color:#fecaca;padding:7px 10px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>`;
+}
+
+// ── Product Panel ──
+function openProductPanel(product) {
+    editingProductId = product ? product.id : null;
+    document.getElementById('pp-title').textContent = product ? 'Modifier le produit' : 'Nouveau produit';
+    document.getElementById('pp-id').value = product?.id || '';
+    document.getElementById('pp-name').value = product?.title || '';
+    document.getElementById('pp-desc').value = product?.description || '';
+    document.getElementById('pp-price').value = product?.price || '';
+    document.getElementById('pp-currency').value = product?.currency || 'XOF';
+    document.getElementById('pp-origin').value = product?.origin || '';
+    document.getElementById('pp-category').value = product?.category || '';
+    document.getElementById('pp-badge').value = product?.badge || '';
+    document.getElementById('pp-status').value = product?.status || 'disponible';
+    document.getElementById('pp-tags').value = product?.tags || '';
+    document.getElementById('pp-err').style.display = 'none';
+    const typeRadios = document.querySelectorAll('input[name="pp-type"]');
+    typeRadios.forEach(r => r.checked = r.value === (product?.type || 'vehicule'));
+
+    // Image preview
+    const preview = document.getElementById('pp-image-preview');
+    if (product?.image_url) {
+        const url = SB_URL + '/storage/v1/object/public/products/' + product.image_url;
+        preview.innerHTML = `<img src="${url}" style="max-width:100%;max-height:160px;border-radius:8px;"/>`;
+    } else {
+        preview.innerHTML = '';
+    }
+    document.getElementById('pp-image').value = '';
+
+    document.getElementById('product-panel').style.right = '0';
+    document.getElementById('product-panel-overlay').style.opacity = '1';
+    document.getElementById('product-panel-overlay').style.pointerEvents = 'all';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductPanel() {
+    document.getElementById('product-panel').style.right = '-100%';
+    document.getElementById('product-panel-overlay').style.opacity = '0';
+    document.getElementById('product-panel-overlay').style.pointerEvents = 'none';
+    document.body.style.overflow = '';
+}
+
+function previewProductImage(input) {
+    const preview = document.getElementById('pp-image-preview');
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            preview.innerHTML = `<img src="${e.target.result}" style="max-width:100%;max-height:160px;border-radius:8px;"/>`;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function editProduct(id) {
+    const p = allProducts.find(x => x.id === id);
+    if (p) openProductPanel(p);
+}
+
+async function saveProduct(e) {
+    e.preventDefault();
+    const errEl = document.getElementById('pp-err');
+    errEl.style.display = 'none';
+    const btn = document.getElementById('pp-submit');
+    btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Enregistrement…';
+
+    const type = document.querySelector('input[name="pp-type"]:checked')?.value || 'vehicule';
+    const payload = {
+        type,
+        title: document.getElementById('pp-name').value.trim(),
+        description: document.getElementById('pp-desc').value.trim() || null,
+        price: parseFloat(document.getElementById('pp-price').value) || null,
+        currency: document.getElementById('pp-currency').value,
+        origin: document.getElementById('pp-origin').value.trim() || null,
+        category: document.getElementById('pp-category').value.trim() || null,
+        badge: document.getElementById('pp-badge').value || null,
+        status: document.getElementById('pp-status').value,
+        tags: document.getElementById('pp-tags').value.trim() || null
+    };
+
+    // Upload image if selected
+    const fileInput = document.getElementById('pp-image');
+    if (fileInput.files.length) {
+        const file = fileInput.files[0];
+        if (file.size > 5 * 1024 * 1024) {
+            errEl.textContent = 'Image trop volumineuse (max 5 Mo).';
+            errEl.style.display = 'block';
+            btn.disabled = false; btn.innerHTML = 'Enregistrer';
+            return;
+        }
+        const ts = Date.now();
+        const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+        const path = `${ts}_${safeName}`;
+        const {error: upErr} = await sb.storage.from('products').upload(path, file);
+        if (upErr) {
+            errEl.textContent = 'Erreur upload image: ' + upErr.message;
+            errEl.style.display = 'block';
+            btn.disabled = false; btn.innerHTML = 'Enregistrer';
+            return;
+        }
+        payload.image_url = path;
+    }
+
+    let error;
+    if (editingProductId) {
+        ({error} = await sb.from('products').update(payload).eq('id', editingProductId));
+    } else {
+        ({error} = await sb.from('products').insert(payload));
+    }
+
+    btn.disabled = false; btn.innerHTML = 'Enregistrer';
+    if (error) {
+        errEl.textContent = 'Erreur: ' + error.message;
+        errEl.style.display = 'block';
+        return;
+    }
+    closeProductPanel();
+    showToast(editingProductId ? '✓ Produit modifié' : '✓ Produit ajouté au catalogue');
+    await loadProducts();
+}
+
+async function deleteProduct(id) {
+    if (!confirm('Supprimer ce produit du catalogue ?')) return;
+    const p = allProducts.find(x => x.id === id);
+    if (p?.image_url) {
+        await sb.storage.from('products').remove([p.image_url]);
+    }
+    const {error} = await sb.from('products').delete().eq('id', id);
+    if (error) { showToast('Erreur suppression.'); return; }
+    showToast('Produit supprimé.');
+    await loadProducts();
+}
+</script>
+    <!-- Enregistrement du Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('[PWA] SW enregistre:', reg.scope))
+            .catch(err => console.warn('[PWA] SW echec:', err));
+        });
+      }
+    </script>
+<!-- ── Bottom Navigation Mobile ── -->
+<nav id="bottomnav" aria-label="Navigation rapide">
+    <a href="/" class="bn-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Accueil</span>
+    </a>
+    <a href="/negoce" class="bn-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        <span>Négoce</span>
+    </a>
+    <a href="/suivi" class="bn-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span>Suivi</span>
+    </a>
+    <a href="/vehicules" class="bn-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span>Véhicules</span>
+    </a>
+    <a href="/connexion" class="bn-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span>Espace</span>
+    </a>
+    <a href="/espace-client" class="bn-item" data-page="/espace-client">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Compte</span>
+    </a>
+</nav>
+<script>
+(function(){
+  var path = window.location.pathname.replace(/\/$/,'') || '/';
+  var links = document.querySelectorAll('#bottomnav .bn-item');
+  links.forEach(function(a){
+    var href = a.getAttribute('href').replace(/\/$/,'') || '/';
+    if(href === path || (href !== '/' && path.startsWith(href))) a.classList.add('active');
+  });
+})();
+</script>
+</body>
+</html>
