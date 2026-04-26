@@ -128,6 +128,7 @@
 @media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
 
     </style>
+    <script src="/config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 <body>
@@ -342,8 +343,7 @@
 
 <script>
 // ══════════════════════════════════════════════
-const SB_URL  = 'https://mmfdxoappbhxoqpgsdit.supabase.co';
-const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tZmR4b2FwcGJoeG9xcGdzZGl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2Mzk1NTksImV4cCI6MjA5MDIxNTU1OX0.JvY1Ow4suN7kt-ESyplGTZfY0TIpbwK7X9ceGv3Lreg';
+const { SUPABASE_URL: SB_URL, SUPABASE_ANON_KEY: SB_KEY } = window.ADTL_CONFIG;
 const sb = supabase.createClient(SB_URL, SB_KEY);
 // ══════════════════════════════════════════════
 

@@ -325,13 +325,12 @@
 
 <div id="toast"></div>
 
+<script src="/config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
 // ══════════════════════════════════════════════
-const SB_URL  = 'https://mmfdxoappbhxoqpgsdit.supabase.co';
-const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tZmR4b2FwcGJoeG9xcGdzZGl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2Mzk1NTksImV4cCI6MjA5MDIxNTU1OX0.JvY1Ow4suN7kt-ESyplGTZfY0TIpbwK7X9ceGv3Lreg';
-const ADMIN   = 'adtranslogistics@hotmail.com';
+const { SUPABASE_URL: SB_URL, SUPABASE_ANON_KEY: SB_KEY, ADMIN_EMAIL: ADMIN } = window.ADTL_CONFIG;
 // ══════════════════════════════════════════════
 
 const sb = supabase.createClient(SB_URL, SB_KEY);

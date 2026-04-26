@@ -80,6 +80,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 .result-animate{animation:fadeSlideUp .4s ease forwards;}
 @keyframes spin{to{transform:rotate(360deg);}}
 </style>
+<script src="/config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 <body class="bg-white text-g800 font-sans">
@@ -1150,8 +1151,8 @@ window.addEventListener('scroll', () => {
 // ══════════════════════════════════════════════════════════════
 // ══ SUPABASE GATE — Déblocage du détail marchandise ══════════
 // ══════════════════════════════════════════════════════════════
-const SB_URL_M = 'https://mmfdxoappbhxoqpgsdit.supabase.co';
-const SB_ANON_M = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tZmR4b2FwcGJoeG9xcGdzZGl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2Mzk1NTksImV4cCI6MjA5MDIxNTU1OX0.JvY1Ow4suN7kt-ESyplGTZfY0TIpbwK7X9ceGv3Lreg';
+const SB_URL_M = window.ADTL_CONFIG.SUPABASE_URL;
+const SB_ANON_M = window.ADTL_CONFIG.SUPABASE_ANON_KEY;
 const EDGE_FN_M = SB_URL_M + '/functions/v1/notify-simulation';
 
 let gateUnlockedM = false;
