@@ -1,0 +1,24 @@
+# AD TRANS LOGISTICS — robots.txt
+# https://www.adtranslogistics.com
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /espace-client
+Disallow: /espace-client.html
+Disallow: /connexion
+Disallow: /connexion.html
+
+# Bloquer les indexeurs nuisibles
+User-agent: GPTBot
+Disallow: /admin
+Disallow: /espace-client
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+Sitemap: https://www.adtranslogistics.com/sitemap.xml
