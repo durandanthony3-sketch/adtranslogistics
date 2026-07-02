@@ -662,7 +662,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
             <div id="pay-gate" style="display:none;">
               <div class="adtl-paybox">
                 <div class="pb-title"><span class="material-symbols-outlined" style="color:#fbbf24;">lock</span> Débloquer l'estimation complète — 2 000 F</div>
-                <div class="pb-sub">Détail ligne par ligne (droits, taxes, TGC, redevances), frais annexes, total général et rapport envoyé par email. Accès illimité pendant 24 h pour comparer plusieurs véhicules.</div>
+                <div class="pb-sub">Détail ligne par ligne des droits et taxes, étapes du dédouanement à cocher, liste des documents à rassembler, total général et rapport PDF téléchargeable. Accès illimité pendant 24 h pour comparer plusieurs véhicules.</div>
                 <button type="button" class="pb-btn" onclick="startSimPayment()">Payer 2 000 F — MoMo, Moov ou carte</button>
                 <div class="adtl-manual" id="pay-manual-sim"></div>
               </div>
@@ -729,6 +729,26 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
                 <span class="result-value tax" style="font-weight:700;">200 000 XOF</span>
               </div>
             </div>
+
+
+            <!-- Étapes du dédouanement (checklist interactive) -->
+            <div id="res-etapes-block" class="mb-4">
+              <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3 mt-4">Les étapes de votre dédouanement — cochez au fur et à mesure</div>
+              <div id="res-etapes"></div>
+            </div>
+
+            <!-- Documents à rassembler (checklist interactive) -->
+            <div id="res-docs-block" class="mb-4">
+              <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3 mt-4">Les documents à rassembler</div>
+              <div id="res-docs"></div>
+            </div>
+
+            <!-- Téléchargement du rapport PDF -->
+            <button id="btn-pdf" onclick="downloadReportPDF()" style="width:100%;margin-top:6px;padding:13px;border-radius:9999px;background:#0D1B2A;color:#fff;border:none;cursor:pointer;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+              <span class="material-symbols-outlined text-base">download</span>
+              Télécharger mon rapport PDF
+            </button>
+            <div id="pdf-status" style="display:none;text-align:center;font-size:12px;color:#737373;margin-top:6px;"></div>
 
           </div><!-- /res-detail -->
 
@@ -1621,6 +1641,8 @@ function calculate() {
   if (userDouane) userDouane.textContent = fmt(totalDouane);
   if (userFrais) userFrais.textContent = fmt(fraisAnnexesEff);
 
+  renderChecklists(isReexport);
+
   applyLeadGate();
   applyPayGate();
 }
@@ -2014,6 +2036,255 @@ function showGateToast(phone) {
   document.body.appendChild(toast);
   setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity .5s'; }, 4500);
   setTimeout(() => toast.remove(), 5100);
+}
+
+// ── Étapes & documents du dédouanement ──────────────────────────────────────
+const ETAPES_IM4 = [
+  ["Avis d'arrivée", "Recevez l'avis d'arrivée du navire auprès de la compagnie maritime ou du consignataire."],
+  ["BESC validé", "Faites valider votre BESC (Bordereau Électronique de Suivi des Cargaisons)."],
+  ["Bon à délivrer", "Échangez le connaissement (BL) contre le bon à délivrer auprès de la compagnie (frais de compagnie à régler)."],
+  ["Déclaration en douane", "Faites établir la déclaration (SAD) dans SYDONIA par votre déclarant agréé / AD TRANS LOGISTICS."],
+  ["Paiement des droits", "Réglez les droits et taxes liquidés à la douane et conservez la quittance."],
+  ["Frais de port et de parc", "Réglez l'acconage, la manutention et les frais de parc (USN, vacation…)."],
+  ["Contrôle douanier", "Présentez le véhicule à la visite si le circuit de contrôle l'exige."],
+  ["Bon à enlever (BAE)", "Obtenez le BAE et procédez à l'enlèvement du véhicule du parc."],
+  ["Immatriculation", "Faites établir la plaque et la carte grise auprès de l'ANaTT."],
+  ["Mise en circulation", "Passez la visite technique et souscrivez l'assurance avant de rouler."]
+];
+const ETAPES_EX8 = [
+  ["Avis d'arrivée", "Recevez l'avis d'arrivée du navire auprès de la compagnie maritime."],
+  ["BESC validé", "Faites valider votre BESC (Bordereau Électronique de Suivi des Cargaisons)."],
+  ["Bon à délivrer", "Échangez le connaissement (BL) contre le bon à délivrer auprès de la compagnie."],
+  ["Déclaration EX8", "Faites établir la déclaration de réexportation par votre déclarant agréé."],
+  ["Forfait douanier", "Réglez le forfait unique de réexportation (305 000 F) et conservez la quittance."],
+  ["Frais de port et de parc", "Réglez l'acconage, la manutention et les frais de parc."],
+  ["Convoyage", "Organisez le convoyage / l'escorte sur le corridor (Niger, Burkina, hinterland)."],
+  ["Sortie du parc", "Sortez le véhicule du parc et remettez-le au convoyeur avec les documents."],
+  ["Suivi frontière", "Suivez le véhicule jusqu'au passage de la frontière et la clôture du transit."]
+];
+const DOCS_IM4 = [
+  "Connaissement original (Bill of Lading) ou télex release",
+  "Facture d'achat ou certificat de vente du véhicule",
+  "Carte grise étrangère (titre de propriété)",
+  "BESC validé",
+  "Pièce d'identité du propriétaire (+ carte IFU si société)",
+  "Procuration / mandat si un transitaire agit pour vous",
+  "Numéro de châssis (VIN) lisible — photos du véhicule conseillées"
+];
+const DOCS_EX8 = [
+  "Connaissement original (Bill of Lading) ou télex release",
+  "Facture d'achat ou certificat de vente du véhicule",
+  "Carte grise étrangère (titre de propriété)",
+  "BESC validé",
+  "Pièce d'identité de l'acheteur et coordonnées du destinataire final",
+  "Identité du convoyeur / plaque du véhicule tracteur le cas échéant",
+  "Procuration / mandat si un transitaire agit pour vous"
+];
+
+let _lastChecklistRegime = null;
+function renderChecklists(isReexport) {
+  const regime = isReexport ? 'EX8' : 'IM4';
+  if (_lastChecklistRegime === regime) return; // conserve les cases cochées
+  _lastChecklistRegime = regime;
+  const etapes = isReexport ? ETAPES_EX8 : ETAPES_IM4;
+  const docs = isReexport ? DOCS_EX8 : DOCS_IM4;
+  const box = document.getElementById('res-etapes');
+  const dbox = document.getElementById('res-docs');
+  if (!box || !dbox) return;
+  box.innerHTML = etapes.map(function (e, i) {
+    return '<label style="display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:1px solid #ececec;border-radius:10px;margin-bottom:6px;cursor:pointer;font-size:13px;background:#fff;">'
+      + '<input type="checkbox" class="chk-etape" style="margin-top:2px;accent-color:#0D1B2A;width:16px;height:16px;flex:none;">'
+      + '<span><b>' + (i + 1) + '. ' + e[0] + '</b><br><span style="color:#737373;">' + e[1] + '</span></span></label>';
+  }).join('');
+  dbox.innerHTML = docs.map(function (d) {
+    return '<label style="display:flex;gap:10px;align-items:center;padding:8px 12px;border:1px solid #ececec;border-radius:10px;margin-bottom:6px;cursor:pointer;font-size:13px;background:#fff;">'
+      + '<input type="checkbox" class="chk-doc" style="accent-color:#0D1B2A;width:16px;height:16px;flex:none;">'
+      + '<span>' + d + '</span></label>';
+  }).join('');
+}
+
+// ── Rapport PDF téléchargeable ───────────────────────────────────────────────
+function collectReportData() {
+  const v = function (id) { return (document.getElementById(id)?.textContent || '—').trim(); };
+  const destSel = document.getElementById('sel-destination');
+  const isReexport = !!(destSel && destSel.value === 'reexport');
+  const etapes = [].slice.call(document.querySelectorAll('#res-etapes label')).map(function (l) {
+    const t = l.querySelector('b');
+    const ds = l.querySelector('span span');
+    const txt = (t ? t.textContent.trim() : '') + (ds ? ' — ' + ds.textContent.trim() : '');
+    return { done: l.querySelector('input').checked, txt: txt || (l.textContent || '').replace(/\s+/g, ' ').trim() };
+  });
+  const docs = [].slice.call(document.querySelectorAll('#res-docs label')).map(function (l) {
+    return { done: l.querySelector('input').checked, txt: (l.textContent || '').replace(/\s+/g, ' ').trim() };
+  });
+  let lead = {};
+  try { lead = JSON.parse(localStorage.getItem(LEAD_KEY) || '{}'); } catch (e) {}
+  return {
+    client: ((lead.prenom || '') + ' ' + (lead.nom || '')).trim() || '—',
+    tel: lead.tel || '—',
+    marque: selMarque.value || '—', modele: selModele.value || '—',
+    annee: inpAnnee.value || '—',
+    origine: selOrigine.options[selOrigine.selectedIndex] ? selOrigine.options[selOrigine.selectedIndex].text : '—',
+    type: selType.options[selType.selectedIndex] ? selType.options[selType.selectedIndex].text : '—',
+    cv13: document.getElementById('chk-tgc')?.checked ? 'Oui' : 'Non',
+    badge: v('badge-regime'), isReexport: isReexport,
+    valBrute: v('res-val-brute'), fret: v('res-fret-val'), caf: v('res-cif'), assiette: v('res-vd'),
+    ddLabel: v('res-dd-label'), dd: v('res-dd'), prel: v('res-pcs'), tva: v('res-tva'),
+    acc: v('res-tgc'), fixe: v('res-afs'),
+    totalDouane: v('res-total-douane'), totalGeneral: v('res-total'),
+    etapes: etapes, docs: docs,
+    date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }),
+    ref: 'ADTL-' + Date.now().toString(36).toUpperCase()
+  };
+}
+
+function buildPdfReport(doc, d) {
+  const W = 210, M = 14;
+  let y = 0;
+  const navy = [13, 27, 42], gray = [115, 115, 115], light = [236, 236, 236];
+  function np() { if (y > 272) { doc.addPage(); y = 16; } }
+  function header() {
+    doc.setFillColor(navy[0], navy[1], navy[2]);
+    doc.rect(0, 0, W, 26, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(14);
+    doc.text('AD TRANS LOGISTICS', M, 11);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.text('Rapport de dédouanement — ' + (d.isReexport ? 'Réexportation (EX8)' : 'Mise à la consommation (Bénin)'), M, 18);
+    doc.setFontSize(8);
+    doc.text(d.date + '   ·   Réf. ' + d.ref, W - M, 11, { align: 'right' });
+    doc.text('www.adtranslogistics.com · +229 01 97 50 05 55', W - M, 18, { align: 'right' });
+    y = 34;
+  }
+  function section(t) {
+    np();
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
+    doc.setTextColor(navy[0], navy[1], navy[2]);
+    doc.text(t.toUpperCase(), M, y);
+    doc.setDrawColor(navy[0], navy[1], navy[2]);
+    doc.setLineWidth(0.5); doc.line(M, y + 1.5, W - M, y + 1.5);
+    y += 7;
+  }
+  function row(label, value, bold) {
+    np();
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.setTextColor(60, 60, 60);
+    doc.text(label, M, y);
+    doc.setFont('helvetica', bold ? 'bold' : 'normal');
+    doc.setTextColor(navy[0], navy[1], navy[2]);
+    doc.text(String(value), W - M, y, { align: 'right' });
+    doc.setDrawColor(light[0], light[1], light[2]);
+    doc.setLineWidth(0.2); doc.line(M, y + 1.6, W - M, y + 1.6);
+    y += 6;
+  }
+  function checkItem(txt, done) {
+    np();
+    doc.setDrawColor(navy[0], navy[1], navy[2]);
+    doc.setLineWidth(0.35);
+    doc.rect(M, y - 3.4, 4, 4);
+    if (done) {
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+      doc.setTextColor(30, 125, 79);
+      doc.text('X', M + 1, y - 0.2);
+    }
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.setTextColor(60, 60, 60);
+    const lines = doc.splitTextToSize(txt, W - 2 * M - 8);
+    doc.text(lines, M + 7, y);
+    y += lines.length * 4.4 + 2.4;
+  }
+  header();
+  section('Client et véhicule');
+  row('Client', d.client); row('Téléphone', d.tel);
+  row('Véhicule', d.marque + ' ' + d.modele + ' — ' + d.annee, true);
+  row('Genre / catégorie', d.type + '   ·   13 CV et plus : ' + d.cv13);
+  row('Zone d\'achat', d.origine);
+  row('Statut du calcul', d.badge);
+  y += 2;
+  section('Base de calcul');
+  row('Valeur véhicule retenue (référentiel douanier)', d.valBrute);
+  if (d.fret !== '—') row('Fret maritime forfaitaire', d.fret);
+  row('Valeur CAF (base douanière)', d.caf, true);
+  if (!d.isReexport) row('Assiette taxable (70 % du CAF — abattement 30 %)', d.assiette);
+  y += 2;
+  section('Détail des droits et taxes');
+  row(d.ddLabel, d.dd);
+  if (d.prel !== '—') row('Prélèvements communautaires — RS, PCS, PC (3 %)', d.prel);
+  if (d.tva !== '—') row('TVA (18 %)', d.tva);
+  if (d.acc !== '—' && d.acc !== '') row('Accise véhicules de tourisme 13 CV et plus (10 %)', d.acc);
+  row('Taxes et redevances fixes', d.fixe);
+  row('TOTAL DROITS ET TAXES DOUANE', d.totalDouane, true);
+  y += 2;
+  section('Frais annexes et accompagnement');
+  row('USN — Guichet unique', '100 000 XOF');
+  row('Formalités', '80 000 XOF');
+  row('Interpool', '20 000 XOF');
+  row('Enlèvement', '75 000 XOF');
+  row('Vacation', '35 000 XOF');
+  if (!d.isReexport) row('Plaque + Carte grise', '40 000 XOF');
+  row('Transit AD TRANS LOGISTICS', '200 000 XOF');
+  y += 2;
+  np();
+  doc.setFillColor(navy[0], navy[1], navy[2]);
+  doc.rect(M, y - 4, W - 2 * M, 12, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+  doc.setTextColor(255, 255, 255);
+  doc.text('MONTANT TOTAL À PRÉVOIR', M + 4, y + 3.5);
+  doc.text(d.totalGeneral, W - M - 4, y + 3.5, { align: 'right' });
+  y += 16;
+  section('Les étapes de votre dédouanement');
+  d.etapes.forEach(function (e) { checkItem(e.txt, e.done); });
+  y += 2;
+  section('Documents à rassembler');
+  d.docs.forEach(function (e) { checkItem(e.txt, e.done); });
+  y += 4;
+  np();
+  doc.setFont('helvetica', 'italic'); doc.setFontSize(7.5);
+  doc.setTextColor(gray[0], gray[1], gray[2]);
+  const disc = doc.splitTextToSize("Estimation calibrée sur les barèmes douaniers en vigueur (précision constatée de quelques francs sur les cas standards). Le montant définitif dépend de la déclaration officielle SYDONIA, du contrôle douanier et des caractéristiques exactes du véhicule. Ce rapport ne constitue pas une quittance. AD TRANS LOGISTICS vous accompagne de bout en bout : +229 01 97 50 05 55.", W - 2 * M);
+  doc.text(disc, M, y);
+  const pages = doc.getNumberOfPages();
+  for (let p = 1; p <= pages; p++) {
+    doc.setPage(p);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5);
+    doc.setTextColor(gray[0], gray[1], gray[2]);
+    doc.text('AD TRANS LOGISTICS — Transit douanier, Cotonou (Bénin) · Page ' + p + '/' + pages, W / 2, 291, { align: 'center' });
+  }
+}
+
+let _jspdfLoading = null;
+function loadJsPDF() {
+  if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve();
+  if (_jspdfLoading) return _jspdfLoading;
+  _jspdfLoading = new Promise(function (res, rej) {
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js';
+    s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
+  });
+  return _jspdfLoading;
+}
+
+function downloadReportPDF() {
+  if (!paidOK()) { startSimPayment(); return; }
+  const st = document.getElementById('pdf-status');
+  st.style.display = 'block';
+  st.textContent = 'Préparation de votre rapport…';
+  loadJsPDF().then(function () {
+    try {
+      const d = collectReportData();
+      const doc = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4' });
+      buildPdfReport(doc, d);
+      const fn = ('Rapport-Dedouanement-' + d.marque + '-' + d.modele + '-' + d.annee)
+        .replace(/[^A-Za-z0-9-]+/g, '_') + '.pdf';
+      doc.save(fn);
+      st.textContent = 'Rapport téléchargé : ' + fn;
+    } catch (e) {
+      st.textContent = "Erreur lors de la génération. Réessayez ou contactez-nous sur WhatsApp.";
+    }
+  }).catch(function () {
+    st.textContent = "Connexion au module PDF impossible. Vérifiez votre connexion internet.";
+  });
 }
 
 // ── Partage WhatsApp ────────────────────────────────────────────────────────
