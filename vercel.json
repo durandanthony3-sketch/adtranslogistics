@@ -23,7 +23,7 @@
       ]
     },
     {
-      "source": "/(argus_data|vehicles_db|cookie-consent|config)\\.(js|json)",
+      "source": "/(argus_data|vehicles_db|referentiel_douane|cookie-consent|config)\\.(js|json)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]
