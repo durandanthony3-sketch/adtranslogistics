@@ -1,8 +1,8 @@
-// AD TRANS LOGISTICS — Service Worker v1.1
+// AD TRANS LOGISTICS — Service Worker v1.2
 // Stratégie : Cache-first pour les assets, Network-first pour les pages HTML
 
-const CACHE_NAME = 'adtl-v1.1';
-const STATIC_CACHE = 'adtl-static-v1.1';
+const CACHE_NAME = 'adtl-v1.2';
+const STATIC_CACHE = 'adtl-static-v1.2';
 
 // Assets à mettre en cache immédiatement à l'installation
 const PRECACHE_ASSETS = [
