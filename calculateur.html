@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Calculateur Droits de Douane Marchandises | AD TRANS LOGISTICS — Cotonou, Bénin</title>
-<meta content="Calculez les droits de douane pour vos marchandises importées au Bénin. Tarif TEC-CEDEAO SH2022, DD 0-35%, TVA 18%, RS, PCS — résultats en temps réel." name="description"/>
+<meta content="Estimez les droits de douane import et export pour vos marchandises au Bénin avec une méthode alignée sur le simulateur GUCE : modèle de déclaration, pays, code marchandise, valeur en devise, taux de change et valeur statistique." name="description"/>
 <link rel="manifest" href="/manifest.json"/>
 <meta name="theme-color" content="#0A0A0A"/>
 <meta name="mobile-web-app-capable" content="yes"/>
@@ -17,8 +17,8 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="/assets/adtl.css"/>
+<script>window.tailwind=window.tailwind||{};</script>
 <script>
 tailwind.config = {
   theme: {
@@ -82,6 +82,17 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 </style>
 <script src="/config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<link rel="canonical" href="https://www.adtranslogistics.com/calculateur"/>
+<style>
+.pay-blur{filter:blur(11px);pointer-events:none;user-select:none;}
+.adtl-paybox{background:linear-gradient(135deg,#0D1B2A,#1a2d42);border-radius:16px;padding:22px;color:#fff;margin:18px 0;}
+.adtl-paybox .pb-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.adtl-paybox .pb-sub{font-size:12.5px;color:rgba(255,255,255,.6);line-height:1.55;margin-bottom:14px;}
+.adtl-paybox .pb-btn{width:100%;padding:13px;border-radius:9999px;background:#fff;color:#0A0A0A;font-weight:700;font-size:14px;border:none;cursor:pointer;font-family:'Space Grotesk',sans-serif;}
+.adtl-paybox .pb-btn:hover{opacity:.9;}
+.adtl-manual{display:none;margin-top:14px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:14px;font-size:13px;line-height:1.6;}
+.adtl-manual a{color:#25D366;font-weight:700;}
+</style>
 </head>
 <body class="bg-white text-g800 font-sans">
 
@@ -145,7 +156,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
     <li class="relative group">
         <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Boutique <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Vehicules</a>
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="/boutique">Vehicules</a>
             <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Articles</a>
         </div>
     </li>
@@ -187,7 +198,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="mob-tw-sub hidden pl-8 pb-2">
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Vehicules</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/boutique" onclick="closeMobile()">Vehicules</a>
         <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Articles</a>
     </div>
   </div>
@@ -198,12 +209,12 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 <section class="pt-28 pb-6 lg:pt-36 lg:pb-10 bg-white overflow-hidden">
 <div class="container mx-auto px-6 max-w-[1440px]">
   <div class="max-w-[720px] mx-auto text-center">
-    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Tarif TEC-CEDEAO SH2022</div>
+    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Méthode GUCE · TEC-CEDEAO</div>
     <h1 class="font-heading font-bold text-brand mb-3" style="font-size:clamp(2.2rem,5.5vw,64px);line-height:1.05;letter-spacing:-.025em;">
       Calculateur<br/><span class="text-g400 font-medium italic">droits de douane marchandises</span>
     </h1>
     <p class="text-base lg:text-lg text-g500 leading-relaxed max-w-[520px] mx-auto mb-5">
-      Calculez les droits et taxes pour vos marchandises au Bénin — import ou export.
+      Estimez les droits et taxes de vos marchandises au Bénin — import ou export — avec les champs utilisés par le simulateur officiel GUCE.
     </p>
 
     <!-- Toggle Import / Export -->
@@ -220,15 +231,15 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
     <div id="badges-import" class="flex flex-wrap gap-2 justify-center">
       <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
         <span class="material-symbols-outlined text-base text-brand">check_circle</span>
-        DD 0% - 35%
+        Valeur statistique
       </div>
       <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
         <span class="material-symbols-outlined text-base text-brand">check_circle</span>
-        TVA 18%
+        Code marchandise
       </div>
       <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
         <span class="material-symbols-outlined text-base text-brand">check_circle</span>
-        RS 1% + PCS 0,8%
+        Déclaration import
       </div>
     </div>
     <!-- Badges Export -->
@@ -246,8 +257,8 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         Unique taxe export
       </div>
     </div>
-    <p class="text-xs text-g400 mt-2 italic" id="note-import">* Estimation indicative — le taux exact dépend du code SH (nomenclature tarifaire) de votre marchandise.</p>
-    <p class="text-xs text-g400 mt-2 italic" id="note-export" style="display:none;">* La taxe de voirie (0,80% CFR) est la seule taxe applicable à l'exportation au Bénin.</p>
+    <p class="text-xs text-g400 mt-2 italic" id="note-import">* Estimation indicative inspirée du flux GUCE — le taux exact dépend du code marchandise et du régime retenu.</p>
+    <p class="text-xs text-g400 mt-2 italic" id="note-export" style="display:none;">* Estimation indicative — la taxe de voirie est calculée sur la valeur CFR.</p>
   </div>
 
   <!-- Jauge déroulante processus douanier marchandises -->
@@ -355,10 +366,23 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 
     <div class="p-6 lg:p-8">
 
-      <!-- SECTION 1: Type de marchandise -->
-      <div class="sim-section-title">① Catégorie de marchandise</div>
+      <!-- SECTION 1: Type de déclaration -->
+      <div class="sim-section-title">① Déclaration & marchandise</div>
 
       <div class="grid sm:grid-cols-2 gap-5 mb-6">
+        <div>
+          <label class="sim-label" for="sel-decl-m">Modèle de déclaration <span class="text-red-500">*</span></label>
+          <select class="sim-input sim-select" id="sel-decl-m" onchange="calcMarch()">
+            <option value="IM4">IM4 — Import mise à la consommation</option>
+            <option value="IM7">IM7 — Entrée en entrepôt</option>
+            <option value="IM8">IM8 — Transit</option>
+            <option value="IM5">IM5 — Admission temporaire</option>
+          </select>
+        </div>
+        <div>
+          <label class="sim-label" for="inp-origin-m">Pays d'origine <span class="text-red-500">*</span></label>
+          <input type="text" class="sim-input" id="inp-origin-m" placeholder="Ex : Chine, France, Nigeria..." oninput="calcMarch()"/>
+        </div>
         <!-- Catégorie principale -->
         <div class="sm:col-span-2">
           <label class="sim-label" for="sel-categorie">Catégorie <span class="text-red-500">*</span></label>
@@ -375,42 +399,47 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         </div>
       </div>
 
-      <!-- Code SH (optionnel) -->
-      <div class="mb-6">
-        <label class="sim-label" for="inp-sh">Code SH (optionnel)</label>
-        <input type="text" class="sim-input" id="inp-sh" placeholder="Ex : 8703.23.20.00" maxlength="15" oninput="onShInput()"/>
-        <div class="text-xs text-g400 mt-1">Si vous connaissez le code SH exact, saisissez-le pour un taux précis</div>
+      <div class="grid sm:grid-cols-2 gap-5 mb-6">
+        <div>
+          <label class="sim-label" for="inp-sh">Code marchandise / SH</label>
+          <input type="text" class="sim-input" id="inp-sh" placeholder="Ex : 8504.40.00.00" maxlength="18" oninput="onShInput()"/>
+          <div class="text-xs text-g400 mt-1">Comme sur GUCE : code tarifaire de la marchandise.</div>
+        </div>
+        <div>
+          <label class="sim-label" for="inp-desc-m">Description marchandise</label>
+          <input type="text" class="sim-input" id="inp-desc-m" placeholder="Ex : onduleurs, riz, pièces auto..." oninput="calcMarch()"/>
+        </div>
       </div>
 
       <!-- SECTION 2: Valeur -->
-      <div class="sim-section-title">② Valeur de la marchandise</div>
+      <div class="sim-section-title">② Valeur GUCE</div>
 
       <div class="grid sm:grid-cols-2 gap-5 mb-6">
-        <!-- Valeur FOB -->
         <div>
-          <label class="sim-label" for="inp-fob">Valeur FOB <span class="text-red-500">*</span></label>
+          <label class="sim-label" for="inp-fob">CIF en devise étrangère <span class="text-red-500">*</span></label>
           <input type="number" class="sim-input" id="inp-fob" placeholder="Montant" min="0" oninput="calcMarch()"/>
         </div>
-        <!-- Devise -->
         <div>
-          <label class="sim-label" for="sel-devise">Devise</label>
-          <select class="sim-input sim-select" id="sel-devise" onchange="calcMarch()">
+          <label class="sim-label" for="sel-devise">Currency Code</label>
+          <select class="sim-input sim-select" id="sel-devise" onchange="onCurrencyChangeM()">
             <option value="XOF">XOF (Franc CFA)</option>
             <option value="EUR">EUR (Euro)</option>
             <option value="USD">USD (Dollar US)</option>
           </select>
         </div>
-        <!-- Fret -->
         <div>
-          <label class="sim-label" for="inp-fret-m">Fret (transport)</label>
-          <input type="number" class="sim-input" id="inp-fret-m" placeholder="0" min="0" oninput="calcMarch()"/>
-          <div class="text-xs text-g400 mt-1">Dans la même devise que FOB</div>
+          <label class="sim-label" for="inp-rate-m">Exchange Rate</label>
+          <input type="number" class="sim-input" id="inp-rate-m" placeholder="Taux de change" min="0" step="0.001" value="1" oninput="calcMarch()"/>
+          <div class="text-xs text-g400 mt-1">Taux douanier utilisé pour convertir la valeur CIF.</div>
         </div>
-        <!-- Assurance -->
         <div>
-          <label class="sim-label" for="inp-assurance">Assurance</label>
-          <input type="number" class="sim-input" id="inp-assurance" placeholder="0" min="0" oninput="calcMarch()"/>
-          <div class="text-xs text-g400 mt-1">Dans la même devise que FOB</div>
+          <label class="sim-label" for="inp-net-m">Net Mass</label>
+          <input type="number" class="sim-input" id="inp-net-m" placeholder="Poids net en KG" min="0" oninput="calcMarch()"/>
+          <div class="text-xs text-g400 mt-1">KG, comme dans le simulateur GUCE.</div>
+        </div>
+        <div class="sm:col-span-2">
+          <label class="sim-label" for="inp-supp-m">Supplementary Units</label>
+          <input type="text" class="sim-input" id="inp-supp-m" placeholder="Ex : 12 pièces, 3 colis, 0 si non applicable" oninput="calcMarch()"/>
         </div>
       </div>
 
@@ -457,11 +486,25 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
     <div class="p-6 lg:p-8">
 
       <!-- SECTION 1: Description -->
-      <div class="sim-section-title">① Description de la marchandise</div>
+      <div class="sim-section-title">① Déclaration & marchandise</div>
 
-      <div class="mb-6">
-        <label class="sim-label" for="inp-desc-exp">Nature de la marchandise</label>
-        <input type="text" class="sim-input" id="inp-desc-exp" placeholder="Ex: Noix de cajou, coton, karité..." oninput="calcExport()"/>
+      <div class="grid sm:grid-cols-2 gap-5 mb-6">
+        <div>
+          <label class="sim-label" for="sel-decl-exp">Modèle de déclaration</label>
+          <select class="sim-input sim-select" id="sel-decl-exp" onchange="calcExport()">
+            <option value="EX1">EX1 — Export définitif</option>
+            <option value="EX2">EX2 — Export temporaire</option>
+            <option value="EX3">EX3 — Réexportation</option>
+          </select>
+        </div>
+        <div>
+          <label class="sim-label" for="inp-dest-exp">Pays de destination</label>
+          <input type="text" class="sim-input" id="inp-dest-exp" placeholder="Ex : Ghana, France, Inde..." oninput="calcExport()"/>
+        </div>
+        <div class="sm:col-span-2">
+          <label class="sim-label" for="inp-desc-exp">Nature de la marchandise</label>
+          <input type="text" class="sim-input" id="inp-desc-exp" placeholder="Ex: Noix de cajou, coton, karité..." oninput="calcExport()"/>
+        </div>
       </div>
 
       <!-- SECTION 2: Valeur CFR -->
@@ -474,11 +517,15 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         </div>
         <div>
           <label class="sim-label" for="sel-devise-exp">Devise</label>
-          <select class="sim-input sim-select" id="sel-devise-exp" onchange="calcExport()">
+          <select class="sim-input sim-select" id="sel-devise-exp" onchange="onCurrencyChangeExp()">
             <option value="XOF">XOF (Franc CFA)</option>
             <option value="EUR">EUR (Euro)</option>
             <option value="USD">USD (Dollar US)</option>
           </select>
+        </div>
+        <div>
+          <label class="sim-label" for="inp-rate-exp">Exchange Rate</label>
+          <input type="number" class="sim-input" id="inp-rate-exp" placeholder="Taux de change" min="0" step="0.001" value="1" oninput="calcExport()"/>
         </div>
         <div>
           <label class="sim-label" for="inp-fret-exp">Fret (transport)</label>
@@ -529,62 +576,111 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
             <span id="badge-cat" class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">Cat. 3 — DD 20%</span>
           </div>
 
-          <!-- Valeur CIF -->
+          <!-- Valeur statistique -->
           <div class="bg-g50 rounded-xl p-4 mb-5">
-            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Valeur CIF (XOF)</div>
+            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Valeur statistique (XOF)</div>
             <div class="result-row">
-              <span class="result-label">Valeur FOB</span>
+              <span class="result-label">CIF en devise</span>
               <span class="result-value" id="res-fob-m">—</span>
             </div>
             <div class="result-row">
-              <span class="result-label">+ Fret</span>
+              <span class="result-label">Taux de change</span>
               <span class="result-value" id="res-fret-m">—</span>
             </div>
             <div class="result-row">
-              <span class="result-label">+ Assurance</span>
+              <span class="result-label">Masse nette / unités</span>
               <span class="result-value" id="res-ass-m">—</span>
             </div>
             <div class="flex justify-between items-center pt-2 mt-1 border-t border-g200">
-              <span class="text-sm font-semibold text-brand">Valeur CIF</span>
+              <span class="text-sm font-semibold text-brand">Statistical Value</span>
               <span class="text-base font-bold text-brand font-heading" id="res-cif-m">—</span>
             </div>
           </div>
 
           <!-- TOTAL -->
           <div class="result-total-row" style="background:#0D1B2A;border-radius:12px;padding:16px;">
-            <div class="result-total-label" style="color:#fff;">TOTAL DROITS & TAXES</div>
+            <div class="result-total-label" style="color:#fff;">DROITS & TAXES ESTIMÉS</div>
             <div class="result-total-value" style="color:#fff;font-size:20px;" id="res-total-m">—</div>
           </div>
           <p class="text-xs text-g400 mt-3 italic text-center">* Estimation indicative — le taux exact dépend du code SH précis.</p>
 
-          <!-- GATE: formulaire pour débloquer le détail -->
+          <!-- GATE: demande payante pour le résultat détaillé -->
           <div id="res-gate-m" class="mt-5" style="display:none;">
             <div style="background:linear-gradient(135deg,#0D1B2A,#1a2d42);border-radius:16px;padding:24px;color:#fff;">
               <div class="flex items-center gap-3 mb-3">
-                <span class="material-symbols-outlined text-2xl" style="color:#fbbf24;">lock</span>
+                <span class="material-symbols-outlined text-2xl" style="color:#fbbf24;">payments</span>
                 <div>
-                  <div class="font-heading font-bold text-base">Débloquer le détail complet</div>
-                  <div style="font-size:12px;color:rgba(255,255,255,.5);">Taxes, droits détaillés, coût rendu — gratuit</div>
+                  <div class="font-heading font-bold text-base">Recevoir le résultat détaillé</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,.58);">Choisissez le niveau de vérification, puis confirmez le paiement par WhatsApp.</div>
                 </div>
               </div>
-              <form id="gate-form-m" onsubmit="submitGateM(event)" class="space-y-3">
-                <input type="text" id="gate-name-m" placeholder="Votre nom complet" required
+              <form id="gate-form-m" data-mode="import" onsubmit="submitGateM(event)" class="space-y-3">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:10px;margin:14px 0;">
+                  <label style="display:block;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);border-radius:14px;padding:14px;cursor:pointer;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                      <input type="radio" id="gate-offer-m-detail" name="gate-offer-m" value="detail" aria-label="Calcul détaillé" checked style="accent-color:#fbbf24;">
+                      <span style="font-weight:800;font-size:14px;">Calcul détaillé</span>
+                    </div>
+                    <div style="font-size:24px;font-weight:900;line-height:1;">2 000 F</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.62);margin-top:6px;line-height:1.45;">Détail des droits, taxes, valeur statistique et coût rendu.</div>
+                  </label>
+                  <label style="display:block;border:1px solid rgba(251,191,36,.5);background:rgba(251,191,36,.12);border-radius:14px;padding:14px;cursor:pointer;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                      <input type="radio" id="gate-offer-m-advisor" name="gate-offer-m" value="advisor" aria-label="Vérification conseiller" style="accent-color:#fbbf24;">
+                      <span style="font-weight:800;font-size:14px;">Vérification conseiller</span>
+                    </div>
+                    <div style="font-size:24px;font-weight:900;line-height:1;">5 000 F</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.68);margin-top:6px;line-height:1.45;">Contrôle humain du code marchandise et du calcul avant opération.</div>
+                  </label>
+                </div>
+                <input type="text" id="gate-name-m" name="name" placeholder="Votre nom complet" aria-label="Nom complet" autocomplete="name" required
                   style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
-                <input type="email" id="gate-email-m" placeholder="Votre adresse email" required
+                <input type="email" id="gate-email-m" name="email" placeholder="Votre adresse email" aria-label="Adresse email" autocomplete="email" required
                   style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
-                <input type="tel" id="gate-phone-m" placeholder="Téléphone (ex: +229 01 XX XX XX)" required
+                <input type="tel" id="gate-phone-m" name="phone" placeholder="Téléphone (ex: +229 01 XX XX XX)" aria-label="Téléphone WhatsApp" autocomplete="tel" required
                   style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
                 <button type="submit" id="gate-btn-m"
                   style="width:100%;padding:12px;border-radius:9999px;background:#fff;color:#0A0A0A;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;">
-                  <span class="material-symbols-outlined text-base">lock_open</span>
-                  Voir le détail des calculs
+                  <span class="material-symbols-outlined text-base">receipt_long</span>
+                  Créer ma demande de paiement
                 </button>
               </form>
-              <p style="font-size:11px;color:rgba(255,255,255,.35);margin-top:10px;text-align:center;">Vos données sont protégées et ne seront utilisées que pour le suivi de votre demande.</p>
+              <div id="payment-instructions-m" style="display:none;margin-top:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px;">
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                  <span class="material-symbols-outlined" style="color:#25D366;font-size:24px;">task_alt</span>
+                  <div>
+                    <div style="font-weight:800;font-size:15px;">Demande créée</div>
+                    <div id="payment-offer-title-m" style="font-size:12px;color:rgba(255,255,255,.62);margin-top:2px;">Calcul détaillé</div>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0;">
+                  <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:10px;">
+                    <div style="font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;font-weight:700;">Référence</div>
+                    <div id="payment-ref-m" style="font-size:15px;font-weight:900;letter-spacing:.4px;">—</div>
+                  </div>
+                  <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:10px;">
+                    <div style="font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;font-weight:700;">Montant</div>
+                    <div id="payment-amount-m" style="font-size:15px;font-weight:900;">—</div>
+                  </div>
+                </div>
+                <div style="font-size:12px;color:rgba(255,255,255,.72);line-height:1.55;">
+                  Payez par MTN Mobile Money au choix : <strong>code marchand 561498</strong> ou <strong>dépôt sur 0197500555</strong>. Envoyez ensuite la capture avec la référence ci-dessus.
+                </div>
+                <a id="payment-whatsapp-btn-m" href="#" target="_blank" rel="noopener"
+                  style="margin-top:12px;width:100%;padding:12px;border-radius:9999px;background:#25D366;color:#fff;font-weight:800;font-size:14px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;">
+                  <span class="material-symbols-outlined text-base">chat</span>
+                  Confirmer le paiement sur WhatsApp
+                </a>
+                <button type="button" onclick="resetPaymentRequestM('import')"
+                  style="margin-top:8px;width:100%;padding:10px;border-radius:9999px;background:transparent;color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.16);font-weight:700;font-size:12px;cursor:pointer;">
+                  Faire une autre demande
+                </button>
+              </div>
+              <p style="font-size:11px;color:rgba(255,255,255,.38);margin-top:10px;text-align:center;">L'estimation rapide reste gratuite. Le résultat détaillé est traité après paiement.</p>
             </div>
           </div>
 
-          <!-- Détail des taxes (hidden by default, unlocked by gate) -->
+          <!-- Détail des taxes (réservé au résultat vérifié) -->
           <div id="res-detail-m" style="display:none;">
           <div class="mt-4">
             <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Détail des impositions (sur valeur CIF)</div>
@@ -696,11 +792,81 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
           </div>
           <p class="text-xs text-g400 mt-3 italic text-center">* La taxe de voirie (0,80%) est l'unique taxe à l'exportation au Bénin.</p>
 
-          <!-- CTA WhatsApp -->
-          <a href="https://wa.me/2290197500555?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20une%20exportation%20de%20marchandises." target="_blank" class="btn-brand btn-dark w-full justify-center mt-4 text-sm py-3">
-            <span class="material-symbols-outlined text-base">support_agent</span>
-            Demander un devis export
-          </a>
+          <!-- GATE EXPORT -->
+          <div id="res-gate-exp" class="mt-5" style="display:none;">
+            <div style="background:linear-gradient(135deg,#0D1B2A,#1a2d42);border-radius:16px;padding:24px;color:#fff;">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="material-symbols-outlined text-2xl" style="color:#fbbf24;">payments</span>
+                <div>
+                  <div class="font-heading font-bold text-base">Recevoir le résultat détaillé</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,.58);">Même mode de paiement que le simulateur véhicules.</div>
+                </div>
+              </div>
+              <form id="gate-form-exp" data-mode="export" onsubmit="submitGateM(event)" class="space-y-3">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:10px;margin:14px 0;">
+                  <label style="display:block;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);border-radius:14px;padding:14px;cursor:pointer;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                      <input type="radio" id="gate-offer-exp-detail" name="gate-offer-exp" value="detail" aria-label="Calcul détaillé export" checked style="accent-color:#fbbf24;">
+                      <span style="font-weight:800;font-size:14px;">Calcul détaillé</span>
+                    </div>
+                    <div style="font-size:24px;font-weight:900;line-height:1;">2 000 F</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.62);margin-top:6px;line-height:1.45;">Détail CFR, taxe de voirie et résultat export.</div>
+                  </label>
+                  <label style="display:block;border:1px solid rgba(251,191,36,.5);background:rgba(251,191,36,.12);border-radius:14px;padding:14px;cursor:pointer;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                      <input type="radio" id="gate-offer-exp-advisor" name="gate-offer-exp" value="advisor" aria-label="Vérification conseiller export" style="accent-color:#fbbf24;">
+                      <span style="font-weight:800;font-size:14px;">Vérification conseiller</span>
+                    </div>
+                    <div style="font-size:24px;font-weight:900;line-height:1;">5 000 F</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.68);margin-top:6px;line-height:1.45;">Contrôle humain du calcul avant opération.</div>
+                  </label>
+                </div>
+                <input type="text" id="gate-name-exp" name="name" placeholder="Votre nom complet" aria-label="Nom complet" autocomplete="name" required
+                  style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                <input type="email" id="gate-email-exp" name="email" placeholder="Votre adresse email" aria-label="Adresse email" autocomplete="email" required
+                  style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                <input type="tel" id="gate-phone-exp" name="phone" placeholder="Téléphone (ex: +229 01 XX XX XX)" aria-label="Téléphone WhatsApp" autocomplete="tel" required
+                  style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none;" />
+                <button type="submit" id="gate-btn-exp"
+                  style="width:100%;padding:12px;border-radius:9999px;background:#fff;color:#0A0A0A;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;">
+                  <span class="material-symbols-outlined text-base">receipt_long</span>
+                  Créer ma demande de paiement
+                </button>
+              </form>
+              <div id="payment-instructions-exp" style="display:none;margin-top:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px;">
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                  <span class="material-symbols-outlined" style="color:#25D366;font-size:24px;">task_alt</span>
+                  <div>
+                    <div style="font-weight:800;font-size:15px;">Demande créée</div>
+                    <div id="payment-offer-title-exp" style="font-size:12px;color:rgba(255,255,255,.62);margin-top:2px;">Calcul détaillé</div>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0;">
+                  <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:10px;">
+                    <div style="font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;font-weight:700;">Référence</div>
+                    <div id="payment-ref-exp" style="font-size:15px;font-weight:900;letter-spacing:.4px;">—</div>
+                  </div>
+                  <div style="background:rgba(0,0,0,.18);border-radius:10px;padding:10px;">
+                    <div style="font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;font-weight:700;">Montant</div>
+                    <div id="payment-amount-exp" style="font-size:15px;font-weight:900;">—</div>
+                  </div>
+                </div>
+                <div style="font-size:12px;color:rgba(255,255,255,.72);line-height:1.55;">
+                  Payez par MTN Mobile Money au choix : <strong>code marchand 561498</strong> ou <strong>dépôt sur 0197500555</strong>. Envoyez ensuite la capture avec la référence ci-dessus.
+                </div>
+                <a id="payment-whatsapp-btn-exp" href="#" target="_blank" rel="noopener"
+                  style="margin-top:12px;width:100%;padding:12px;border-radius:9999px;background:#25D366;color:#fff;font-weight:800;font-size:14px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;">
+                  <span class="material-symbols-outlined text-base">chat</span>
+                  Confirmer le paiement sur WhatsApp
+                </a>
+                <button type="button" onclick="resetPaymentRequestM('export')"
+                  style="margin-top:8px;width:100%;padding:10px;border-radius:9999px;background:transparent;color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.16);font-weight:700;font-size:12px;cursor:pointer;">
+                  Faire une autre demande
+                </button>
+              </div>
+              <p style="font-size:11px;color:rgba(255,255,255,.38);margin-top:10px;text-align:center;">L'estimation rapide reste gratuite. Le résultat détaillé est traité après paiement.</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -710,12 +876,13 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
     <div class="bg-g950 rounded-[20px] p-5 text-white" data-reveal data-delay="200">
       <div class="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">Sources & méthode</div>
       <div class="space-y-2 text-sm text-white/70">
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Champs alignés sur l'outil officiel GUCE « Taxes Applicables »</div>
         <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Tarif Extérieur Commun TEC-CEDEAO SH2022</div>
         <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>5 bandes tarifaires : 0%, 5%, 10%, 20%, 35%</div>
         <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>RS 1% + PCS 0,8% + PC 0,5% + PS 0,2%</div>
         <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>TVA 18% sur (CIF + droits)</div>
         <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Taux BCEAO : 1 EUR = 655,957 XOF</div>
-        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Taux USD indicatif : 1 USD ≈ 600 XOF</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Taux USD : actualisé automatiquement chaque jour (source BCE) — repli 600 XOF</div>
       </div>
       <div class="mt-4 p-3 rounded-lg bg-white/10 text-xs text-amber-300 font-semibold">
         * Le taux de DD dépend du code SH exact de votre marchandise. Contactez-nous pour une classification précise.
@@ -957,16 +1124,63 @@ const CATEGORIES = {
 };
 
 // ═══ Taux de change ═══
+// EUR : parité fixe BCEAO. USD : valeur de repli, actualisée au chargement
+// via l'API publique Frankfurter (BCE) — USD/XOF = 655,957 / (USD par EUR).
 const TAUX_CHANGE = {
   'XOF': 1,
   'EUR': 655.957,
   'USD': 600,
 };
+(function majTauxUSD(){
+  try {
+    fetch('https://api.frankfurter.dev/v1/latest?base=EUR&symbols=USD')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        const usdParEur = d && d.rates && d.rates.USD;
+        if (usdParEur && usdParEur > 0.5 && usdParEur < 2.5) {
+          TAUX_CHANGE['USD'] = Math.round((655.957 / usdParEur) * 100) / 100;
+          document.querySelectorAll('[data-taux-usd]').forEach(el => { el.textContent = TAUX_CHANGE['USD']; });
+          if (typeof window.refreshTauxDevise === 'function') window.refreshTauxDevise();
+        }
+      })
+      .catch(() => {});
+  } catch (e) {}
+})();
 
 // ═══ Fonctions utilitaires ═══
 function fmt(n) {
   if (n == null || isNaN(n)) return '—';
   return n.toLocaleString('fr-FR', {maximumFractionDigits:0}) + ' XOF';
+}
+
+function fmtPlain(n) {
+  return String(Math.round(Number(n || 0))).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
+function formatPaidAmountM(amount) {
+  return fmtPlain(amount) + ' F';
+}
+
+function fmtMoneyInput(value, currency) {
+  if (value == null || isNaN(value)) return '—';
+  return Number(value).toLocaleString('fr-FR', { maximumFractionDigits: 2 }) + ' ' + currency;
+}
+
+function updateExchangeRate(selectId, inputId) {
+  const currency = document.getElementById(selectId)?.value || 'XOF';
+  const rateInput = document.getElementById(inputId);
+  if (!rateInput) return;
+  rateInput.value = TAUX_CHANGE[currency] || 1;
+}
+
+function onCurrencyChangeM() {
+  updateExchangeRate('sel-devise', 'inp-rate-m');
+  calcMarch();
+}
+
+function onCurrencyChangeExp() {
+  updateExchangeRate('sel-devise-exp', 'inp-rate-exp');
+  calcExport();
 }
 
 // ═══ Populate catégorie dropdown ═══
@@ -1013,17 +1227,50 @@ function onShInput() {
 function resetResults() {
   document.getElementById('res-empty').style.display = 'block';
   document.getElementById('res-content').style.display = 'none';
+  document.getElementById('res-gate-m').style.display = 'none';
+  document.getElementById('res-detail-m').style.display = 'none';
 }
 
+
+// ── Verrou des totaux (débloqués après paiement) ──
+const PAY_KEY_CALC = 'adtl_paid_calc_v1';
+function calcPaidOK() {
+  try {
+    const d = JSON.parse(localStorage.getItem(PAY_KEY_CALC) || 'null');
+    return !!(d && d.ts && (Date.now() - d.ts) < 24 * 3600 * 1000);
+  } catch (e) { return false; }
+}
+function applyMerchPayLock() {
+  ['res-total-m', 'res-total-exp'].forEach(function (id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const row = el.closest('.result-total-row') || el.parentElement;
+    const locked = !calcPaidOK();
+    if (row) row.classList.toggle('pay-blur', locked);
+    let note = document.getElementById(id + '-locknote');
+    if (locked && !note && row && row.parentElement) {
+      note = document.createElement('p');
+      note.id = id + '-locknote';
+      note.style.cssText = 'font-size:12px;color:#737373;text-align:center;margin:8px 0 0;';
+      note.innerHTML = '🔒 Montant débloqué après paiement (à partir de 2 000 F) — choisissez votre offre ci-dessous.';
+      row.parentElement.insertBefore(note, row.nextSibling);
+    } else if (!locked && note) { note.remove(); }
+  });
+}
+function unlockMerchTotals(txId) {
+  try { localStorage.setItem(PAY_KEY_CALC, JSON.stringify({ ts: Date.now(), tx: txId || '' })); } catch (e) {}
+  applyMerchPayLock();
+}
 function calcMarch() {
   const cat = selCat.value;
   const idx = selProd.value;
-  const fobRaw = parseFloat(document.getElementById('inp-fob').value);
+  const cifRaw = parseFloat(document.getElementById('inp-fob').value);
   const devise = document.getElementById('sel-devise').value;
-  const fretRaw = parseFloat(document.getElementById('inp-fret-m').value) || 0;
-  const assRaw = parseFloat(document.getElementById('inp-assurance').value) || 0;
+  const rateRaw = parseFloat(document.getElementById('inp-rate-m').value) || (TAUX_CHANGE[devise] || 1);
+  const netMass = parseFloat(document.getElementById('inp-net-m').value) || 0;
+  const supplementaryUnits = document.getElementById('inp-supp-m').value.trim() || '—';
 
-  if (!cat || idx === '' || !fobRaw || fobRaw <= 0) {
+  if (!cat || idx === '' || !cifRaw || cifRaw <= 0 || !rateRaw || rateRaw <= 0) {
     resetResults();
     return;
   }
@@ -1031,13 +1278,9 @@ function calcMarch() {
   const prod = CATEGORIES[cat].produits[parseInt(idx)];
   if (!prod) { resetResults(); return; }
 
-  const taux = TAUX_CHANGE[devise] || 1;
-  const fobXOF = Math.round(fobRaw * taux);
-  const fretXOF = Math.round(fretRaw * taux);
-  const assXOF = Math.round(assRaw * taux);
-  const cif = fobXOF + fretXOF + assXOF;
+  const cif = Math.round(cifRaw * rateRaw);
 
-  // Taxes sur CIF
+  // Méthode GUCE : la valeur statistique correspond à la valeur CIF convertie en XOF.
   const ddRate = prod.dd / 100;
   const pcs = Math.round(cif * 0.008);
   const pc  = Math.round(cif * 0.005);
@@ -1054,6 +1297,7 @@ function calcMarch() {
   document.getElementById('res-empty').style.display = 'none';
   document.getElementById('res-content').style.display = 'block';
   document.getElementById('res-content').classList.add('result-animate');
+  applyMerchPayLock();
 
   // Badge catégorie
   const catNum = prod.dd === 0 ? 0 : prod.dd === 5 ? 1 : prod.dd === 10 ? 2 : prod.dd === 20 ? 3 : 4;
@@ -1061,10 +1305,10 @@ function calcMarch() {
   document.getElementById('badge-cat').textContent = 'Cat. ' + catNum + ' — DD ' + prod.dd + '%';
   document.getElementById('badge-cat').className = 'inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ' + colors[catNum];
 
-  // CIF
-  document.getElementById('res-fob-m').textContent = fmt(fobXOF);
-  document.getElementById('res-fret-m').textContent = fmt(fretXOF);
-  document.getElementById('res-ass-m').textContent = fmt(assXOF);
+  // Valeur statistique
+  document.getElementById('res-fob-m').textContent = fmtMoneyInput(cifRaw, devise);
+  document.getElementById('res-fret-m').textContent = fmtMoneyInput(rateRaw, 'XOF');
+  document.getElementById('res-ass-m').textContent = (netMass ? fmtPlain(netMass) : '—') + ' KG / ' + supplementaryUnits;
   document.getElementById('res-cif-m').textContent = fmt(cif);
 
   // Total
@@ -1086,17 +1330,7 @@ function calcMarch() {
   // Update display boxes
   document.getElementById('disp-dd').textContent = prod.dd + '%';
 
-  // Gate management
-  const gateM = document.getElementById('res-gate-m');
-  const detailM = document.getElementById('res-detail-m');
-  if (gateUnlockedM) {
-    gateM.style.display = 'none';
-    detailM.style.display = 'block';
-    autoSaveSimulationM();
-  } else {
-    gateM.style.display = 'block';
-    detailM.style.display = 'none';
-  }
+  showOrResetPaymentGateM('import');
 }
 
 // ═══ Mobile nav ═══
@@ -1149,66 +1383,210 @@ window.addEventListener('scroll', () => {
 })();
 
 // ══════════════════════════════════════════════════════════════
-// ══ SUPABASE GATE — Déblocage du détail marchandise ══════════
+// ══ Demande payante — Résultat détaillé marchandises ═════════
 // ══════════════════════════════════════════════════════════════
 const SB_URL_M = window.ADTL_CONFIG.SUPABASE_URL;
 const SB_ANON_M = window.ADTL_CONFIG.SUPABASE_ANON_KEY;
 const EDGE_FN_M = SB_URL_M + '/functions/v1/notify-simulation';
+const ADTL_WHATSAPP_M = (window.ADTL_CONFIG.WHATSAPP_NUMBER || '2290197500555').replace(/\D/g, '');
+const ADTL_MTN_MERCHANT_CODE_M = '561498';
+const ADTL_MTN_DEPOSIT_NUMBER_M = '0197500555';
 
-let gateUnlockedM = false;
+const PAID_MERCH_OFFERS = {
+  detail: {
+    code: 'CALC',
+    label: 'Calcul détaillé',
+    amount: 2000,
+    summary: 'Détail complet du calcul, droits, taxes et base retenue.'
+  },
+  advisor: {
+    code: 'VERIF',
+    label: 'Vérification conseiller',
+    amount: 5000,
+    summary: 'Contrôle humain du code marchandise et du calcul avant opération.'
+  }
+};
 
-// Check localStorage on load
+// Pré-remplit le contact sans débloquer le détail.
 (function checkGateM() {
   const saved = localStorage.getItem('adtl_contact');
   if (saved) {
     try {
       const c = JSON.parse(saved);
       if (c.email && c.phone) {
-        gateUnlockedM = true;
-        document.getElementById('gate-name-m').value = c.name || '';
-        document.getElementById('gate-email-m').value = c.email;
-        document.getElementById('gate-phone-m').value = c.phone;
+        ['m', 'exp'].forEach((prefix) => {
+          const nameEl = document.getElementById('gate-name-' + prefix);
+          const emailEl = document.getElementById('gate-email-' + prefix);
+          const phoneEl = document.getElementById('gate-phone-' + prefix);
+          if (nameEl) nameEl.value = c.name || c.nom || '';
+          if (emailEl) emailEl.value = c.email;
+          if (phoneEl) phoneEl.value = c.phone;
+        });
       }
     } catch(e) {}
   }
 })();
 
-function getSimulationDataM() {
+function getPaidMerchOffer(type) {
+  return PAID_MERCH_OFFERS[type] || PAID_MERCH_OFFERS.detail;
+}
+
+function generateMerchPaymentReference(offer, mode) {
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, '0');
+  const d = String(now.getDate()).padStart(2, '0');
+  const random = Math.random().toString(36).slice(2, 6).toUpperCase();
+  const modeCode = mode === 'export' ? 'EXP' : 'IMP';
+  return `ADTL-${modeCode}-${offer.code}-${y}${m}${d}-${random}`;
+}
+
+function escapeHTMLM(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  }[char]));
+}
+
+function getGatePrefixM(mode) {
+  return mode === 'export' ? 'exp' : 'm';
+}
+
+function getSimulationDataM(mode = currentMode || 'import') {
   const selCat = document.getElementById('sel-categorie');
   const selProd = document.getElementById('sel-produit');
+  if (mode === 'export') {
+    return {
+      type: 'marchandise',
+      mode: 'export',
+      input_data: {
+        modele_declaration: document.getElementById('sel-decl-exp')?.value || 'EX1',
+        destination: document.getElementById('inp-dest-exp')?.value || '',
+        description: document.getElementById('inp-desc-exp')?.value || '',
+        fob: document.getElementById('inp-fob-exp')?.value || '',
+        devise: document.getElementById('sel-devise-exp')?.value || 'XOF',
+        taux_change: document.getElementById('inp-rate-exp')?.value || '',
+        fret: document.getElementById('inp-fret-exp')?.value || '0',
+        methode: 'CFR x 0,80%'
+      },
+      result_data: {
+        cfr: document.getElementById('res-cfr-exp')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
+        total: document.getElementById('res-total-exp')?.textContent?.replace(/\s/g,'').replace('XOF','') || ''
+      }
+    };
+  }
   return {
     type: 'marchandise',
+    mode: 'import',
     input_data: {
+      modele_declaration: document.getElementById('sel-decl-m')?.value || 'IM4',
+      origine: document.getElementById('inp-origin-m')?.value || '',
       categorie: selCat?.options[selCat.selectedIndex]?.text || '',
       produit: selProd?.options[selProd.selectedIndex]?.text || '',
-      fob: document.getElementById('inp-fob')?.value || '',
+      code_marchandise: document.getElementById('inp-sh')?.value || '',
+      description: document.getElementById('inp-desc-m')?.value || '',
+      cif_devise: document.getElementById('inp-fob')?.value || '',
       devise: document.getElementById('sel-devise')?.value || 'XOF',
-      fret: document.getElementById('inp-fret-m')?.value || '0',
-      assurance: document.getElementById('inp-assurance')?.value || '0',
+      taux_change: document.getElementById('inp-rate-m')?.value || '',
+      masse_nette: document.getElementById('inp-net-m')?.value || '',
+      unites_supplementaires: document.getElementById('inp-supp-m')?.value || '',
       dd_rate: document.getElementById('disp-dd')?.textContent?.replace('%','') || ''
     },
     result_data: {
-      cif: document.getElementById('res-cif-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
+      valeur_statistique: document.getElementById('res-cif-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
       total: document.getElementById('res-total-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
       rendu: document.getElementById('res-rendu-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || ''
     }
   };
 }
 
+function merchSimulationSignature(orderMode) {
+  const sim = getSimulationDataM(orderMode);
+  return JSON.stringify({ mode: sim.mode, input: sim.input_data, result: sim.result_data });
+}
+
+function getStoredMerchOrderForCurrentSim(mode) {
+  try {
+    const saved = localStorage.getItem('adtl_paid_merch_order');
+    if (!saved) return null;
+    const order = JSON.parse(saved);
+    return order && order.mode === mode && order.simulationSignature === merchSimulationSignature(mode) ? order : null;
+  } catch(e) {
+    return null;
+  }
+}
+
+function showOrResetPaymentGateM(mode) {
+  const prefix = getGatePrefixM(mode);
+  const gate = document.getElementById(mode === 'export' ? 'res-gate-exp' : 'res-gate-m');
+  const form = document.getElementById('gate-form-' + prefix);
+  const panel = document.getElementById('payment-instructions-' + prefix);
+  const detail = document.getElementById('res-detail-m');
+  if (detail && mode === 'import') detail.style.display = 'none';
+  if (!gate || !form || !panel) return;
+  gate.style.display = 'block';
+  const existing = getStoredMerchOrderForCurrentSim(mode);
+  if (existing) {
+    showPaymentInstructionsM(existing, mode);
+  } else {
+    form.style.display = 'block';
+    panel.style.display = 'none';
+  }
+}
+
 async function submitGateM(e) {
   e.preventDefault();
-  const btn = document.getElementById('gate-btn-m');
-  const name = document.getElementById('gate-name-m').value.trim();
-  const email = document.getElementById('gate-email-m').value.trim();
-  const phone = document.getElementById('gate-phone-m').value.trim();
+  const mode = e.currentTarget?.dataset?.mode || currentMode || 'import';
+  const prefix = getGatePrefixM(mode);
+  const btn = document.getElementById('gate-btn-' + prefix);
+  const name = document.getElementById('gate-name-' + prefix).value.trim();
+  const email = document.getElementById('gate-email-' + prefix).value.trim();
+  const phone = document.getElementById('gate-phone-' + prefix).value.trim();
+  const selectedOffer = document.querySelector('input[name="gate-offer-' + prefix + '"]:checked')?.value || 'detail';
+  const offer = getPaidMerchOffer(selectedOffer);
+  const simData = getSimulationDataM(mode);
+  const paymentRef = generateMerchPaymentReference(offer, mode);
+  const order = {
+    ref: paymentRef,
+    mode,
+    offerType: selectedOffer,
+    offerLabel: offer.label,
+    offerSummary: offer.summary,
+    amount: offer.amount,
+    amountLabel: formatPaidAmountM(offer.amount),
+    status: 'pending_payment',
+    paymentMethod: 'MTN Mobile Money',
+    merchantCode: ADTL_MTN_MERCHANT_CODE_M,
+    depositNumber: ADTL_MTN_DEPOSIT_NUMBER_M,
+    createdAt: new Date().toISOString(),
+    fullName: name,
+    email,
+    phone,
+    simulationSignature: merchSimulationSignature(mode),
+    summaryLabel: getMerchSummaryLabel(simData),
+    totalLabel: getMerchTotalLabel(mode),
+    simulation: simData
+  };
 
   btn.disabled = true;
-  btn.innerHTML = '<span style="display:inline-block;width:17px;height:17px;border:2px solid rgba(0,0,0,.2);border-top-color:#0A0A0A;border-radius:50%;animation:spin .7s linear infinite;"></span> Envoi...';
+  btn.innerHTML = '<span style="display:inline-block;width:17px;height:17px;border:2px solid rgba(0,0,0,.2);border-top-color:#0A0A0A;border-radius:50%;animation:spin .7s linear infinite;"></span> Création de la demande...';
 
-  const simData = getSimulationDataM();
   simData.email = email;
   simData.phone = phone;
   simData.full_name = name;
+  simData.payment_ref = paymentRef;
+  simData.paid_offer = {
+    type: selectedOffer,
+    label: offer.label,
+    amount: offer.amount,
+    status: 'pending_payment',
+    payment_method: order.paymentMethod,
+    merchant_code: order.merchantCode,
+    deposit_number: order.depositNumber
+  };
 
   try {
     await fetch(EDGE_FN_M, {
@@ -1218,34 +1596,177 @@ async function submitGateM(e) {
     });
   } catch(err) { console.warn('Edge fn error:', err); }
 
-  // Save to localStorage
-  localStorage.setItem('adtl_contact', JSON.stringify({ name, email, phone }));
-  gateUnlockedM = true;
+  try {
+    const formData = new FormData();
+    formData.append('_subject', '[CALCUL MARCHANDISE PAYANT] ' + paymentRef + ' — ' + name + ' — ' + order.summaryLabel);
+    formData.append('_replyto', email);
+    formData.append('_template', 'box');
+    formData.append('_captcha', 'false');
+    formData.append('_autoresponse', buildClientPaymentInstructionsHTMLM(order));
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('reference', paymentRef);
+    formData.append('mode', mode);
+    formData.append('offre', offer.label);
+    formData.append('montant', order.amountLabel);
+    formData.append('moyen_paiement', order.paymentMethod);
+    formData.append('code_marchand_mtn', order.merchantCode);
+    formData.append('depot_mtn', order.depositNumber);
+    formData.append('resume', order.summaryLabel);
+    formData.append('total_estime', order.totalLabel);
+    formData.append('_honey', '');
+    formData.append('message', buildPaymentRequestHTMLM(order));
 
-  // Reveal detail
-  document.getElementById('res-gate-m').style.display = 'none';
-  document.getElementById('res-detail-m').style.display = 'block';
+    await fetch('https://formsubmit.co/ajax/adtranslogistics@hotmail.com', {
+      method: 'POST',
+      body: formData
+    });
+  } catch(err) { console.warn('Email send error:', err); }
+
+  localStorage.setItem('adtl_contact', JSON.stringify({ name, email, phone }));
+  localStorage.setItem('adtl_paid_merch_order', JSON.stringify(order));
+
+  if (mode === 'import') document.getElementById('res-detail-m').style.display = 'none';
+  showPaymentInstructionsM(order, mode);
+  showPaymentToastM(order);
 
   btn.disabled = false;
-  btn.innerHTML = '<span class="material-symbols-outlined text-base">lock_open</span> Voir le détail des calculs';
+  btn.innerHTML = '<span class="material-symbols-outlined text-base">receipt_long</span> Créer ma demande de paiement';
 }
 
-async function autoSaveSimulationM() {
-  const saved = localStorage.getItem('adtl_contact');
-  if (!saved) return;
-  const c = JSON.parse(saved);
-  const simData = getSimulationDataM();
-  simData.email = c.email;
-  simData.phone = c.phone;
-  simData.full_name = c.name || '';
+function getMerchSummaryLabel(simData) {
+  if (simData.mode === 'export') {
+    return simData.input_data.description || 'Export marchandise';
+  }
+  return simData.input_data.code_marchandise || simData.input_data.description || simData.input_data.produit || 'Import marchandise';
+}
 
-  try {
-    await fetch(EDGE_FN_M, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON_M },
-      body: JSON.stringify(simData)
-    });
-  } catch(err) { console.warn('Auto-save error:', err); }
+function getMerchTotalLabel(mode) {
+  return mode === 'export'
+    ? (document.getElementById('res-total-exp')?.textContent?.trim() || '—')
+    : (document.getElementById('res-total-m')?.textContent?.trim() || '—');
+}
+
+function buildPaymentRequestHTMLM(order) {
+  const inp = order.simulation.input_data || {};
+  const result = order.simulation.result_data || {};
+  return `
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:720px;margin:0 auto;background:#f7f7f7;padding:20px;">
+  <div style="background:#0D1B2A;color:#fff;border-radius:14px;padding:22px;margin-bottom:16px;">
+    <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.55);font-weight:700;">Nouvelle demande calcul marchandise</div>
+    <div style="font-size:24px;font-weight:900;margin-top:6px;">${escapeHTMLM(order.ref)}</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.7);margin-top:4px;">${escapeHTMLM(order.offerLabel)} — ${escapeHTMLM(order.amountLabel)}</div>
+  </div>
+  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:18px;margin-bottom:16px;">
+    <table style="width:100%;font-size:14px;border-collapse:collapse;">
+      <tr><td style="padding:6px;color:#737373;width:170px;">Client</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(order.fullName)}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Email</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(order.email)}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Téléphone</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(order.phone)}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Mode</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(order.mode.toUpperCase())}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Résumé</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(order.summaryLabel)}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Déclaration</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(inp.modele_declaration || '—')}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Devise / taux</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(inp.devise || '—')} / ${escapeHTMLM(inp.taux_change || '—')}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Total estimé</td><td style="padding:6px;font-weight:900;">${escapeHTMLM(order.totalLabel)}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Paiement</td><td style="padding:6px;font-weight:700;">MTN MoMo marchand ${escapeHTMLM(order.merchantCode)} ou dépôt ${escapeHTMLM(order.depositNumber)}</td></tr>
+    </table>
+  </div>
+  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:18px;margin-bottom:16px;">
+    <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#a3a3a3;font-weight:700;margin-bottom:10px;">Données calcul</div>
+    <pre style="white-space:pre-wrap;font-size:12px;line-height:1.45;color:#333;background:#f7f7f7;border-radius:10px;padding:12px;">${escapeHTMLM(JSON.stringify({ input: inp, result }, null, 2))}</pre>
+  </div>
+  <div style="background:#FFF8E1;border:1px solid #FFE082;border-radius:12px;padding:16px;color:#5D4037;font-size:13px;">
+    Action: attendre la preuve de paiement WhatsApp, valider la référence ${escapeHTMLM(order.ref)}, puis envoyer le résultat détaillé au client.
+  </div>
+</div>`;
+}
+
+function buildClientPaymentInstructionsHTMLM(order) {
+  const whatsappUrl = `https://wa.me/${ADTL_WHATSAPP_M}?text=${encodeURIComponent(buildPaymentWhatsAppMessageM(order))}`;
+  return `
+<div style="font-family:Arial,Helvetica,sans-serif;max-width:620px;margin:0 auto;background:#f7f7f7;padding:24px;">
+  <div style="background:#0D1B2A;color:#fff;border-radius:14px;padding:24px;text-align:center;">
+    <h1 style="font-size:22px;margin:0 0 8px;">Votre demande est enregistrée</h1>
+    <p style="font-size:13px;color:rgba(255,255,255,.65);margin:0;">AD TRANS LOGISTICS</p>
+  </div>
+  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:20px;margin-top:16px;">
+    <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#a3a3a3;font-weight:700;">Référence</div>
+    <div style="font-size:22px;font-weight:900;margin:4px 0 14px;">${escapeHTMLM(order.ref)}</div>
+    <table style="width:100%;font-size:14px;border-collapse:collapse;">
+      <tr><td style="padding:6px;color:#737373;">Offre</td><td style="padding:6px;text-align:right;font-weight:700;">${escapeHTMLM(order.offerLabel)}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Montant</td><td style="padding:6px;text-align:right;font-weight:900;">${escapeHTMLM(order.amountLabel)}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Calcul</td><td style="padding:6px;text-align:right;font-weight:700;">${escapeHTMLM(order.summaryLabel)}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Total estimé</td><td style="padding:6px;text-align:right;font-weight:900;">${escapeHTMLM(order.totalLabel)}</td></tr>
+    </table>
+    <div style="background:#FFF8E1;border:1px solid #FFE082;border-radius:10px;padding:14px;margin-top:16px;font-size:13px;color:#5D4037;">
+      Payez par MTN Mobile Money au choix : <strong>code marchand ${escapeHTMLM(order.merchantCode)}</strong> ou <strong>dépôt sur ${escapeHTMLM(order.depositNumber)}</strong>. Envoyez ensuite la capture avec votre référence.
+    </div>
+    <div style="text-align:center;margin-top:18px;">
+      <a href="${whatsappUrl}" style="display:inline-block;background:#25D366;color:#fff;padding:13px 24px;border-radius:999px;text-decoration:none;font-weight:800;">Confirmer sur WhatsApp</a>
+    </div>
+  </div>
+</div>`;
+}
+
+function buildPaymentWhatsAppMessageM(order) {
+  return `Bonjour AD TRANS LOGISTICS,\n\n` +
+    `Je confirme ma demande de calcul marchandise.\n` +
+    `Référence : ${order.ref}\n` +
+    `Mode : ${order.mode === 'export' ? 'Export' : 'Import'}\n` +
+    `Offre : ${order.offerLabel}\n` +
+    `Montant : ${order.amountLabel}\n` +
+    `Paiement : MTN Mobile Money - code marchand ${order.merchantCode} ou dépôt ${order.depositNumber}\n` +
+    `Résumé : ${order.summaryLabel}\n` +
+    `Total estimé : ${order.totalLabel}\n\n` +
+    `Je vais envoyer la capture de paiement ici.`;
+}
+
+function showPaymentInstructionsM(order, mode = order.mode) {
+  if (window.ADTL_PAY && ADTL_PAY.configured()) {
+    ADTL_PAY.open(order.amount, order.offerLabel + ' — ' + order.ref,
+      { name: order.fullName, email: order.email, phone: order.phone, ref: order.ref },
+      function (txId) {
+        unlockMerchTotals(txId);
+        ADTL_PAY.notifyAdmin({ _subject: 'PAIEMENT CALCULATEUR CONFIRME — ' + order.amountLabel, Reference: order.ref, Transaction: txId, Offre: order.offerLabel, Montant: order.amountLabel, Nom: order.fullName, Telephone: order.phone, Email: order.email });
+        if (typeof showPaymentToastM === 'function') showPaymentToastM('Paiement confirmé ✓ — total débloqué. Votre rapport détaillé arrive par email/WhatsApp.');
+      });
+  }
+  const prefix = getGatePrefixM(mode);
+  const form = document.getElementById('gate-form-' + prefix);
+  const panel = document.getElementById('payment-instructions-' + prefix);
+  if (!panel) return;
+  if (form) form.style.display = 'none';
+  document.getElementById('payment-ref-' + prefix).textContent = order.ref;
+  document.getElementById('payment-amount-' + prefix).textContent = order.amountLabel;
+  document.getElementById('payment-offer-title-' + prefix).textContent = order.offerLabel + ' — ' + order.summaryLabel;
+  document.getElementById('payment-whatsapp-btn-' + prefix).href =
+    `https://wa.me/${ADTL_WHATSAPP_M}?text=${encodeURIComponent(buildPaymentWhatsAppMessageM(order))}`;
+  panel.style.display = 'block';
+}
+
+function resetPaymentRequestM(mode) {
+  const prefix = getGatePrefixM(mode);
+  localStorage.removeItem('adtl_paid_merch_order');
+  const panel = document.getElementById('payment-instructions-' + prefix);
+  const form = document.getElementById('gate-form-' + prefix);
+  if (panel) panel.style.display = 'none';
+  if (form) form.style.display = 'block';
+}
+
+function showPaymentToastM(order) {
+  const toast = document.createElement('div');
+  toast.innerHTML = `
+    <div style="position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:9999;background:#0D1B2A;color:#fff;padding:16px 28px;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,.25);display:flex;align-items:center;gap:12px;font-size:14px;animation:fadeSlideUp .4s ease-out;" id="payment-toast-m">
+      <span class="material-symbols-outlined" style="color:#25D366;font-size:24px;">receipt_long</span>
+      <div>
+        <div style="font-weight:700;">Demande créée : ${escapeHTMLM(order.ref)}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);">Montant à payer : ${escapeHTMLM(order.amountLabel)}</div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity .5s'; }, 4500);
+  setTimeout(() => toast.remove(), 5100);
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -1291,23 +1812,20 @@ function switchMode(mode) {
   }
 }
 
-// ══ Calcul Export ═══
-const EUR_XOF_EXP = 655.957;
-const USD_XOF_EXP = 600;
-
 function calcExport() {
   const fobRaw = parseFloat(document.getElementById('inp-fob-exp').value) || 0;
   const fretRaw = parseFloat(document.getElementById('inp-fret-exp').value) || 0;
   const devise = document.getElementById('sel-devise-exp').value;
+  const rate = parseFloat(document.getElementById('inp-rate-exp').value) || (TAUX_CHANGE[devise] || 1);
 
   if (!fobRaw) {
     document.getElementById('res-empty-exp').style.display = 'block';
     document.getElementById('res-content-exp').style.display = 'none';
+    document.getElementById('res-gate-exp').style.display = 'none';
     return;
   }
 
   // Conversion en XOF
-  const rate = devise === 'EUR' ? EUR_XOF_EXP : devise === 'USD' ? USD_XOF_EXP : 1;
   const fobXOF = Math.round(fobRaw * rate);
   const fretXOF = Math.round(fretRaw * rate);
   const cfr = fobXOF + fretXOF;
@@ -1319,12 +1837,14 @@ function calcExport() {
   // Affichage
   document.getElementById('res-empty-exp').style.display = 'none';
   document.getElementById('res-content-exp').style.display = 'block';
+  applyMerchPayLock();
 
   document.getElementById('res-fob-exp').textContent = fmt(fobXOF);
   document.getElementById('res-fret-exp').textContent = fmt(fretXOF);
   document.getElementById('res-cfr-exp').textContent = fmt(cfr);
   document.getElementById('res-voirie-exp').textContent = fmt(voirie);
   document.getElementById('res-total-exp').textContent = fmt(totalExp);
+  showOrResetPaymentGateM('export');
 }
 
 // Check URL param for mode
@@ -1334,5 +1854,8 @@ function calcExport() {
 })();
 </script>
 <script src="/cookie-consent.js"></script>
+<script defer src="/assets/material-icons-fallback.js"></script>
+<script src="/assets/lang-suggest.js" defer></script>
+<script src="/assets/adtl-pay.js"></script>
 </body>
 </html>

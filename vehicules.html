@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Achat & Import de Vehicules | AD TRANS LOGISTICS - Cotonou</title>
-    <meta content="Commandez et importez vos vehicules depuis les USA, Europe, Asie et Dubai. Encheres Copart/IAAI, fret maritime, transit douanier. AD TRANS LOGISTICS, Cotonou." name="description"/>
+    <title>Acheter &amp; Importer un Véhicule — USA, Europe, Dubaï | AD TRANS LOGISTICS Cotonou</title>
+    <meta content="Commandez et importez vos véhicules depuis les USA (enchères Copart/IAAI), l'Europe, l'Asie et Dubaï. Achat, fret maritime, dédouanement à Cotonou et livraison — Bénin, Niger, Nigeria." name="description"/>
     <!-- PWA / Application Mobile -->
     <link rel="manifest" href="/manifest.json"/>
     <meta name="theme-color" content="#0A0A0A"/>
@@ -21,7 +21,8 @@
     <!-- Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="stylesheet" href="/assets/adtl.css"/>
+<script>window.tailwind=window.tailwind||{};</script>
     <script>
         tailwind.config = {
             theme: {
@@ -61,25 +62,13 @@
         html { scroll-behavior: smooth; overflow-x:hidden; }
         body { -webkit-font-smoothing: antialiased; overflow-x:hidden; }
 
-        .tag { @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold tracking-wider uppercase border border-g200 text-g500 bg-white; }
-        .tag .dot { @apply w-2 h-2 rounded-full bg-brand; }
 
-        .title-h2 { @apply font-heading text-4xl lg:text-[52px] font-bold text-brand leading-[1.1] tracking-tight mb-5; }
-        .subtitle { @apply text-lg text-g500 max-w-[600px] leading-relaxed; }
 
-        .btn-brand { @apply inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-semibold text-[15px] transition-all duration-300 ease-brand-ease; }
-        .btn-brand-dark { @apply bg-brand text-white hover:bg-g800 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10; }
-        .btn-brand-ghost { @apply bg-transparent text-brand border-[1.5px] border-g300 hover:border-brand hover:bg-g50; }
-        .btn-brand-white { @apply bg-white text-brand hover:bg-g100; }
 
-        .glass-nav { @apply fixed top-0 left-0 right-0 z-[1000] bg-white/85 backdrop-blur-2xl border-b border-black/5; }
-        .glass-nav.scrolled { @apply bg-white/95 shadow-lg shadow-black/5; }
 
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
         .animate-float { animation: float 5s ease-in-out infinite; }
 
-        .toast { @apply fixed bottom-6 right-6 bg-brand text-white px-6 py-4 rounded-brand shadow-xl z-[2000] opacity-0 transform translate-y-4 transition-all duration-300; }
-        .toast.show { @apply opacity-100 translate-y-0; }
 
         .whatsapp-btn { position:fixed; bottom:1.5rem; right:1.5rem; width:64px; height:64px; background:#25D366; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 15px rgba(0,0,0,.1); z-index:999; transition:all .3s; }
         .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 25px 50px rgba(0,0,0,.15); }
@@ -98,6 +87,7 @@
 .mob-tw-open .mob-tw-sub { display:block!important; }
 .mob-tw-open .mob-tw-chevron { transform:rotate(180deg); }
 </style>
+<link rel="canonical" href="https://www.adtranslogistics.com/vehicules"/>
 </head>
 <body class="bg-white text-g800 font-sans">
 
@@ -167,7 +157,7 @@
     <li class="relative group">
         <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Boutique <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Vehicules</a>
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="/boutique">Vehicules</a>
             <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Articles</a>
         </div>
     </li>
@@ -210,7 +200,7 @@
         <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="mob-tw-sub hidden pl-8 pb-2">
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Vehicules</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/boutique" onclick="closeMobile()">Vehicules</a>
         <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Articles</a>
     </div>
 </div>
@@ -1523,7 +1513,7 @@ function submitOrder(e) {
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg>
     <span>Douane</span>
   </a>
-  <a href="https://adtranslogistics.mychariow.shop" class="bn-item" data-page="/boutique">
+  <a href="/boutique" class="bn-item" data-page="/boutique">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
     <span>Boutique</span>
   </a>
@@ -1537,6 +1527,8 @@ function submitOrder(e) {
   </a>
 </nav>
 <script src="/cookie-consent.js"></script>
+<script defer src="/assets/material-icons-fallback.js"></script>
+<script src="/assets/lang-suggest.js" defer></script>
 </body>
 </html>
 

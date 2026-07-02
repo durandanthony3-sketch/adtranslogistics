@@ -1043,6 +1043,7 @@ const DD_RATES = { A: 0.20, B: 0.20, C: 0.10, D: 0.05 };
 const TAXES_FIXES = 98600;        // écotaxe, RI & redevances fixes par déclaration (depuis févr. 2025)
 const EUR_XOF = 655.96;  // taux effectif constaté dans le référentiel douanier (parité BCEAO 655,957 arrondie)
 const FORFAIT_REEXPORT = 305000;  // forfait EX8 (depuis févr. 2025)
+if (typeof REF_DOUANE === 'undefined') { window.REF_DOUANE = {}; console.warn('referentiel_douane.js absent — estimations Argus seules'); }
 
 function normalizeArgusKey(value) {
   return String(value || '')
