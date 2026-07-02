@@ -411,6 +411,18 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         </div>
       </div>
 
+      <div class="grid sm:grid-cols-2 gap-5 mb-6">
+        <div>
+          <label class="sim-label" for="sel-aib-m">AIB — Acompte sur Impôt sur les Bénéfices</label>
+          <select class="sim-input sim-select" id="sel-aib-m" onchange="calcMarch()">
+            <option value="0.01" selected>Importateur immatriculé (IFU) — AIB 1 %</option>
+            <option value="0.05">Non immatriculé — AIB 5 %</option>
+            <option value="0">Exonéré d'AIB</option>
+          </select>
+          <div class="text-xs text-g400 mt-1">Calculé sur (CIF + droits), comme sur la déclaration SYDONIA.</div>
+        </div>
+      </div>
+
       <!-- SECTION 2: Valeur -->
       <div class="sim-section-title">② Valeur GUCE</div>
 
@@ -708,9 +720,17 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
               <span class="result-label">RAU — Redevance Aménagement Urbain (0,5%)</span>
               <span class="result-value tax" id="res-rau-m">—</span>
             </div>
-            <div class="result-row" style="border-bottom:2px solid #E5E5E5;">
+            <div class="result-row">
               <span class="result-label">TVA — 18% sur (CIF + droits ci-dessus)</span>
               <span class="result-value tax" id="res-tva-m">—</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label" id="res-aib-label-m">AIB — Acompte Impôt sur Bénéfices (1%)</span>
+              <span class="result-value tax" id="res-aib-m">—</span>
+            </div>
+            <div class="result-row" style="border-bottom:2px solid #E5E5E5;">
+              <span class="result-label">Frais de liquidation — Bénin Control &amp; redevances (par conteneur)</span>
+              <span class="result-value tax" id="res-fraisliq-m">—</span>
             </div>
           </div>
 
@@ -720,6 +740,51 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
             <div class="result-total-value" id="res-rendu-m">—</div>
           </div>
           <p class="text-xs text-g400 mt-2 italic text-center">CIF + droits & taxes = coût rendu Cotonou</p>
+
+          <!-- Frais GUCE & prestations (relevés sur facture BFU réelle) -->
+          <div class="mt-5">
+            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Composition des frais de liquidation (facture unique GUCE)</div>
+            <div class="result-row">
+              <span class="result-label">Bénin Control — tracking cargaison</span>
+              <span class="result-value tax">74 946 XOF</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Bénin Control — scanning</span>
+              <span class="result-value tax">47 200 XOF</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Redevances douane (informatique, tracking…)</span>
+              <span class="result-value tax">≈ 3 000 à 16 000 XOF</span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Plomb / scellé</span>
+              <span class="result-value tax">4 200 XOF</span>
+            </div>
+            <div class="result-row" style="border-bottom:2px solid #E5E5E5;">
+              <span class="result-label">Taxe de voirie &amp; timbre statistique</span>
+              <span class="result-value tax">selon dossier</span>
+            </div>
+            <p class="text-xs text-g400 mt-2 italic">Relevés sur factures GUCE et SAD réelles 2026 (totaux constatés : 129 146 à 142 497 F par conteneur) — déjà inclus dans le total ci-dessus à hauteur de 130 000 F. Acconage, magasinage et transit non inclus.</p>
+          </div>
+
+          <!-- Étapes du dédouanement import -->
+          <div class="mt-5">
+            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Les étapes de votre importation — cochez au fur et à mesure</div>
+            <div id="res-etapes-m"></div>
+          </div>
+
+          <!-- Documents à rassembler -->
+          <div class="mt-5">
+            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Les documents à rassembler</div>
+            <div id="res-docs-m"></div>
+          </div>
+
+          <!-- Téléchargement du rapport PDF -->
+          <button id="btn-pdf-m" onclick="downloadReportPDFM('import')" style="width:100%;margin-top:10px;padding:13px;border-radius:9999px;background:#0D1B2A;color:#fff;border:none;cursor:pointer;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <span class="material-symbols-outlined text-base">download</span>
+            Télécharger mon rapport PDF
+          </button>
+          <div id="pdf-status-m" style="display:none;text-align:center;font-size:12px;color:#737373;margin-top:6px;"></div>
 
           <!-- CTA WhatsApp -->
           <a href="https://wa.me/2290197500555?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20le%20dédouanement%20de%20marchandises." target="_blank" class="btn-brand btn-dark w-full justify-center mt-4 text-sm py-3">
@@ -791,6 +856,23 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
             <div class="result-total-value" style="color:#fff;font-size:20px;" id="res-total-exp">—</div>
           </div>
           <p class="text-xs text-g400 mt-3 italic text-center">* La taxe de voirie (0,80%) est l'unique taxe à l'exportation au Bénin.</p>
+
+          <!-- Détail payant export : étapes + documents + PDF -->
+          <div id="res-detail-exp" style="display:none;">
+            <div class="mt-5">
+              <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Les étapes de votre exportation — cochez au fur et à mesure</div>
+              <div id="res-etapes-exp"></div>
+            </div>
+            <div class="mt-5">
+              <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Les documents à rassembler</div>
+              <div id="res-docs-exp"></div>
+            </div>
+            <button id="btn-pdf-exp" onclick="downloadReportPDFM('export')" style="width:100%;margin-top:10px;padding:13px;border-radius:9999px;background:#0D1B2A;color:#fff;border:none;cursor:pointer;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;">
+              <span class="material-symbols-outlined text-base">download</span>
+              Télécharger mon rapport PDF
+            </button>
+            <div id="pdf-status-exp" style="display:none;text-align:center;font-size:12px;color:#737373;margin-top:6px;"></div>
+          </div>
 
           <!-- GATE EXPORT -->
           <div id="res-gate-exp" class="mt-5" style="display:none;">
@@ -1261,6 +1343,15 @@ function unlockMerchTotals(txId) {
   try { localStorage.setItem(PAY_KEY_CALC, JSON.stringify({ ts: Date.now(), tx: txId || '' })); } catch (e) {}
   applyMerchPayLock();
 }
+function revealPaidMerch(mode) {
+  applyMerchPayLock();
+  const detailM = document.getElementById('res-detail-m');
+  const detailE = document.getElementById('res-detail-exp');
+  if (detailM && (!mode || mode === 'import')) detailM.style.display = 'block';
+  if (detailE && (!mode || mode === 'export')) detailE.style.display = 'block';
+  const gate = document.getElementById(mode === 'export' ? 'res-gate-exp' : 'res-gate-m');
+  if (gate) gate.style.display = 'none';
+}
 function calcMarch() {
   const cat = selCat.value;
   const idx = selProd.value;
@@ -1290,7 +1381,10 @@ function calcMarch() {
   const rau = Math.round(cif * 0.005);
   const baseTVA = cif + pcs + pc + rs + ps + dd + rau;
   const tva = Math.round(baseTVA * 0.18);
-  const totalDroits = pcs + pc + rs + ps + dd + rau + tva;
+  const aibRate = parseFloat(document.getElementById('sel-aib-m')?.value ?? '0.01');
+  const aib = Math.round(baseTVA * aibRate);
+  const FRAIS_LIQ = 130000; // frais de liquidation SYDONIA par conteneur (relevés réels : 129 146 à 142 497 F)
+  const totalDroits = pcs + pc + rs + ps + dd + rau + tva + aib + FRAIS_LIQ;
   const totalRendu = cif + totalDroits;
 
   // Affichage
@@ -1323,6 +1417,9 @@ function calcMarch() {
   document.getElementById('res-dd-m').textContent = fmt(dd);
   document.getElementById('res-rau-m').textContent = fmt(rau);
   document.getElementById('res-tva-m').textContent = fmt(tva);
+  document.getElementById('res-aib-label-m').textContent = 'AIB — Acompte Impôt sur Bénéfices (' + (aibRate * 100).toLocaleString('fr-FR') + '%)';
+  document.getElementById('res-aib-m').textContent = aibRate > 0 ? fmt(aib) : 'Exonéré';
+  document.getElementById('res-fraisliq-m').textContent = fmt(FRAIS_LIQ);
 
   // Rendu
   document.getElementById('res-rendu-m').textContent = fmt(totalRendu);
@@ -1331,6 +1428,272 @@ function calcMarch() {
   document.getElementById('disp-dd').textContent = prod.dd + '%';
 
   showOrResetPaymentGateM('import');
+}
+
+// ═══ Étapes & documents (import / export marchandises) ═══
+const ETAPES_M_IMPORT = [
+  ["e-IDI (GUCE)", "Établissez l'Intention d'Importation électronique sur le Guichet Unique avant l'embarquement."],
+  ["BESC validé", "Faites valider le Bordereau Électronique de Suivi des Cargaisons."],
+  ["Vérification Bénin Control", "Soumettez la Déclaration de Valeur (AVD) avec la facture et les documents de transport."],
+  ["Avis d'arrivée", "Récupérez l'avis d'arrivée et échangez le connaissement contre le bon à délivrer."],
+  ["Déclaration SAD", "Faites établir la déclaration SYDONIA par votre déclarant agréé / AD TRANS LOGISTICS."],
+  ["Liquidation douane", "Payez les droits et taxes liquidés et conservez la quittance."],
+  ["Facture GUCE (BFU)", "Réglez la facture unique : Bénin Control, redevances, plomb, voirie, timbre."],
+  ["Acconage & magasinage", "Réglez la manutention au terminal et surveillez les délais de franchise (surestaries)."],
+  ["Scanner / visite", "Présentez le conteneur au scanner ou à la visite si le circuit l'exige."],
+  ["BAE & enlèvement", "Obtenez le bon à enlever, enlevez le conteneur ou organisez le dépotage."]
+];
+const DOCS_M_IMPORT = [
+  "Facture commerciale définitive",
+  "Liste de colisage (packing list)",
+  "Connaissement (BL) original ou télex release",
+  "e-IDI validée (GUCE)",
+  "Déclaration de valeur / AVD Bénin Control",
+  "BESC validé",
+  "Certificat d'origine",
+  "Attestation d'assurance transport",
+  "Carte d'importateur et IFU",
+  "Mandat / procuration au transitaire le cas échéant"
+];
+const ETAPES_M_EXPORT = [
+  ["Facture & contrat", "Établissez la facture commerciale export et le contrat de vente (ou lettre de crédit)."],
+  ["Agréments", "Vérifiez votre IFU et votre carte d'exportateur."],
+  ["Certificat d'origine", "Faites établir le certificat d'origine (CCI Bénin)."],
+  ["Certificats produits", "Obtenez les certificats phytosanitaires / de fumigation si le produit l'exige."],
+  ["Réservation & empotage", "Réservez le conteneur auprès de la compagnie et procédez à l'empotage."],
+  ["Déclaration export", "Faites établir la déclaration SYDONIA export par votre déclarant agréé."],
+  ["Taxe de voirie", "Réglez la taxe de voirie (0,80 % du CFR) — unique taxe de sortie."],
+  ["Mise à quai", "Livrez le conteneur au terminal avant la date limite (cut-off)."],
+  ["Embarquement & BL", "Récupérez le connaissement et transmettez les originaux à votre acheteur."]
+];
+const DOCS_M_EXPORT = [
+  "Facture commerciale export",
+  "Liste de colisage",
+  "Certificat d'origine (CCI Bénin)",
+  "Certificat phytosanitaire / de fumigation (si applicable)",
+  "Carte d'exportateur et IFU",
+  "Contrat de vente ou lettre de crédit",
+  "Confirmation de réservation maritime (booking)"
+];
+
+function renderChecklistsM() {
+  const zones = [
+    ['res-etapes-m', ETAPES_M_IMPORT, true], ['res-docs-m', DOCS_M_IMPORT, false],
+    ['res-etapes-exp', ETAPES_M_EXPORT, true], ['res-docs-exp', DOCS_M_EXPORT, false]
+  ];
+  zones.forEach(function (z) {
+    const box = document.getElementById(z[0]);
+    if (!box || box.children.length) return;
+    if (z[2]) {
+      box.innerHTML = z[1].map(function (e, i) {
+        return '<label style="display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border:1px solid #ececec;border-radius:10px;margin-bottom:6px;cursor:pointer;font-size:13px;background:#fff;">'
+          + '<input type="checkbox" style="margin-top:2px;accent-color:#0D1B2A;width:16px;height:16px;flex:none;">'
+          + '<span><b>' + (i + 1) + '. ' + e[0] + '</b><br><span style="color:#737373;">' + e[1] + '</span></span></label>';
+      }).join('');
+    } else {
+      box.innerHTML = z[1].map(function (t) {
+        return '<label style="display:flex;gap:10px;align-items:center;padding:8px 12px;border:1px solid #ececec;border-radius:10px;margin-bottom:6px;cursor:pointer;font-size:13px;background:#fff;">'
+          + '<input type="checkbox" style="accent-color:#0D1B2A;width:16px;height:16px;flex:none;">'
+          + '<span>' + t + '</span></label>';
+      }).join('');
+    }
+  });
+}
+renderChecklistsM();
+
+// ═══ Rapport PDF marchandises ═══
+let _jspdfLoadingM = null;
+function loadJsPDFM() {
+  if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve();
+  if (_jspdfLoadingM) return _jspdfLoadingM;
+  _jspdfLoadingM = new Promise(function (res, rej) {
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js';
+    s.onload = res; s.onerror = rej;
+    document.head.appendChild(s);
+  });
+  return _jspdfLoadingM;
+}
+
+function collectChecklistM(boxId) {
+  return [].slice.call(document.querySelectorAll('#' + boxId + ' label')).map(function (l) {
+    const t = l.querySelector('b');
+    const ds = l.querySelector('span span');
+    const txt = t ? (t.textContent.trim() + (ds ? ' — ' + ds.textContent.trim() : ''))
+                  : (l.textContent || '').replace(/\s+/g, ' ').trim();
+    return { done: l.querySelector('input').checked, txt: txt };
+  });
+}
+
+function buildPdfReportM(doc, d) {
+  const W = 210, M = 14;
+  let y = 0;
+  const navy = [13, 27, 42], gray = [115, 115, 115], light = [236, 236, 236];
+  function np() { if (y > 272) { doc.addPage(); y = 16; } }
+  function section(t) {
+    np();
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
+    doc.setTextColor(navy[0], navy[1], navy[2]);
+    doc.text(t.toUpperCase(), M, y);
+    doc.setDrawColor(navy[0], navy[1], navy[2]);
+    doc.setLineWidth(0.5); doc.line(M, y + 1.5, W - M, y + 1.5);
+    y += 7;
+  }
+  function row(label, value, bold) {
+    np();
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.setTextColor(60, 60, 60);
+    doc.text(label, M, y);
+    doc.setFont('helvetica', bold ? 'bold' : 'normal');
+    doc.setTextColor(navy[0], navy[1], navy[2]);
+    doc.text(String(value), W - M, y, { align: 'right' });
+    doc.setDrawColor(light[0], light[1], light[2]);
+    doc.setLineWidth(0.2); doc.line(M, y + 1.6, W - M, y + 1.6);
+    y += 6;
+  }
+  function checkItem(txt, done) {
+    np();
+    doc.setDrawColor(navy[0], navy[1], navy[2]);
+    doc.setLineWidth(0.35);
+    doc.rect(M, y - 3.4, 4, 4);
+    if (done) {
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(9);
+      doc.setTextColor(30, 125, 79);
+      doc.text('X', M + 1, y - 0.2);
+    }
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.setTextColor(60, 60, 60);
+    const lines = doc.splitTextToSize(txt, W - 2 * M - 8);
+    doc.text(lines, M + 7, y);
+    y += lines.length * 4.4 + 2.4;
+  }
+  // En-tête
+  doc.setFillColor(navy[0], navy[1], navy[2]);
+  doc.rect(0, 0, W, 26, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(14);
+  doc.text('AD TRANS LOGISTICS', M, 11);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+  doc.text('Rapport de dédouanement — ' + (d.isExport ? 'Exportation de marchandises' : 'Importation de marchandises (Bénin)'), M, 18);
+  doc.setFontSize(8);
+  doc.text(d.date + '   ·   Réf. ' + d.ref, W - M, 11, { align: 'right' });
+  doc.text('www.adtranslogistics.com · +229 01 97 50 05 55', W - M, 18, { align: 'right' });
+  y = 34;
+
+  section('Client et marchandise');
+  row('Client', d.client); row('Téléphone', d.tel);
+  row('Marchandise', d.desc, true);
+  if (d.sh !== '—') row('Code SH', d.sh);
+  if (!d.isExport) row('Catégorie tarifaire', d.badge);
+  y += 2;
+  if (d.isExport) {
+    section('Calcul de la taxe export');
+    row('Valeur CFR', d.cfr);
+    row('Taxe de voirie (0,80 %)', d.voirie);
+    row('TOTAL TAXE EXPORT', d.total, true);
+  } else {
+    section('Base de calcul');
+    row('Valeur CIF (valeur statistique)', d.cif, true);
+    y += 2;
+    section('Détail des droits et taxes (méthode SYDONIA)');
+    row('PCS — Prélèvement Communautaire de Solidarité (0,8 %)', d.pcs);
+    row('PC — Prélèvement Communautaire (0,5 %)', d.pc);
+    row(d.ddLabel, d.dd);
+    row('RS — Redevance Statistique (1 %)', d.rs);
+    row('PS — Prélèvement de Solidarité (0,2 %)', d.ps);
+    row('RAU — Redevance Aménagement Urbain (0,5 %)', d.rau);
+    row('TVA — 18 % sur (CIF + droits)', d.tva);
+    row(d.aibLabel, d.aib);
+    row('Frais de liquidation — Bénin Control & redevances (par conteneur)', d.fraisliq);
+    row('TOTAL DROITS, TAXES ET FRAIS', d.total, true);
+    row('COÛT TOTAL RENDU COTONOU (CIF + droits)', d.rendu, true);
+    y += 2;
+    section('Composition des frais de liquidation (facture unique GUCE)');
+    row('Bénin Control — tracking cargaison', '74 946 XOF');
+    row('Bénin Control — scanning', '47 200 XOF');
+    row('Redevances douane (informatique, tracking…)', '3 000 à 16 000 XOF');
+    row('Plomb / scellé', '4 200 XOF');
+    row('Taxe de voirie et timbre statistique', 'selon dossier');
+  }
+  y += 4;
+  np();
+  doc.setFillColor(navy[0], navy[1], navy[2]);
+  doc.rect(M, y - 4, W - 2 * M, 12, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+  doc.setTextColor(255, 255, 255);
+  doc.text(d.isExport ? 'TOTAL TAXE EXPORT' : 'TOTAL DROITS ET TAXES', M + 4, y + 3.5);
+  doc.text(d.total, W - M - 4, y + 3.5, { align: 'right' });
+  y += 16;
+  section(d.isExport ? 'Les étapes de votre exportation' : 'Les étapes de votre importation');
+  d.etapes.forEach(function (e) { checkItem(e.txt, e.done); });
+  y += 2;
+  section('Documents à rassembler');
+  d.docs.forEach(function (e) { checkItem(e.txt, e.done); });
+  y += 4;
+  np();
+  doc.setFont('helvetica', 'italic'); doc.setFontSize(7.5);
+  doc.setTextColor(gray[0], gray[1], gray[2]);
+  const disc = doc.splitTextToSize("Estimation calibrée sur des déclarations SYDONIA réelles (structure PCS/PC/DD/RS/PS/RAU/TVA/AIB vérifiée sur SAD liquidées 2026). Le montant définitif dépend de la déclaration officielle, du code SH retenu et du contrôle douanier. Ce rapport ne constitue pas une quittance. AD TRANS LOGISTICS vous accompagne de bout en bout : +229 01 97 50 05 55.", W - 2 * M);
+  doc.text(disc, M, y);
+  const pages = doc.getNumberOfPages();
+  for (let p = 1; p <= pages; p++) {
+    doc.setPage(p);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5);
+    doc.setTextColor(gray[0], gray[1], gray[2]);
+    doc.text('AD TRANS LOGISTICS — Transit douanier, Cotonou (Bénin) · Page ' + p + '/' + pages, W / 2, 291, { align: 'center' });
+  }
+}
+
+function collectReportDataM(mode) {
+  const v = function (id) { return (document.getElementById(id)?.textContent || '—').replace(/[  ]/g, ' ').trim(); };
+  const isExport = mode === 'export';
+  let contact = {};
+  try { contact = JSON.parse(localStorage.getItem('adtl_contact') || '{}'); } catch (e) {}
+  return {
+    isExport: isExport,
+    client: contact.name || contact.nom || '—',
+    tel: contact.phone || '—',
+    desc: isExport ? (document.getElementById('inp-desc-exp')?.value || 'Marchandise export')
+                   : (document.getElementById('inp-desc-m')?.value || (selProd.options[selProd.selectedIndex]?.text || 'Marchandise')),
+    sh: isExport ? '—' : (document.getElementById('inp-sh')?.value || '—'),
+    badge: v('badge-cat'),
+    cif: v('res-cif-m'), pcs: v('res-pcs-m'), pc: v('res-pc-m'), dd: v('res-dd-m'),
+    ddLabel: v('res-dd-label-m'), rs: v('res-rs-m'), ps: v('res-ps-m'), rau: v('res-rau-m'),
+    tva: v('res-tva-m'), aib: v('res-aib-m'), aibLabel: v('res-aib-label-m'),
+    fraisliq: v('res-fraisliq-m'),
+    rendu: v('res-rendu-m'),
+    cfr: v('res-cfr-exp'), voirie: v('res-voirie-exp'),
+    total: isExport ? v('res-total-exp') : v('res-total-m'),
+    etapes: collectChecklistM(isExport ? 'res-etapes-exp' : 'res-etapes-m'),
+    docs: collectChecklistM(isExport ? 'res-docs-exp' : 'res-docs-m'),
+    date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }),
+    ref: 'ADTL-M-' + Date.now().toString(36).toUpperCase()
+  };
+}
+
+function downloadReportPDFM(mode) {
+  if (!calcPaidOK()) {
+    const gate = document.getElementById(mode === 'export' ? 'res-gate-exp' : 'res-gate-m');
+    if (gate) { gate.style.display = 'block'; gate.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    return;
+  }
+  const st = document.getElementById(mode === 'export' ? 'pdf-status-exp' : 'pdf-status-m');
+  if (st) { st.style.display = 'block'; st.textContent = 'Préparation de votre rapport…'; }
+  loadJsPDFM().then(function () {
+    try {
+      const d = collectReportDataM(mode);
+      const doc = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4' });
+      buildPdfReportM(doc, d);
+      const fn = ('Rapport-Douane-' + (mode === 'export' ? 'Export' : 'Import') + '-' + d.desc)
+        .replace(/[^A-Za-z0-9-]+/g, '_').slice(0, 60) + '.pdf';
+      doc.save(fn);
+      if (st) st.textContent = 'Rapport téléchargé : ' + fn;
+    } catch (e) {
+      if (st) st.textContent = "Erreur lors de la génération. Réessayez ou contactez-nous sur WhatsApp.";
+    }
+  }).catch(function () {
+    if (st) st.textContent = "Connexion au module PDF impossible. Vérifiez votre connexion internet.";
+  });
 }
 
 // ═══ Mobile nav ═══
@@ -1525,6 +1888,7 @@ function showOrResetPaymentGateM(mode) {
   const form = document.getElementById('gate-form-' + prefix);
   const panel = document.getElementById('payment-instructions-' + prefix);
   const detail = document.getElementById('res-detail-m');
+  if (calcPaidOK()) { revealPaidMerch(mode); return; }
   if (detail && mode === 'import') detail.style.display = 'none';
   if (!gate || !form || !panel) return;
   gate.style.display = 'block';
@@ -1549,6 +1913,28 @@ async function submitGateM(e) {
   const offer = getPaidMerchOffer(selectedOffer);
   const simData = getSimulationDataM(mode);
   const paymentRef = generateMerchPaymentReference(offer, mode);
+
+  // Paiement instantané KkiaPay (MTN MoMo, Moov, cartes) — repli manuel sinon
+  if (window.ADTL_PAY && ADTL_PAY.configured()) {
+    localStorage.setItem('adtl_contact', JSON.stringify({ name: name, email: email, phone: phone }));
+    ADTL_PAY.open(offer.amount, offer.label + ' — Calculateur douane marchandises', { name: name, email: email, phone: phone, ref: paymentRef }, function (txId) {
+      unlockMerchTotals(txId);
+      revealPaidMerch(mode);
+      try {
+        ADTL_PAY.notifyAdmin({
+          _subject: 'PAIEMENT CALCULATEUR CONFIRME — ' + offer.amount + ' F',
+          Transaction: txId, Reference: paymentRef, Nom: name, Email: email, Telephone: phone,
+          Offre: offer.label, Mode: mode, Resume: getMerchSummaryLabel(simData), Total: getMerchTotalLabel(mode)
+        });
+        simData.email = email; simData.phone = phone; simData.full_name = name;
+        simData.payment_ref = paymentRef;
+        simData.paid_offer = { type: selectedOffer, label: offer.label, amount: offer.amount, status: 'paid', transaction: txId };
+        fetch(EDGE_FN_M, { method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON_M }, body: JSON.stringify(simData) }).catch(function () {});
+      } catch (err) {}
+    });
+    return;
+  }
+
   const order = {
     ref: paymentRef,
     mode,
