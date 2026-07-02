@@ -10,7 +10,7 @@
  * paiement manuel MTN MoMo + confirmation WhatsApp (flux actuel).
  */
 window.ADTL_PAY = {
-  publicKey: 'VOTRE_CLE_PUBLIQUE_KKIAPAY',
+  publicKey: '0f2a63a0d00490f44afdb59b7e4a4886bbbcb6a2',
   sandbox: false,
   theme: '#0D1B2A',
 
