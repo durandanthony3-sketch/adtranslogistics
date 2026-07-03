@@ -1158,10 +1158,10 @@ function getValuation(marque, modele, annee) {
 function getValuationLabel(val) {
   if (!val) return '€ TTC';
   if (val.src === 'ref') {
-    if (val.mode === 'plancher') return 'Plancher douanier · référence confirmée';
-    return '€ TTC · référence douanière (' + val.n + ' décl. identiques)';
+    if (val.mode === 'plancher') return 'Plancher réglementaire · référence ADTL';
+    return '€ TTC · référence ADTL 2026';
   }
-  if (val.src === 'interp') return '€ TTC · interpolé (années voisines du référentiel)';
+  if (val.src === 'interp') return '€ TTC · interpolé (années voisines)';
   if (val.src === 'proche') return '€ TTC · estimation (année proche du référentiel)';
   return '€ TTC · estimation indicative';
 }
@@ -1532,8 +1532,8 @@ function calculate() {
   coeffRow.style.display = 'flex';
   document.getElementById('coeff-label').textContent = 'Abattement réglementaire : assiette = 70 % de la valeur CAF';
   document.getElementById('coeff-desc').textContent =
-    val.src === 'ref'    ? 'Valeur issue du référentiel douanier réel (' + val.n + ' déclaration' + (val.n > 1 ? 's' : '') + ' identiques)' :
-    val.src === 'interp' ? 'Cote interpolée entre les années voisines du référentiel douanier' :
+    val.src === 'ref'    ? 'Valeur issue du référentiel de simulation ADTL 2026' :
+    val.src === 'interp' ? 'Cote interpolée entre les années voisines du référentiel de simulation' :
     val.src === 'proche' ? 'Cote estimée à partir d\'une année proche du référentiel douanier' :
     'Estimation indicative — modèle hors référentiel douanier';
 
@@ -1569,7 +1569,7 @@ function calculate() {
     document.getElementById('badge-regime').textContent = 'Minimum douane appliqué';
     document.getElementById('badge-regime').className = 'badge-regime badge-fixed';
   } else if (val.src === 'ref') {
-    document.getElementById('badge-regime').textContent = 'Référence douanière confirmée';
+    document.getElementById('badge-regime').textContent = 'Référence ADTL confirmée';
     document.getElementById('badge-regime').className = 'badge-regime badge-calc';
   } else {
     document.getElementById('badge-regime').textContent = 'Estimation';
@@ -1945,7 +1945,7 @@ function buildDevisHTML(nom, prenom, email, phone) {
     <!-- Sources -->
     <div style="background:#f0f0f0;border-radius:10px;padding:14px 16px;font-size:11px;color:#737373;margin-bottom:16px;">
       <div style="font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">Sources & méthode</div>
-      <div>◾ Barème réel vérifié sur 12 151 déclarations douanières payées (2023-2026) — précision ±3 F sur les cas standards</div>
+      <div>◾ Barème 2026 en vigueur — simulation de précision professionnelle</div>
       <div>◾ Formule : assiette = 70% du CAF · DD 20/10/5% + prélèvements 3% + TVA 18% + accise 10% (≥13 CV) + 98 600 F fixes</div>
       <div>◾ Valeur CAF = cote du référentiel douanier (€) × 655,957 + fret forfaitaire de zone</div>
       <div>◾ Taux fixe BCEAO : 1 EUR = 655,957 XOF</div>

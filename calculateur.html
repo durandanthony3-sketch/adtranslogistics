@@ -743,7 +743,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 
           <!-- Frais GUCE & prestations (relevés sur facture BFU réelle) -->
           <div class="mt-5">
-            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Composition des frais de liquidation (facture unique GUCE)</div>
+            <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Composition indicative des frais de liquidation (facture unique GUCE)</div>
             <div class="result-row">
               <span class="result-label">Bénin Control — tracking cargaison</span>
               <span class="result-value tax">74 946 XOF</span>
@@ -764,7 +764,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
               <span class="result-label">Taxe de voirie &amp; timbre statistique</span>
               <span class="result-value tax">selon dossier</span>
             </div>
-            <p class="text-xs text-g400 mt-2 italic">Relevés sur factures GUCE et SAD réelles 2026 (totaux constatés : 129 146 à 142 497 F par conteneur) — déjà inclus dans le total ci-dessus à hauteur de 130 000 F. Acconage, magasinage et transit non inclus.</p>
+            <p class="text-xs text-g400 mt-2 italic">Ordres de grandeur constatés en 2026 (environ 129 000 à 143 000 F par conteneur) — déjà inclus dans le total ci-dessus à hauteur de 130 000 F. Acconage, magasinage et transit non inclus.</p>
           </div>
 
           <!-- Étapes du dédouanement import -->
@@ -1608,7 +1608,7 @@ function buildPdfReportM(doc, d) {
     row('TOTAL DROITS, TAXES ET FRAIS', d.total, true);
     row('COÛT TOTAL RENDU COTONOU (CIF + droits)', d.rendu, true);
     y += 2;
-    section('Composition des frais de liquidation (facture unique GUCE)');
+    section('Composition indicative des frais de liquidation (facture unique GUCE)');
     row('Bénin Control — tracking cargaison', '74 946 XOF');
     row('Bénin Control — scanning', '47 200 XOF');
     row('Redevances douane (informatique, tracking…)', '3 000 à 16 000 XOF');
@@ -1633,7 +1633,7 @@ function buildPdfReportM(doc, d) {
   np();
   doc.setFont('helvetica', 'italic'); doc.setFontSize(7.5);
   doc.setTextColor(gray[0], gray[1], gray[2]);
-  const disc = doc.splitTextToSize("Estimation calibrée sur des déclarations SYDONIA réelles (structure PCS/PC/DD/RS/PS/RAU/TVA/AIB vérifiée sur SAD liquidées 2026). Le montant définitif dépend de la déclaration officielle, du code SH retenu et du contrôle douanier. Ce rapport ne constitue pas une quittance. AD TRANS LOGISTICS vous accompagne de bout en bout : +229 01 97 50 05 55.", W - 2 * M);
+  const disc = doc.splitTextToSize("Simulation calibrée sur les barèmes en vigueur (structure PCS/PC/DD/RS/PS/RAU/TVA/AIB). Le montant définitif dépend de la déclaration officielle, du code SH retenu et du contrôle douanier. Ce rapport ne constitue pas une quittance. AD TRANS LOGISTICS vous accompagne de bout en bout : +229 01 97 50 05 55.", W - 2 * M);
   doc.text(disc, M, y);
   const pages = doc.getNumberOfPages();
   for (let p = 1; p <= pages; p++) {
