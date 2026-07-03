@@ -633,7 +633,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
                       <input type="radio" id="gate-offer-m-detail" name="gate-offer-m" value="detail" aria-label="Calcul détaillé" checked style="accent-color:#fbbf24;">
                       <span style="font-weight:800;font-size:14px;">Calcul détaillé</span>
                     </div>
-                    <div style="font-size:24px;font-weight:900;line-height:1;">2 000 F</div>
+                    <div style="font-size:24px;font-weight:900;line-height:1;">1 000 F</div>
                     <div style="font-size:12px;color:rgba(255,255,255,.62);margin-top:6px;line-height:1.45;">Détail des droits, taxes, valeur statistique et coût rendu.</div>
                   </label>
                   <label style="display:block;border:1px solid rgba(251,191,36,.5);background:rgba(251,191,36,.12);border-radius:14px;padding:14px;cursor:pointer;">
@@ -891,7 +891,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
                       <input type="radio" id="gate-offer-exp-detail" name="gate-offer-exp" value="detail" aria-label="Calcul détaillé export" checked style="accent-color:#fbbf24;">
                       <span style="font-weight:800;font-size:14px;">Calcul détaillé</span>
                     </div>
-                    <div style="font-size:24px;font-weight:900;line-height:1;">2 000 F</div>
+                    <div style="font-size:24px;font-weight:900;line-height:1;">1 000 F</div>
                     <div style="font-size:12px;color:rgba(255,255,255,.62);margin-top:6px;line-height:1.45;">Détail CFR, taxe de voirie et résultat export.</div>
                   </label>
                   <label style="display:block;border:1px solid rgba(251,191,36,.5);background:rgba(251,191,36,.12);border-radius:14px;padding:14px;cursor:pointer;">
@@ -1323,21 +1323,35 @@ function calcPaidOK() {
   } catch (e) { return false; }
 }
 function applyMerchPayLock() {
+  const locked = !calcPaidOK();
   ['res-total-m', 'res-total-exp'].forEach(function (id) {
     const el = document.getElementById(id);
     if (!el) return;
     const row = el.closest('.result-total-row') || el.parentElement;
-    const locked = !calcPaidOK();
     if (row) row.classList.toggle('pay-blur', locked);
+    // Masquage réel du montant tant que non payé (pas seulement un flou)
+    if (locked) {
+      if (el.textContent !== '••••••') el.dataset.real = el.textContent;
+      el.textContent = '••••••';
+    } else if (el.dataset.real !== undefined) {
+      el.textContent = el.dataset.real;
+      delete el.dataset.real;
+    }
     let note = document.getElementById(id + '-locknote');
     if (locked && !note && row && row.parentElement) {
       note = document.createElement('p');
       note.id = id + '-locknote';
       note.style.cssText = 'font-size:12px;color:#737373;text-align:center;margin:8px 0 0;';
-      note.innerHTML = '🔒 Montant débloqué après paiement (à partir de 2 000 F) — choisissez votre offre ci-dessous.';
+      note.innerHTML = '🔒 Montant débloqué après paiement (à partir de 1 000 F) — choisissez votre offre ci-dessous.';
       row.parentElement.insertBefore(note, row.nextSibling);
     } else if (!locked && note) { note.remove(); }
   });
+}
+// Valeur réelle (pour les notifications internes uniquement)
+function merchRealTotal(id) {
+  const el = document.getElementById(id);
+  if (!el) return '—';
+  return ((el.dataset.real !== undefined ? el.dataset.real : el.textContent) || '—').trim();
 }
 function unlockMerchTotals(txId) {
   try { localStorage.setItem(PAY_KEY_CALC, JSON.stringify({ ts: Date.now(), tx: txId || '' })); } catch (e) {}
@@ -1427,6 +1441,7 @@ function calcMarch() {
   // Update display boxes
   document.getElementById('disp-dd').textContent = prod.dd + '%';
 
+  applyMerchPayLock(); // re-verrouille après écriture des totaux
   showOrResetPaymentGateM('import');
 }
 
@@ -1663,7 +1678,7 @@ function collectReportDataM(mode) {
     fraisliq: v('res-fraisliq-m'),
     rendu: v('res-rendu-m'),
     cfr: v('res-cfr-exp'), voirie: v('res-voirie-exp'),
-    total: isExport ? v('res-total-exp') : v('res-total-m'),
+    total: merchRealTotal(isExport ? 'res-total-exp' : 'res-total-m'),
     etapes: collectChecklistM(isExport ? 'res-etapes-exp' : 'res-etapes-m'),
     docs: collectChecklistM(isExport ? 'res-docs-exp' : 'res-docs-m'),
     date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }),
@@ -1759,7 +1774,7 @@ const PAID_MERCH_OFFERS = {
   detail: {
     code: 'CALC',
     label: 'Calcul détaillé',
-    amount: 2000,
+    amount: 1000,
     summary: 'Détail complet du calcul, droits, taxes et base retenue.'
   },
   advisor: {
@@ -1837,7 +1852,7 @@ function getSimulationDataM(mode = currentMode || 'import') {
       },
       result_data: {
         cfr: document.getElementById('res-cfr-exp')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
-        total: document.getElementById('res-total-exp')?.textContent?.replace(/\s/g,'').replace('XOF','') || ''
+        total: merchRealTotal('res-total-exp').replace(/\s/g,'').replace('XOF','')
       }
     };
   }
@@ -1860,7 +1875,7 @@ function getSimulationDataM(mode = currentMode || 'import') {
     },
     result_data: {
       valeur_statistique: document.getElementById('res-cif-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
-      total: document.getElementById('res-total-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
+      total: merchRealTotal('res-total-m').replace(/\s/g,'').replace('XOF',''),
       rendu: document.getElementById('res-rendu-m')?.textContent?.replace(/\s/g,'').replace('XOF','') || ''
     }
   };
@@ -1954,6 +1969,7 @@ async function submitGateM(e) {
     simulationSignature: merchSimulationSignature(mode),
     summaryLabel: getMerchSummaryLabel(simData),
     totalLabel: getMerchTotalLabel(mode),
+    totalReal: merchRealTotal(mode === 'export' ? 'res-total-exp' : 'res-total-m'),
     simulation: simData
   };
 
@@ -2000,7 +2016,7 @@ async function submitGateM(e) {
     formData.append('code_marchand_mtn', order.merchantCode);
     formData.append('depot_mtn', order.depositNumber);
     formData.append('resume', order.summaryLabel);
-    formData.append('total_estime', order.totalLabel);
+    formData.append('total_estime', order.totalReal || order.totalLabel);
     formData.append('_honey', '');
     formData.append('message', buildPaymentRequestHTMLM(order));
 
@@ -2053,7 +2069,7 @@ function buildPaymentRequestHTMLM(order) {
       <tr><td style="padding:6px;color:#737373;">Résumé</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(order.summaryLabel)}</td></tr>
       <tr><td style="padding:6px;color:#737373;">Déclaration</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(inp.modele_declaration || '—')}</td></tr>
       <tr><td style="padding:6px;color:#737373;">Devise / taux</td><td style="padding:6px;font-weight:700;">${escapeHTMLM(inp.devise || '—')} / ${escapeHTMLM(inp.taux_change || '—')}</td></tr>
-      <tr><td style="padding:6px;color:#737373;">Total estimé</td><td style="padding:6px;font-weight:900;">${escapeHTMLM(order.totalLabel)}</td></tr>
+      <tr><td style="padding:6px;color:#737373;">Total estimé</td><td style="padding:6px;font-weight:900;">${escapeHTMLM(order.totalReal || order.totalLabel)}</td></tr>
       <tr><td style="padding:6px;color:#737373;">Paiement</td><td style="padding:6px;font-weight:700;">MTN MoMo marchand ${escapeHTMLM(order.merchantCode)} ou dépôt ${escapeHTMLM(order.depositNumber)}</td></tr>
     </table>
   </div>
@@ -2230,6 +2246,7 @@ function calcExport() {
   document.getElementById('res-cfr-exp').textContent = fmt(cfr);
   document.getElementById('res-voirie-exp').textContent = fmt(voirie);
   document.getElementById('res-total-exp').textContent = fmt(totalExp);
+  applyMerchPayLock(); // re-verrouille après écriture des totaux
   showOrResetPaymentGateM('export');
 }
 
