@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Simulateur Droits de Douane Véhicules Bénin 2026 | AD TRANS LOGISTICS Cotonou</title>
-<meta content="Estimez gratuitement combien va coûter le dédouanement de votre véhicule d'occasion au Bénin. Marque, modèle, année, origine : résultat instantané en FCFA." name="description"/>
+<meta content="Estimez en 1 minute combien va coûter le dédouanement de votre véhicule d'occasion au Bénin. Marque, modèle, année, origine : résultat instantané en FCFA, barème réel 2026." name="description"/>
 <meta property="og:title" content="Simulateur Droits de Douane Véhicules — Bénin 2026"/>
 <meta property="og:description" content="Entrez votre véhicule et voyez immédiatement le coût estimé de dédouanement au Bénin."/>
 <meta property="og:type" content="website"/>
@@ -297,7 +297,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 <section class="pt-28 pb-6 lg:pt-36 lg:pb-10 bg-white overflow-hidden">
 <div class="container mx-auto px-6 max-w-[1440px]">
   <div class="max-w-[720px] mx-auto text-center">
-    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Outil gratuit — Douanes Bénin</div>
+    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Barème réel 2026 — Douanes Bénin</div>
     <h1 class="font-heading font-bold text-brand mb-3" style="font-size:clamp(2.2rem,5.5vw,64px);line-height:1.05;letter-spacing:-.025em;">
       Combien va coûter<br/><span class="text-g400 font-medium italic">le dédouanement ?</span>
     </h1>
@@ -575,6 +575,16 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
             <span id="badge-regime" class="badge-regime badge-calc">Estimation prête</span>
           </div>
 
+          <!-- Paywall : l'estimation complète est payante (1 000 F, accès 24 h) -->
+          <div id="pay-gate" style="display:none;">
+            <div class="adtl-paybox" style="margin-top:0;">
+              <div class="pb-title"><span class="material-symbols-outlined" style="color:#fbbf24;">lock</span> Votre estimation est prête — 1 000 F</div>
+              <div class="pb-sub">Débloquez le montant total à prévoir, le détail ligne par ligne des droits et taxes, les étapes du dédouanement à cocher, la liste des documents à rassembler et le rapport PDF téléchargeable. Accès illimité pendant 24 h pour comparer plusieurs véhicules.</div>
+              <button type="button" class="pb-btn" onclick="startSimPayment()">Payer 1 000 F — MoMo, Moov ou carte</button>
+              <div class="adtl-manual" id="pay-manual-sim"></div>
+            </div>
+          </div>
+
           <!-- Bloc interne conservé pour le devis détaillé -->
           <div class="bg-g50 rounded-xl p-4 mb-5" style="display:none;">
             <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Base de calcul interne</div>
@@ -658,15 +668,6 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
             </div>
 
             <!-- Taxes breakdown (2006+ only) -->
-            <!-- Paywall : détail complet -->
-            <div id="pay-gate" style="display:none;">
-              <div class="adtl-paybox">
-                <div class="pb-title"><span class="material-symbols-outlined" style="color:#fbbf24;">lock</span> Débloquer l'estimation complète — 2 000 F</div>
-                <div class="pb-sub">Détail ligne par ligne des droits et taxes, étapes du dédouanement à cocher, liste des documents à rassembler, total général et rapport PDF téléchargeable. Accès illimité pendant 24 h pour comparer plusieurs véhicules.</div>
-                <button type="button" class="pb-btn" onclick="startSimPayment()">Payer 2 000 F — MoMo, Moov ou carte</button>
-                <div class="adtl-manual" id="pay-manual-sim"></div>
-              </div>
-            </div>
             <div id="res-taxes-block">
               <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Détail des droits et taxes</div>
               <div class="result-row">
@@ -1396,7 +1397,7 @@ function submitLeadGate(e) {
   applyPayGate();
 }
 
-// ── Paywall : détail complet payant (2 000 F, accès 24 h) ──
+// ── Paywall : l'estimation complète est payante (1 000 F, accès 24 h) ──
 const PAY_KEY = 'adtl_paid_sim_v1';
 let payMem = false;
 function paidOK() {
@@ -1405,6 +1406,30 @@ function paidOK() {
     const d = JSON.parse(localStorage.getItem(PAY_KEY) || 'null');
     return !!(d && d.ts && (Date.now() - d.ts) < 24 * 3600 * 1000);
   } catch (e) { return false; }
+}
+const MASKED_IDS = ['res-total', 'res-user-douane', 'res-user-frais'];
+function maskLockedAmounts(locked) {
+  MASKED_IDS.forEach(function (id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (locked) {
+      if (el.textContent !== '••••••') el.dataset.real = el.textContent;
+      el.textContent = '••••••';
+    } else if (el.dataset.real !== undefined) {
+      el.textContent = el.dataset.real;
+      delete el.dataset.real;
+    }
+  });
+  // La note "plancher réglementaire" fait partie des informations payantes
+  const note = document.getElementById('res-forfait-note');
+  if (note) {
+    if (locked) {
+      if (note.style.display !== 'none') { note.dataset.wasVisible = '1'; note.style.display = 'none'; }
+    } else if (note.dataset.wasVisible === '1') {
+      note.style.display = 'block';
+      delete note.dataset.wasVisible;
+    }
+  }
 }
 function applyPayGate() {
   const rc = document.getElementById('res-content');
@@ -1415,6 +1440,14 @@ function applyPayGate() {
   gate.style.display = locked ? 'block' : 'none';
   let n = gate.nextElementSibling;
   while (n) { n.classList.toggle('pay-blur', locked); n = n.nextElementSibling; }
+  maskLockedAmounts(!paidOK());
+  if (visible && !locked) {
+    const detail = document.getElementById('res-detail');
+    if (detail) detail.style.display = 'block';
+    const rg = document.getElementById('res-gate'); if (rg) rg.style.display = 'none';
+    const bd = document.getElementById('btn-devis'); if (bd) bd.style.display = 'none';
+    const sw = document.getElementById('btn-share-wa'); if (sw) sw.style.display = 'flex';
+  }
 }
 function markSimPaid(txId) {
   try { localStorage.setItem(PAY_KEY, JSON.stringify({ ts: Date.now(), tx: txId || '' })); } catch (e) {}
@@ -1426,21 +1459,21 @@ function startSimPayment() {
   try { lead = JSON.parse(localStorage.getItem(LEAD_KEY) || '{}'); } catch (e) {}
   const veh = ((selMarque ? selMarque.value : '') + ' ' + (selModele ? selModele.value : '') + ' ' + (inpAnnee ? inpAnnee.value : '')).trim();
   if (window.ADTL_PAY && ADTL_PAY.configured()) {
-    ADTL_PAY.open(2000, 'Estimation détaillée — Simulateur ADTL',
+    ADTL_PAY.open(1000, 'Estimation détaillée — Simulateur ADTL',
       { name: ((lead.prenom || '') + ' ' + (lead.nom || '')).trim(), phone: lead.tel || '', ref: 'SIM-' + Date.now().toString(36).toUpperCase() },
       function (txId) {
         markSimPaid(txId);
-        ADTL_PAY.notifyAdmin({ _subject: 'PAIEMENT SIMULATEUR CONFIRME — 2 000 F', Transaction: txId, Nom: lead.nom || '', Prenom: lead.prenom || '', Telephone: lead.tel || '', Vehicule: veh, Montant: '2000 F', Source: 'simulateur' });
+        ADTL_PAY.notifyAdmin({ _subject: 'PAIEMENT SIMULATEUR CONFIRME — 1 000 F', Transaction: txId, Nom: lead.nom || '', Prenom: lead.prenom || '', Telephone: lead.tel || '', Vehicule: veh, Montant: '1000 F', Source: 'simulateur' });
       });
     return;
   }
   // Repli : paiement manuel MoMo + confirmation WhatsApp
   const ref = 'SIM-' + Date.now().toString(36).toUpperCase();
   const box = document.getElementById('pay-manual-sim');
-  const waTxt = encodeURIComponent('Bonjour ADTL, je viens de payer 2 000 F par MoMo pour le détail de ma simulation.\nRéférence : ' + ref + '\nVéhicule : ' + veh + '\nJ\'envoie la capture de paiement ici.');
-  box.innerHTML = '<strong>Paiement MTN MoMo :</strong> composez le code marchand <strong>561498</strong> (AD TRANS LOGISTICS) ou envoyez 2 000 F au <strong>01 97 50 05 55</strong>.<br/>Référence à mentionner : <strong>' + ref + '</strong><br/><a href="https://wa.me/2290197500555?text=' + waTxt + '">→ Confirmer le paiement sur WhatsApp</a><br/><span style="color:rgba(255,255,255,.55);font-size:12px;">Votre détail complet vous est envoyé dès vérification (quelques minutes aux heures ouvrées).</span>';
+  const waTxt = encodeURIComponent('Bonjour ADTL, je viens de payer 1 000 F par MoMo pour le détail de ma simulation.\nRéférence : ' + ref + '\nVéhicule : ' + veh + '\nJ\'envoie la capture de paiement ici.');
+  box.innerHTML = '<strong>Paiement MTN MoMo :</strong> composez le code marchand <strong>561498</strong> (AD TRANS LOGISTICS) ou envoyez 1 000 F au <strong>01 97 50 05 55</strong>.<br/>Référence à mentionner : <strong>' + ref + '</strong><br/><a href="https://wa.me/2290197500555?text=' + waTxt + '">→ Confirmer le paiement sur WhatsApp</a><br/><span style="color:rgba(255,255,255,.55);font-size:12px;">Votre détail complet vous est envoyé dès vérification (quelques minutes aux heures ouvrées).</span>';
   box.style.display = 'block';
-  ADTL_PAY.notifyAdmin({ _subject: 'DEMANDE DETAIL SIMULATEUR (paiement manuel en attente)', Reference: ref, Nom: lead.nom || '', Prenom: lead.prenom || '', Telephone: lead.tel || '', Vehicule: veh, Montant: '2000 F' });
+  ADTL_PAY.notifyAdmin({ _subject: 'DEMANDE DETAIL SIMULATEUR (paiement manuel en attente)', Reference: ref, Nom: lead.nom || '', Prenom: lead.prenom || '', Telephone: lead.tel || '', Vehicule: veh, Montant: '1000 F' });
 }
 
 function resetResults() {
@@ -1759,7 +1792,7 @@ function setDevisButtonState() {
   btn.innerHTML = '<span class="material-symbols-outlined text-base">call</span> Valider le téléphone pour voir le montant';
 }
 
-// Après chaque calcul: on garde seulement l'estimation rapide visible.
+// Après chaque calcul: tout reste verrouillé tant que le paiement n'est pas effectué.
 const origCalculate = calculate;
 calculate = function() {
   origCalculate();
@@ -1767,11 +1800,11 @@ calculate = function() {
   const gate = document.getElementById('res-gate');
   const detail = document.getElementById('res-detail');
   if (content && content.style.display !== 'none') {
+    const paid = paidOK();
     gate.style.display = 'none';
-    detail.style.display = 'none';
-    document.getElementById('btn-devis').style.display = '';
-    document.getElementById('btn-share-wa').style.display = 'flex';
-    setDevisButtonState();
+    detail.style.display = paid ? 'block' : 'none';
+    document.getElementById('btn-devis').style.display = 'none';
+    document.getElementById('btn-share-wa').style.display = paid ? 'flex' : 'none';
   }
 };
 
