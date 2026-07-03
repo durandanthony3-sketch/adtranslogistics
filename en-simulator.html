@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Benin Car Import Duty Calculator (English) | AD TRANS LOGISTICS</title>
+<meta name="description" content="Calculate Benin customs duty for your car in seconds — free English simulator by a licensed customs broker at the Port of Cotonou. 2,253 vehicles referenced, results in FCFA and USD."/>
+<link rel="canonical" href="https://www.adtranslogistics.com/en-simulator"/>
+<link rel="icon" href="/icons/favicon-48.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root { --black:#0A0A0A; --navy:#0D1B2A; --navy2:#1a2d42; --gold:#c9a227; --white:#fff;
+          --gray50:#fafafa; --gray100:#f5f5f5; --gray200:#e5e5e5; --gray400:#a3a3a3; --gray500:#737373; --green:#15803d; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Instrument Sans','Segoe UI',sans-serif; background:var(--gray50); color:#24303c; }
+  .topbar { background:var(--navy); color:#fff; padding:13px 18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+  .topbar a { color:#fff; text-decoration:none; font-size:13.5px; }
+  .topbar .brand b { letter-spacing:1px; font-family:'Space Grotesk',sans-serif; }
+  .topbar .pill { background:rgba(255,255,255,.12); padding:6px 13px; border-radius:9999px; }
+  .hero { background:linear-gradient(135deg,var(--navy),var(--navy2)); color:#fff; text-align:center; padding:34px 18px 44px; }
+  .hero .tag { display:inline-block; background:var(--gold); color:var(--navy); font-weight:700; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; padding:4px 13px; border-radius:9999px; margin-bottom:12px; }
+  .hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(22px,4vw,36px); line-height:1.15; margin-bottom:10px; }
+  .hero p { color:#b8c6d4; max-width:560px; margin:0 auto; font-size:14.5px; line-height:1.6; }
+  .wrap { max-width:560px; margin:-24px auto 50px; padding:0 14px; }
+  .card { background:var(--white); border:1px solid var(--gray200); border-radius:18px; padding:20px; box-shadow:0 2px 12px rgba(13,27,42,.07); margin-bottom:16px; }
+  label.f { display:block; font-size:12.5px; font-weight:700; color:var(--navy); margin:12px 0 5px; }
+  select, input[type=number] { width:100%; padding:13px 14px; border:1.5px solid var(--gray200); border-radius:12px; font-size:15px; font-family:inherit; background:#fff; color:#24303c; -webkit-appearance:none; }
+  select:focus, input:focus { outline:none; border-color:var(--gold); }
+  .chk { display:flex; gap:10px; align-items:flex-start; margin-top:12px; font-size:13px; color:var(--gray500); }
+  .chk input { width:18px; height:18px; accent-color:var(--navy); flex:none; margin-top:1px; }
+  .total-box { background:linear-gradient(135deg,var(--navy),var(--navy2)); border-radius:16px; padding:20px; color:#fff; text-align:center; }
+  .total-box .lbl { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:#b8c6d4; }
+  .total-box .amt { font-family:'Space Grotesk',sans-serif; font-size:31px; font-weight:700; color:var(--gold); margin-top:4px; }
+  .total-box .usd { font-size:15px; color:#d9e2ea; margin-top:2px; }
+  .total-box .note { font-size:11.5px; color:#8fa2b5; margin-top:8px; }
+  .badge { display:inline-block; font-size:10.5px; font-weight:800; padding:3px 11px; border-radius:9999px; background:var(--gold); color:var(--navy); margin-bottom:8px; }
+  .btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:14px; border-radius:9999px; border:none; cursor:pointer; font-weight:700; font-size:14.5px; font-family:inherit; text-decoration:none; margin-top:10px; }
+  .b-dark { background:var(--black); color:#fff; }
+  .b-gold { background:var(--gold); color:var(--navy); }
+  .b-green { background:var(--green); color:#fff; }
+  .b-wa { background:#25D366; color:#fff; }
+  .rows { margin-top:6px; }
+  .row { display:flex; justify-content:space-between; padding:8px 2px; border-bottom:1px solid var(--gray100); font-size:13.5px; }
+  .row b { font-family:'Space Grotesk',sans-serif; white-space:nowrap; }
+  .row.total { border-top:2px solid var(--navy); border-bottom:none; font-weight:700; padding-top:11px; }
+  .muted { font-size:12px; color:var(--gray500); line-height:1.55; }
+  .lock { background:var(--gray100); border:1px dashed var(--gray400); border-radius:14px; padding:16px; text-align:center; margin-top:12px; }
+  .lock .t { font-weight:700; color:var(--navy); font-size:14px; margin-bottom:4px; }
+  .hidden { display:none; }
+  footer { background:var(--navy); color:#8fa2b5; text-align:center; font-size:12px; padding:22px 14px; line-height:1.8; }
+  footer a { color:#fff; }
+  .toast { position:fixed; top:16px; left:50%; transform:translateX(-50%); background:var(--navy); color:#fff; padding:13px 22px; border-radius:12px; box-shadow:0 16px 40px rgba(0,0,0,.35); font-size:13.5px; z-index:99; display:none; max-width:92vw; }
+  .stepitem { display:flex; gap:10px; padding:8px 0; border-bottom:1px solid var(--gray100); font-size:13px; }
+  .stepitem .n { background:var(--navy); color:#fff; font-weight:700; min-width:24px; height:24px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:12px; flex:none; }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="/en/" class="brand"><b>AD TRANS</b> LOGISTICS</a>
+    <div style="display:flex;gap:8px;">
+      <a href="/en-products" class="pill">📘 Guides</a>
+      <a href="/simulateur" class="pill">🇫🇷 FR</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <span class="tag">Free · Port of Cotonou · Official 2026 schedule</span>
+    <h1>Benin Car Import<br/>Duty Calculator</h1>
+    <p>Pick your car, get the duty in seconds — in FCFA and USD. Professional simulations by a licensed customs broker. 2,253 vehicles referenced.</p>
+  </section>
+
+  <div class="wrap">
+    <div class="card">
+      <label class="f" for="s-make">Make *</label>
+      <select id="s-make" onchange="onMake()"><option value="">— Select make —</option></select>
+      <label class="f" for="s-model">Model *</label>
+      <select id="s-model" disabled onchange="onModel()"><option value="">— Select make first —</option></select>
+      <label class="f" for="s-year">Year *</label>
+      <select id="s-year" disabled onchange="calc()"><option value="">— Select model first —</option></select>
+      <label class="f" for="s-zone">Where are you buying? *</label>
+      <select id="s-zone" onchange="calc()">
+        <option value="usa" selected>North America (USA, Canada)</option>
+        <option value="europe">Europe</option>
+        <option value="asie">Asia / Middle East (Dubai, Korea...)</option>
+        <option value="afrique">Africa</option>
+      </select>
+      <label class="f" for="s-dest">Final destination</label>
+      <select id="s-dest" onchange="calc()">
+        <option value="benin" selected>Benin — home use (full clearance)</option>
+        <option value="reexport">Re-export / transit (Niger, hinterland)</option>
+      </select>
+      <div class="chk" id="hp-box">
+        <input type="checkbox" id="s-hp" onchange="userTouchedHp=true;calc()">
+        <span id="hp-label">13 fiscal HP or more (most SUVs, V6/V8 engines) — auto-detected when known</span>
+      </div>
+    </div>
+
+    <div class="card hidden" id="res-card">
+      <div class="total-box">
+        <span class="badge" id="res-badge">ESTIMATE</span>
+        <div class="lbl">TOTAL CUSTOMS DUTY TO BUDGET</div>
+        <div class="amt" id="res-total">—</div>
+        <div class="usd" id="res-usd">—</div>
+        <div class="note" id="res-note">Official 2026 schedule · $1 ≈ 560 FCFA</div>
+      </div>
+
+      <div id="paid-zone" class="hidden">
+        <div class="rows" id="res-rows"></div>
+        <div style="margin-top:14px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gray500);text-transform:uppercase;margin-bottom:6px;">Your 10 clearance steps</div>
+          <div id="res-steps"></div>
+        </div>
+        <div style="margin-top:14px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gray500);text-transform:uppercase;margin-bottom:6px;">Documents to gather</div>
+          <div id="res-docs" class="muted"></div>
+        </div>
+        <button class="btn b-gold" onclick="downloadPdf()">📄 Download my PDF report</button>
+        <div class="muted" id="pdf-status" style="text-align:center;margin-top:6px;display:none;"></div>
+      </div>
+
+      <div id="lock-zone" class="lock">
+        <div class="t">🔓 Unlock the full report — 2,000 F (≈ $4)</div>
+        <div class="muted">Line-by-line tax breakdown, the 10 clearance steps, documents checklist and a downloadable PDF report. Pay by card or mobile money — 24h access.</div>
+        <button class="btn b-dark" onclick="unlockPay()">Unlock — Visa / Mastercard / MoMo</button>
+      </div>
+
+      <a class="btn b-wa" id="wa-btn" href="#" target="_blank">💬 Get a clearing quote on WhatsApp (English)</a>
+      <a class="btn b-green" href="/en-products">📘 English guides &amp; 2,253-vehicle reference book</a>
+    </div>
+
+    <div class="card muted">
+      <b style="color:var(--navy);">How accurate is this?</b><br/>
+      Estimates come from our professional simulation engine, calibrated on the customs schedule in force (February 2025+) and proven daily by our brokerage practice at the Port of Cotonou. Floor values apply to older cars (1,500,000 F for sedans/SUVs). Final amounts depend on the official declaration. Vehicle not listed? <a href="https://wa.me/2290197500555" style="color:var(--navy);font-weight:700;">Ask us on WhatsApp</a>.
+    </div>
+  </div>
+
+  <footer>
+    AD TRANS LOGISTICS — Customs transit &amp; logistics, Cotonou (Benin)<br/>
+    <a href="/en/">English home</a> · <a href="/en-products">English guides</a> · <a href="https://wa.me/2290197500555">WhatsApp +229 01 97 50 05 55</a>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/referentiel_douane.js"></script>
+  <script src="/assets/adtl-pay.js?v=2"></script>
+  <script>
+  // ── Engine (same real model as the French simulator) ──
+  var PENTES = { A: 0.402080, B: 0.315980, C: 0.233380, D: 0.192080 };
+  var DD_RATES = { A: 0.20, B: 0.20, C: 0.10, D: 0.05 };
+  var TAXES_FIXES = 98600, EUR_XOF = 655.96, USD = 560, REEXPORT = 305000;
+  var FRET = { usa: 600000, europe: 300000, asie: 450000, afrique: 50000 };
+  var userTouchedHp = false;
+
+  function norm(s) { return String(s || '').toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function fmtF(n) { return Math.round(n).toLocaleString('en-US') + ' F'; }
+  function fmtU(n) { return '$' + Math.round(n / USD).toLocaleString('en-US'); }
+
+  var selMake = document.getElementById('s-make'),
+      selModel = document.getElementById('s-model'),
+      selYear = document.getElementById('s-year');
+
+  Object.keys(REF_DOUANE).sort().forEach(function (m) {
+    var o = document.createElement('option'); o.value = m; o.textContent = m; selMake.appendChild(o);
+  });
+
+  function onMake() {
+    var b = REF_DOUANE[selMake.value] || {};
+    selModel.innerHTML = '<option value="">— Select model —</option>';
+    selModel.disabled = !selMake.value;
+    Object.keys(b).sort().forEach(function (k) {
+      var o = document.createElement('option'); o.value = k; o.textContent = b[k].lbl; selModel.appendChild(o);
+    });
+    selYear.innerHTML = '<option value="">— Select model first —</option>'; selYear.disabled = true;
+    hide();
+  }
+  function onModel() {
+    var b = REF_DOUANE[selMake.value] || {};
+    var mm = b[selModel.value];
+    selYear.innerHTML = '<option value="">— Select year —</option>';
+    selYear.disabled = !mm;
+    if (mm) Object.keys(mm.y).map(Number).sort(function (a, c) { return c - a; }).forEach(function (y) {
+      var o = document.createElement('option'); o.value = y; o.textContent = y; selYear.appendChild(o);
+    });
+    userTouchedHp = false;
+    hide();
+  }
+  function hide() { document.getElementById('res-card').classList.add('hidden'); }
+
+  function paidOK() {
+    try { var d = JSON.parse(localStorage.getItem('adtl_paid_ensim') || 'null');
+          return !!(d && d.ts && (Date.now() - d.ts) < 86400000); } catch (e) { return false; }
+  }
+
+  function currentVal() {
+    var b = REF_DOUANE[selMake.value] || {};
+    var mm = b[selModel.value];
+    if (!mm) return null;
+    return mm.y[selYear.value] || null;
+  }
+
+  function calc() {
+    var rec = currentVal();
+    var zone = document.getElementById('s-zone').value;
+    var dest = document.getElementById('s-dest').value;
+    if (!rec || !selYear.value) { hide(); return; }
+    document.getElementById('res-card').classList.remove('hidden');
+    var waMsg = 'Hello ADTL, I need a clearing quote for a ' + selMake.value + ' ' + (selModel.selectedOptions[0] ? selModel.selectedOptions[0].textContent : '') + ' ' + selYear.value + ' (' + zone.toUpperCase() + ').';
+    document.getElementById('wa-btn').href = 'https://wa.me/2290197500555?text=' + encodeURIComponent(waMsg);
+
+    if (dest === 'reexport') {
+      setTotal(REEXPORT, 'RE-EXPORT FLAT FEE (EX8)', 'Single customs flat fee per vehicle since Feb. 2025 — convoy to Niger/hinterland not included.');
+      renderPaid(null, 0, 0, true);
+      return;
+    }
+    // auto 13HP from referential
+    var chk = document.getElementById('s-hp');
+    if (!userTouchedHp && (rec[2] === 'A' || rec[2] === 'B')) chk.checked = rec[2] === 'A';
+    var cat;
+    if (rec[2] === 'C' || rec[2] === 'D') cat = rec[2];
+    else cat = chk.checked ? 'A' : 'B';
+
+    var caf, floor = (cat === 'C' || cat === 'D') ? 2500000 : 1500000, isFloor = false;
+    if (rec[0] === 'c') caf = Math.round(rec[1] * EUR_XOF) + (FRET[zone] || FRET[rec[4]] || 0);
+    else if (rec[0] === 'p') { caf = rec[1]; }
+    else caf = rec[1];
+    if (caf < floor) caf = floor;
+    if (rec[0] === 'p' || caf === floor) isFloor = (rec[0] === 'p') || (caf === floor && rec[0] !== 'c');
+
+    var total = Math.round(PENTES[cat] * caf + TAXES_FIXES);
+    setTotal(total, isFloor ? 'FLOOR VALUE APPLIED' : 'REFERENCE CONFIRMED',
+      'Customs value: ' + fmtF(caf) + ' (' + fmtU(caf) + ') · Category ' + cat + ' · Official 2026 schedule · $1 ≈ 560 F');
+    renderPaid(cat, caf, total, false);
+  }
+
+  function setTotal(total, badge, note) {
+    document.getElementById('res-total').textContent = fmtF(total);
+    document.getElementById('res-usd').textContent = '≈ ' + fmtU(total) + ' USD';
+    document.getElementById('res-badge').textContent = badge;
+    document.getElementById('res-note').textContent = note;
+  }
+
+  var STEPS = [
+    ["Arrival notice", "issued by the shipping line — storage clock starts fast."],
+    ["BESC/CTN validated", "the Electronic Cargo Tracking Note, before arrival."],
+    ["Delivery order", "swap your original Bill of Lading at the line's office."],
+    ["Customs declaration", "filed in SYDONIA by a licensed broker."],
+    ["Pay the duties", "keep the official receipt."],
+    ["Port & terminal fees", "handling and parking, before release."],
+    ["Inspection", "physical check if your control lane requires it."],
+    ["Release order (BAE)", "take the vehicle out of the terminal."],
+    ["Registration", "plates and card at ANaTT."],
+    ["Road-ready", "technical inspection + insurance."]
+  ];
+  var DOCS = ["Original Bill of Lading or telex release", "Purchase invoice / bill of sale",
+    "Foreign title / registration card", "Validated BESC/CTN", "Owner's ID (+ tax ID for companies)",
+    "Power of attorney if a broker acts for you", "Readable VIN + photos"];
+
+  var lastCalc = null;
+  function renderPaid(cat, caf, total, isReexport) {
+    lastCalc = { cat: cat, caf: caf, total: total, isReexport: isReexport };
+    var paid = paidOK();
+    document.getElementById('lock-zone').classList.toggle('hidden', paid);
+    document.getElementById('paid-zone').classList.toggle('hidden', !paid);
+    if (!paid) return;
+    var rowsEl = document.getElementById('res-rows');
+    if (isReexport) {
+      rowsEl.innerHTML = row('Re-export flat fee (EX8)', REEXPORT) + row('TOTAL', REEXPORT, true);
+    } else {
+      var av = 0.70 * caf;
+      var dd = Math.round(av * DD_RATES[cat]);
+      var prel = Math.round(av * 0.03);
+      var base = av + dd + prel;
+      var tva = Math.round(base * 0.18);
+      var acc = cat === 'A' ? Math.round(base * 0.10) : 0;
+      rowsEl.innerHTML =
+        row('Customs value (CIF)', caf) +
+        row('Taxable base (70% of CIF)', Math.round(av)) +
+        row('Customs duty (' + Math.round(DD_RATES[cat] * 100) + '%)', dd) +
+        row('Community levies (3%)', prel) +
+        row('VAT (18%)', tva) +
+        (acc ? row('Excise — 13 HP+ (10%)', acc) : '') +
+        row('Fixed taxes & fees', TAXES_FIXES) +
+        row('TOTAL DUTY', dd + prel + tva + acc + TAXES_FIXES, true);
+    }
+    document.getElementById('res-steps').innerHTML = STEPS.map(function (s, i) {
+      return '<div class="stepitem"><div class="n">' + (i + 1) + '</div><div><b>' + s[0] + '</b> — ' + s[1] + '</div></div>';
+    }).join('');
+    document.getElementById('res-docs').innerHTML = DOCS.map(function (d) { return '• ' + d; }).join('<br/>');
+  }
+  function row(l, v, tot) {
+    return '<div class="row' + (tot ? ' total' : '') + '"><span>' + l + '</span><b>' + fmtF(v) + ' <span style="color:var(--gray400);font-weight:400;">(' + fmtU(v) + ')</span></b></div>';
+  }
+
+  function toast(m) {
+    var t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block';
+    setTimeout(function () { t.style.display = 'none'; }, 5000);
+  }
+
+  function unlockPay() {
+    var ref = 'ENSIM-' + Date.now().toString(36).toUpperCase();
+    if (!(window.ADTL_PAY && ADTL_PAY.configured())) {
+      window.open('https://wa.me/2290197500555?text=' + encodeURIComponent('Hello ADTL, I want the full duty report (2,000 F). Ref: ' + ref), '_blank');
+      return;
+    }
+    ADTL_PAY.open(2000, 'Full duty report (English simulator)', { ref: ref }, function (txId) {
+      try { localStorage.setItem('adtl_paid_ensim', JSON.stringify({ ts: Date.now(), tx: txId })); } catch (e) {}
+      toast('Payment confirmed — full report unlocked for 24h!');
+      calc();
+      ADTL_PAY.notifyAdmin({ _subject: 'EN SIMULATOR UNLOCK — 2,000 F', Reference: ref, Transaction: txId, Vehicle: selMake.value + ' ' + selModel.value + ' ' + selYear.value, Page: 'en-simulator' });
+    });
+  }
+
+  var _jspdf = null;
+  function loadJsPDF() {
+    if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve();
+    if (_jspdf) return _jspdf;
+    _jspdf = new Promise(function (res, rej) {
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js';
+      s.onload = res; s.onerror = rej; document.head.appendChild(s);
+    });
+    return _jspdf;
+  }
+  function downloadPdf() {
+    if (!paidOK() || !lastCalc) { unlockPay(); return; }
+    var st = document.getElementById('pdf-status');
+    st.style.display = 'block'; st.textContent = 'Preparing your report...';
+    loadJsPDF().then(function () {
+      var doc = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4' });
+      var W = 210, M = 14, y = 34;
+      var navy = [13, 27, 42];
+      doc.setFillColor(13, 27, 42); doc.rect(0, 0, W, 26, 'F');
+      doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold'); doc.setFontSize(14);
+      doc.text('AD TRANS LOGISTICS', M, 11);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+      doc.text('Benin Import Duty Report - ' + (lastCalc.isReexport ? 'Re-export (EX8)' : 'Home use (Benin)'), M, 18);
+      doc.setFontSize(8);
+      doc.text('www.adtranslogistics.com  ·  WhatsApp +229 01 97 50 05 55', W - M, 11, { align: 'right' });
+      function line(l, v, bold) {
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(60, 60, 60);
+        doc.text(l, M, y);
+        doc.setFont('helvetica', bold ? 'bold' : 'normal'); doc.setTextColor(13, 27, 42);
+        doc.text(v, W - M, y, { align: 'right' });
+        doc.setDrawColor(235, 235, 235); doc.line(M, y + 1.6, W - M, y + 1.6);
+        y += 6;
+        if (y > 274) { doc.addPage(); y = 16; }
+      }
+      function section(t) {
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(13, 27, 42);
+        doc.text(t.toUpperCase(), M, y);
+        doc.setDrawColor(201, 162, 39); doc.setLineWidth(0.5); doc.line(M, y + 1.5, W - M, y + 1.5);
+        y += 7;
+      }
+      section('Vehicle & estimate');
+      line('Vehicle', selMake.value + ' ' + (selModel.selectedOptions[0] ? selModel.selectedOptions[0].textContent : '') + ' ' + selYear.value, true);
+      line('Purchase zone', document.getElementById('s-zone').selectedOptions[0].textContent);
+      if (lastCalc.isReexport) {
+        line('Re-export flat fee (EX8)', fmtF(305000) + '  (' + fmtU(305000) + ')', true);
+      } else {
+        var av = 0.70 * lastCalc.caf;
+        var dd = Math.round(av * DD_RATES[lastCalc.cat]);
+        var prel = Math.round(av * 0.03);
+        var base = av + dd + prel;
+        var tva = Math.round(base * 0.18);
+        var acc = lastCalc.cat === 'A' ? Math.round(base * 0.10) : 0;
+        line('Customs value (CIF)', fmtF(lastCalc.caf) + '  (' + fmtU(lastCalc.caf) + ')');
+        line('Taxable base (70%)', fmtF(av));
+        line('Customs duty (' + Math.round(DD_RATES[lastCalc.cat] * 100) + '%)', fmtF(dd));
+        line('Community levies (3%)', fmtF(prel));
+        line('VAT (18%)', fmtF(tva));
+        if (acc) line('Excise 13HP+ (10%)', fmtF(acc));
+        line('Fixed taxes & fees', fmtF(TAXES_FIXES));
+        line('TOTAL DUTY', fmtF(dd + prel + tva + acc + TAXES_FIXES) + '  (' + fmtU(dd + prel + tva + acc + TAXES_FIXES) + ')', true);
+      }
+      y += 3; section('Your 10 clearance steps');
+      STEPS.forEach(function (s, i) { line((i + 1) + '. ' + s[0], ''); });
+      y += 3; section('Documents to gather');
+      DOCS.forEach(function (d) { line('- ' + d, ''); });
+      y += 4;
+      doc.setFont('helvetica', 'italic'); doc.setFontSize(7.5); doc.setTextColor(115, 115, 115);
+      doc.text(doc.splitTextToSize('Professional simulation calibrated on the customs schedule in force. Final amounts depend on the official declaration. This report is not a customs receipt. AD TRANS LOGISTICS - licensed customs broker, Port of Cotonou.', W - 2 * M), M, y);
+      doc.save('Benin-Duty-Report-' + selMake.value + '-' + selYear.value + '.pdf');
+      st.textContent = 'Report downloaded.';
+    }).catch(function () { st.textContent = 'PDF module unavailable - check your connection.'; });
+  }
+  </script>
+</body>
+</html>
