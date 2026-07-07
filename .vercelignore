@@ -1,0 +1,8 @@
+# Fichiers a ne JAMAIS deployer publiquement
+*.sql
+supabase-setup.sql
+supabase-fix-rls.sql
+.claude
+$currentTools
+CLAUDE.md
+_data

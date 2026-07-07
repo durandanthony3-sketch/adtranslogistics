@@ -31,18 +31,36 @@ window.ADTL_PAY = {
     return this._loading;
   },
 
-  /* open(montantXOF, motif, meta{name,email,phone,ref}, onSuccess(txId)) */
-  open: function (amount, reason, meta, onSuccess) {
+  /* open(montantXOF, motif, meta{name,email,phone,ref}, onSuccess(txId), onFailure(resp)) */
+  open: function (amount, reason, meta, onSuccess, onFailure) {
     var self = this;
     meta = meta || {};
+    var fail = function (resp) {
+      try {
+        self.notifyAdmin({
+          _subject: 'ECHEC PAIEMENT KKIAPAY — a relancer',
+          Motif: reason || '', Montant: amount + ' F', Reference: meta.ref || '',
+          Nom: meta.name || '', Telephone: meta.phone || '', Email: meta.email || ''
+        });
+      } catch (e) {}
+      if (typeof onFailure === 'function') { onFailure(resp); }
+      else { alert("Le paiement n'a pas abouti. Utilisez le paiement MTN MoMo manuel ou contactez-nous sur WhatsApp au 01 97 50 05 55."); }
+    };
     this._load().then(function () {
       try {
         if (typeof addKkiapayListener === 'function') {
-          var handler = function (resp) {
-            try { removeKkiapayListener && removeKkiapayListener('success', handler); } catch (e) {}
+          var okHandler = function (resp) {
+            try { removeKkiapayListener && removeKkiapayListener('success', okHandler); } catch (e) {}
+            try { removeKkiapayListener && removeKkiapayListener('failed', koHandler); } catch (e) {}
             onSuccess((resp && (resp.transactionId || resp.transaction_id)) || 'tx-' + Date.now());
           };
-          addKkiapayListener('success', handler);
+          var koHandler = function (resp) {
+            try { removeKkiapayListener && removeKkiapayListener('success', okHandler); } catch (e) {}
+            try { removeKkiapayListener && removeKkiapayListener('failed', koHandler); } catch (e) {}
+            fail(resp);
+          };
+          addKkiapayListener('success', okHandler);
+          addKkiapayListener('failed', koHandler);
         }
         openKkiapayWidget({
           amount: amount,
@@ -58,10 +76,10 @@ window.ADTL_PAY = {
           callback: ''
         });
       } catch (e) {
-        alert("Le module de paiement n'a pas pu s'ouvrir. Utilisez le paiement MTN MoMo manuel ci-dessous.");
+        fail(e);
       }
     }).catch(function () {
-      alert("Connexion au service de paiement impossible. Utilisez le paiement MTN MoMo manuel.");
+      fail();
     });
   },
 

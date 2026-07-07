@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Valeur CAF et droits de douane au Bénin : guide 2026</title>
+    <meta content="Comprendre la valeur CAF et le calcul des droits de douane au Bénin : évaluation des véhicules, TVA 18 %, taxes annexes et exemple chiffré simple." name="description"/>
+    <!-- PWA / Application Mobile -->
+    <link rel="manifest" href="/manifest.json"/>
+    <meta name="theme-color" content="#0A0A0A"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-title" content="AD TRANS"/>
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
+    <!-- Fonts: Space Grotesk for Headings, Instrument Sans for Body -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS -->
+<link rel="stylesheet" href="/assets/adtl.css?v=3"/>
+
+    <style>
+        html { scroll-behavior: smooth; overflow-x:hidden; }
+        body { -webkit-font-smoothing: antialiased; overflow-x:hidden; }
+
+
+
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes pulse-green { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .animate-blink { animation: blink 2s infinite; }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .animate-pulse-green { animation: pulse-green 2s ease-in-out infinite; }
+
+
+        .whatsapp-btn { position:fixed; bottom:1.5rem; right:1.5rem; width:64px; height:64px; background:#25D366; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 15px rgba(0,0,0,.1); z-index:999; transition:all .3s; }
+        .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 25px 50px rgba(0,0,0,.15); }
+        .whatsapp-btn svg { width:32px; height:32px; }
+
+        .price-up { color: #16a34a; }
+        .price-down { color: #dc2626; }
+    </style>
+<style>
+#mobileMenu{position:fixed!important;top:0!important;left:-100%!important;width:min(320px,88vw)!important;height:100vh!important;overflow-y:auto!important;box-shadow:6px 0 32px rgba(0,0,0,.14)!important;transition:left .32s cubic-bezier(.4,0,.2,1)!important;display:flex!important;flex-direction:column;padding-top:72px;padding-left:24px;padding-right:24px;gap:4px;z-index:999!important;background:#fff!important;}
+#mobileMenu.flex{left:0!important;}
+#mob-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:998;display:none;}
+#mob-overlay.visible{display:block;}
+
+/* ── Bottom nav bar (mobile only) ── */
+#bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E5E5E5;z-index:990;height:62px;}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;font-size:10px;font-weight:600;color:#A3A3A3;text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif;letter-spacing:.01em;}
+.bn-item:hover,.bn-item.active{color:#0A0A0A;}
+.bn-item svg{stroke:currentColor;}
+@media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
+
+.mob-tw-open .mob-tw-sub { display:block!important; }
+.mob-tw-open .mob-tw-chevron { transform:rotate(180deg); }
+
+</style>
+<link rel="canonical" href="https://www.adtranslogistics.com/guides/calcul-valeur-caf-douane"/>
+<meta property="og:title" content="Valeur CAF et droits de douane au Bénin : guide 2026"/>
+<meta property="og:description" content="Comprendre la valeur CAF et le calcul des droits de douane au Bénin : évaluation des véhicules, TVA 18 %, taxes annexes et exemple chiffré simple."/>
+<meta property="og:url" content="https://www.adtranslogistics.com/guides/calcul-valeur-caf-douane"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://www.adtranslogistics.com/icons/og-cover.png"/>
+<meta property="og:site_name" content="AD TRANS LOGISTICS"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta name="twitter:card" content="summary"/>
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "Valeur CAF et calcul des droits de douane au Bénin", "description": "Guide complet de la valeur CAF (coût + assurance + fret) et du calcul des droits de douane au port de Cotonou : évaluation des véhicules d'occasion, composition d'une liquidation (droit de douane, TVA 18 %, taxes annexes) et exemple chiffré.", "inLanguage": "fr", "datePublished": "2026-07-06", "dateModified": "2026-07-06", "image": "https://www.adtranslogistics.com/icons/icon-512.png", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.adtranslogistics.com/guides/calcul-valeur-caf-douane"}, "author": {"@type": "Organization", "name": "AD TRANS LOGISTICS", "url": "https://www.adtranslogistics.com/"}, "publisher": {"@type": "Organization", "name": "AD TRANS LOGISTICS", "url": "https://www.adtranslogistics.com/", "logo": {"@type": "ImageObject", "url": "https://www.adtranslogistics.com/icons/icon-512.png"}}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Comment calculer la valeur CAF d'un véhicule importé au Bénin ?", "acceptedAnswer": {"@type": "Answer", "text": "La valeur CAF additionne trois éléments : le coût de la marchandise (prix d'achat du véhicule), l'assurance transport et le fret maritime jusqu'au port de Cotonou. Exemple : un véhicule acheté 2 500 000 F CFA, avec 800 000 F de fret et 50 000 F d'assurance, a une valeur CAF de 3 350 000 F CFA. C'est cette valeur — éventuellement ajustée par le référentiel de la douane — qui sert de base au calcul des droits et taxes."}}, {"@type": "Question", "name": "La douane béninoise utilise-t-elle le prix d'achat que je déclare ?", "acceptedAnswer": {"@type": "Answer", "text": "Pas automatiquement. La facture d'achat est examinée, mais pour les véhicules d'occasion la douane s'appuie sur un référentiel de valeurs (type argus) qui tient compte de la marque, du modèle, de l'année et de la cylindrée. Si le prix déclaré paraît anormalement bas par rapport à ce référentiel, c'est la valeur du référentiel qui est retenue comme base de taxation, et non le prix payé."}}, {"@type": "Question", "name": "Quel pourcentage de la valeur CAF représentent les droits de douane au Bénin ?", "acceptedAnswer": {"@type": "Answer", "text": "En ordre de grandeur, la liquidation totale (droit de douane TEC CEDEAO, TVA 18 % et taxes annexes) représente souvent entre 35 % et 50 % de la valeur CAF pour un véhicule d'occasion mis à la consommation au Bénin, selon la catégorie, l'énergie et l'âge du véhicule. Ces fourchettes sont indicatives : pour un montant précis, utilisez notre simulateur — simulations calibrées sur les barèmes en vigueur."}}, {"@type": "Question", "name": "Pourquoi deux véhicules identiques peuvent-ils payer des montants différents ?", "acceptedAnswer": {"@type": "Answer", "text": "Parce que la base et les paramètres de taxation diffèrent : valeur CAF retenue (fret et assurance réellement payés, ajustement au référentiel), catégorie tarifaire et cylindrée, régime douanier choisi (mise à la consommation au Bénin ou réexportation vers un pays voisin), date de dédouanement (les barèmes évoluent) et frais annexes du port. Deux dossiers en apparence identiques peuvent donc aboutir à des liquidations différentes, en toute régularité."}}], "url": "https://www.adtranslogistics.com/guides/calcul-valeur-caf-douane"}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.adtranslogistics.com/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://www.adtranslogistics.com/guides"}, {"@type": "ListItem", "position": 3, "name": "Valeur CAF et droits de douane", "item": "https://www.adtranslogistics.com/guides/calcul-valeur-caf-douane"}]}]</script>
+<style>
+details.faq{background:#fff;border:1px solid #E5E5E5;border-radius:14px;margin-bottom:12px;overflow:hidden}
+details.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:20px 24px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#0A0A0A}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:'+';font-size:20px;color:#A3A3A3;margin-left:12px}
+details.faq[open] summary::after{content:'–'}
+details.faq .faq-body{padding:0 24px 20px;font-size:14px;color:#737373;line-height:1.7}
+.step-num{width:34px;height:34px;border-radius:999px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;font-family:'Space Grotesk',sans-serif}
+.doc-card{background:#fff;border:1px solid #F0F0F0;border-radius:20px;padding:28px}
+.doc-card h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;color:#0A0A0A;margin-bottom:8px}
+.doc-card p{font-size:14px;color:#737373;line-height:1.7;margin:0}
+.doc-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:#F7F7F7;border:1px solid #E5E5E5;border-radius:999px;padding:4px 12px;color:#525252;margin-bottom:14px}
+.cta-inline{background:#0A0A0A;border-radius:20px;padding:32px;color:#fff}
+.cta-inline h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;margin-bottom:8px;color:#fff}
+.cta-inline p{font-size:14px;color:#A3A3A3;line-height:1.6;margin:0 0 20px}
+</style>
+</head>
+<body class="bg-white text-g800 font-sans">
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20j%27ai%20une%20question%20sur%20la%20valeur%20CAF%20et%20le%20calcul%20des%20droits%20de%20douane." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
+    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="width:32px;height:32px;min-width:32px;min-height:32px;">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast"></div>
+
+<!-- NAVIGATION -->
+<nav class="glass-nav transition-all duration-300" id="navbar">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="flex items-center justify-between h-20">
+<a class="flex items-center gap-2.5 group" href="/">
+<div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
+<div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
+</a>
+<ul class="hidden lg:flex items-center gap-1 list-none">
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Calcul droit de douane <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Véhicule</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/simulateur">Occasion</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">Neuf</a>
+            <div class="border-t border-gray-100 mx-3 my-1"></div>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Marchandise</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Import</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur?mode=export">Export</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Importation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Facture commerciale</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Liste de colisage</li><li>&#10003; Certificat d'origine</li><li>&#10003; Licence / autorisation d'import</li></ul>
+            <a href="/demande?service=importation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Exportation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Facture commerciale / Pro-forma</li><li>&#10003; Certificat d'origine</li><li>&#10003; Certificat phytosanitaire</li><li>&#10003; Licence d'exportation</li><li>&#10003; Déclaration en douane</li></ul>
+            <a href="/demande?service=exportation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Transit <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Déclaration de transit (T1)</li><li>&#10003; Garantie de transit</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Facture commerciale</li><li>&#10003; Certificat d'origine</li></ul>
+            <a href="/demande?service=transit" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Dépotage <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Bon à enlever</li><li>&#10003; Connaissement (BL)</li><li>&#10003; Facture commerciale</li><li>&#10003; Liste de colisage</li><li>&#10003; Déclaration en douane</li></ul>
+            <a href="/demande?service=depotage" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Boutique <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="/boutique">Véhicules</a>
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Articles</a>
+        </div>
+    </li>
+    <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/connexion">Mon compte</a></li>
+</ul>
+<button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current transition-all"></span>
+</button>
+</div>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob-overlay" onclick="this.classList.remove('visible');document.getElementById('mobileMenu').classList.remove('flex');document.getElementById('mobileMenu').classList.add('hidden');"></div>
+<div class="z-[999]" id="mobileMenu">
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Accueil</a>
+<div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-semibold text-brand rounded-brand-sm cursor-pointer bg-g50">
+        <span>Calcul droit de douane</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Véhicule</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/simulateur" onclick="closeMobile()">Occasion</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">Neuf</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Marchandise</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Import</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur?mode=export" onclick="closeMobile()">Export</a>
+    </div>
+</div>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=importation" onclick="closeMobile()">Importation</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=exportation" onclick="closeMobile()">Exportation</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=transit" onclick="closeMobile()">Transit</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=depotage" onclick="closeMobile()">Dépotage</a>
+<div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-medium text-g700 rounded-brand-sm cursor-pointer hover:bg-g50">
+        <span>Boutique</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/boutique" onclick="closeMobile()">Véhicules</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Articles</a>
+    </div>
+</div>
+<a class="btn-brand btn-brand-dark justify-center mt-4" href="/#contact" onclick="closeMobile()">Devis gratuit</a>
+</div>
+
+<!-- ===================== SECTION 1: HERO ===================== -->
+
+<section class="pt-32 pb-16 lg:pt-44 lg:pb-24 bg-white overflow-hidden">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="relative z-10" style="max-width:860px;">
+<div class="tag mb-6"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Guide pratique — mis à jour 2026</div>
+<h1 class="font-heading text-4xl lg:text-[64px] font-bold leading-[1.08] tracking-tight text-brand mb-8">
+Valeur CAF et calcul des<br/><span class="text-g400 font-medium italic">droits de douane au Bénin</span>
+</h1>
+<p class="text-lg lg:text-xl text-g500 leading-relaxed mb-10" style="max-width:680px;">
+Avant de payer le moindre franc à la douane, tout part d'un chiffre : la valeur CAF. C'est elle qui sert de base au calcul des droits de douane, de la TVA et des taxes annexes au port de Cotonou. Ce guide vous explique comment elle se construit, comment la douane évalue un véhicule d'occasion et pourquoi deux dossiers en apparence identiques peuvent payer des montants différents.
+</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="btn-brand btn-brand-dark" href="/simulateur">Calculer mes droits de douane</a>
+<a class="btn-brand btn-brand-ghost" href="#faq">Questions fréquentes</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 2: DEFINITION CAF ===================== -->
+<section class="py-16 lg:py-20 bg-g50" id="definition-caf">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="mb-12" style="max-width:860px;">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Définition</div>
+<h2 class="title-h2">Qu'est-ce que la valeur CAF ? Coût + Assurance + Fret</h2>
+<p class="subtitle">CAF signifie <strong style="color:#0A0A0A;">Coût, Assurance, Fret</strong> (CIF en anglais : Cost, Insurance, Freight). C'est la valeur de votre marchandise rendue au port de Cotonou, c'est-à-dire le prix payé au vendeur, augmenté de tout ce qu'il a fallu dépenser pour l'acheminer jusqu'au Bénin. En droit douanier, cette valeur CAF constitue la <strong style="color:#0A0A0A;">valeur en douane</strong> : la base sur laquelle sont assis les droits et taxes.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1100px;">
+<div class="doc-card"><span class="doc-badge">C — Coût</span><h3>Le prix de la marchandise</h3><p>Le montant réellement payé ou à payer au vendeur : prix d'achat du véhicule chez le concessionnaire ou à l'enchère, montant de la facture commerciale pour un conteneur de marchandises. Ce coût inclut les frais engagés jusqu'au port d'embarquement (transport intérieur, chargement) lorsque l'incoterm les met à votre charge.</p></div>
+<div class="doc-card"><span class="doc-badge">A — Assurance</span><h3>L'assurance transport</h3><p>La prime d'assurance couvrant la marchandise pendant le voyage maritime. Si aucune assurance n'a été souscrite, la douane en réintègre une de manière forfaitaire dans la valeur : on ne peut pas « échapper » à cet élément. Son poids reste modeste — généralement autour de 1 % de la valeur transportée.</p></div>
+<div class="doc-card"><span class="doc-badge">F — Fret</span><h3>Le transport maritime</h3><p>Le coût du fret jusqu'au port de Cotonou : fret conteneur, fret roulier (RoRo) pour un véhicule, ou quote-part de groupage. C'est souvent l'élément le plus variable : selon la ligne maritime, la saison et le port de départ (Anvers, Bremerhaven, Newark, Dubaï…), le fret d'un même véhicule peut varier de plusieurs centaines de milliers de francs.</p></div>
+</div>
+<div class="bg-white border border-g200 rounded-brand-lg p-6" style="margin-top:32px;max-width:860px;">
+<p class="text-sm text-g600 leading-relaxed" style="margin:0 0 12px;"><strong style="color:#0A0A0A;">Exemple chiffré simple.</strong> Vous achetez une berline d'occasion en Europe :</p>
+<ul class="text-sm text-g600 leading-relaxed" style="margin:0 0 12px;padding-left:20px;list-style:disc;">
+<li>Coût du véhicule (facture d'achat) : <strong>2 500 000 F CFA</strong></li>
+<li>Fret maritime jusqu'à Cotonou : <strong>800 000 F CFA</strong></li>
+<li>Assurance transport : <strong>50 000 F CFA</strong></li>
+</ul>
+<p class="text-sm text-g600 leading-relaxed" style="margin:0;"><strong style="color:#0A0A0A;">Valeur CAF = 2 500 000 + 800 000 + 50 000 = 3 350 000 F CFA.</strong> C'est sur cette base — éventuellement ajustée par la douane, comme on va le voir — que seront calculés le droit de douane, la TVA de 18 % et les taxes annexes.</p>
+</div>
+<div class="bg-white border border-g200 rounded-brand-lg p-6" style="margin-top:16px;max-width:860px;">
+<p class="text-sm text-g500 leading-relaxed" style="margin:0;"><strong style="color:#0A0A0A;">Attention aux incoterms&nbsp;:</strong> si vous achetez « FOB » (Free On Board), le fret et l'assurance ne sont pas compris dans le prix du vendeur — il faudra les ajouter pour obtenir la valeur CAF. Si vous achetez « CIF Cotonou », le prix facturé intègre déjà les trois composantes. Bien lire l'incoterm de votre facture évite les mauvaises surprises au moment de la déclaration. Pour la liste des pièces à réunir, consultez notre guide des <a href="/guides/documents-importation-benin" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">documents requis pour importer au Bénin</a>.</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 3: EVALUATION VEHICULE OCCASION ===================== -->
+<section class="py-16 lg:py-20 bg-white" id="evaluation-vehicule">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="mb-12" style="max-width:860px;">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Véhicules d'occasion</div>
+<h2 class="title-h2">Comment la douane évalue un véhicule d'occasion</h2>
+<p class="subtitle">C'est le point que la plupart des importateurs découvrent trop tard : pour un véhicule d'occasion, <strong style="color:#0A0A0A;">la douane ne se contente pas du prix d'achat que vous déclarez</strong>. Elle confronte votre facture à son propre référentiel de valeurs.</p>
+</div>
+<div class="grid gap-4" style="max-width:860px;">
+<div class="flex gap-5 items-start bg-white p-6 rounded-brand-lg border border-g100"><div class="step-num">1</div><div><h3 class="font-heading text-lg font-semibold text-brand mb-1">Un référentiel de valeurs, type « argus »</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">L'administration douanière béninoise s'appuie sur une base de valeurs indicatives par marque, modèle, année de première mise en circulation, énergie et cylindrée. Cette « mercuriale » reflète la valeur de marché raisonnable d'un véhicule comparable. Elle est intégrée au système informatique douanier (SYDONIA) et sert de garde-fou contre la sous-facturation.</p></div></div>
+<div class="flex gap-5 items-start bg-white p-6 rounded-brand-lg border border-g100"><div class="step-num">2</div><div><h3 class="font-heading text-lg font-semibold text-brand mb-1">La facture est examinée, pas ignorée</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Une facture d'achat détaillée et cohérente (vendeur identifiable, VIN, kilométrage, prix conforme au marché) reste la première pièce du dossier. Si le prix déclaré est plausible par rapport au référentiel, il peut être accepté comme base. Mais si la facture paraît anormalement basse — ou trop vague —, c'est la valeur du référentiel qui est retenue pour la taxation.</p></div></div>
+<div class="flex gap-5 items-start bg-white p-6 rounded-brand-lg border border-g100"><div class="step-num">3</div><div><h3 class="font-heading text-lg font-semibold text-brand mb-1">Ajout du fret et de l'assurance</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Que la base retenue soit votre facture ou la valeur du référentiel, la douane y ajoute le fret réellement payé (ou une valeur de référence du fret pour l'itinéraire) et l'assurance pour reconstituer la valeur CAF complète. C'est cette valeur en douane finale qui alimente la liquidation.</p></div></div>
+<div class="flex gap-5 items-start bg-white p-6 rounded-brand-lg border border-g100"><div class="step-num">4</div><div><h3 class="font-heading text-lg font-semibold text-brand mb-1">Conséquence pratique : anticipez la valeur retenue</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Acheter un véhicule « pas cher » ne garantit pas une liquidation « pas chère » : si le référentiel valorise le modèle au-dessus de votre prix d'achat, les droits seront calculés sur la valeur du référentiel. Avant même d'acheter, estimez la liquidation probable — c'est exactement ce que fait notre simulateur en quelques minutes.</p></div></div>
+</div>
+<div class="cta-inline" style="margin-top:36px;max-width:860px;">
+<h3>Quelle valeur la douane retiendra-t-elle pour votre véhicule ?</h3>
+<p>Notre simulateur intègre marque, modèle, année et cylindrée pour estimer votre liquidation complète à Cotonou — simulations calibrées sur les barèmes en vigueur. Obtenez votre montant exact — 1 000 F, accès 24 h, avec option de vérification par un conseiller.</p>
+<a class="btn-brand" href="/simulateur" style="background:#fff;color:#0A0A0A;">Lancer le simulateur véhicule &rarr;</a>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 4: COMPOSITION LIQUIDATION ===================== -->
+<section class="py-16 lg:py-20 bg-g50" id="liquidation">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="mb-12" style="max-width:860px;">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Liquidation</div>
+<h2 class="title-h2">Que contient une liquidation douanière au Bénin ?</h2>
+<p class="subtitle">La « liquidation » est le calcul officiel des droits et taxes dus, effectué dans SYDONIA à partir de la valeur CAF et du classement tarifaire (code SH). Elle empile plusieurs lignes, chacune avec sa base et son taux. Voici les grandes composantes — <strong style="color:#0A0A0A;">à titre d'ordres de grandeur, issus de simulations calibrées sur les barèmes en vigueur</strong>.</p>
+</div>
+<div class="grid gap-4" style="max-width:860px;">
+<div class="flex gap-5 items-start bg-white p-6 rounded-brand-lg border border-g100"><div class="step-num">1</div><div><h3 class="font-heading text-lg font-semibold text-brand mb-1">Le droit de douane (TEC CEDEAO)</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Le Tarif Extérieur Commun de la CEDEAO fixe le taux selon la catégorie de produit : 0 %, 5 %, 10 %, 20 % ou 35 % de la valeur CAF. Les véhicules de tourisme relèvent le plus souvent des tranches 10 % à 20 % selon leur classement ; les marchandises de consommation courante montent fréquemment à 20 %. Le code SH exact de votre produit détermine tout.</p></div></div>
+<div class="flex gap-5 items-start bg-white p-6 rounded-brand-lg border border-g100"><div class="step-num">2</div><div><h3 class="font-heading text-lg font-semibold text-brand mb-1">La TVA de 18 %</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">La TVA à l'importation est de 18 % au Bénin — mais attention à la base : elle ne se calcule pas sur la seule valeur CAF. Elle s'applique sur <strong style="color:#0A0A0A;">valeur CAF + droit de douane + autres droits et taxes d'entrée</strong>. Autrement dit, on paie de la TVA sur les droits eux-mêmes, ce qui alourdit mécaniquement le total. Les entreprises immatriculées peuvent en principe déduire cette TVA d'importation de leur TVA collectée.</p></div></div>
+<div class="flex gap-5 items-start bg-white p-6 rounded-brand-lg border border-g100"><div class="step-num">3</div><div><h3 class="font-heading text-lg font-semibold text-brand mb-1">Les taxes annexes et prélèvements</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">S'ajoutent des prélèvements de moindre ampleur mais systématiques : redevance statistique (de l'ordre de 1 % de la valeur CAF), prélèvements communautaires UEMOA et CEDEAO (environ 1,5 % cumulés), taxe de voirie, acompte d'impôt sur les bénéfices (AIB) selon le statut fiscal de l'importateur, et selon les produits une écotaxe ou des taxes spécifiques. Individuellement modestes, ces lignes représentent ensemble plusieurs points de pourcentage.</p></div></div>
+<div class="flex gap-5 items-start bg-white p-6 rounded-brand-lg border border-g100"><div class="step-num">4</div><div><h3 class="font-heading text-lg font-semibold text-brand mb-1">Les frais hors douane, à ne pas oublier</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">La liquidation douanière n'est pas la facture finale : ajoutez les frais de manutention et de magasinage du terminal, les frais de dossier du guichet unique, les honoraires du transitaire et le transport final. Un budget d'importation sérieux intègre ces postes dès le départ.</p></div></div>
+</div>
+<div class="bg-white border border-g200 rounded-brand-lg p-6" style="margin-top:32px;max-width:860px;">
+<p class="text-sm text-g600 leading-relaxed" style="margin:0 0 12px;"><strong style="color:#0A0A0A;">Exemple illustratif</strong> (reprenons notre berline à 3 350 000 F CFA de valeur CAF, avec un droit de douane hypothétique de 20 %) :</p>
+<div class="overflow-x-auto">
+<table class="w-full text-sm" style="border-collapse:collapse;min-width:480px;">
+<thead>
+<tr style="background:#F7F7F7;">
+<th class="text-left p-3 font-heading font-semibold text-brand border border-g200">Ligne</th>
+<th class="text-left p-3 font-heading font-semibold text-brand border border-g200">Base</th>
+<th class="text-left p-3 font-heading font-semibold text-brand border border-g200">Montant indicatif</th>
+</tr>
+</thead>
+<tbody class="text-g600">
+<tr><td class="p-3 border border-g200 font-semibold">Droit de douane 20 %</td><td class="p-3 border border-g200">CAF 3 350 000</td><td class="p-3 border border-g200">670 000 F</td></tr>
+<tr style="background:#FBFBFB;"><td class="p-3 border border-g200 font-semibold">Taxes annexes ≈ 3,5 %</td><td class="p-3 border border-g200">CAF 3 350 000</td><td class="p-3 border border-g200">≈ 117 000 F</td></tr>
+<tr><td class="p-3 border border-g200 font-semibold">TVA 18 %</td><td class="p-3 border border-g200">CAF + droits ≈ 4 137 000</td><td class="p-3 border border-g200">≈ 745 000 F</td></tr>
+<tr style="background:#FBFBFB;"><td class="p-3 border border-g200 font-semibold">Total liquidation</td><td class="p-3 border border-g200">—</td><td class="p-3 border border-g200"><strong style="color:#0A0A0A;">≈ 1 532 000 F, soit ≈ 46 % du CAF</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p class="text-[13px] text-g400 leading-relaxed" style="margin:12px 0 0;">Chiffres purement illustratifs, arrondis, issus de simulations calibrées sur les barèmes en vigueur : le taux de droit, les taxes applicables et la valeur retenue dépendent du code SH, de l'âge et de l'énergie du véhicule, et du statut de l'importateur. Seule la liquidation SYDONIA fait foi.</p>
+</div>
+<div class="cta-inline" style="margin-top:24px;max-width:860px;">
+<h3>Marchandises en conteneur ? Chiffrez votre dédouanement</h3>
+<p>Notre calculateur marchandises détaille droit de douane, TVA 18 % et prélèvements selon la catégorie de produit — simulations calibrées sur les barèmes en vigueur. Obtenez votre montant exact — 1 000 F, accès 24 h.</p>
+<a class="btn-brand" href="/calculateur" style="background:#fff;color:#0A0A0A;">Ouvrir le calculateur marchandises &rarr;</a>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 5: POURQUOI DES DIFFERENCES ===================== -->
+<section class="py-16 lg:py-20 bg-white" id="differences">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="mb-12" style="max-width:860px;">
+<div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Comprendre les écarts</div>
+<h2 class="title-h2">Deux véhicules identiques, deux montants différents : pourquoi ?</h2>
+<p class="subtitle">« Mon frère a dédouané la même voiture et a payé moins cher. » C'est la remarque que nous entendons le plus souvent au port de Cotonou. Dans l'immense majorité des cas, l'écart s'explique par des paramètres parfaitement réguliers.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1100px;">
+<div class="doc-card"><h3>La valeur CAF retenue n'est pas la même</h3><p>Fret payé différent (RoRo vs conteneur, saison haute vs basse), assurance différente, ou ajustement au référentiel dans un cas et pas dans l'autre : à modèle identique, deux valeurs en douane peuvent diverger de plusieurs centaines de milliers de francs — et tout le reste suit.</p></div>
+<div class="doc-card"><h3>Le classement tarifaire diffère</h3><p>Cylindrée, énergie (essence, diesel, hybride), nombre de places, usage (tourisme, utilitaire) : ces caractéristiques déterminent le code SH et donc le taux de droit de douane. Deux versions d'un même modèle peuvent relever de tranches différentes du TEC CEDEAO.</p></div>
+<div class="doc-card"><h3>Le régime douanier n'est pas le même</h3><p>Une mise à la consommation au Bénin (IM4) et une réexportation vers un pays voisin n'obéissent pas au même barème. Comparer la liquidation d'un véhicule dédouané pour rouler au Bénin avec celle d'un véhicule reparti vers le Niger ou le Nigeria n'a tout simplement pas de sens.</p></div>
+<div class="doc-card"><h3>Les barèmes évoluent dans le temps</h3><p>Lois de finances, réformes des taxes portuaires, mise à jour du référentiel de valeurs : un dédouanement de 2023 ne se compare pas à un dédouanement de 2026. La référence pertinente est toujours le barème en vigueur au jour de l'enregistrement de la déclaration.</p></div>
+<div class="doc-card"><h3>L'âge du véhicule joue</h3><p>L'année de première mise en circulation influe à la fois sur la valeur du référentiel (décote) et, selon les périodes, sur certaines taxes ou surtaxes applicables aux véhicules les plus anciens. Quelques mois d'écart d'âge peuvent suffire à changer la liquidation.</p></div>
+<div class="doc-card"><h3>Les frais hors douane varient</h3><p>Magasinage (le nombre de jours au port compte), manutention, honoraires : à liquidation douanière égale, le coût total de sortie du port peut différer sensiblement. C'est souvent là que se cache « l'écart » entre deux importateurs — pas dans la douane elle-même.</p></div>
+</div>
+<div class="bg-g50 border border-g200 rounded-brand-lg p-6" style="margin-top:36px;max-width:1100px;">
+<p class="text-sm text-g500 leading-relaxed" style="margin:0;"><strong style="color:#0A0A0A;">La bonne méthode&nbsp;:</strong> ne comparez pas votre dossier à celui du voisin — simulez le vôtre. Notre <a href="/simulateur" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">simulateur véhicules</a> et notre <a href="/calculateur" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">calculateur marchandises</a> reproduisent la mécanique de liquidation avec vos propres paramètres — simulations calibrées sur les barèmes en vigueur. Et si votre marchandise poursuit sa route vers l'hinterland, voyez notre page <a href="/transit-niger" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">transit vers le Niger</a>.</p>
+</div>
+</div>
+</section>
+
+<!-- ===================== SECTION 6: FAQ ===================== -->
+<section class="py-16 lg:py-20 bg-g50" id="faq">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="mb-10"><div class="tag mb-4"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Questions fréquentes</div>
+<h2 class="title-h2">Valeur CAF et droits de douane&nbsp;: vos questions</h2></div>
+<div style="max-width:860px;">
+<details class="faq"><summary>Comment calculer la valeur CAF d'un véhicule importé au Bénin ?</summary><div class="faq-body">La valeur CAF additionne trois éléments : le coût de la marchandise (prix d'achat du véhicule), l'assurance transport et le fret maritime jusqu'au port de Cotonou. Exemple : un véhicule acheté 2 500 000 F CFA, avec 800 000 F de fret et 50 000 F d'assurance, a une valeur CAF de 3 350 000 F CFA. C'est cette valeur — éventuellement ajustée par le référentiel de la douane — qui sert de base au calcul des droits et taxes.</div></details>
+<details class="faq"><summary>La douane béninoise utilise-t-elle le prix d'achat que je déclare ?</summary><div class="faq-body">Pas automatiquement. La facture d'achat est examinée, mais pour les véhicules d'occasion la douane s'appuie sur un référentiel de valeurs (type argus) qui tient compte de la marque, du modèle, de l'année et de la cylindrée. Si le prix déclaré paraît anormalement bas par rapport à ce référentiel, c'est la valeur du référentiel qui est retenue comme base de taxation, et non le prix payé.</div></details>
+<details class="faq"><summary>Quel pourcentage de la valeur CAF représentent les droits de douane au Bénin ?</summary><div class="faq-body">En ordre de grandeur, la liquidation totale (droit de douane TEC CEDEAO, TVA 18 % et taxes annexes) représente souvent entre 35 % et 50 % de la valeur CAF pour un véhicule d'occasion mis à la consommation au Bénin, selon la catégorie, l'énergie et l'âge du véhicule. Ces fourchettes sont indicatives : pour un montant précis, utilisez notre simulateur — simulations calibrées sur les barèmes en vigueur.</div></details>
+<details class="faq"><summary>Pourquoi deux véhicules identiques peuvent-ils payer des montants différents ?</summary><div class="faq-body">Parce que la base et les paramètres de taxation diffèrent : valeur CAF retenue (fret et assurance réellement payés, ajustement au référentiel), catégorie tarifaire et cylindrée, régime douanier choisi (mise à la consommation au Bénin ou réexportation vers un pays voisin), date de dédouanement (les barèmes évoluent) et frais annexes du port. Deux dossiers en apparence identiques peuvent donc aboutir à des liquidations différentes, en toute régularité.</div></details>
+</div>
+<p class="text-sm text-g500 mt-8" style="max-width:860px;">Prêt à chiffrer votre dossier&nbsp;? <a href="/simulateur" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">Simulateur véhicules</a> ou <a href="/calculateur" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">calculateur marchandises</a> — obtenez votre montant exact pour 1&nbsp;000&nbsp;F, accès 24&nbsp;h (simulations calibrées sur les barèmes en vigueur). Pour aller plus loin, nos <a href="/produits-digitaux" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">mémos PDF pratiques</a> détaillent les procédures pas à pas, et notre guide des <a href="/guides/documents-importation-benin" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">documents d'importation</a> vous aide à préparer un dossier complet.</p>
+</div>
+</section>
+
+<!-- ===================== SECTION 7: CTA FINAL ===================== -->
+<section class="py-24 bg-white" id="devis">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="bg-g50 rounded-brand-lg border border-g200 p-8 text-center" style="padding:48px 32px;">
+<h2 class="title-h2" style="margin-bottom:12px;">Ne découvrez pas votre liquidation au port</h2>
+<p class="subtitle mx-auto" style="margin-bottom:32px;">Simulez vos droits et taxes avant d'acheter, puis confiez-nous le dédouanement : déclaration, liquidation, paiement et sortie du port de Cotonou, avec un compte rendu transparent.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a class="btn-brand btn-brand-dark" href="/simulateur">Obtenez votre montant exact — 1 000 F, accès 24 h</a>
+<a class="btn-brand btn-brand-ghost" href="/demande?service=importation">Confier mon dossier import</a>
+</div>
+<p class="text-[13px] text-g400 mt-6">Une question&nbsp;? <a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20j%27ai%20une%20question%20sur%20la%20valeur%20CAF%20et%20les%20droits%20de%20douane." style="text-decoration:underline;">Écrivez-nous sur WhatsApp</a> — réponse sous 24 h ouvrées.</p>
+</div>
+</div>
+</section>
+<footer class="bg-g50 border-t border-g200 py-16">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<!-- Company Info -->
+<div>
+<div class="font-heading font-bold text-base text-brand mb-6">AD TRANS LOGISTICS</div>
+<p class="text-sm text-g500 mb-4">SURL spécialisée en transit douanier, négoce de matières premières et logistique portuaire au port de Cotonou, Bénin.</p>
+<div class="space-y-2 text-[13px] text-g600">
+<p><strong>IFU:</strong> 3202113824203</p>
+<p><strong>RCCM:</strong> RB/COT/21 B 31505</p>
+</div>
+</div>
+<!-- Services -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Services</h4>
+<ul class="space-y-3 text-[13px]">
+<li><a href="/#services" class="text-g500 hover:text-brand transition-colors">Transit Douanier</a></li>
+<li><a href="/vehicules" class="text-g500 hover:text-brand transition-colors">Importation Véhicules</a></li>
+<li><a href="/negoce" class="text-g500 hover:text-brand transition-colors font-medium text-brand">Négoce Matières Premières</a></li>
+<li><a href="/#formation" class="text-g500 hover:text-brand transition-colors">Formation & Conseil</a></li>
+</ul>
+</div>
+<!-- Resources -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Ressources</h4>
+<ul class="space-y-3 text-[13px]">
+<li><a href="/#simulateur" class="text-g500 hover:text-brand transition-colors">Simulateur de coûts</a></li>
+<li><a href="/suivi" class="text-g500 hover:text-brand transition-colors">Suivi en temps réel</a></li>
+<li><a href="/#faq" class="text-g500 hover:text-brand transition-colors">Questions fréquentes</a></li>
+<li><a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="text-g500 hover:text-brand transition-colors">Chaîne YouTube</a></li>
+</ul>
+</div>
+<!-- Contact & Social -->
+<div>
+<h4 class="font-heading font-bold text-sm text-brand mb-6">Contact</h4>
+<ul class="space-y-3 text-[13px] mb-6">
+<li><a href="tel:+2290197500555" class="text-g500 hover:text-brand transition-colors">+229 01 97 50 05 55</a></li>
+<li><a href="mailto:adtranslogistics@hotmail.com" class="text-g500 hover:text-brand transition-colors">adtranslogistics@hotmail.com</a></li>
+<li class="text-g600">Missessin C/6<br/>Cotonou, Bénin</li>
+<li class="text-g600">Magasin Lagos&nbsp;: Alasia, Ojo<br/>Lagos State, Nigeria — <a href="https://www.google.com/maps?q=6.4951183,3.1410583&amp;z=17&amp;hl=fr" target="_blank" rel="noopener" class="hover:text-brand" style="text-decoration:underline;">carte</a></li>
+<li><a href="/mentions-legales" class="text-g500 hover:text-brand transition-colors">Mentions légales &amp; CGV</a></li>
+<li><a href="/confidentialite" class="text-g500 hover:text-brand transition-colors">Confidentialité</a></li>
+</ul>
+<div class="flex gap-3">
+<a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+</a>
+<a href="#" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">facebook</span>
+</a>
+<a href="https://wa.me/2290197500555" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">message</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Footer Bottom -->
+<div class="border-t border-g200 pt-8">
+<p class="text-center text-[13px] text-g500">&copy; 2026 AD TRANS LOGISTICS. Tous droits réservés. | Négoce de matières premières en Afrique de l'Ouest.</p>
+</div>
+</div>
+</footer>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+// Mobile Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+    const overlay = document.getElementById('mob-overlay');
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+    if(overlay) overlay.classList.toggle('visible');
+});
+
+function closeMobile() {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+    const overlay = document.getElementById('mob-overlay');
+    if(overlay) overlay.classList.remove('visible');
+}
+
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Toast Notification
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+</script>
+
+    <!-- Enregistrement du Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+        });
+      }
+    </script>
+<!-- ── Bottom Navigation Mobile ── -->
+<nav id="bottomnav" aria-label="Navigation rapide">
+  <a href="/" class="bn-item" data-page="/">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+    <span>Accueil</span>
+  </a>
+  <a href="/simulateur" class="bn-item" data-page="/simulateur">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg>
+    <span>Douane</span>
+  </a>
+  <a href="/boutique" class="bn-item" data-page="/boutique">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+    <span>Boutique</span>
+  </a>
+  <a href="/#contact" class="bn-item" data-page="/contact">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span>Contact</span>
+  </a>
+  <a href="/espace-client" class="bn-item" data-page="/espace-client">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Compte</span>
+  </a>
+</nav>
+<script src="/cookie-consent.js?v=3"></script>
+<script defer src="/assets/material-icons-fallback.js?v=3"></script>
+<script src="/assets/lang-suggest.js?v=3" defer></script>
+</body>
+</html>

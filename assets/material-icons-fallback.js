@@ -69,11 +69,23 @@
     diamond: '<path d="M6 3h12l4 6-10 12L2 9l4-6Z"/><path d="M2 9h20M9 3 7 9l5 12 5-12-2-6"/>',
     oil_barrel: '<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v14c0 1.7 3.1 3 7 3s7-1.3 7-3V5"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/>',
     handshake: '<path d="M8 12 4 8l4-4 4 4"/><path d="m16 12 4-4-4-4-4 4"/><path d="M8 12l3 3a3 3 0 0 0 4 0l1-1"/><path d="M5 9l6 6M19 9l-6 6"/>',
+    download: '<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>',
+    lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    balance: '<path d="M12 3v18"/><path d="M8 21h8"/><path d="M4 7h16"/><path d="m6 7-3 6a3 3 0 0 0 6 0L6 7Z"/><path d="m18 7-3 6a3 3 0 0 0 6 0l-3-6Z"/>',
+    science: '<path d="M10 3v6L4.5 19a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 9V3"/><path d="M8 3h8"/>',
+    verified_user: '<path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/>',
+    description: '<path d="M6 3h9l4 4v14H6V3Z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h6"/>',
+    compare_arrows: '<path d="M9 7H3"/><path d="m6 4-3 3 3 3"/><path d="M15 17h6"/><path d="m18 14 3 3-3 3"/>',
+    warning: '<path d="m12 3 10 18H2L12 3Z"/><path d="M12 10v4M12 17h.01"/>',
+    gps_fixed: '<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',
+    route: '<circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h7"/>',
+    local_police: '<path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/><path d="m12 8 1 2.2 2.4.2-1.8 1.6.5 2.4L12 13.2 9.9 14.4l.5-2.4-1.8-1.6 2.4-.2L12 8Z"/>',
   };
 
   const aliases = {
     account_balance: 'account_balance',
     inventory_2: 'inventory_2',
+    store: 'storefront',
   };
 
   function iconSvg(name) {

@@ -15,26 +15,8 @@
 <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/adtl.css"/>
-<script>window.tailwind=window.tailwind||{};</script>
-<script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        'brand':'#0A0A0A','g950':'#111111','g900':'#171717','g800':'#262626',
-        'g700':'#3A3A3A','g600':'#525252','g500':'#737373','g400':'#A3A3A3',
-        'g300':'#D4D4D4','g200':'#E5E5E5','g100':'#F0F0F0','g50':'#F7F7F7',
-      },
-      fontFamily: { sans:['Instrument Sans','sans-serif'], heading:['Space Grotesk','sans-serif'] },
-      borderRadius: { 'brand':'14px','brand-sm':'10px','brand-lg':'20px','brand-xl':'28px' },
-      transitionTimingFunction: { 'brand-ease':'cubic-bezier(0.4,0,0.2,1)' }
-    }
-  }
-}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="/assets/adtl.css?v=3"/>
+
 <style>
 html { scroll-behavior:smooth; overflow-x:hidden; }
 body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
@@ -80,9 +62,19 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 .result-animate{animation:fadeSlideUp .4s ease forwards;}
 @keyframes spin{to{transform:rotate(360deg);}}
 </style>
-<script src="/config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<link rel="canonical" href="https://www.adtranslogistics.com/calculateur"/>
+<script src="/config.js?v=3"></script><link rel="canonical" href="https://www.adtranslogistics.com/calculateur"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculateur droits de douane marchandises Bénin","url":"https://www.adtranslogistics.com/calculateur","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Calcul des droits et taxes d’importation ou d’exportation de marchandises au port de Cotonou : simulations calibrées sur les barèmes en vigueur.","offers":{"@type":"Offer","price":"1000","priceCurrency":"XOF"},"provider":{"@id":"https://www.adtranslogistics.com/#org"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.adtranslogistics.com/"},{"@type":"ListItem","position":2,"name":"Calculateur marchandises","item":"https://www.adtranslogistics.com/calculateur"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quels documents faut-il pour calculer les droits de douane de ma marchandise ?","acceptedAnswer":{"@type":"Answer","text":"La facture commerciale, le connaissement (BL) ou la LTA et la liste de colisage suffisent pour une estimation fiable. Le calculateur vous guide champ par champ ; nos simulations sont calibrées sur les barèmes en vigueur."}},{"@type":"Question","name":"Comment la valeur en douane est-elle déterminée ?","acceptedAnswer":{"@type":"Answer","text":"La base est la valeur CAF : coût de la marchandise + assurance + fret jusqu’au port de Cotonou. Les droits du Tarif Extérieur Commun CEDEAO (0 à 35 %) s’y appliquent selon la nature du produit."}},{"@type":"Question","name":"La TVA de 18 % s’applique-t-elle à toutes les importations ?","acceptedAnswer":{"@type":"Answer","text":"La TVA de 18 % s’applique sur la valeur CAF majorée des droits pour la plupart des marchandises mises à la consommation au Bénin. Certains produits de première nécessité en sont exonérés — le calculateur en tient compte."}},{"@type":"Question","name":"Le montant calculé est-il exact ?","acceptedAnswer":{"@type":"Answer","text":"Le résultat provient de simulations calibrées sur les barèmes en vigueur et reflète fidèlement une liquidation type. Le montant définitif dépend de la déclaration officielle et du contrôle douanier ; l’option vérification conseiller (5 000 F) sécurise votre budget avant embarquement."}}]}</script>
+
+<meta property="og:title" content="Calculateur Droits de Douane Marchandises | AD TRANS LOGISTICS — Cotonou, Bénin"/>
+<meta property="og:description" content="Estimez les droits de douane import et export pour vos marchandises au Bénin avec une méthode alignée sur le simulateur GUCE : modèle de déclaration, pays, code marchandise, valeur en devise, taux de change et valeur statistique."/>
+<meta property="og:url" content="https://www.adtranslogistics.com/calculateur"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://www.adtranslogistics.com/icons/og-cover.png"/>
+<meta property="og:site_name" content="AD TRANS LOGISTICS"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta name="twitter:card" content="summary"/>
 <style>
 .pay-blur{filter:blur(11px);pointer-events:none;user-select:none;}
 .adtl-paybox{background:linear-gradient(135deg,#0D1B2A,#1a2d42);border-radius:16px;padding:22px;color:#fff;margin:18px 0;}
@@ -93,6 +85,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 .adtl-manual{display:none;margin-top:14px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:14px;font-size:13px;line-height:1.6;}
 .adtl-manual a{color:#25D366;font-weight:700;}
 </style>
+<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body class="bg-white text-g800 font-sans">
 
@@ -623,7 +616,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
                 <span class="material-symbols-outlined text-2xl" style="color:#fbbf24;">payments</span>
                 <div>
                   <div class="font-heading font-bold text-base">Recevoir le résultat détaillé</div>
-                  <div style="font-size:12px;color:rgba(255,255,255,.58);">Choisissez le niveau de vérification, puis confirmez le paiement par WhatsApp.</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,.58);">Choisissez votre offre, payez en 30 secondes (MoMo, Moov, carte) : le détail s'affiche immédiatement.</div>
                 </div>
               </div>
               <form id="gate-form-m" data-mode="import" onsubmit="submitGateM(event)" class="space-y-3">
@@ -654,7 +647,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
                 <button type="submit" id="gate-btn-m"
                   style="width:100%;padding:12px;border-radius:9999px;background:#fff;color:#0A0A0A;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;">
                   <span class="material-symbols-outlined text-base">receipt_long</span>
-                  Créer ma demande de paiement
+                  Payer et débloquer maintenant — MoMo, Moov, carte
                 </button>
               </form>
               <div id="payment-instructions-m" style="display:none;margin-top:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px;">
@@ -688,7 +681,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
                   Faire une autre demande
                 </button>
               </div>
-              <p style="font-size:11px;color:rgba(255,255,255,.38);margin-top:10px;text-align:center;">L'estimation rapide reste gratuite. Le résultat détaillé est traité après paiement.</p>
+              <p style="font-size:11px;color:rgba(255,255,255,.38);margin-top:10px;text-align:center;">L'estimation rapide reste gratuite. Le résultat détaillé s'affiche immédiatement après paiement sécurisé KkiaPay.</p>
             </div>
           </div>
 
@@ -741,7 +734,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
           </div>
           <p class="text-xs text-g400 mt-2 italic text-center">CIF + droits & taxes = coût rendu Cotonou</p>
 
-          <!-- Frais GUCE & prestations (relevés sur facture BFU réelle) -->
+          <!-- Frais GUCE & prestations — simulation calibrée sur les barèmes GUCE en vigueur -->
           <div class="mt-5">
             <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3">Composition indicative des frais de liquidation (facture unique GUCE)</div>
             <div class="result-row">
@@ -912,7 +905,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
                 <button type="submit" id="gate-btn-exp"
                   style="width:100%;padding:12px;border-radius:9999px;background:#fff;color:#0A0A0A;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;">
                   <span class="material-symbols-outlined text-base">receipt_long</span>
-                  Créer ma demande de paiement
+                  Payer et débloquer maintenant — MoMo, Moov, carte
                 </button>
               </form>
               <div id="payment-instructions-exp" style="display:none;margin-top:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px;">
@@ -946,7 +939,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
                   Faire une autre demande
                 </button>
               </div>
-              <p style="font-size:11px;color:rgba(255,255,255,.38);margin-top:10px;text-align:center;">L'estimation rapide reste gratuite. Le résultat détaillé est traité après paiement.</p>
+              <p style="font-size:11px;color:rgba(255,255,255,.38);margin-top:10px;text-align:center;">L'estimation rapide reste gratuite. Le résultat détaillé s'affiche immédiatement après paiement sécurisé KkiaPay.</p>
             </div>
           </div>
         </div>
@@ -992,7 +985,8 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
       <ul class="space-y-2 text-sm text-white/50">
         <li><a href="/simulateur" class="hover:text-white transition-colors">Simulateur véhicules</a></li>
         <li><a href="/calculateur" class="hover:text-white transition-colors text-white font-semibold">Calculateur marchandises</a></li>
-        <li><a href="/#suivi" class="hover:text-white transition-colors">Suivi en temps réel</a></li>
+        <li><a href="/suivi" class="hover:text-white transition-colors">Suivi en temps réel</a></li>
+<li><a href="/produits-digitaux" class="text-g500 hover:text-brand transition-colors">Guides &amp; mémos PDF</a></li>
       </ul>
     </div>
     <div>
@@ -1005,7 +999,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
     </div>
   </div>
   <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/30">
-    <div>© 2026 AD TRANS LOGISTICS. Tous droits réservés.</div>
+    <div>© 2026 AD TRANS LOGISTICS. Tous droits réservés. | <a href="/mentions-legales" class="hover:text-brand" style="text-decoration:underline;">Mentions légales &amp; CGV</a> · <a href="/confidentialite" class="hover:text-brand" style="text-decoration:underline;">Confidentialité</a></div>
     <div>Calculateur fourni à titre indicatif — droits exacts selon classification officielle</div>
   </div>
 </div>
@@ -1322,6 +1316,7 @@ function calcPaidOK() {
     return !!(d && d.ts && (Date.now() - d.ts) < 24 * 3600 * 1000);
   } catch (e) { return false; }
 }
+const REAL_VALUES_M = {}; // valeurs réelles gardées hors du DOM tant que non payé
 function applyMerchPayLock() {
   const locked = !calcPaidOK();
   ['res-total-m', 'res-total-exp'].forEach(function (id) {
@@ -1329,13 +1324,13 @@ function applyMerchPayLock() {
     if (!el) return;
     const row = el.closest('.result-total-row') || el.parentElement;
     if (row) row.classList.toggle('pay-blur', locked);
-    // Masquage réel du montant tant que non payé (pas seulement un flou)
+    // Masquage réel du montant tant que non payé (valeur gardée hors du DOM)
     if (locked) {
-      if (el.textContent !== '••••••') el.dataset.real = el.textContent;
+      if (el.textContent !== '••••••') REAL_VALUES_M[id] = el.textContent;
       el.textContent = '••••••';
-    } else if (el.dataset.real !== undefined) {
-      el.textContent = el.dataset.real;
-      delete el.dataset.real;
+    } else if (REAL_VALUES_M[id] !== undefined) {
+      el.textContent = REAL_VALUES_M[id];
+      delete REAL_VALUES_M[id];
     }
     let note = document.getElementById(id + '-locknote');
     if (locked && !note && row && row.parentElement) {
@@ -1351,7 +1346,7 @@ function applyMerchPayLock() {
 function merchRealTotal(id) {
   const el = document.getElementById(id);
   if (!el) return '—';
-  return ((el.dataset.real !== undefined ? el.dataset.real : el.textContent) || '—').trim();
+  return ((REAL_VALUES_M[id] !== undefined ? REAL_VALUES_M[id] : el.textContent) || '—').trim();
 }
 function unlockMerchTotals(txId) {
   try { localStorage.setItem(PAY_KEY_CALC, JSON.stringify({ ts: Date.now(), tx: txId || '' })); } catch (e) {}
@@ -1397,7 +1392,7 @@ function calcMarch() {
   const tva = Math.round(baseTVA * 0.18);
   const aibRate = parseFloat(document.getElementById('sel-aib-m')?.value ?? '0.01');
   const aib = Math.round(baseTVA * aibRate);
-  const FRAIS_LIQ = 130000; // frais de liquidation SYDONIA par conteneur (relevés réels : 129 146 à 142 497 F)
+  const FRAIS_LIQ = 130000; // frais de liquidation par conteneur — calibrage sur les barèmes en vigueur
   const totalDroits = pcs + pc + rs + ps + dd + rau + tva + aib + FRAIS_LIQ;
   const totalRendu = cif + totalDroits;
 
@@ -1932,6 +1927,14 @@ async function submitGateM(e) {
   // Paiement instantané KkiaPay (MTN MoMo, Moov, cartes) — repli manuel sinon
   if (window.ADTL_PAY && ADTL_PAY.configured()) {
     localStorage.setItem('adtl_contact', JSON.stringify({ name: name, email: email, phone: phone }));
+    // Lead transmis AVANT le paiement : les abandons deviennent relançables sous 24 h
+    try {
+      fetch('https://formsubmit.co/ajax/adtranslogistics@hotmail.com', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ _subject: 'LEAD CALCULATEUR (paiement en cours)', Reference: paymentRef, Nom: name, Email: email, Telephone: phone, Offre: offer.label, Mode: mode, Resume: getMerchSummaryLabel(simData) })
+      }).catch(function () {});
+    } catch (err) {}
+    if (btn) { btn.disabled = true; btn.innerHTML = 'Ouverture du paiement sécurisé…'; setTimeout(function () { btn.disabled = false; btn.innerHTML = '<span class="material-symbols-outlined text-base">lock_open</span> Payer et débloquer maintenant — MoMo, Moov, carte'; }, 6000); }
     ADTL_PAY.open(offer.amount, offer.label + ' — Calculateur douane marchandises', { name: name, email: email, phone: phone, ref: paymentRef }, function (txId) {
       unlockMerchTotals(txId);
       revealPaidMerch(mode);
@@ -1945,6 +1948,24 @@ async function submitGateM(e) {
         simData.payment_ref = paymentRef;
         simData.paid_offer = { type: selectedOffer, label: offer.label, amount: offer.amount, status: 'paid', transaction: txId };
         fetch(EDGE_FN_M, { method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': SB_ANON_M }, body: JSON.stringify(simData) }).catch(function () {});
+      } catch (err) {}
+    }, function () {
+      // Échec du paiement en ligne : bascule immédiate sur les instructions MoMo manuelles
+      try {
+        const failOrder = {
+          ref: paymentRef, mode: mode, offerType: selectedOffer, offerLabel: offer.label,
+          offerSummary: offer.summary, amount: offer.amount, amountLabel: formatPaidAmountM(offer.amount),
+          status: 'pending_payment', paymentMethod: 'MTN Mobile Money',
+          merchantCode: ADTL_MTN_MERCHANT_CODE_M, depositNumber: ADTL_MTN_DEPOSIT_NUMBER_M,
+          createdAt: new Date().toISOString(), fullName: name, email: email, phone: phone,
+          simulationSignature: merchSimulationSignature(mode),
+          summaryLabel: getMerchSummaryLabel(simData), totalLabel: getMerchTotalLabel(mode),
+          totalReal: merchRealTotal(mode === 'export' ? 'res-total-exp' : 'res-total-m'),
+          simulation: simData, failedOnline: true
+        };
+        localStorage.setItem('adtl_paid_merch_order', JSON.stringify(failOrder));
+        if (btn) { btn.disabled = false; btn.innerHTML = '<span class="material-symbols-outlined text-base">lock_open</span> Payer et débloquer maintenant — MoMo, Moov, carte'; }
+        showPaymentInstructionsM(failOrder, mode);
       } catch (err) {}
     });
     return;
@@ -2034,7 +2055,7 @@ async function submitGateM(e) {
   showPaymentToastM(order);
 
   btn.disabled = false;
-  btn.innerHTML = '<span class="material-symbols-outlined text-base">receipt_long</span> Créer ma demande de paiement';
+  btn.innerHTML = '<span class="material-symbols-outlined text-base">lock_open</span> Payer et débloquer maintenant — MoMo, Moov, carte';
 }
 
 function getMerchSummaryLabel(simData) {
@@ -2256,9 +2277,9 @@ function calcExport() {
   if (params.get('mode') === 'export') switchMode('export');
 })();
 </script>
-<script src="/cookie-consent.js"></script>
-<script defer src="/assets/material-icons-fallback.js"></script>
-<script src="/assets/lang-suggest.js" defer></script>
-<script src="/assets/adtl-pay.js?v=2"></script>
+<script src="/cookie-consent.js?v=3"></script>
+<script defer src="/assets/material-icons-fallback.js?v=3"></script>
+<script src="/assets/lang-suggest.js?v=3" defer></script>
+<script src="/assets/adtl-pay.js?v=3"></script>
 </body>
 </html>

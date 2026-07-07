@@ -168,7 +168,7 @@
 </div>
 </main>
 
-<script src="/config.js"></script>
+<script src="/config.js?v=3"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 // ══════════════════════════════════════════════
@@ -282,9 +282,7 @@ function togglePwd(btn) {
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('[PWA] SW enregistre:', reg.scope))
-            .catch(err => console.warn('[PWA] SW echec:', err));
+          navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
         });
       }
     </script>
@@ -311,6 +309,6 @@ function togglePwd(btn) {
     <span>Compte</span>
   </a>
 </nav>
-<script src="/cookie-consent.js"></script>
+<script src="/cookie-consent.js?v=3"></script>
 </body>
 </html>

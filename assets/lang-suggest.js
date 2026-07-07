@@ -6,7 +6,7 @@
     if(!l||l.indexOf('fr')===0) return;
     var msg={en:'View this site in English',zh:'\u67e5\u770b\u672c\u7f51\u7ad9\u82f1\u6587\u7248',ar:'\u0639\u0631\u0636 \u0647\u0630\u0627 \u0627\u0644\u0645\u0648\u0642\u0639 \u0628\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0625\u0646\u062c\u0644\u064a\u0632\u064a\u0629',es:'Ver este sitio en ingl\u00e9s',pt:'Ver este site em ingl\u00eas',de:'Diese Website auf Englisch ansehen',hi:'\u0907\u0938 \u0938\u093e\u0907\u091f \u0915\u094b \u0905\u0902\u0917\u094d\u0930\u0947\u091c\u093c\u0940 \u092e\u0947\u0902 \u0926\u0947\u0916\u0947\u0902',tr:'Bu siteyi \u0130ngilizce g\u00f6r\u00fcnt\u00fcle',ru:'\u041f\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0441\u0430\u0439\u0442 \u043d\u0430 \u0430\u043d\u0433\u043b\u0438\u0439\u0441\u043a\u043e\u043c'};
     var k=l.slice(0,2); var t=msg[k]||msg.en;
-    var map={'/transit-nigeria':'/en/nigeria','/transit-niger':'/en/niger'};
+    var map={'/transit-nigeria':'/en/nigeria','/transit-niger':'/en/niger','/simulateur':'/en-simulator','/produits-digitaux':'/en-products'};
     var target=map[location.pathname]||'/en';
     var b=document.createElement('div');
     b.setAttribute('role','dialog');

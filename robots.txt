@@ -1,19 +1,10 @@
 # AD TRANS LOGISTICS — robots.txt
 # https://www.adtranslogistics.com
+# Les pages privees (admin, espace-client, connexion) portent un meta noindex :
+# elles ne sont volontairement PAS bloquees ici pour que Google puisse le lire.
 
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /admin.html
-Disallow: /espace-client
-Disallow: /espace-client.html
-Disallow: /connexion
-Disallow: /connexion.html
-
-# Bloquer les indexeurs nuisibles
-User-agent: GPTBot
-Disallow: /admin
-Disallow: /espace-client
 
 User-agent: AhrefsBot
 Crawl-delay: 10
