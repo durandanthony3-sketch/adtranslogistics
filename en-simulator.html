@@ -4,14 +4,14 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Benin Car Import Duty Calculator (English) | AD TRANS LOGISTICS</title>
-<meta name="description" content="Calculate Benin customs duty for your car in seconds — English simulator by a licensed customs broker at the Port of Cotonou. 2,253 vehicles referenced, results in FCFA and USD."/>
+<meta name="description" content="Calculate Benin customs duty for your car in seconds — English simulator by customs transit specialists at the Port of Cotonou. 2,253 vehicles referenced, results in FCFA and USD."/>
 <link rel="canonical" href="https://www.adtranslogistics.com/en-simulator"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Benin Car Import Duty Calculator","url":"https://www.adtranslogistics.com/en-simulator","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Estimate Benin customs duty for your car in seconds. Professional simulations calibrated on the tariff schedule in force. Full report 1,000 F (~$2), 24h access.","offers":{"@type":"Offer","price":"1000","priceCurrency":"XOF"},"provider":{"@id":"https://www.adtranslogistics.com/#org"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.adtranslogistics.com/en"},{"@type":"ListItem","position":2,"name":"Duty calculator","item":"https://www.adtranslogistics.com/en-simulator"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is Benin car import duty calculated?","acceptedAnswer":{"@type":"Answer","text":"Duty is based on the customs value (CIF) of the vehicle: reference value plus sea freight. Effective rates range from about 19% to 40% of CIF depending on the vehicle category, plus fixed fees. Our simulations are calibrated on the tariff schedule in force."}},{"@type":"Question","name":"What is CIF value?","acceptedAnswer":{"@type":"Answer","text":"CIF = Cost + Insurance + Freight: the value of the car plus shipping to the Port of Cotonou. It is the base used by Benin customs for the calculation."}},{"@type":"Question","name":"How can I pay for the full report?","acceptedAnswer":{"@type":"Answer","text":"You can pay 1,000 F (about $2) by Visa or Mastercard, MTN Mobile Money or Moov Money via the secure KkiaPay gateway. The full breakdown unlocks immediately."}},{"@type":"Question","name":"How long does my access last?","acceptedAnswer":{"@type":"Answer","text":"Your access lasts 24 hours on the device used, so you can compare several vehicles. Keep your payment reference: we can restore access on WhatsApp at any time."}}]}</script>
 
 <meta property="og:title" content="Benin Car Import Duty Calculator (English) | AD TRANS LOGISTICS"/>
-<meta property="og:description" content="Calculate Benin customs duty for your car in seconds — English simulator by a licensed customs broker at the Port of Cotonou. 2,253 vehicles referenced, results in FCFA and USD."/>
+<meta property="og:description" content="Calculate Benin customs duty for your car in seconds — English simulator by customs transit specialists at the Port of Cotonou. 2,253 vehicles referenced, results in FCFA and USD."/>
 <meta property="og:url" content="https://www.adtranslogistics.com/en-simulator"/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="https://www.adtranslogistics.com/icons/og-cover.png"/>
@@ -69,6 +69,10 @@
   .toast { position:fixed; top:16px; left:50%; transform:translateX(-50%); background:var(--navy); color:#fff; padding:13px 22px; border-radius:12px; box-shadow:0 16px 40px rgba(0,0,0,.35); font-size:13.5px; z-index:99; display:none; max-width:92vw; }
   .stepitem { display:flex; gap:10px; padding:8px 0; border-bottom:1px solid var(--gray100); font-size:13px; }
   .stepitem .n { background:var(--navy); color:#fff; font-weight:700; min-width:24px; height:24px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:12px; flex:none; }
+  .stickycta { display:none; position:fixed; bottom:0; left:0; right:0; z-index:60; background:var(--navy); padding:10px 14px calc(10px + env(safe-area-inset-bottom)); box-shadow:0 -6px 24px rgba(0,0,0,.25); }
+  .stickycta .btn { margin-top:0; }
+  @media (min-width:900px) { .stickycta { display:none !important; } }
+  body.has-sticky { padding-bottom:88px; }
 </style>
 </head>
 <body>
@@ -83,7 +87,7 @@
   <section class="hero">
     <span class="tag">Port of Cotonou · Official 2026 schedule</span>
     <h1>Benin Car Import<br/>Duty Calculator</h1>
-    <p>Pick your car, get the duty in seconds — in FCFA and USD. Professional simulations by a licensed customs broker. 2,253 vehicles referenced.</p>
+    <p>Pick your car, get the duty in seconds — in FCFA and USD. Professional simulations by customs transit specialists at the Port of Cotonou. 2,253 vehicles referenced.</p>
   </section>
 
   <div class="wrap">
@@ -136,24 +140,33 @@
       </div>
 
       <div id="lock-zone" class="lock">
-        <div class="t">🔓 Your estimate is ready — 1,000 F (≈ $2)</div>
-        <div class="muted">Unlock the total duty to budget, the line-by-line tax breakdown, the 10 clearance steps, documents checklist and a downloadable PDF report. Pay by card or mobile money — 24h access.</div>
-        <input type="text" id="ensim-contact" placeholder="Your WhatsApp number or email *" style="width:100%;padding:11px 14px;border:1px solid var(--gray200);border-radius:10px;font-size:14px;margin:10px 0 4px;font-family:inherit;box-sizing:border-box;"/>
+        <div id="lock-expired" style="display:none;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:9px 12px;font-size:12.5px;color:#92400e;margin-bottom:10px;text-align:left;">Your 24h access has expired. Paid recently? <a href="https://wa.me/2290197500555?text=Hello%20ADTL%2C%20please%20restore%20my%20simulator%20access.%20My%20payment%20reference%3A%20" target="_blank" style="color:#92400e;font-weight:700;">Send us your reference on WhatsApp</a> and we'll help restore it — or unlock again below to compare another vehicle.</div>
+        <div class="t">🔓 Your <span id="lock-veh" style="color:#b45309;"></span> duty is calculated — see the full report for ~$2 (1,000 F)</div>
+        <div id="lock-range" style="display:none;font-size:13px;color:var(--navy);background:#fff;border-radius:10px;padding:9px 12px;margin:10px 0 4px;text-align:left;"></div>
+        <div class="muted">Unlock the exact total to budget, the line-by-line tax breakdown, the 10 clearance steps, the documents checklist and a downloadable PDF report — 24h access, compare as many vehicles as you want.</div>
+        <div style="font-size:12.5px;color:var(--navy);font-weight:600;background:#fff;border-radius:10px;padding:9px 12px;margin-top:10px;text-align:left;">Clearing a car for home use in Cotonou usually runs into millions of francs — thousands of dollars. A $2 report that locks your line-by-line budget is the cheapest insurance on that decision.</div>
+        <div class="muted" style="margin-top:8px;font-size:12px;">Built by AD TRANS LOGISTICS — a real company with offices in Cotonou (Missessin) and a store in Lagos (Alasia, Ojo), Nigeria.</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);text-align:left;margin-top:10px;">Where should we send your access backup?</div>
+        <input type="text" id="ensim-contact" placeholder="WhatsApp number or email *" autocomplete="on" enterkeyhint="go" autocapitalize="none" spellcheck="false" style="width:100%;padding:12px 14px;border:1.5px solid var(--gray200);border-radius:10px;font-size:16px;margin:6px 0 4px;font-family:inherit;box-sizing:border-box;"/>
         <div id="ensim-contact-err" style="display:none;font-size:12px;color:#dc2626;font-weight:700;margin-bottom:4px;">Please enter your WhatsApp number or email so we can restore your access if needed.</div>
-        <button class="btn b-dark" onclick="unlockPay()">Unlock — Visa / Mastercard / MoMo</button>
-        <div class="muted" style="text-align:center;margin-top:6px;">🔒 Secure payment via KkiaPay · Calibrated on the tariff schedule in force.</div>
+        <button class="btn b-dark" onclick="unlockPay()">Show my exact total — 1,000 F (~$2)</button>
+        <div class="muted" style="text-align:center;margin-top:6px;">🔒 Secure checkout via KkiaPay — Visa · Mastercard · MTN MoMo · Moov (charged in XOF, ≈ $2 on your statement).<br/>✅ If your report doesn't display after payment: access restored with your reference, or a full refund within 48h (see <a href="/mentions-legales" style="color:inherit;text-decoration:underline;">Terms</a>).<br/>Simulations calibrated on the tariff schedules in force (Finance Act 2025/2026).</div>
         <div class="muted" id="ensim-fail" style="display:none;text-align:center;margin-top:6px;color:#dc2626;">Payment didn't go through — nothing was charged. Try again or <a href="#" id="ensim-fail-wa" target="_blank" style="color:var(--navy);font-weight:700;">pay via WhatsApp</a>.</div>
+        <div style="border-top:1px solid var(--gray200);margin-top:12px;padding-top:10px;font-size:12.5px;color:var(--gray500);text-align:left;"><b style="color:var(--navy);">Need more certainty?</b> Have an ADTL advisor verify your exact case (year, tax category, documents) — <b>5,000 F (~$9)</b>, personal answer on WhatsApp. <a href="https://wa.me/2290197500555?text=Hello%20ADTL%2C%20I%20want%20the%20advisor%20verification%20(5%2C000%20F)%20for%20my%20vehicle." target="_blank" style="color:var(--navy);font-weight:700;">Book on WhatsApp →</a></div>
       </div>
 
       <a class="btn b-wa" id="wa-btn" href="#" target="_blank">💬 Get a clearing quote on WhatsApp (English)</a>
-      <a class="btn b-green" href="/en-products">📘 English guides &amp; 2,253-vehicle reference book</a>
+      <a class="btn b-green" id="guides-btn" href="/en-products">📘 English guides &amp; 2,253-vehicle reference book</a>
     </div>
 
     <div class="card muted">
       <b style="color:var(--navy);">How accurate is this?</b><br/>
       Estimates come from our professional simulation engine, calibrated on the customs schedule in force (February 2025+) and proven daily by our brokerage practice at the Port of Cotonou. Floor values apply to older cars (1,500,000 F for sedans/SUVs). Final amounts depend on the official declaration. Vehicle not listed? <a href="https://wa.me/2290197500555" style="color:var(--navy);font-weight:700;">Ask us on WhatsApp</a>.
     </div>
+    <div class="muted" style="text-align:center;margin:14px 0;">Prefer a human? <a href="https://wa.me/2290197500555?text=Hello%20ADTL%2C%20I%20have%20a%20question%20before%20unlocking%20my%20duty%20report." target="_blank" style="color:var(--navy);font-weight:700;">Chat with us on WhatsApp (English)</a> — quick reply.</div>
   </div>
+
+  <div class="stickycta" id="sticky-cta"><button class="btn b-gold" onclick="document.getElementById('lock-zone').scrollIntoView({behavior:'smooth',block:'center'});" style="margin-top:0;">🔓 Your estimate is ready — see it for ~$2</button></div>
 
   <footer>
     AD TRANS LOGISTICS — Customs transit &amp; logistics, Cotonou (Benin)<br/>
@@ -206,11 +219,19 @@
     userTouchedHp = false;
     hide();
   }
-  function hide() { document.getElementById('res-card').classList.add('hidden'); }
+  function hide() {
+    document.getElementById('res-card').classList.add('hidden');
+    var s = document.getElementById('sticky-cta'); if (s) s.style.display = 'none';
+    document.body.classList.remove('has-sticky');
+  }
 
   function paidOK() {
     try { var d = JSON.parse(localStorage.getItem('adtl_paid_ensim') || 'null');
           return !!(d && d.ts && (Date.now() - d.ts) < 86400000); } catch (e) { return false; }
+  }
+  function paidExpired() {
+    try { var d = JSON.parse(localStorage.getItem('adtl_paid_ensim') || 'null');
+          return !!(d && d.ts && (Date.now() - d.ts) >= 86400000); } catch (e) { return false; }
   }
 
   function currentVal() {
@@ -226,6 +247,14 @@
     var dest = document.getElementById('s-dest').value;
     if (!rec || !selYear.value) { hide(); return; }
     document.getElementById('res-card').classList.remove('hidden');
+    // Personnalisation : le rapport devient "le sien"
+    var lv = document.getElementById('lock-veh');
+    if (lv) lv.textContent = (selMake.value + ' ' + (selModel.selectedOptions[0] ? selModel.selectedOptions[0].textContent : '') + ' ' + selYear.value).trim();
+    // Mobile : amener le résultat à l'écran (une seule fois)
+    if (window.innerWidth < 900 && !window.__ensimScrolled) {
+      window.__ensimScrolled = true;
+      setTimeout(function () { document.getElementById('res-card').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
+    }
     var waMsg = 'Hello ADTL, I need a clearing quote for a ' + selMake.value + ' ' + (selModel.selectedOptions[0] ? selModel.selectedOptions[0].textContent : '') + ' ' + selYear.value + ' (' + zone.toUpperCase() + ').';
     document.getElementById('wa-btn').href = 'https://wa.me/2290197500555?text=' + encodeURIComponent(waMsg);
 
@@ -261,6 +290,15 @@
     document.getElementById('res-usd').textContent = paid ? ('≈ ' + fmtU(total) + ' USD') : '≈ $••• USD';
     document.getElementById('res-badge').textContent = badge;
     document.getElementById('res-note').textContent = paid ? note : 'Unlock below to see your total — official 2026 schedule · $1 ≈ 560 FCFA';
+    // Fourchette offerte (réciprocité) : réelle mais non actionnable pour boucler un budget
+    var lr = document.getElementById('lock-range');
+    if (lr) {
+      if (!paid && total >= 400000) {
+        var r = function (v) { return (Math.round(v / 100000) * 100000).toLocaleString('en-US'); };
+        lr.innerHTML = '🎁 <b>Your free range:</b> between <b>' + r(total * 0.75) + '</b> and <b>' + r(total * 1.25) + ' F</b> ($' + Math.round(total * 0.75 / USD).toLocaleString('en-US') + '–$' + Math.round(total * 1.25 / USD).toLocaleString('en-US') + '). The precise amount computed by the simulator displays on unlock.';
+        lr.style.display = 'block';
+      } else { lr.style.display = 'none'; }
+    }
   }
 
   var STEPS = [
@@ -285,6 +323,12 @@
     var paid = paidOK();
     document.getElementById('lock-zone').classList.toggle('hidden', paid);
     document.getElementById('paid-zone').classList.toggle('hidden', !paid);
+    // Sticky CTA mobile + CTA gratuits rétrogradés tant que non payé (fuite paywall)
+    var sticky = document.getElementById('sticky-cta'); if (sticky) sticky.style.display = paid ? 'none' : 'flex';
+    document.body.classList.toggle('has-sticky', !paid);
+    var wab = document.getElementById('wa-btn'); if (wab) wab.style.display = paid ? '' : 'none';
+    var gb = document.getElementById('guides-btn'); if (gb) gb.style.display = paid ? '' : 'none';
+    var exp = document.getElementById('lock-expired'); if (exp) exp.style.display = (!paid && paidExpired()) ? 'block' : 'none';
     if (!paid) return;
     var rowsEl = document.getElementById('res-rows');
     if (isReexport) {
@@ -344,8 +388,13 @@
       { ref: ref, phone: isEmail ? '' : contact, email: isEmail ? contact : '' },
       function (txId) {
         try { localStorage.setItem('adtl_paid_ensim', JSON.stringify({ ts: Date.now(), tx: txId })); } catch (e) {}
-        toast('Payment confirmed — full report unlocked for 24h! Keep ref ' + ref + ' to restore access on WhatsApp.');
+        toast('Payment confirmed — full report unlocked for 24h!');
         calc();
+        var pz = document.getElementById('paid-zone');
+        if (pz) {
+          pz.insertAdjacentHTML('afterbegin', '<div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#065f46;margin-bottom:10px;">✅ Payment confirmed — 24h access. Your reference: <b>' + ref + '</b>. Keep it: it helps us assist you anytime on <a href="https://wa.me/2290197500555" style="color:#065f46;font-weight:700;">WhatsApp</a>. Download your PDF report to keep it permanently.</div>');
+          setTimeout(function () { pz.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
+        }
         ADTL_PAY.notifyAdmin({ _subject: 'EN SIMULATOR UNLOCK — 1,000 F', Reference: ref, Transaction: txId, Contact: contact, Vehicle: vehicle, Page: 'en-simulator' });
       },
       function () {
@@ -424,7 +473,7 @@
       DOCS.forEach(function (d) { line('- ' + d, ''); });
       y += 4;
       doc.setFont('helvetica', 'italic'); doc.setFontSize(7.5); doc.setTextColor(115, 115, 115);
-      doc.text(doc.splitTextToSize('Professional simulation calibrated on the customs schedule in force. Final amounts depend on the official declaration. This report is not a customs receipt. AD TRANS LOGISTICS - licensed customs broker, Port of Cotonou.', W - 2 * M), M, y);
+      doc.text(doc.splitTextToSize('Professional simulation calibrated on the customs schedule in force. Final amounts depend on the official declaration. This report is not a customs receipt. AD TRANS LOGISTICS - customs transit & logistics, Port of Cotonou.', W - 2 * M), M, y);
       doc.save('Benin-Duty-Report-' + selMake.value + '-' + selYear.value + '.pdf');
       st.textContent = 'Report downloaded.';
     }).catch(function () { st.textContent = 'PDF module unavailable - check your connection.'; });

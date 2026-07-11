@@ -68,6 +68,11 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 .bn-item svg{stroke:currentColor;}
 @media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
 
+/* Sticky unlock (mobile) */
+#sticky-unlock{position:fixed;bottom:62px;left:0;right:0;z-index:991;background:#0D1B2A;color:#fff;padding:12px 16px;align-items:center;justify-content:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 -6px 20px rgba(0,0,0,.18);}
+@media(min-width:1024px){#sticky-unlock{display:none!important;}}
+@media(max-width:1023px){body.has-sticky{padding-bottom:118px;}body.has-sticky .whatsapp-btn{bottom:calc(1rem + 118px)!important;}}
+
 /* Simulator styles */
 .sim-card { background:#fff;border:1.5px solid #E5E5E5;border-radius:20px;overflow:hidden; }
 .sim-section-title { font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A3A3A3;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #F0F0F0; }
@@ -300,7 +305,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         Barème douanier 2026 vérifié
       </div>
     </div>
-    <p class="text-xs text-g400 mt-2 italic">* Estimation indicative — simulations calibrées sur le barème en vigueur, précision constatée de quelques francs sur les cas standards. Le montant définitif peut varier selon le code SH et le régime.</p>
+    <p class="text-xs text-g400 mt-2 italic">* Estimation indicative — simulations calibrées sur les barèmes en vigueur. Le montant définitif peut varier selon le code SH et le régime.</p>
   </div>
 
   <!-- Jauge déroulante processus douanier -->
@@ -534,14 +539,13 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         <!-- Lead gate -->
         <div id="lead-gate">
           <div class="lead-card">
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0A0A0A;margin-bottom:4px;">Votre estimation est prête ✓</div>
-            <p style="font-size:13px;color:#737373;margin:0 0 16px;line-height:1.5;">Indiquez vos coordonnées pour voir votre aperçu gratuit et débloquer l'estimation détaillée (1 000 F, accès 24 h).</p>
+            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0A0A0A;margin-bottom:4px;">Votre fourchette de budget offerte est prête 🎁</div>
+            <p style="font-size:13px;color:#737373;margin:0 0 16px;line-height:1.5;">Indiquez où vous joindre pour l'afficher immédiatement — puis, si vous voulez le montant précis, débloquez le rapport complet (1 000 F, accès 24 h).</p>
             <form onsubmit="submitLeadGate(event)">
-              <input type="text" class="sim-input" id="lead-nom" placeholder="Nom *" required/>
-              <input type="text" class="sim-input" id="lead-prenom" placeholder="Prénom *" required/>
-              <input type="tel" class="sim-input" id="lead-tel" placeholder="N° de téléphone (WhatsApp) *" required/>
-              <button type="submit">Afficher mon estimation</button>
-              <p style="font-size:11px;color:#A3A3A3;margin:10px 0 0;line-height:1.5;">Vos informations restent confidentielles et servent uniquement à vous accompagner dans votre projet.</p>
+              <input type="text" class="sim-input" id="lead-prenom" placeholder="Votre prénom *" required/>
+              <input type="tel" class="sim-input" id="lead-tel" placeholder="Votre n° WhatsApp *" inputmode="tel" autocomplete="tel" required/>
+              <button type="submit">Voir ma fourchette offerte</button>
+              <p style="font-size:11px;color:#A3A3A3;margin:10px 0 0;line-height:1.5;">Vos coordonnées restent confidentielles et ne sont jamais revendues. Elles servent uniquement à vous accompagner et à rétablir votre accès si besoin.</p>
             </form>
           </div>
         </div>
@@ -564,19 +568,24 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
           <!-- Paywall : l'estimation complète est payante (1 000 F, accès 24 h) -->
           <div id="pay-gate" style="display:none;">
             <div class="adtl-paybox" style="margin-top:0;">
-              <div class="pb-title"><span class="material-symbols-outlined" style="color:#fbbf24;">lock</span> Votre estimation est prête</div>
+              <div style="font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:8px;">Étape 3 sur 3 — Véhicule ✓ · Coordonnées ✓ · <span style="color:#fbbf24;">Montant précis</span></div>
+              <div class="pb-title"><span class="material-symbols-outlined" style="color:#4ade80;">check_circle</span> <span id="pb-title-txt">Votre calcul est terminé</span></div>
               <div id="pb-range" style="display:none;background:rgba(255,255,255,.08);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px;color:#fff;line-height:1.6;"></div>
-              <div class="pb-sub">Débloquez le montant total exact, le détail ligne par ligne des droits et taxes, les étapes du dédouanement, la liste des documents à rassembler et le rapport PDF téléchargeable. Accès illimité pendant 24 h pour comparer plusieurs véhicules.</div>
+              <div class="pb-sub">Un dédouanement de véhicule se chiffre le plus souvent en <strong style="color:#fff;">millions de francs</strong>, selon le modèle et la destination. Le rapport complet coûte <strong style="color:#fff;">1 000 F</strong> — une fraction négligeable du montant en jeu.<br/>
+              ✔ Montant précis + détail ligne par ligne des droits et taxes<br/>
+              ✔ Les étapes du dédouanement et les documents à rassembler<br/>
+              ✔ Rapport PDF personnalisé · accès 24 h pour comparer d'autres véhicules</div>
               <div style="display:flex;flex-direction:column;gap:8px;margin:12px 0;">
-                <label style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 12px;cursor:pointer;font-size:13.5px;color:#fff;">
-                  <input type="radio" name="sim-offer" value="1000" checked onchange="updateSimOffer()"/> <span>Estimation détaillée — <strong>1 000 F</strong> <span style="opacity:.6;">(≈ 1,5 €)</span></span>
+                <label style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 12px;cursor:pointer;font-size:13.5px;color:#fff;">
+                  <input type="radio" name="sim-offer" value="5000" onchange="updateSimOffer()" style="margin-top:3px;"/> <span>Estimation détaillée + <strong>vérification de votre projet par un conseiller ADTL</strong> sur WhatsApp avant votre achat — <strong>5 000 F</strong> <span style="opacity:.6;">(≈ 7,6 €)</span></span>
                 </label>
-                <label style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 12px;cursor:pointer;font-size:13.5px;color:#fff;">
-                  <input type="radio" name="sim-offer" value="5000" onchange="updateSimOffer()"/> <span>Estimation + vérification par un conseiller avant achat — <strong>5 000 F</strong></span>
+                <label style="display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.38);border-radius:10px;padding:10px 12px;cursor:pointer;font-size:13.5px;color:#fff;">
+                  <input type="radio" name="sim-offer" value="1000" checked onchange="updateSimOffer()" style="margin-top:3px;"/> <span>Estimation détaillée + rapport PDF — <strong>1 000 F</strong> <span style="opacity:.6;">(≈ 1,5 €)</span> <span style="background:#4ade80;color:#0A0A0A;font-size:10.5px;font-weight:700;border-radius:999px;padding:2px 8px;margin-left:4px;white-space:nowrap;">⚡ Recommandé</span></span>
                 </label>
               </div>
-              <button type="button" class="pb-btn" id="pb-btn-sim" onclick="startSimPayment()">Payer 1 000 F et débloquer maintenant — MoMo, Moov, carte</button>
-              <div style="font-size:11.5px;color:rgba(255,255,255,.62);margin-top:10px;text-align:center;line-height:1.6;">🔒 Paiement sécurisé KkiaPay · MTN MoMo · Moov Money · Visa/Mastercard<br/>Calibré sur le barème en vigueur — précision constatée : quelques francs sur les cas standards.</div>
+              <button type="button" class="pb-btn" id="pb-btn-sim" onclick="startSimPayment()">Voir mon montant exact — 1 000 F</button>
+              <div style="font-size:11.5px;color:rgba(255,255,255,.62);margin-top:10px;text-align:center;line-height:1.7;">🔒 Paiement sécurisé KkiaPay · MTN MoMo · Moov Money · Visa/Mastercard<br/>✅ <strong style="color:rgba(255,255,255,.85);">Garantie :</strong> si votre détail ne s'affiche pas après paiement, accès rétabli avec votre référence ou remboursement sous 48 h (voir <a href="/mentions-legales" style="text-decoration:underline;color:inherit;">CGV</a>).<br/>Simulations calibrées sur les barèmes en vigueur (Loi de Finances 2025/2026).</div>
+              <div style="text-align:center;margin-top:8px;font-size:12px;color:rgba(255,255,255,.55);">Une question avant de débloquer ? <a href="https://wa.me/2290197500555?text=Bonjour%20ADTL%2C%20j%27ai%20une%20question%20avant%20de%20d%C3%A9bloquer%20mon%20estimation%20sur%20le%20simulateur." target="_blank" rel="noopener" style="color:#25D366;font-weight:700;text-decoration:underline;">Écrivez-nous sur WhatsApp</a> — réponse rapide.</div>
               <div class="adtl-manual" id="pay-manual-sim"></div>
             </div>
           </div>
@@ -813,28 +822,16 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   </div>
   <div class="mt-8 grid sm:grid-cols-3 gap-4">
     <div class="bg-white rounded-xl p-5 border border-g200">
-      <div class="flex items-center gap-2 mb-2">
-        <div class="text-amber-400 text-sm">★★★★★</div>
-        <span class="text-xs text-g400">Client vérifié</span>
-      </div>
-      <p class="text-sm text-g600">"Le simulateur correspondait au franc près à ce que j'ai payé en douane. Impressionnant !"</p>
-      <p class="text-xs text-g400 mt-2 font-semibold">— Moussa K., importateur Cotonou</p>
+      <div class="text-sm font-bold text-brand mb-2">🔎 Vérifiable en 10 secondes</div>
+      <p class="text-sm text-g600">Tapez « simulateur dédouanement Cotonou » sur Google : vous nous trouverez.</p>
     </div>
     <div class="bg-white rounded-xl p-5 border border-g200">
-      <div class="flex items-center gap-2 mb-2">
-        <div class="text-amber-400 text-sm">★★★★★</div>
-        <span class="text-xs text-g400">Client vérifié</span>
-      </div>
-      <p class="text-sm text-g600">"Enfin un outil fiable pour estimer les frais avant d'acheter. Je l'utilise à chaque importation."</p>
-      <p class="text-xs text-g400 mt-2 font-semibold">— Rachid A., transitaire Lagos</p>
+      <div class="text-sm font-bold text-brand mb-2">🏢 Une société réelle, pas un site anonyme</div>
+      <p class="text-sm text-g600">AD TRANS LOGISTICS : bureaux à Cotonou (Missessin) et magasin à Lagos (Alasia, Ojo). Passez nous voir, ou écrivez-nous sur WhatsApp : +229 01 97 50 05 55.</p>
     </div>
     <div class="bg-white rounded-xl p-5 border border-g200">
-      <div class="flex items-center gap-2 mb-2">
-        <div class="text-amber-400 text-sm">★★★★★</div>
-        <span class="text-xs text-g400">Client vérifié</span>
-      </div>
-      <p class="text-sm text-g600">"Le détail des taxes m'a permis de négocier en connaissance de cause avec mon transitaire."</p>
-      <p class="text-xs text-g400 mt-2 font-semibold">— Amina D., commerçante Lomé</p>
+      <div class="text-sm font-bold text-brand mb-2">📋 Barèmes officiels 2025/2026</div>
+      <p class="text-sm text-g600">Simulations calibrées sur les barèmes en vigueur (Loi de Finances 2025/2026). Paiement sécurisé KkiaPay : MTN MoMo, Moov Money, Visa/Mastercard.</p>
     </div>
   </div>
 </div>
@@ -939,7 +936,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
       </summary>
       <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
-        Le montant affiché regroupe les droits et taxes estimés, les frais de sortie, les formalités, la plaque, la carte grise et l'accompagnement AD TRANS LOGISTICS. Le détail exact peut être envoyé par email après vérification.
+        Le montant affiché regroupe les droits et taxes estimés, les frais de sortie, les formalités, la plaque, la carte grise et l'accompagnement AD TRANS LOGISTICS. Le montant précis et le détail ligne par ligne s'affichent instantanément dans l'estimation détaillée (1 000 F, accès 24 h, rapport PDF inclus — remboursement sous 48 h si l'accès ne s'affiche pas, voir CGV).
       </div>
     </details>
     <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
@@ -1008,6 +1005,9 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   </div>
 </div>
 </footer>
+
+<!-- STICKY UNLOCK (mobile, visible uniquement quand le paywall est actif) -->
+<div id="sticky-unlock" style="display:none;" onclick="document.getElementById('pay-gate').scrollIntoView({behavior:'smooth',block:'center'})">🔓 Voir mon montant exact — 1 000 F</div>
 
 <!-- BOTTOM NAV -->
 <nav id="bottomnav" aria-label="Navigation rapide">
@@ -1366,14 +1366,13 @@ function applyLeadGate() {
 }
 function submitLeadGate(e) {
   e.preventDefault();
-  const nom = document.getElementById('lead-nom').value.trim();
   const prenom = document.getElementById('lead-prenom').value.trim();
   const tel = document.getElementById('lead-tel').value.trim();
-  if (!nom || !prenom || tel.replace(/\D/g, '').length < 8) {
-    alert('Merci de renseigner votre nom, votre prénom et un numéro de téléphone valide.');
+  if (!prenom || tel.replace(/\D/g, '').length < 8) {
+    alert('Merci de renseigner votre prénom et un numéro WhatsApp valide.');
     return;
   }
-  try { localStorage.setItem(LEAD_KEY, JSON.stringify({ nom: nom, prenom: prenom, tel: tel, ts: Date.now() })); } catch (err) {}
+  try { localStorage.setItem(LEAD_KEY, JSON.stringify({ nom: '', prenom: prenom, tel: tel, ts: Date.now() })); } catch (err) {}
   leadMem = true;
   try {
     const veh = (selMarque ? selMarque.value : '') + ' ' + (selModele ? selModele.value : '') + ' ' + (inpAnnee ? inpAnnee.value : '');
@@ -1383,7 +1382,7 @@ function submitLeadGate(e) {
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         _subject: 'Nouveau lead — Simulateur véhicules',
-        Nom: nom, Prenom: prenom, Telephone: tel,
+        Prenom: prenom, Telephone: tel,
         Vehicule: veh.trim(),
         Destination: dest ? dest.options[dest.selectedIndex].text : '',
         Page: 'simulateur'
@@ -1409,10 +1408,17 @@ const REAL_VALUES = {}; // valeurs réelles gardées hors du DOM tant que non pa
 function updatePayRange() {
   const box = document.getElementById('pb-range');
   if (!box) return;
+  // Personnalisation du titre avec le prénom du lead
+  try {
+    const l = JSON.parse(localStorage.getItem(LEAD_KEY) || '{}');
+    const t = document.getElementById('pb-title-txt');
+    if (t) t.textContent = (l.prenom ? l.prenom + ', votre' : 'Votre') + ' calcul est terminé';
+  } catch (e) {}
   const num = parseInt(String(REAL_VALUES['res-total'] || '').replace(/[^0-9]/g, ''), 10);
   if (!num || num < 100000) { box.style.display = 'none'; return; }
-  const round = function (v) { return (Math.round(v / 50000) * 50000).toLocaleString('fr-FR').replace(/[  ,]/g, ' '); };
-  box.innerHTML = 'Aperçu gratuit : votre budget total se situe entre <strong>' + round(num * 0.85) + '</strong> et <strong>' + round(num * 1.15) + ' XOF</strong>.<br/><span style="opacity:.65;font-size:12px;">Débloquez le montant exact et le détail complet ci-dessous.</span>';
+  const round = function (v) { return (Math.round(v / 100000) * 100000).toLocaleString('fr-FR').replace(/[  ,]/g, ' '); };
+  const veh = ((selMarque ? selMarque.value : '') + ' ' + (selModele ? selModele.value : '') + ' ' + (inpAnnee ? inpAnnee.value : '')).trim() || 'votre véhicule';
+  box.innerHTML = '🎁 <strong>Votre fourchette offerte</strong> pour ' + veh + ' : entre <strong>' + round(num * 0.75) + '</strong> et <strong>' + round(num * 1.25) + ' XOF</strong>.<br/><span style="opacity:.65;font-size:12px;">Le montant précis calculé par le simulateur s\'affiche au déblocage, avec le détail ligne par ligne.</span>';
   box.style.display = 'block';
 }
 function maskLockedAmounts(locked) {
@@ -1446,6 +1452,9 @@ function applyPayGate() {
   const visible = rc.style.display !== 'none' && leadDone();
   const locked = visible && !paidOK();
   gate.style.display = locked ? 'block' : 'none';
+  const sticky = document.getElementById('sticky-unlock');
+  if (sticky) sticky.style.display = locked ? 'flex' : 'none';
+  document.body.classList.toggle('has-sticky', locked);
   let n = gate.nextElementSibling;
   while (n) { n.classList.toggle('pay-blur', locked); n = n.nextElementSibling; }
   maskLockedAmounts(!paidOK());
@@ -1467,7 +1476,11 @@ function markSimPaid(txId) {
       const b = document.createElement('div');
       b.id = 'sim-paid-banner';
       b.style.cssText = 'background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;border-radius:12px;padding:12px 16px;margin:0 0 14px;font-size:13.5px;line-height:1.6;';
-      b.innerHTML = '<strong>✓ Paiement confirmé — accès 24 h activé.</strong><br/>Référence : <strong>' + (txId || '') + '</strong>. Conservez-la : sur <a href="https://wa.me/2290197500555" style="text-decoration:underline;color:#166534;">WhatsApp</a> nous rétablissons votre accès à tout moment. Téléchargez votre rapport PDF pour le conserver définitivement.';
+      const vehUp = ((selMarque ? selMarque.value : '') + ' ' + (selModele ? selModele.value : '') + ' ' + (inpAnnee ? inpAnnee.value : '')).trim();
+      const upsell = getSimOffer().amount === 1000
+        ? '<br/><span style="display:block;margin-top:8px;padding-top:8px;border-top:1px solid #bbf7d0;">Prochaine étape pour les plus prudents : un conseiller ADTL vérifie votre projet complet (année, catégorie fiscale, documents) sur WhatsApp — 5 000 F, réponse rapide. <a href="https://wa.me/2290197500555?text=' + encodeURIComponent('Bonjour ADTL, je viens de débloquer mon estimation (réf. ' + (txId || '') + ', véhicule ' + vehUp + ') et je souhaite la vérification conseiller à 5 000 F.') + '" style="text-decoration:underline;color:#166534;font-weight:700;">Demander la vérification →</a></span>'
+        : '';
+      b.innerHTML = '<strong>✓ Paiement confirmé — accès 24 h activé.</strong><br/>Référence : <strong>' + (txId || '') + '</strong>. Conservez-la : elle facilite toute assistance sur <a href="https://wa.me/2290197500555" style="text-decoration:underline;color:#166534;">WhatsApp</a>. Téléchargez votre rapport PDF pour le conserver définitivement.' + upsell;
       rc.insertBefore(b, rc.firstChild);
       b.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -1482,8 +1495,11 @@ function getSimOffer() {
   };
 }
 function updateSimOffer() {
+  const label = getSimOffer().amount === 5000 ? 'Voir mon montant + vérification conseiller — 5 000 F' : 'Voir mon montant exact — 1 000 F';
   const btn = document.getElementById('pb-btn-sim');
-  if (btn) btn.textContent = 'Payer ' + (getSimOffer().amount === 5000 ? '5 000' : '1 000') + ' F et débloquer maintenant — MoMo, Moov, carte';
+  if (btn) btn.textContent = label;
+  const st = document.getElementById('sticky-unlock');
+  if (st) st.textContent = '🔓 ' + label;
 }
 function showManualSimPay(ref, amount, veh, lead, echec) {
   const box = document.getElementById('pay-manual-sim');
@@ -2322,7 +2338,7 @@ function buildPdfReport(doc, d) {
   np();
   doc.setFont('helvetica', 'italic'); doc.setFontSize(7.5);
   doc.setTextColor(gray[0], gray[1], gray[2]);
-  const disc = doc.splitTextToSize("Estimation calibrée sur les barèmes douaniers en vigueur (précision constatée de quelques francs sur les cas standards). Le montant définitif dépend de la déclaration officielle SYDONIA, du contrôle douanier et des caractéristiques exactes du véhicule. Ce rapport ne constitue pas une quittance. AD TRANS LOGISTICS vous accompagne de bout en bout : +229 01 97 50 05 55.", W - 2 * M);
+  const disc = doc.splitTextToSize("Estimation calibrée sur les barèmes douaniers en vigueur. Le montant définitif dépend de la déclaration officielle SYDONIA, du contrôle douanier et des caractéristiques exactes du véhicule. Ce rapport ne constitue pas une quittance. AD TRANS LOGISTICS vous accompagne de bout en bout : +229 01 97 50 05 55.", W - 2 * M);
   doc.text(disc, M, y);
   const pages = doc.getNumberOfPages();
   for (let p = 1; p <= pages; p++) {
