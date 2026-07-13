@@ -64,6 +64,17 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 @keyframes fadeSlideUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 .result-animate{animation:fadeSlideUp .4s ease forwards;}
 @keyframes spin{to{transform:rotate(360deg);}}
+.calc-submit {
+  width:100%;margin-top:16px;padding:15px 22px;display:flex;align-items:center;justify-content:center;gap:10px;
+  border:0;border-radius:9999px;background:#0D1B2A;color:#fff;font-family:'Space Grotesk',sans-serif;
+  font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 10px 24px rgba(13,27,42,.18);
+  transition:transform .2s,box-shadow .2s,background .2s;
+}
+.calc-submit:hover{background:#1B4F72;transform:translateY(-1px);box-shadow:0 14px 28px rgba(13,27,42,.22);}
+.calc-submit:active{transform:translateY(0);}
+.calc-submit:focus-visible{outline:3px solid rgba(27,79,114,.28);outline-offset:3px;}
+.sim-input.input-error{border-color:#DC2626!important;box-shadow:0 0 0 3px rgba(220,38,38,.10)!important;}
+.calc-feedback{min-height:20px;margin-top:8px;color:#B91C1C;font-size:12px;font-weight:600;text-align:center;}
 </style>
 <script src="/config.js?v=3"></script>
 <link rel="canonical" href="https://www.adtranslogistics.com/calculateur"/>
@@ -477,6 +488,12 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         <strong>Bandes tarifaires TEC-CEDEAO :</strong> Cat. 0 (0%) — Cat. 1 (5%) — Cat. 2 (10%) — Cat. 3 (20%) — Cat. 4 (35%)
       </div>
 
+      <button type="button" class="calc-submit" id="btn-calculate-import" onclick="calculateMerchandiseAndShow('import')">
+        <span class="material-symbols-outlined" aria-hidden="true">calculate</span>
+        <span>Calculer et voir mon estimation</span>
+      </button>
+      <div class="calc-feedback" id="calc-feedback-import" role="status" aria-live="polite"></div>
+
     </div>
   </div>
 
@@ -553,6 +570,12 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
       <div class="text-xs text-g400">
         <strong>Export Bénin :</strong> La taxe de voirie est la seule taxe applicable. Pas de DD, TVA, RS, PCS ni autres prélèvements.
       </div>
+
+      <button type="button" class="calc-submit" id="btn-calculate-export" onclick="calculateMerchandiseAndShow('export')">
+        <span class="material-symbols-outlined" aria-hidden="true">calculate</span>
+        <span>Calculer et voir mon estimation</span>
+      </button>
+      <div class="calc-feedback" id="calc-feedback-export" role="status" aria-live="polite"></div>
 
     </div>
   </div>
@@ -1339,6 +1362,52 @@ function resetResults() {
   applyMerchPayLock(); // rafraîchit le sticky (plus de résultat visible)
 }
 
+// Boutons explicites import/export : valident, calculent puis montrent le résultat.
+function calculateMerchandiseAndShow(mode) {
+  const isExport = mode === 'export';
+  const feedback = document.getElementById(isExport ? 'calc-feedback-export' : 'calc-feedback-import');
+  const requiredFields = isExport
+    ? [document.getElementById('inp-fob-exp'), document.getElementById('inp-rate-exp')]
+    : [document.getElementById('inp-origin-m'), selCat, selProd, document.getElementById('inp-fob'), document.getElementById('inp-rate-m')];
+
+  requiredFields.forEach(function (field) {
+    field.classList.remove('input-error');
+    field.removeAttribute('aria-invalid');
+  });
+
+  const invalid = requiredFields.find(function (field) {
+    if (!field.value || (typeof field.checkValidity === 'function' && !field.checkValidity())) return true;
+    if (field.type === 'number' && Number(field.value) <= 0) return true;
+    return false;
+  });
+
+  if (invalid) {
+    invalid.classList.add('input-error');
+    invalid.setAttribute('aria-invalid', 'true');
+    if (feedback) feedback.textContent = 'Complétez les champs obligatoires avant de lancer le calcul.';
+    if (isExport) {
+      document.getElementById('res-empty-exp').style.display = 'block';
+      document.getElementById('res-content-exp').style.display = 'none';
+      document.getElementById('res-gate-exp').style.display = 'none';
+      applyMerchPayLock();
+    } else {
+      resetResults();
+    }
+    invalid.focus();
+    return;
+  }
+
+  if (feedback) feedback.textContent = '';
+  if (isExport) calcExport(); else calcMarch();
+
+  const result = document.getElementById(isExport ? 'res-content-exp' : 'res-content');
+  if (!result || result.style.display === 'none') {
+    if (feedback) feedback.textContent = 'Le calcul ne peut pas être affiché. Vérifiez les valeurs renseignées.';
+    return;
+  }
+  setTimeout(function () { result.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
+}
+
 
 // ── Verrou des totaux (débloqués après paiement) ──
 const PAY_KEY_CALC = 'adtl_paid_calc_v1';
@@ -1486,12 +1555,6 @@ function calcMarch() {
 
   applyMerchPayLock(); // re-verrouille après écriture des totaux
   showOrResetPaymentGateM('import');
-  // Mobile : amener le résultat à l'écran au premier calcul (une seule fois, jamais en pleine saisie)
-  const aeM = document.activeElement;
-  if (window.innerWidth < 1024 && !window.__adtlScrolledM && !(aeM && (aeM.tagName === 'INPUT' || aeM.tagName === 'TEXTAREA'))) {
-    window.__adtlScrolledM = true;
-    setTimeout(function () { document.getElementById('res-content').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
-  }
 }
 
 // ═══ Étapes & documents (import / export marchandises) ═══
@@ -2343,11 +2406,6 @@ function calcExport() {
   document.getElementById('res-total-exp').textContent = fmt(totalExp);
   applyMerchPayLock(); // re-verrouille après écriture des totaux
   showOrResetPaymentGateM('export');
-  const aeE = document.activeElement;
-  if (window.innerWidth < 1024 && !window.__adtlScrolledE && !(aeE && (aeE.tagName === 'INPUT' || aeE.tagName === 'TEXTAREA'))) {
-    window.__adtlScrolledE = true;
-    setTimeout(function () { document.getElementById('res-content-exp').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
-  }
 }
 
 // ── Offre sélectionnée : mise en évidence visuelle + CTA transparent (prix affiché) ──
