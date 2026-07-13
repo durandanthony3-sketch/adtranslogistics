@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Simulateur Droits de Douane Véhicules Bénin 2026 | ADTL</title>
-<meta content="Estimez en 1 minute le dédouanement de votre véhicule au Bénin. Marque, modèle, année : aperçu gratuit, rapport détaillé 1 000 F (accès 24 h), calibré sur le barème 2026." name="description"/>
+<meta content="Estimez gratuitement en 1 minute le dédouanement de votre véhicule au Bénin. Marque, modèle, année et origine : calcul calibré sur le barème 2026." name="description"/>
 <meta property="og:title" content="Simulateur Droits de Douane Véhicules — Bénin 2026"/>
 <meta property="og:description" content="Entrez votre véhicule et voyez immédiatement le coût estimé de dédouanement au Bénin."/>
 <meta property="og:type" content="website"/>
@@ -13,7 +13,7 @@
 <meta name="twitter:title" content="Simulateur Douane Véhicules Bénin — AD TRANS LOGISTICS"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://www.adtranslogistics.com/simulateur"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Simulateur droits de douane véhicules Bénin","url":"https://www.adtranslogistics.com/simulateur","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Estimation du dédouanement d’un véhicule au Bénin : simulations calibrées sur les barèmes en vigueur. Rapport détaillé 1 000 F, accès 24 h.","offers":{"@type":"Offer","price":"1000","priceCurrency":"XOF"},"provider":{"@id":"https://www.adtranslogistics.com/#org"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Simulateur droits de douane véhicules Bénin","url":"https://www.adtranslogistics.com/simulateur","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Estimation gratuite du dédouanement d’un véhicule au Bénin, calibrée sur les barèmes en vigueur.","isAccessibleForFree":true,"provider":{"@id":"https://www.adtranslogistics.com/#org"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.adtranslogistics.com/"},{"@type":"ListItem","position":2,"name":"Simulateur véhicules","item":"https://www.adtranslogistics.com/simulateur"}]}</script>
 <link rel="alternate" hreflang="fr" href="https://www.adtranslogistics.com/simulateur"/>
 <link rel="alternate" hreflang="en" href="https://www.adtranslogistics.com/en-simulator"/>
@@ -179,12 +179,17 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 <script src="/config.js?v=3"></script>
 <style>
 #results-panel{position:relative;}
-.lead-blur{filter:blur(12px);pointer-events:none;user-select:none;}
-#lead-gate{position:absolute;inset:0;z-index:6;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(255,255,255,.45);}
-#lead-gate .lead-card{background:#fff;border:1px solid #E5E5E5;border-radius:14px;box-shadow:0 14px 44px rgba(0,0,0,.14);padding:24px;max-width:340px;width:100%;}
-#lead-gate input{width:100%;margin-bottom:10px;}
+.lead-blur{filter:blur(8px);pointer-events:none;user-select:none;max-height:190px;overflow:hidden;opacity:.55;}
+#lead-gate{position:relative;z-index:6;display:none;margin-bottom:16px;}
+#lead-gate .lead-card{background:#fff;border:1px solid #E5E5E5;border-radius:14px;box-shadow:0 14px 44px rgba(0,0,0,.12);padding:22px;width:100%;}
+#lead-gate label{display:block;margin:0 0 6px;color:#404040;font-size:12px;font-weight:700;}
+#lead-gate input{width:100%;margin-bottom:11px;}
+#lead-gate .lead-consent{display:flex;align-items:flex-start;gap:8px;margin:2px 0 13px;color:#525252;font-size:11px;font-weight:500;line-height:1.45;}
+#lead-gate .lead-consent input{width:auto;margin:2px 0 0;flex:0 0 auto;}
+#lead-error{display:none;margin:-3px 0 10px;color:#B91C1C;font-size:11px;font-weight:600;line-height:1.4;}
 #lead-gate button{width:100%;background:#0A0A0A;color:#fff;border:none;border-radius:10px;padding:13px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Space Grotesk',sans-serif;}
 #lead-gate button:hover{opacity:.88;}
+#lead-gate button:disabled{cursor:wait;opacity:.65;}
 </style>
 <style>
 .pay-blur{filter:blur(11px);pointer-events:none;user-select:none;}
@@ -321,7 +326,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
       Combien va coûter<br/><span class="text-g400 font-medium italic">le dédouanement ?</span>
     </h1>
     <p class="text-base lg:text-lg text-g500 leading-relaxed max-w-[520px] mx-auto mb-5">
-      Entrez votre véhicule, son année et son origine. Le montant estimé s'affiche automatiquement.
+      Entrez votre véhicule, son année et son origine, puis cliquez sur « Calculer ». Le résultat s'affiche après validation de vos coordonnées.
     </p>
     <div class="flex flex-wrap gap-2 justify-center">
       <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
@@ -571,15 +576,21 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
       <div class="p-6" id="results-panel">
 
         <!-- Lead gate -->
-        <div id="lead-gate">
+        <div id="lead-gate" role="region" aria-labelledby="lead-title" aria-hidden="true">
           <div class="lead-card">
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0A0A0A;margin-bottom:4px;">Votre fourchette de budget offerte est prête 🎁</div>
-            <p style="font-size:13px;color:#737373;margin:0 0 16px;line-height:1.5;">Indiquez où vous joindre pour l'afficher immédiatement — puis, si vous voulez le montant précis, débloquez le rapport complet (1 000 F, accès 24 h).</p>
-            <form onsubmit="submitLeadGate(event)">
-              <input type="text" class="sim-input" id="lead-prenom" placeholder="Votre prénom *" required/>
-              <input type="tel" class="sim-input" id="lead-tel" placeholder="Votre n° WhatsApp *" inputmode="tel" autocomplete="tel" required/>
-              <button type="submit">Voir ma fourchette offerte</button>
-              <p style="font-size:11px;color:#A3A3A3;margin:10px 0 0;line-height:1.5;">Vos coordonnées restent confidentielles et ne sont jamais revendues. Elles servent uniquement à vous accompagner et à rétablir votre accès si besoin.</p>
+            <div id="lead-title" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0A0A0A;margin-bottom:5px;">Votre estimation est prête</div>
+            <p style="font-size:13px;color:#737373;margin:0 0 16px;line-height:1.5;">Renseignez vos coordonnées pour afficher gratuitement le montant estimé. Un conseiller pourra vous aider à préparer votre dossier.</p>
+            <form id="lead-form" onsubmit="submitLeadGate(event)" novalidate>
+              <label for="lead-nom">Nom *</label>
+              <input type="text" class="sim-input" id="lead-nom" placeholder="Votre nom" autocomplete="family-name" required/>
+              <label for="lead-prenom">Prénom *</label>
+              <input type="text" class="sim-input" id="lead-prenom" placeholder="Votre prénom" autocomplete="given-name" required/>
+              <label for="lead-tel">Numéro WhatsApp *</label>
+              <input type="tel" class="sim-input" id="lead-tel" placeholder="Ex. +229 01 97 50 05 55" inputmode="tel" autocomplete="tel" required/>
+              <label class="lead-consent" for="lead-consent"><input type="checkbox" id="lead-consent" required><span>J’accepte d’être contacté par AD TRANS LOGISTICS au sujet de cette estimation.</span></label>
+              <p id="lead-error" role="alert" aria-live="polite"></p>
+              <button type="submit" id="lead-submit">Afficher mon estimation</button>
+              <p style="font-size:11px;color:#737373;margin:10px 0 0;line-height:1.5;">Vos coordonnées restent confidentielles et ne sont jamais revendues.</p>
             </form>
           </div>
         </div>
@@ -865,7 +876,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
     </div>
     <div class="bg-white rounded-xl p-5 border border-g200">
       <div class="text-sm font-bold text-brand mb-2">📋 Barèmes officiels 2025/2026</div>
-      <p class="text-sm text-g600">Simulations calibrées sur les barèmes en vigueur (Loi de Finances 2025/2026). Paiement sécurisé KkiaPay : MTN MoMo, Moov Money, Visa/Mastercard.</p>
+      <p class="text-sm text-g600">Simulations calibrées sur les barèmes en vigueur (Loi de Finances 2025/2026). Estimation gratuite après validation de vos coordonnées.</p>
     </div>
   </div>
 </div>
@@ -970,7 +981,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
       </summary>
       <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
-        Le montant affiché regroupe les droits et taxes estimés, les frais de sortie, les formalités, la plaque, la carte grise et l'accompagnement AD TRANS LOGISTICS. Le montant précis et le détail ligne par ligne s'affichent instantanément dans l'estimation détaillée (1 000 F, accès 24 h, rapport PDF inclus — remboursement sous 48 h si l'accès ne s'affiche pas, voir CGV).
+        Le montant affiché regroupe les droits et taxes estimés, les frais de sortie, les formalités, la plaque, la carte grise et l'accompagnement AD TRANS LOGISTICS. Le montant estimé et le détail ligne par ligne s'affichent gratuitement après validation de vos coordonnées.
       </div>
     </details>
     <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
@@ -1484,40 +1495,83 @@ function onAnneeChange() {
 
 // ── Lead gate : coordonnées requises avant affichage du résultat ──
 const LEAD_KEY = 'adtl_lead_v1';
+const LEAD_MAX_AGE = 30 * 24 * 60 * 60 * 1000;
 let leadMem = false;
+function storedLead() {
+  try {
+    const raw = localStorage.getItem(LEAD_KEY);
+    if (!raw) return null;
+    const lead = JSON.parse(raw);
+    const digits = String(lead.tel || '').replace(/\D/g, '');
+    const age = Date.now() - Number(lead.ts || 0);
+    if (!lead.nom || !lead.prenom || digits.length < 8 || age < 0 || age > LEAD_MAX_AGE) {
+      localStorage.removeItem(LEAD_KEY);
+      return null;
+    }
+    return lead;
+  } catch (e) { return null; }
+}
 function leadDone() {
   if (leadMem) return true;
-  try { return !!localStorage.getItem(LEAD_KEY); } catch (e) { return false; }
+  return !!storedLead();
 }
 function applyLeadGate() {
   const rc = document.getElementById('res-content');
   const gate = document.getElementById('lead-gate');
   if (!rc || !gate) return;
-  if (rc.style.display === 'none') { gate.style.display = 'none'; rc.classList.remove('lead-blur'); return; }
-  if (leadDone()) { gate.style.display = 'none'; rc.classList.remove('lead-blur'); }
-  else { rc.classList.add('lead-blur'); gate.style.display = 'flex'; }
+  if (rc.style.display === 'none') {
+    gate.style.display = 'none';
+    gate.setAttribute('aria-hidden', 'true');
+    rc.classList.remove('lead-blur');
+    rc.removeAttribute('aria-hidden');
+    return;
+  }
+  if (leadDone()) {
+    gate.style.display = 'none';
+    gate.setAttribute('aria-hidden', 'true');
+    rc.classList.remove('lead-blur');
+    rc.removeAttribute('aria-hidden');
+  } else {
+    rc.classList.add('lead-blur');
+    rc.setAttribute('aria-hidden', 'true');
+    gate.style.display = 'block';
+    gate.setAttribute('aria-hidden', 'false');
+  }
 }
 function submitLeadGate(e) {
   e.preventDefault();
+  const nom = document.getElementById('lead-nom').value.trim();
   const prenom = document.getElementById('lead-prenom').value.trim();
   const tel = document.getElementById('lead-tel').value.trim();
-  if (!prenom || tel.replace(/\D/g, '').length < 8) {
-    alert('Merci de renseigner votre prénom et un numéro WhatsApp valide.');
+  const consent = document.getElementById('lead-consent').checked;
+  const error = document.getElementById('lead-error');
+  const submit = document.getElementById('lead-submit');
+  if (!nom || !prenom || tel.replace(/\D/g, '').length < 8 || !consent) {
+    error.textContent = 'Renseignez votre nom, votre prénom, un numéro WhatsApp valide et acceptez d’être contacté.';
+    error.style.display = 'block';
     return;
   }
-  try { localStorage.setItem(LEAD_KEY, JSON.stringify({ nom: '', prenom: prenom, tel: tel, ts: Date.now() })); } catch (err) {}
+  error.style.display = 'none';
+  submit.disabled = true;
+  submit.textContent = 'Affichage en cours…';
+  try { localStorage.setItem(LEAD_KEY, JSON.stringify({ nom: nom, prenom: prenom, tel: tel, consent: true, ts: Date.now() })); } catch (err) {}
   leadMem = true;
   try {
     const veh = (selMarque ? selMarque.value : '') + ' ' + (selModele ? selModele.value : '') + ' ' + (inpAnnee ? inpAnnee.value : '');
     const dest = document.getElementById('sel-destination');
+    const origine = document.getElementById('sel-origine');
+    const estimation = document.getElementById('res-total');
     fetch('https://formsubmit.co/ajax/adtranslogistics@hotmail.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         _subject: 'Nouveau lead — Simulateur véhicules',
-        Prenom: prenom, Telephone: tel,
+        _template: 'table',
+        Nom: nom, Prenom: prenom, Telephone: tel,
         Vehicule: veh.trim(),
+        Origine: origine ? origine.options[origine.selectedIndex].text : '',
         Destination: dest ? dest.options[dest.selectedIndex].text : '',
+        Estimation: estimation ? estimation.textContent.trim() : '',
         Page: 'simulateur'
       })
     }).catch(function(){});
