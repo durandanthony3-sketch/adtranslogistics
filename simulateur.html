@@ -149,6 +149,32 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 .result-animate {
   animation: fadeSlideUp 0.4s ease forwards;
 }
+
+/* ── Bouton de lancement du calcul ── */
+.calc-submit {
+  width:100%;
+  margin-top:16px;
+  padding:15px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border:0;
+  border-radius:9999px;
+  background:#0D1B2A;
+  color:#fff;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(13,27,42,.18);
+  transition:transform .2s, box-shadow .2s, background .2s;
+}
+.calc-submit:hover { background:#1B4F72;transform:translateY(-1px);box-shadow:0 14px 28px rgba(13,27,42,.22); }
+.calc-submit:active { transform:translateY(0); }
+.calc-submit:focus-visible { outline:3px solid rgba(27,79,114,.28);outline-offset:3px; }
+.sim-input.input-error { border-color:#DC2626!important;box-shadow:0 0 0 3px rgba(220,38,38,.10)!important; }
+.calc-feedback { min-height:20px;margin-top:8px;color:#B91C1C;font-size:12px;font-weight:600;text-align:center; }
 </style>
 <script src="/config.js?v=3"></script>
 <style>
@@ -404,7 +430,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         <span class="material-symbols-outlined text-white text-2xl">calculate</span>
         <div>
           <div class="font-heading font-bold text-white text-lg">Votre véhicule</div>
-          <div class="text-white/50 text-sm mt-0.5">Renseignez ce que vous connaissez, le calcul se fait seul</div>
+          <div class="text-white/50 text-sm mt-0.5">Renseignez les informations puis lancez le calcul</div>
         </div>
       </div>
     </div>
@@ -482,8 +508,14 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
       </div>
 
       <div class="bg-g50 rounded-xl p-4 text-sm text-g500">
-        Le montant se met à jour automatiquement dès que les informations obligatoires sont remplies.
+        Vérifiez vos informations, puis cliquez ci-dessous pour afficher votre estimation.
       </div>
+
+      <button type="button" class="calc-submit" id="btn-calculate" onclick="calculateAndShowResults()">
+        <span class="material-symbols-outlined" aria-hidden="true">calculate</span>
+        <span>Calculer et voir mon estimation</span>
+      </button>
+      <div class="calc-feedback" id="calc-feedback" role="status" aria-live="polite"></div>
 
       <!-- Données de calcul internes : conservées pour le script, masquées au client -->
       <div style="display:none;" aria-hidden="true">
@@ -1669,6 +1701,40 @@ function getEffectiveFret() {
   return 0;
 }
 
+// Bouton explicite : valide la saisie, calcule puis place le résultat à l'écran.
+function calculateAndShowResults() {
+  const feedback = document.getElementById('calc-feedback');
+  const requiredFields = [selMarque, selModele, inpAnnee, selOrigine];
+  requiredFields.forEach(function (field) {
+    field.classList.remove('input-error');
+    field.removeAttribute('aria-invalid');
+  });
+
+  const invalid = requiredFields.find(function (field) {
+    return !field.value || (typeof field.checkValidity === 'function' && !field.checkValidity());
+  });
+  if (invalid) {
+    invalid.classList.add('input-error');
+    invalid.setAttribute('aria-invalid', 'true');
+    if (feedback) feedback.textContent = 'Complétez les champs obligatoires avant de lancer le calcul.';
+    invalid.focus();
+    resetResults();
+    return;
+  }
+
+  if (feedback) feedback.textContent = '';
+  calculate();
+
+  const result = document.getElementById('res-content');
+  if (!result || result.style.display === 'none') {
+    if (feedback) feedback.textContent = 'Aucune cote disponible pour ce véhicule. Contactez AD TRANS LOGISTICS pour une vérification.';
+    return;
+  }
+
+  const panel = document.getElementById('results-panel');
+  if (panel) setTimeout(function () { panel.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 120);
+}
+
 // ── Main calculation — Formule officielle douanes Bénin ─────────────────────
 // CIF = FOB + Fret → VD = max(1 050 000, CIF × 0,70) → taxes sur VD
 // Frais annexes réalistes 2025-2026
@@ -1732,10 +1798,6 @@ function calculate() {
   document.getElementById('res-empty').style.display   = 'none';
   document.getElementById('res-content').style.display = 'block';
   document.getElementById('res-content').classList.add('result-animate');
-  if (!window.__simScrolled && window.innerWidth < 1024) {
-    window.__simScrolled = true;
-    setTimeout(function () { const rp = document.getElementById('results-panel'); if (rp) rp.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 250);
-  }
 
   // Destination : réexportation / transit hinterland => forfait douanier unique
   const destSel = document.getElementById('sel-destination');
