@@ -1107,16 +1107,65 @@ function refModelEntry(marque, modele) {
   return b[normalizeArgusKey(modele).replace(/ /g, '')] || null;
 }
 
+// Assimilations retenues pour les modèles absents du référentiel nominatif.
+// Ordre de priorité : cote exacte du modèle > assimilation documentée > estimation Argus générique.
+// Une assimilation n'écrase donc jamais une ligne déjà présente dans REF_DOUANE.
+const DOUANE_ASSIMILATIONS = [
+  // Assimilations du modèle douanier ADTL 2026
+  { fromBrand: 'TOYOTA', fromModel: 'MATRIX',        toBrand: 'TOYOTA',        toModel: 'COROLLA VERSO' },
+  { fromBrand: 'TOYOTA', fromModel: 'CAMRY',         toBrand: 'TOYOTA',        toModel: 'AVENSIS' },
+  { fromBrand: 'TOYOTA', fromModel: 'HIGHLANDER',    toBrand: 'TOYOTA',        toModel: 'LANDCRUISER' },
+  { fromBrand: 'TOYOTA', fromModel: 'AVALON',        toBrand: 'TOYOTA',        toModel: 'RAV4' },
+  { fromBrand: 'TOYOTA', fromModel: 'SIENNA',        toBrand: 'TOYOTA',        toModel: 'RAV4' },
+  { fromBrand: 'TOYOTA', fromModel: 'VENZA',         toBrand: 'TOYOTA',        toModel: 'RAV4' },
+  { fromBrand: 'PONTIAC', fromModel: 'VIBE',         toBrand: 'TOYOTA',        toModel: 'MATRIX' },
+  { fromBrand: 'ACURA', fromModel: 'MDX',            toBrand: 'HONDA',         toModel: 'CR V' },
+  { fromBrand: 'ACURA', fromModel: 'RDX',            toBrand: 'HONDA',         toModel: 'CR V' },
+  { fromBrand: 'ACURA', fromModel: 'TL',             toBrand: 'HONDA',         toModel: 'ACCORD' },
+  { fromBrand: 'HONDA', fromModel: 'PILOT',          toBrand: 'HONDA',         toModel: 'CR V' },
+  { fromBrand: 'NISSAN', fromModel: 'QASHQAI',       toBrand: 'NISSAN',        toModel: 'X TRAIL' },
+  { fromBrand: 'NISSAN', fromModel: 'ROGUE',         toBrand: 'NISSAN',        toModel: 'X TRAIL' },
+  { fromBrand: 'MERCEDES BENZ', fromModel: 'GLK 350',toBrand: 'MERCEDES BENZ', toModel: 'ML350' },
+  { fromBrand: 'HONDA', fromModel: 'RIDGELINE',      toBrand: 'TOYOTA',        toModel: 'HILUX' },
+  { fromBrand: 'VOLKSWAGEN', fromModel: 'JETTA',     toBrand: 'VOLKSWAGEN',    toModel: 'PASSAT' },
+
+  // Variantes de libellé/finition confirmées par les séries empiriques
+  { fromBrand: 'BMW', fromModel: 'X3 XDRIVE 28I',           toBrand: 'BMW',         toModel: 'X3' },
+  { fromBrand: 'HYUNDAI', fromModel: 'TUCSON SE',           toBrand: 'HYUNDAI',     toModel: 'TUCSON' },
+  { fromBrand: 'HYUNDAI', fromModel: 'TUSCON',              toBrand: 'HYUNDAI',     toModel: 'TUCSON' },
+  { fromBrand: 'KIA', fromModel: 'SORENTO EX',              toBrand: 'KIA',         toModel: 'SORENTO' },
+  { fromBrand: 'KIA', fromModel: 'SPORTAGE MC',             toBrand: 'KIA',         toModel: 'SPORTAGE' },
+  { fromBrand: 'LAND ROVER', fromModel: 'LANDROVER EVOQUE', toBrand: 'LAND ROVER',  toModel: 'RANGE ROVER EVOQUE' },
+  { fromBrand: 'PONTIAC', fromModel: 'VIBE GT',             toBrand: 'TOYOTA',      toModel: 'MATRIX' },
+  { fromBrand: 'TOYOTA', fromModel: 'HIGHLANDER MC',        toBrand: 'TOYOTA',      toModel: 'HIGHLANDER' },
+  { fromBrand: 'TOYOTA', fromModel: 'MATRIX BASE',          toBrand: 'TOYOTA',      toModel: 'MATRIX' },
+  { fromBrand: 'TOYOTA', fromModel: 'RAV',                  toBrand: 'TOYOTA',      toModel: 'RAV4' },
+  { fromBrand: 'TOYOTA', fromModel: 'RAV 4',                toBrand: 'TOYOTA',      toModel: 'RAV4' },
+  { fromBrand: 'TOYOTA', fromModel: 'TYPE RAV4',            toBrand: 'TOYOTA',      toModel: 'RAV4' },
+  { fromBrand: 'TOYOTA', fromModel: 'RUNNER',               toBrand: 'TOYOTA',      toModel: 'HIGHLANDER' },
+  { fromBrand: 'TOYOTA', fromModel: 'YARIS BASE',           toBrand: 'TOYOTA',      toModel: 'YARIS' },
+  { fromBrand: 'TOYOTA', fromModel: 'YARIS VERSO',          toBrand: 'TOYOTA',      toModel: 'YARIS' }
+];
+
+const DOUANE_ASSIMILATION_BY_KEY = {};
+DOUANE_ASSIMILATIONS.forEach(function (a) {
+  const key = normalizeArgusKey(a.fromBrand) + '|' + normalizeArgusKey(a.fromModel).replace(/ /g, '');
+  DOUANE_ASSIMILATION_BY_KEY[key] = a;
+});
+
+function findDouaneAssimilation(marque, modele) {
+  const key = normalizeArgusKey(marque) + '|' + normalizeArgusKey(modele).replace(/ /g, '');
+  return DOUANE_ASSIMILATION_BY_KEY[key] || null;
+}
+
 function recToVal(rec, src) {
   if (rec[0] === 'c') return { mode: 'cote', cote: rec[1], zone: rec[4] || null, cat: rec[2], n: rec[3], src: src };
   if (rec[0] === 'p') return { mode: 'plancher', plancher: rec[1], cat: rec[2], n: rec[3], src: src };
   return { mode: 'caf', caf: rec[1], cat: rec[2], n: rec[3], src: src };
 }
 
-// Valorisation d'un véhicule.
-// src : 'ref' (année exacte du référentiel) | 'interp' (interpolation) | 'proche' (année voisine) | 'argus' (estimation indicative)
-function getValuation(marque, modele, annee) {
-  const mm = refModelEntry(marque, modele);
+// Valorisation depuis une série du référentiel (exacte, interpolée ou année proche).
+function getReferenceValuation(mm, annee) {
   if (mm) {
     const rec = mm.y[String(annee)];
     if (rec) return recToVal(rec, 'ref');
@@ -1152,6 +1201,29 @@ function getValuation(marque, modele, annee) {
     const anyRec = mm.y[firstKey];
     return { mode: 'plancher', plancher: anyRec[1], cat: anyRec[2], n: 0, src: 'proche' };
   }
+  return null;
+}
+
+// Valorisation d'un véhicule.
+// src : 'ref' | 'interp' | 'proche' | 'assimilation' | 'argus'.
+function getValuation(marque, modele, annee) {
+  const mm = refModelEntry(marque, modele);
+  const direct = getReferenceValuation(mm, annee);
+  if (direct) return direct;
+
+  // Le modèle n'est pas nommé dans le référentiel : utiliser son équivalent douanier documenté.
+  const assimilation = findDouaneAssimilation(marque, modele);
+  if (assimilation) {
+    const target = refModelEntry(assimilation.toBrand, assimilation.toModel);
+    const assimilated = getReferenceValuation(target, annee);
+    if (assimilated) {
+      assimilated.baseSrc = assimilated.src;
+      assimilated.src = 'assimilation';
+      assimilated.assimilation = assimilation;
+      return assimilated;
+    }
+  }
+
   // Modèle absent du référentiel : estimation indicative via la table Argus générique
   const list = ARGUS_BY_KEY[normalizeArgusKey(marque)] || [];
   const key = canonicalArgusModelKey(modele);
@@ -1170,6 +1242,9 @@ function getValuationLabel(val) {
   }
   if (val.src === 'interp') return '€ TTC · interpolé (années voisines)';
   if (val.src === 'proche') return '€ TTC · estimation (année proche du référentiel)';
+  if (val.src === 'assimilation' && val.assimilation) {
+    return '€ TTC · assimilé à ' + val.assimilation.toBrand + ' ' + val.assimilation.toModel;
+  }
   return '€ TTC · estimation indicative';
 }
 
@@ -1179,10 +1254,12 @@ function refreshValuationDisplay() {
   if (!m || !mod) return;
   const annee = parseInt(inpAnnee.value);
   const mm = refModelEntry(m, mod);
+  const assimilation = mm ? null : findDouaneAssimilation(m, mod);
+  const rangeModel = mm || (assimilation ? refModelEntry(assimilation.toBrand, assimilation.toModel) : null);
   let lo = null, hi = null;
-  if (mm) {
-    Object.keys(mm.y).forEach(function (y) {
-      const r = mm.y[y];
+  if (rangeModel) {
+    Object.keys(rangeModel.y).forEach(function (y) {
+      const r = rangeModel.y[y];
       if (r[0] === 'c') {
         if (lo === null || r[1] < lo) lo = r[1];
         if (hi === null || r[1] > hi) hi = r[1];
@@ -1247,6 +1324,7 @@ const selType    = document.getElementById('sel-type');
   const byKey = {};
   Object.keys(ARGUS).forEach(function (k) { byKey[normalizeArgusKey(k)] = k; });
   Object.keys(REF_DOUANE).forEach(function (k) { byKey[normalizeArgusKey(k)] = k; }); // référentiel prioritaire
+  DOUANE_ASSIMILATIONS.forEach(function (a) { byKey[normalizeArgusKey(a.fromBrand)] = a.fromBrand; });
   Object.keys(byKey).sort().forEach(function (nk) {
     const o = document.createElement('option');
     o.value = byKey[nk]; o.textContent = byKey[nk];
@@ -1288,6 +1366,17 @@ function onMarqueChange() {
       o.value = item.modele;
       o.textContent = item.modele;
       selModele.appendChild(o);
+      seen.add(k);
+    });
+    DOUANE_ASSIMILATIONS.forEach(function (a) {
+      if (normalizeArgusKey(a.fromBrand) !== normalizeArgusKey(m)) return;
+      const k = normalizeArgusKey(a.fromModel).replace(/ /g, '');
+      if (seen.has(k)) return;
+      const o = document.createElement('option');
+      o.value = a.fromModel;
+      o.textContent = a.fromModel;
+      selModele.appendChild(o);
+      seen.add(k);
     });
   }
   document.getElementById('argus-empty').style.display = 'block';
@@ -1335,12 +1424,15 @@ function updateTgcControl() {
   // Détection automatique depuis le référentiel calibré sur les barèmes en vigueur
   const annee = parseInt(inpAnnee.value);
   const val = (selMarque.value && selModele.value && annee) ? getValuation(selMarque.value, selModele.value, annee) : null;
-  if (val && val.src === 'ref' && (val.cat === 'A' || val.cat === 'B')) {
+  if (val && (val.cat === 'A' || val.cat === 'B')) {
     tgcChk.checked = (val.cat === 'A');
     tgcLabel.textContent = val.cat === 'A'
       ? 'Détecté : 13 CV ou plus (accise appliquée sur ce modèle en douane) — décochez si votre version est plus petite'
       : 'Détecté : moins de 13 CV (pas d\'accise sur ce modèle en douane) — cochez si votre version fait 13 CV ou plus';
   } else {
+    // Modèle hors référentiel (estimation Argus) : catégorie inconnue, on ne peut pas deviner —
+    // on repart d'un état non coché plutôt que de garder l'état du véhicule précédemment consulté.
+    tgcChk.checked = false;
     tgcLabel.textContent = 'Cochez si le véhicule fait 13 CV ou plus (cylindrée ≥ 2 181 cm³, ≈ 2,2 L)';
   }
 }
@@ -1633,6 +1725,8 @@ function calculate() {
     val.src === 'ref'    ? 'Valeur issue du référentiel de simulation ADTL 2026' :
     val.src === 'interp' ? 'Cote interpolée entre les années voisines du référentiel de simulation' :
     val.src === 'proche' ? 'Cote estimée à partir d\'une année proche du référentiel douanier' :
+    val.src === 'assimilation' && val.assimilation
+      ? 'Assimilation douanière : ' + val.assimilation.toBrand + ' ' + val.assimilation.toModel :
     'Estimation indicative — modèle hors référentiel douanier';
 
   document.getElementById('res-empty').style.display   = 'none';
@@ -1672,6 +1766,9 @@ function calculate() {
     document.getElementById('badge-regime').className = 'badge-regime badge-fixed';
   } else if (val.src === 'ref') {
     document.getElementById('badge-regime').textContent = 'Référence ADTL confirmée';
+    document.getElementById('badge-regime').className = 'badge-regime badge-calc';
+  } else if (val.src === 'assimilation') {
+    document.getElementById('badge-regime').textContent = 'Assimilation douanière';
     document.getElementById('badge-regime').className = 'badge-regime badge-calc';
   } else {
     document.getElementById('badge-regime').textContent = 'Estimation';
