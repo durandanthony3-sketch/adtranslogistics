@@ -1343,10 +1343,7 @@ function resetResults() {
 // ── Verrou des totaux (débloqués après paiement) ──
 const PAY_KEY_CALC = 'adtl_paid_calc_v1';
 function calcPaidOK() {
-  try {
-    const d = JSON.parse(localStorage.getItem(PAY_KEY_CALC) || 'null');
-    return !!(d && d.ts && (Date.now() - d.ts) < 24 * 3600 * 1000);
-  } catch (e) { return false; }
+  return true; // Paiement désactivé sur consigne DURAND (13/07/2026) — résultat gratuit
 }
 const REAL_VALUES_M = {}; // valeurs réelles gardées hors du DOM tant que non payé
 function applyMerchPayLock() {

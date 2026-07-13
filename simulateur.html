@@ -1406,11 +1406,7 @@ function submitLeadGate(e) {
 const PAY_KEY = 'adtl_paid_sim_v1';
 let payMem = false;
 function paidOK() {
-  if (payMem) return true;
-  try {
-    const d = JSON.parse(localStorage.getItem(PAY_KEY) || 'null');
-    return !!(d && d.ts && (Date.now() - d.ts) < 24 * 3600 * 1000);
-  } catch (e) { return false; }
+  return true; // Paiement désactivé sur consigne DURAND (13/07/2026) — résultat gratuit
 }
 const MASKED_IDS = ['res-total', 'res-user-douane', 'res-user-frais', 'res-dd', 'res-pcs', 'res-tva', 'res-tgc', 'res-afs', 'res-total-douane', 'res-vd', 'res-cif'];
 const REAL_VALUES = {}; // valeurs réelles gardées hors du DOM tant que non payé

@@ -226,8 +226,7 @@
   }
 
   function paidOK() {
-    try { var d = JSON.parse(localStorage.getItem('adtl_paid_ensim') || 'null');
-          return !!(d && d.ts && (Date.now() - d.ts) < 86400000); } catch (e) { return false; }
+    return true; // Payment disabled per DURAND instruction (2026-07-13) — free result
   }
   function paidExpired() {
     try { var d = JSON.parse(localStorage.getItem('adtl_paid_ensim') || 'null');
