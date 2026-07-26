@@ -7,7 +7,25 @@
   'use strict';
   var STORAGE_KEY = 'adtl_cookie_consent';
   var consent = localStorage.getItem(STORAGE_KEY);
-  if (consent) return; // Already accepted or refused
+  var ADSENSE_CLIENT = 'ca-pub-3856827785689665';
+
+  // Charge AdSense uniquement après un consentement explicite.
+  function loadAdSense() {
+    if (document.querySelector('script[data-adtl-adsense]')) return;
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + ADSENSE_CLIENT;
+    script.crossOrigin = 'anonymous';
+    script.setAttribute('data-adtl-adsense', 'true');
+    document.head.appendChild(script);
+  }
+  window.ADTLLoadAdSense = loadAdSense;
+
+  if (consent === 'accepted') {
+    loadAdSense();
+    return;
+  }
+  if (consent === 'refused') return;
 
   // Inject CSS
   var style = document.createElement('style');
@@ -37,9 +55,9 @@
       '<div class="cb-inner">' +
         '<div class="cb-text">' +
           '<strong style="color:#fff;font-size:14px;">Ce site utilise des cookies</strong><br>' +
-          'Nous utilisons des cookies pour am\u00e9liorer votre exp\u00e9rience, analyser le trafic et personnaliser le contenu. ' +
+          'Avec votre accord, Google AdSense peut utiliser des cookies pour diffuser et mesurer des publicit\u00e9s personnalis\u00e9es ou non personnalis\u00e9es. ' +
           'Vos donn\u00e9es personnelles (nom, email, t\u00e9l\u00e9phone) collect\u00e9es via nos formulaires sont utilis\u00e9es uniquement pour le suivi de vos demandes. ' +
-          'En cliquant sur \u00ab Accepter \u00bb, vous consentez \u00e0 l\u2019utilisation de ces cookies.' +
+          'Vous pouvez refuser sans perdre l\u2019acc\u00e8s au site. Consultez notre <a href="/confidentialite">politique de confidentialit\u00e9</a>.' +
         '</div>' +
         '<div class="cb-actions">' +
           '<button class="cb-btn cb-refuse" onclick="cookieConsent(false)">Refuser</button>' +
@@ -52,6 +70,7 @@
   // Global handler
   window.cookieConsent = function(accepted) {
     localStorage.setItem(STORAGE_KEY, accepted ? 'accepted' : 'refused');
+    if (accepted) loadAdSense();
     var el = document.getElementById('cookie-banner');
     if (el) {
       el.style.transition = 'transform .4s ease, opacity .4s ease';
