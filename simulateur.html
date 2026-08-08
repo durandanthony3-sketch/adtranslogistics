@@ -98,6 +98,22 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 @keyframes spin { to { transform:rotate(360deg); } }
 @keyframes slideDown { from { opacity:0;transform:translate(-50%,-20px); } to { opacity:1;transform:translate(-50%,0); } }
 .caf-card { background:linear-gradient(135deg,#0D1B2A 0%,#1B4F72 100%);border-radius:16px;padding:20px 24px;color:#fff; }
+.argus-trace-card { background:linear-gradient(145deg,#F7FAFC 0%,#EEF5F8 100%);border:1px solid #D7E3EA;border-radius:16px;padding:18px;margin-bottom:20px; }
+.argus-trace-head { display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px; }
+.argus-trace-title { font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#0D1B2A;line-height:1.35; }
+.argus-trace-status { display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap; }
+.argus-trace-status.verified { background:#DCFCE7;color:#166534; }
+.argus-trace-status.corroborated { background:#FEF3C7;color:#92400E; }
+.argus-trace-status.reference_only { background:#DBEAFE;color:#1E40AF; }
+.argus-trace-status.transaction { background:#EDE9FE;color:#5B21B6; }
+.argus-trace-status.unverified { background:#FEE2E2;color:#991B1B; }
+.argus-trace-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
+.argus-trace-item { background:#fff;border:1px solid #E5EDF1;border-radius:11px;padding:10px 11px;min-width:0; }
+.argus-trace-item.wide { grid-column:1/-1; }
+.argus-trace-k { display:block;color:#78909C;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px; }
+.argus-trace-v { display:block;color:#253746;font-size:12px;line-height:1.45;overflow-wrap:anywhere; }
+.argus-trace-note { margin-top:10px;font-size:11px;line-height:1.5;color:#607D8B; }
+@media (max-width:520px) { .argus-trace-grid { grid-template-columns:1fr; } .argus-trace-item.wide { grid-column:auto; } .argus-trace-head { display:block; } .argus-trace-status { margin-top:8px; } }
 .placeholder-card { background:#F7F7F7;border:2px dashed #E5E5E5;border-radius:16px;padding:32px;text-align:center; }
 .mob-tw-open .mob-tw-sub { display:block!important; }
 .mob-tw-open .mob-tw-chevron { transform:rotate(180deg); }
@@ -465,6 +481,12 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
           <label class="sim-label" for="inp-annee">Année du véhicule <span class="text-red-500">*</span></label>
           <input type="number" class="sim-input" id="inp-annee" placeholder="Ex : 2015" min="1970" max="2027" oninput="onAnneeChange()"/>
         </div>
+        <!-- Valeur transactionnelle : obligatoire hors millésimes couverts par l'Argus 4616 -->
+        <div id="transaction-box" style="display:none;" class="sm:col-span-2">
+          <label class="sim-label" for="inp-transaction-value">Valeur facture / AVD du véhicule (€) <span class="text-red-500">*</span></label>
+          <input type="number" class="sim-input" id="inp-transaction-value" placeholder="Ex : 18 500" min="1" step="1" inputmode="decimal" oninput="calculate()"/>
+          <div class="text-xs text-g400 mt-1">L'Argus n° 4616 couvre les millésimes jusqu'à 2021. Pour 2022 et après, la simulation utilise la valeur transactionnelle justifiée par la facture ou l'AVD, sans extrapolation automatique.</div>
+        </div>
         <!-- Type de véhicule -->
         <div>
           <label class="sim-label" for="sel-type">Genre de véhicule</label>
@@ -705,6 +727,26 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 
           <!-- Bloc détail (réservé au calcul vérifié) -->
           <div id="res-detail" class="mt-4" style="display:none;">
+
+            <!-- Preuve de la valeur Argus / transactionnelle utilisée -->
+            <div id="argus-trace-card" class="argus-trace-card">
+              <div class="argus-trace-head">
+                <div>
+                  <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-1">Traçabilité de la valeur</div>
+                  <div class="argus-trace-title" id="trace-title">Source de valorisation</div>
+                </div>
+                <span id="trace-status" class="argus-trace-status unverified">À vérifier</span>
+              </div>
+              <div class="argus-trace-grid">
+                <div class="argus-trace-item wide"><span class="argus-trace-k">Véhicule de référence</span><span class="argus-trace-v" id="trace-source">—</span></div>
+                <div class="argus-trace-item wide"><span class="argus-trace-k">Version(s) Argus citée(s)</span><span class="argus-trace-v" id="trace-versions">—</span></div>
+                <div class="argus-trace-item"><span class="argus-trace-k">Méthode</span><span class="argus-trace-v" id="trace-method">—</span></div>
+                <div class="argus-trace-item"><span class="argus-trace-k">Valeur retenue</span><span class="argus-trace-v" id="trace-values">—</span></div>
+                <div class="argus-trace-item"><span class="argus-trace-k">Édition et page</span><span class="argus-trace-v" id="trace-page">—</span></div>
+                <div class="argus-trace-item"><span class="argus-trace-k">Identifiant(s) de ligne</span><span class="argus-trace-v" id="trace-ids">—</span></div>
+              </div>
+              <div class="argus-trace-note" id="trace-warning">Cette estimation reste soumise au contrôle de l'inspecteur vérificateur.</div>
+            </div>
 
             <!-- Base retenue par la douane -->
             <div class="bg-blue-50 rounded-xl p-4 mb-5 border border-blue-100">
@@ -1081,6 +1123,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 <!-- ARGUS DATA + SCRIPT -->
 <script>var ARGUS={"ACURA":[{"modele":"TLX","petite":5000,"grande":30000,"moyenne":17500},{"modele":"ILX","petite":3000,"grande":20000,"moyenne":11500},{"modele":"RDX","petite":5000,"grande":32000,"moyenne":18500},{"modele":"MDX","petite":5000,"grande":35000,"moyenne":20000},{"modele":"TL","petite":2000,"grande":12000,"moyenne":7000},{"modele":"TSX","petite":2000,"grande":12000,"moyenne":7000},{"modele":"RLX","petite":5000,"grande":25000,"moyenne":15000},{"modele":"ZDX","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Integra","petite":12000,"grande":30000,"moyenne":21000}],"ALFA ROMEO":[{"modele":"Giulietta","petite":800,"grande":12000,"moyenne":6400},{"modele":"Giulia","petite":15000,"grande":42000,"moyenne":28500},{"modele":"Stelvio","petite":18000,"grande":48000,"moyenne":33000},{"modele":"MiTo","petite":500,"grande":6500,"moyenne":3500},{"modele":"159","petite":600,"grande":5000,"moyenne":2800},{"modele":"Tonale","petite":25000,"grande":42000,"moyenne":33500}],"ASTON MARTIN":[{"modele":"DB11","petite":40000,"grande":120000,"moyenne":80000},{"modele":"DBX","petite":50000,"grande":140000,"moyenne":95000},{"modele":"Vantage","petite":35000,"grande":110000,"moyenne":72500}],"AUDI":[{"modele":"A1","petite":500,"grande":15000,"moyenne":7750},{"modele":"A3","petite":600,"grande":25000,"moyenne":12800},{"modele":"A3 Sportback","petite":700,"grande":28000,"moyenne":14350},{"modele":"A4","petite":800,"grande":30000,"moyenne":15400},{"modele":"A4 Avant","petite":900,"grande":32000,"moyenne":16450},{"modele":"A5","petite":1000,"grande":35000,"moyenne":18000},{"modele":"A5 Sportback","petite":1200,"grande":38000,"moyenne":19600},{"modele":"A5 Cabriolet","petite":1500,"grande":40000,"moyenne":20750},{"modele":"A6","petite":1000,"grande":40000,"moyenne":20500},{"modele":"A6 Avant","petite":1200,"grande":42000,"moyenne":21600},{"modele":"A7 Sportback","petite":2000,"grande":50000,"moyenne":26000},{"modele":"A8","petite":2000,"grande":55000,"moyenne":28500},{"modele":"Q2","petite":8000,"grande":28000,"moyenne":18000},{"modele":"Q3","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Q5","petite":5000,"grande":45000,"moyenne":25000},{"modele":"Q7","petite":5000,"grande":55000,"moyenne":30000},{"modele":"Q8","petite":25000,"grande":65000,"moyenne":45000},{"modele":"TT","petite":2000,"grande":30000,"moyenne":16000},{"modele":"TT Roadster","petite":3000,"grande":35000,"moyenne":19000},{"modele":"RS3","petite":15000,"grande":55000,"moyenne":35000},{"modele":"RS5","petite":20000,"grande":60000,"moyenne":40000},{"modele":"e-tron","petite":18000,"grande":50000,"moyenne":34000},{"modele":"Q4 e-tron","petite":20000,"grande":45000,"moyenne":32500},{"modele":"S3","petite":10000,"grande":40000,"moyenne":25000},{"modele":"S4","petite":8000,"grande":42000,"moyenne":25000},{"modele":"S5","petite":10000,"grande":48000,"moyenne":29000},{"modele":"A4 allroad","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Q3 Sportback","petite":10000,"grande":38000,"moyenne":24000},{"modele":"SQ5","petite":10000,"grande":50000,"moyenne":30000},{"modele":"RS Q8","petite":35000,"grande":80000,"moyenne":57500}],"BENTLEY":[{"modele":"Continental GT","petite":20000,"grande":120000,"moyenne":70000},{"modele":"Bentayga","petite":30000,"grande":130000,"moyenne":80000},{"modele":"Flying Spur","petite":25000,"grande":120000,"moyenne":72500}],"BMW":[{"modele":"Serie 1","petite":500,"grande":22000,"moyenne":11250},{"modele":"Serie 2","petite":800,"grande":28000,"moyenne":14400},{"modele":"Serie 3","petite":600,"grande":35000,"moyenne":17800},{"modele":"Serie 4","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Serie 5","petite":800,"grande":45000,"moyenne":22900},{"modele":"Serie 6","petite":2000,"grande":40000,"moyenne":21000},{"modele":"Serie 7","petite":2000,"grande":55000,"moyenne":28500},{"modele":"X1","petite":3000,"grande":32000,"moyenne":17500},{"modele":"X2","petite":8000,"grande":35000,"moyenne":21500},{"modele":"X3","petite":3000,"grande":42000,"moyenne":22500},{"modele":"X4","petite":8000,"grande":45000,"moyenne":26500},{"modele":"X5","petite":5000,"grande":55000,"moyenne":30000},{"modele":"X6","petite":8000,"grande":55000,"moyenne":31500},{"modele":"X7","petite":30000,"grande":70000,"moyenne":50000},{"modele":"Z4","petite":5000,"grande":45000,"moyenne":25000},{"modele":"iX3","petite":20000,"grande":45000,"moyenne":32500},{"modele":"i3","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Serie 8","petite":25000,"grande":65000,"moyenne":45000},{"modele":"M2","petite":20000,"grande":55000,"moyenne":37500},{"modele":"M3","petite":15000,"grande":60000,"moyenne":37500},{"modele":"M4","petite":20000,"grande":65000,"moyenne":42500},{"modele":"M5","petite":15000,"grande":55000,"moyenne":35000},{"modele":"i4","petite":20000,"grande":45000,"moyenne":32500},{"modele":"iX","petite":25000,"grande":60000,"moyenne":42500},{"modele":"Serie 2 Active Tourer","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Serie 2 Gran Coupe","petite":10000,"grande":30000,"moyenne":20000},{"modele":"X3 M","petite":15000,"grande":55000,"moyenne":35000}],"BUICK":[{"modele":"Enclave","petite":3000,"grande":32000,"moyenne":17500},{"modele":"Encore","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Envision","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Regal","petite":2000,"grande":18000,"moyenne":10000},{"modele":"LaCrosse","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Verano","petite":1500,"grande":12000,"moyenne":6750}],"CADILLAC":[{"modele":"Escalade","petite":8000,"grande":60000,"moyenne":34000},{"modele":"XT4","petite":10000,"grande":30000,"moyenne":20000},{"modele":"XT5","petite":8000,"grande":35000,"moyenne":21500},{"modele":"XT6","petite":12000,"grande":42000,"moyenne":27000},{"modele":"CT4","petite":10000,"grande":28000,"moyenne":19000},{"modele":"CT5","petite":12000,"grande":35000,"moyenne":23500},{"modele":"CTS","petite":3000,"grande":22000,"moyenne":12500},{"modele":"SRX","petite":2000,"grande":15000,"moyenne":8500},{"modele":"ATS","petite":3000,"grande":22000,"moyenne":12500},{"modele":"XTS","petite":3000,"grande":20000,"moyenne":11500}],"CHERY":[{"modele":"Tiggo 4","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Tiggo 7","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Tiggo 8","petite":8000,"grande":25000,"moyenne":16500},{"modele":"Arrizo 5","petite":2000,"grande":12000,"moyenne":7000}],"CHEVROLET":[{"modele":"Spark","petite":300,"grande":8000,"moyenne":4150},{"modele":"Aveo","petite":400,"grande":8000,"moyenne":4200},{"modele":"Cruze","petite":500,"grande":12000,"moyenne":6250},{"modele":"Malibu","petite":800,"grande":18000,"moyenne":9400},{"modele":"Impala","petite":1000,"grande":18000,"moyenne":9500},{"modele":"Camaro","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Corvette","petite":15000,"grande":60000,"moyenne":37500},{"modele":"Equinox","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Trax","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Blazer","petite":8000,"grande":30000,"moyenne":19000},{"modele":"Traverse","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Tahoe","petite":5000,"grande":45000,"moyenne":25000},{"modele":"Suburban","petite":5000,"grande":50000,"moyenne":27500},{"modele":"Silverado","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Colorado","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Trailblazer","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Captiva","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Orlando","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Sonic","petite":400,"grande":8000,"moyenne":4200},{"modele":"Express","petite":3000,"grande":22000,"moyenne":12500}],"CHRYSLER":[{"modele":"300","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Pacifica","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Voyager","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Town & Country","petite":1500,"grande":15000,"moyenne":8250},{"modele":"PT Cruiser","petite":500,"grande":5000,"moyenne":2750},{"modele":"Sebring","petite":500,"grande":5000,"moyenne":2750}],"CITROEN":[{"modele":"C1","petite":500,"grande":8000,"moyenne":4250},{"modele":"C3","petite":500,"grande":15000,"moyenne":7750},{"modele":"C3 Aircross","petite":5000,"grande":20000,"moyenne":12500},{"modele":"C4","petite":600,"grande":18000,"moyenne":9300},{"modele":"C4 Cactus","petite":590,"grande":15000,"moyenne":7795},{"modele":"C5 Aircross","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Berlingo","petite":700,"grande":18000,"moyenne":9350},{"modele":"SpaceTourer","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Jumpy","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Jumper","petite":2000,"grande":28000,"moyenne":15000},{"modele":"DS3","petite":800,"grande":12000,"moyenne":6400},{"modele":"DS4","petite":1000,"grande":15000,"moyenne":8000},{"modele":"DS7 Crossback","petite":12000,"grande":35000,"moyenne":23500},{"modele":"C4 Picasso","petite":800,"grande":12000,"moyenne":6400},{"modele":"Grand C4 Picasso","petite":1000,"grande":14000,"moyenne":7500},{"modele":"C5","petite":600,"grande":8000,"moyenne":4300},{"modele":"C-Elysee","petite":500,"grande":10000,"moyenne":5250},{"modele":"Nemo","petite":500,"grande":6000,"moyenne":3250}],"CUPRA":[{"modele":"Formentor","petite":10000,"grande":35000,"moyenne":22500},{"modele":"Born","petite":12000,"grande":32000,"moyenne":22000},{"modele":"Ateca","petite":8000,"grande":30000,"moyenne":19000},{"modele":"Leon","petite":8000,"grande":28000,"moyenne":18000}],"DACIA":[{"modele":"Sandero","petite":500,"grande":12000,"moyenne":6250},{"modele":"Duster","petite":1000,"grande":20000,"moyenne":10500},{"modele":"Logan","petite":500,"grande":8000,"moyenne":4250},{"modele":"Lodgy","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Dokker","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Spring","petite":8000,"grande":18000,"moyenne":13000},{"modele":"Jogger","petite":12000,"grande":22000,"moyenne":17000}],"DAF":[{"modele":"LF","petite":5000,"grande":35000,"moyenne":20000},{"modele":"CF","petite":10000,"grande":55000,"moyenne":32500},{"modele":"XF","petite":12000,"grande":60000,"moyenne":36000},{"modele":"XG","petite":30000,"grande":80000,"moyenne":55000},{"modele":"XD","petite":20000,"grande":65000,"moyenne":42500}],"DAIHATSU":[{"modele":"Terios","petite":800,"grande":10000,"moyenne":5400},{"modele":"Sirion","petite":400,"grande":6000,"moyenne":3200},{"modele":"Materia","petite":500,"grande":6000,"moyenne":3250},{"modele":"YRV","petite":300,"grande":4000,"moyenne":2150},{"modele":"Cuore","petite":200,"grande":3000,"moyenne":1600},{"modele":"Copen","petite":1000,"grande":8000,"moyenne":4500},{"modele":"Move","petite":300,"grande":4000,"moyenne":2150},{"modele":"Rocky","petite":3000,"grande":15000,"moyenne":9000}],"DODGE":[{"modele":"Charger","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Challenger","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Durango","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Journey","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Nitro","petite":1000,"grande":8000,"moyenne":4500},{"modele":"Caliber","petite":800,"grande":6000,"moyenne":3400},{"modele":"Ram 1500","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Ram 2500","petite":8000,"grande":45000,"moyenne":26500},{"modele":"Grand Caravan","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Avenger","petite":800,"grande":8000,"moyenne":4400}],"DONGFENG":[{"modele":"Rich","petite":3000,"grande":15000,"moyenne":9000},{"modele":"AX7","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Glory 580","petite":3000,"grande":15000,"moyenne":9000}],"DS AUTOMOBILES":[{"modele":"DS 3 Crossback","petite":5000,"grande":25000,"moyenne":15000},{"modele":"DS 4","petite":8000,"grande":30000,"moyenne":19000},{"modele":"DS 7","petite":10000,"grande":38000,"moyenne":24000},{"modele":"DS 9","petite":15000,"grande":42000,"moyenne":28500}],"FERRARI":[{"modele":"Roma","petite":80000,"grande":200000,"moyenne":140000},{"modele":"Portofino","petite":60000,"grande":180000,"moyenne":120000},{"modele":"F8 Tributo","petite":80000,"grande":250000,"moyenne":165000},{"modele":"SF90 Stradale","petite":120000,"grande":350000,"moyenne":235000},{"modele":"296 GTB","petite":100000,"grande":280000,"moyenne":190000}],"FIAT":[{"modele":"500","petite":500,"grande":15000,"moyenne":7750},{"modele":"500X","petite":3000,"grande":20000,"moyenne":11500},{"modele":"500L","petite":2000,"grande":14000,"moyenne":8000},{"modele":"Panda","petite":500,"grande":10000,"moyenne":5250},{"modele":"Punto","petite":500,"grande":6000,"moyenne":3250},{"modele":"Tipo","petite":2000,"grande":14000,"moyenne":8000},{"modele":"Ducato","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Doblo","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Freemont","petite":2000,"grande":12000,"moyenne":7000},{"modele":"Talento","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Fiorino","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Bravo","petite":400,"grande":5000,"moyenne":2700},{"modele":"Palio","petite":300,"grande":4000,"moyenne":2150},{"modele":"Uno","petite":200,"grande":3000,"moyenne":1600}],"FORD":[{"modele":"Fiesta","petite":500,"grande":12000,"moyenne":6250},{"modele":"Focus","petite":600,"grande":18000,"moyenne":9300},{"modele":"Focus SW","petite":700,"grande":20000,"moyenne":10350},{"modele":"Mondeo","petite":800,"grande":18000,"moyenne":9400},{"modele":"Kuga","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Puma","petite":8000,"grande":25000,"moyenne":16500},{"modele":"EcoSport","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Explorer","petite":15000,"grande":45000,"moyenne":30000},{"modele":"Mustang","petite":8000,"grande":45000,"moyenne":26500},{"modele":"Ranger","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Transit","petite":2000,"grande":30000,"moyenne":16000},{"modele":"Transit Custom","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Transit Courier","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Transit Connect","petite":2000,"grande":20000,"moyenne":11000},{"modele":"S-MAX","petite":1500,"grande":22000,"moyenne":11750},{"modele":"Galaxy","petite":1500,"grande":20000,"moyenne":10750},{"modele":"Edge","petite":8000,"grande":30000,"moyenne":19000},{"modele":"F-150","petite":15000,"grande":50000,"moyenne":32500},{"modele":"Escape","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Expedition","petite":8000,"grande":45000,"moyenne":26500},{"modele":"Fusion","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Taurus","petite":1000,"grande":12000,"moyenne":6500},{"modele":"Bronco","petite":15000,"grande":45000,"moyenne":30000},{"modele":"Bronco Sport","petite":12000,"grande":30000,"moyenne":21000},{"modele":"Maverick","petite":12000,"grande":28000,"moyenne":20000},{"modele":"Flex","petite":2000,"grande":15000,"moyenne":8500},{"modele":"Excursion","petite":3000,"grande":18000,"moyenne":10500},{"modele":"F-250","petite":10000,"grande":45000,"moyenne":27500},{"modele":"F-350","petite":12000,"grande":50000,"moyenne":31000},{"modele":"Everest","petite":8000,"grande":30000,"moyenne":19000}],"FOTON":[{"modele":"Tunland","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Auman","petite":8000,"grande":35000,"moyenne":21500},{"modele":"Aumark","petite":5000,"grande":25000,"moyenne":15000}],"GENESIS":[{"modele":"G70","petite":10000,"grande":35000,"moyenne":22500},{"modele":"G80","petite":12000,"grande":42000,"moyenne":27000},{"modele":"G90","petite":15000,"grande":55000,"moyenne":35000},{"modele":"GV70","petite":15000,"grande":42000,"moyenne":28500},{"modele":"GV80","petite":18000,"grande":50000,"moyenne":34000}],"GMC":[{"modele":"Sierra 1500","petite":5000,"grande":42000,"moyenne":23500},{"modele":"Sierra 2500","petite":8000,"grande":48000,"moyenne":28000},{"modele":"Canyon","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Yukon","petite":5000,"grande":50000,"moyenne":27500},{"modele":"Yukon XL","petite":5000,"grande":55000,"moyenne":30000},{"modele":"Acadia","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Terrain","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Envoy","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Savana","petite":3000,"grande":22000,"moyenne":12500}],"GREAT WALL":[{"modele":"Haval H6","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Haval H9","petite":8000,"grande":30000,"moyenne":19000},{"modele":"Haval Jolion","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Wingle","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Poer","petite":5000,"grande":22000,"moyenne":13500}],"HINO":[{"modele":"300","petite":5000,"grande":35000,"moyenne":20000},{"modele":"500","petite":8000,"grande":50000,"moyenne":29000},{"modele":"700","petite":15000,"grande":65000,"moyenne":40000},{"modele":"Dutro","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Ranger","petite":8000,"grande":45000,"moyenne":26500}],"HONDA":[{"modele":"Civic","petite":800,"grande":22000,"moyenne":11400},{"modele":"CR-V","petite":2000,"grande":30000,"moyenne":16000},{"modele":"HR-V","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Jazz","petite":500,"grande":15000,"moyenne":7750},{"modele":"Accord","petite":1000,"grande":25000,"moyenne":13000},{"modele":"CR-Z","petite":2000,"grande":12000,"moyenne":7000},{"modele":"Fit","petite":500,"grande":12000,"moyenne":6250},{"modele":"City","petite":400,"grande":10000,"moyenne":5200},{"modele":"Pilot","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Odyssey","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Element","petite":1500,"grande":10000,"moyenne":5750},{"modele":"Ridgeline","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Passport","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Insight","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Prelude","petite":1000,"grande":8000,"moyenne":4500},{"modele":"Crosstour","petite":2000,"grande":15000,"moyenne":8500},{"modele":"Vezel","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Freed","petite":800,"grande":8000,"moyenne":4400},{"modele":"Stepwgn","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Stream","petite":600,"grande":6000,"moyenne":3300},{"modele":"BR-V","petite":3000,"grande":15000,"moyenne":9000}],"HYUNDAI":[{"modele":"i10","petite":500,"grande":10000,"moyenne":5250},{"modele":"i20","petite":500,"grande":14000,"moyenne":7250},{"modele":"i30","petite":600,"grande":18000,"moyenne":9300},{"modele":"Tucson","petite":3000,"grande":32000,"moyenne":17500},{"modele":"Kona","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Santa Fe","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Ioniq","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Ioniq 5","petite":20000,"grande":42000,"moyenne":31000},{"modele":"Bayon","petite":8000,"grande":18000,"moyenne":13000},{"modele":"Accent","petite":400,"grande":10000,"moyenne":5200},{"modele":"Elantra","petite":500,"grande":15000,"moyenne":7750},{"modele":"Sonata","petite":800,"grande":22000,"moyenne":11400},{"modele":"Palisade","petite":15000,"grande":40000,"moyenne":27500},{"modele":"Venue","petite":5000,"grande":18000,"moyenne":11500},{"modele":"Creta","petite":3000,"grande":18000,"moyenne":10500},{"modele":"H1","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Starex","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Atos","petite":300,"grande":4000,"moyenne":2150},{"modele":"Getz","petite":300,"grande":5000,"moyenne":2650},{"modele":"Matrix","petite":400,"grande":5000,"moyenne":2700},{"modele":"Terracan","petite":800,"grande":6000,"moyenne":3400},{"modele":"Galloper","petite":500,"grande":5000,"moyenne":2750},{"modele":"Grand Santa Fe","petite":5000,"grande":35000,"moyenne":20000}],"INFINITI":[{"modele":"Q50","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Q60","petite":8000,"grande":32000,"moyenne":20000},{"modele":"Q70","petite":5000,"grande":28000,"moyenne":16500},{"modele":"QX50","petite":8000,"grande":32000,"moyenne":20000},{"modele":"QX55","petite":12000,"grande":38000,"moyenne":25000},{"modele":"QX60","petite":8000,"grande":35000,"moyenne":21500},{"modele":"QX80","petite":10000,"grande":50000,"moyenne":30000},{"modele":"G37","petite":3000,"grande":18000,"moyenne":10500},{"modele":"FX35","petite":3000,"grande":18000,"moyenne":10500},{"modele":"EX35","petite":2000,"grande":15000,"moyenne":8500},{"modele":"JX35","petite":3000,"grande":20000,"moyenne":11500}],"ISUZU":[{"modele":"D-Max","petite":5000,"grande":32000,"moyenne":18500},{"modele":"NHR","petite":2000,"grande":18000,"moyenne":10000},{"modele":"NKR","petite":3000,"grande":22000,"moyenne":12500},{"modele":"NQR","petite":5000,"grande":28000,"moyenne":16500},{"modele":"NPR","petite":5000,"grande":30000,"moyenne":17500},{"modele":"MU-X","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Trooper","petite":800,"grande":6000,"moyenne":3400}],"IVECO":[{"modele":"Daily","petite":2000,"grande":35000,"moyenne":18500},{"modele":"Eurocargo","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Stralis","petite":8000,"grande":50000,"moyenne":29000},{"modele":"Trakker","petite":10000,"grande":55000,"moyenne":32500}],"JAC":[{"modele":"S3","petite":2000,"grande":12000,"moyenne":7000},{"modele":"S4","petite":3000,"grande":15000,"moyenne":9000},{"modele":"J7","petite":5000,"grande":18000,"moyenne":11500},{"modele":"T8","petite":5000,"grande":20000,"moyenne":12500}],"JEEP":[{"modele":"Renegade","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Compass","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Cherokee","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Grand Cherokee","petite":5000,"grande":50000,"moyenne":27500},{"modele":"Wrangler","petite":10000,"grande":45000,"moyenne":27500},{"modele":"Liberty","petite":1500,"grande":10000,"moyenne":5750},{"modele":"Patriot","petite":1500,"grande":10000,"moyenne":5750},{"modele":"Gladiator","petite":15000,"grande":42000,"moyenne":28500},{"modele":"Commander","petite":2000,"grande":12000,"moyenne":7000},{"modele":"CJ","petite":3000,"grande":15000,"moyenne":9000}],"KIA":[{"modele":"Picanto","petite":500,"grande":10000,"moyenne":5250},{"modele":"Rio","petite":500,"grande":14000,"moyenne":7250},{"modele":"Ceed","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Sportage","petite":3000,"grande":32000,"moyenne":17500},{"modele":"Sorento","petite":5000,"grande":38000,"moyenne":21500},{"modele":"Stonic","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Niro","petite":8000,"grande":28000,"moyenne":18000},{"modele":"EV6","petite":22000,"grande":48000,"moyenne":35000},{"modele":"Proceed","petite":8000,"grande":25000,"moyenne":16500},{"modele":"Forte","petite":500,"grande":14000,"moyenne":7250},{"modele":"Optima","petite":800,"grande":20000,"moyenne":10400},{"modele":"Carnival","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Soul","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Seltos","petite":8000,"grande":25000,"moyenne":16500},{"modele":"Telluride","petite":15000,"grande":40000,"moyenne":27500},{"modele":"Stinger","petite":10000,"grande":35000,"moyenne":22500},{"modele":"Cerato","petite":500,"grande":14000,"moyenne":7250},{"modele":"Carens","petite":800,"grande":15000,"moyenne":7900},{"modele":"Venga","petite":1000,"grande":10000,"moyenne":5500},{"modele":"K5","petite":8000,"grande":25000,"moyenne":16500}],"LAMBORGHINI":[{"modele":"Huracan","petite":60000,"grande":200000,"moyenne":130000},{"modele":"Urus","petite":60000,"grande":180000,"moyenne":120000},{"modele":"Aventador","petite":80000,"grande":300000,"moyenne":190000}],"LANCIA":[{"modele":"Ypsilon","petite":300,"grande":10000,"moyenne":5150},{"modele":"Delta","petite":500,"grande":6000,"moyenne":3250},{"modele":"Musa","petite":400,"grande":5000,"moyenne":2700}],"LAND ROVER":[{"modele":"Range Rover","petite":5000,"grande":80000,"moyenne":42500},{"modele":"Range Rover Sport","petite":5000,"grande":65000,"moyenne":35000},{"modele":"Range Rover Evoque","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Range Rover Velar","petite":15000,"grande":55000,"moyenne":35000},{"modele":"Discovery","petite":3000,"grande":50000,"moyenne":26500},{"modele":"Discovery Sport","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Defender","petite":25000,"grande":70000,"moyenne":47500},{"modele":"Freelander","petite":800,"grande":12000,"moyenne":6400},{"modele":"Defender 90","petite":20000,"grande":60000,"moyenne":40000},{"modele":"Defender 110","petite":25000,"grande":65000,"moyenne":45000}],"LEXUS":[{"modele":"CT","petite":3000,"grande":18000,"moyenne":10500},{"modele":"IS","petite":3000,"grande":30000,"moyenne":16500},{"modele":"NX","petite":10000,"grande":40000,"moyenne":25000},{"modele":"RX","petite":5000,"grande":50000,"moyenne":27500},{"modele":"UX","petite":15000,"grande":35000,"moyenne":25000},{"modele":"ES","petite":3000,"grande":35000,"moyenne":19000},{"modele":"GS","petite":3000,"grande":30000,"moyenne":16500},{"modele":"LS","petite":5000,"grande":55000,"moyenne":30000},{"modele":"GX","petite":8000,"grande":45000,"moyenne":26500},{"modele":"LX","petite":10000,"grande":65000,"moyenne":37500},{"modele":"RC","petite":10000,"grande":40000,"moyenne":25000},{"modele":"LC","petite":30000,"grande":70000,"moyenne":50000}],"LINCOLN":[{"modele":"Navigator","petite":5000,"grande":55000,"moyenne":30000},{"modele":"Aviator","petite":15000,"grande":48000,"moyenne":31500},{"modele":"Corsair","petite":12000,"grande":35000,"moyenne":23500},{"modele":"Nautilus","petite":10000,"grande":35000,"moyenne":22500},{"modele":"Continental","petite":5000,"grande":35000,"moyenne":20000},{"modele":"MKC","petite":3000,"grande":20000,"moyenne":11500},{"modele":"MKX","petite":3000,"grande":22000,"moyenne":12500},{"modele":"MKZ","petite":3000,"grande":22000,"moyenne":12500},{"modele":"MKT","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Town Car","petite":2000,"grande":12000,"moyenne":7000}],"MAHINDRA":[{"modele":"Scorpio","petite":2000,"grande":15000,"moyenne":8500},{"modele":"XUV500","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Bolero","petite":1500,"grande":10000,"moyenne":5750},{"modele":"KUV100","petite":1500,"grande":8000,"moyenne":4750},{"modele":"Thar","petite":5000,"grande":18000,"moyenne":11500},{"modele":"XUV700","petite":8000,"grande":25000,"moyenne":16500}],"MAN":[{"modele":"TGE","petite":8000,"grande":35000,"moyenne":21500},{"modele":"TGL","petite":8000,"grande":40000,"moyenne":24000},{"modele":"TGM","petite":10000,"grande":50000,"moyenne":30000},{"modele":"TGS","petite":15000,"grande":60000,"moyenne":37500},{"modele":"TGX","petite":15000,"grande":65000,"moyenne":40000},{"modele":"Lion's City","petite":20000,"grande":80000,"moyenne":50000}],"MASERATI":[{"modele":"Ghibli","petite":10000,"grande":50000,"moyenne":30000},{"modele":"Levante","petite":15000,"grande":60000,"moyenne":37500},{"modele":"Quattroporte","petite":10000,"grande":55000,"moyenne":32500},{"modele":"GranTurismo","petite":15000,"grande":65000,"moyenne":40000}],"MAZDA":[{"modele":"Mazda 2","petite":500,"grande":15000,"moyenne":7750},{"modele":"Mazda 3","petite":800,"grande":22000,"moyenne":11400},{"modele":"Mazda 6","petite":1000,"grande":22000,"moyenne":11500},{"modele":"CX-3","petite":3000,"grande":20000,"moyenne":11500},{"modele":"CX-5","petite":5000,"grande":32000,"moyenne":18500},{"modele":"CX-30","petite":10000,"grande":28000,"moyenne":19000},{"modele":"MX-5","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Mazda 5","petite":600,"grande":8000,"moyenne":4300},{"modele":"BT-50","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Tribute","petite":800,"grande":6000,"moyenne":3400},{"modele":"MPV","petite":500,"grande":5000,"moyenne":2750},{"modele":"Demio","petite":300,"grande":6000,"moyenne":3150},{"modele":"Premacy","petite":400,"grande":5000,"moyenne":2700}],"MERCEDES-BENZ":[{"modele":"Classe A","petite":700,"grande":30000,"moyenne":15350},{"modele":"Classe B","petite":800,"grande":25000,"moyenne":12900},{"modele":"Classe C","petite":800,"grande":38000,"moyenne":19400},{"modele":"Classe C Break","petite":900,"grande":40000,"moyenne":20450},{"modele":"Classe E","petite":1000,"grande":45000,"moyenne":23000},{"modele":"Classe E Break","petite":1200,"grande":48000,"moyenne":24600},{"modele":"Classe E Cabriolet","petite":5000,"grande":45000,"moyenne":25000},{"modele":"Classe S","petite":3000,"grande":65000,"moyenne":34000},{"modele":"CLA","petite":5000,"grande":32000,"moyenne":18500},{"modele":"CLS","petite":5000,"grande":45000,"moyenne":25000},{"modele":"GLA","petite":5000,"grande":32000,"moyenne":18500},{"modele":"GLB","petite":12000,"grande":35000,"moyenne":23500},{"modele":"GLC","petite":8000,"grande":45000,"moyenne":26500},{"modele":"GLE","petite":10000,"grande":55000,"moyenne":32500},{"modele":"GLS","petite":20000,"grande":70000,"moyenne":45000},{"modele":"Classe G","petite":20000,"grande":80000,"moyenne":50000},{"modele":"Vito","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Sprinter","petite":3000,"grande":40000,"moyenne":21500},{"modele":"Citan","petite":2000,"grande":20000,"moyenne":11000},{"modele":"AMG GT","petite":30000,"grande":80000,"moyenne":55000},{"modele":"Classe V","petite":10000,"grande":45000,"moyenne":27500},{"modele":"GLC Coupe","petite":12000,"grande":50000,"moyenne":31000},{"modele":"GLE Coupe","petite":15000,"grande":60000,"moyenne":37500},{"modele":"ML","petite":3000,"grande":25000,"moyenne":14000},{"modele":"GL","petite":5000,"grande":35000,"moyenne":20000},{"modele":"SLK","petite":3000,"grande":22000,"moyenne":12500},{"modele":"SLC","petite":5000,"grande":28000,"moyenne":16500},{"modele":"SL","petite":5000,"grande":55000,"moyenne":30000},{"modele":"GLK","petite":3000,"grande":22000,"moyenne":12500},{"modele":"EQC","petite":15000,"grande":42000,"moyenne":28500},{"modele":"EQA","petite":18000,"grande":38000,"moyenne":28000}],"MINI":[{"modele":"Cooper","petite":800,"grande":22000,"moyenne":11400},{"modele":"Cooper S","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Countryman","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Clubman","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Cabrio","petite":3000,"grande":25000,"moyenne":14000}],"MITSUBISHI":[{"modele":"ASX","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Outlander","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Eclipse Cross","petite":8000,"grande":28000,"moyenne":18000},{"modele":"L200","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Pajero","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Space Star","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Colt","petite":300,"grande":5000,"moyenne":2650},{"modele":"Lancer","petite":500,"grande":8000,"moyenne":4250},{"modele":"Galant","petite":400,"grande":5000,"moyenne":2700},{"modele":"Grandis","petite":600,"grande":6000,"moyenne":3300},{"modele":"Triton","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Canter","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Rosa","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Delica","petite":1000,"grande":10000,"moyenne":5500},{"modele":"RVR","petite":1500,"grande":12000,"moyenne":6750}],"NISSAN":[{"modele":"Micra","petite":500,"grande":12000,"moyenne":6250},{"modele":"Juke","petite":1500,"grande":20000,"moyenne":10750},{"modele":"Qashqai","petite":2000,"grande":28000,"moyenne":15000},{"modele":"X-Trail","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Leaf","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Navara","petite":5000,"grande":30000,"moyenne":17500},{"modele":"NV200","petite":2000,"grande":15000,"moyenne":8500},{"modele":"NV300","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Pathfinder","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Almera","petite":400,"grande":8000,"moyenne":4200},{"modele":"Sentra","petite":500,"grande":12000,"moyenne":6250},{"modele":"Altima","petite":600,"grande":18000,"moyenne":9300},{"modele":"Note","petite":400,"grande":10000,"moyenne":5200},{"modele":"Tiida","petite":400,"grande":8000,"moyenne":4200},{"modele":"Primera","petite":400,"grande":6000,"moyenne":3200},{"modele":"Sunny","petite":300,"grande":5000,"moyenne":2650},{"modele":"Patrol","petite":3000,"grande":45000,"moyenne":24000},{"modele":"Murano","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Kicks","petite":5000,"grande":20000,"moyenne":12500},{"modele":"March","petite":300,"grande":6000,"moyenne":3150},{"modele":"Rogue","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Frontier","petite":3000,"grande":28000,"moyenne":15500},{"modele":"NP300","petite":4000,"grande":25000,"moyenne":14500},{"modele":"Terrano","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Maxima","petite":800,"grande":18000,"moyenne":9400},{"modele":"Versa","petite":400,"grande":10000,"moyenne":5200},{"modele":"Armada","petite":5000,"grande":40000,"moyenne":22500},{"modele":"Titan","petite":5000,"grande":35000,"moyenne":20000}],"OPEL":[{"modele":"Corsa","petite":500,"grande":15000,"moyenne":7750},{"modele":"Astra","petite":600,"grande":18000,"moyenne":9300},{"modele":"Mokka","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Crossland","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Grandland","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Insignia","petite":800,"grande":20000,"moyenne":10400},{"modele":"Combo","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Vivaro","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Movano","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Zafira","petite":800,"grande":15000,"moyenne":7900},{"modele":"Adam","petite":500,"grande":10000,"moyenne":5250},{"modele":"Meriva","petite":500,"grande":8000,"moyenne":4250},{"modele":"Antara","petite":1000,"grande":10000,"moyenne":5500},{"modele":"Agila","petite":300,"grande":5000,"moyenne":2650}],"PEUGEOT":[{"modele":"108","petite":500,"grande":10000,"moyenne":5250},{"modele":"208","petite":500,"grande":18000,"moyenne":9250},{"modele":"308","petite":600,"grande":22000,"moyenne":11300},{"modele":"508","petite":1000,"grande":28000,"moyenne":14500},{"modele":"2008","petite":3000,"grande":22000,"moyenne":12500},{"modele":"3008","petite":3000,"grande":32000,"moyenne":17500},{"modele":"5008","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Rifter","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Partner","petite":1000,"grande":18000,"moyenne":9500},{"modele":"Expert","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Boxer","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Bipper","petite":700,"grande":8000,"moyenne":4350},{"modele":"107","petite":300,"grande":5000,"moyenne":2650},{"modele":"206","petite":300,"grande":4000,"moyenne":2150},{"modele":"207","petite":300,"grande":5000,"moyenne":2650},{"modele":"301","petite":500,"grande":10000,"moyenne":5250},{"modele":"407","petite":500,"grande":6000,"moyenne":3250},{"modele":"607","petite":500,"grande":5000,"moyenne":2750},{"modele":"4007","petite":1500,"grande":10000,"moyenne":5750},{"modele":"4008","petite":3000,"grande":15000,"moyenne":9000}],"PORSCHE":[{"modele":"911","petite":15000,"grande":120000,"moyenne":67500},{"modele":"Cayenne","petite":5000,"grande":70000,"moyenne":37500},{"modele":"Macan","petite":15000,"grande":55000,"moyenne":35000},{"modele":"Panamera","petite":10000,"grande":65000,"moyenne":37500},{"modele":"Boxster","petite":8000,"grande":50000,"moyenne":29000},{"modele":"Cayman","petite":10000,"grande":55000,"moyenne":32500},{"modele":"Taycan","petite":35000,"grande":90000,"moyenne":62500},{"modele":"718","petite":25000,"grande":65000,"moyenne":45000}],"RENAULT":[{"modele":"Clio","petite":500,"grande":15000,"moyenne":7750},{"modele":"Megane","petite":600,"grande":18000,"moyenne":9300},{"modele":"Megane Estate","petite":700,"grande":20000,"moyenne":10350},{"modele":"Scenic","petite":800,"grande":18000,"moyenne":9400},{"modele":"Grand Scenic","petite":1000,"grande":20000,"moyenne":10500},{"modele":"Captur","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Kadjar","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Koleos","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Espace","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Kangoo","petite":1000,"grande":18000,"moyenne":9500},{"modele":"Grand Kangoo","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Trafic","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Master","petite":2000,"grande":30000,"moyenne":16000},{"modele":"Twingo","petite":500,"grande":10000,"moyenne":5250},{"modele":"Talisman","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Arkana","petite":12000,"grande":28000,"moyenne":20000},{"modele":"Zoe","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Austral","petite":18000,"grande":35000,"moyenne":26500},{"modele":"Symbol","petite":300,"grande":6000,"moyenne":3150},{"modele":"Fluence","petite":500,"grande":8000,"moyenne":4250},{"modele":"Latitude","petite":800,"grande":10000,"moyenne":5400},{"modele":"Laguna","petite":500,"grande":6000,"moyenne":3250},{"modele":"Express","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Alaskan","petite":8000,"grande":28000,"moyenne":18000},{"modele":"Duster","petite":1000,"grande":18000,"moyenne":9500},{"modele":"Logan","petite":400,"grande":8000,"moyenne":4200}],"ROLLS-ROYCE":[{"modele":"Ghost","petite":40000,"grande":180000,"moyenne":110000},{"modele":"Phantom","petite":50000,"grande":250000,"moyenne":150000},{"modele":"Cullinan","petite":60000,"grande":250000,"moyenne":155000},{"modele":"Wraith","petite":40000,"grande":180000,"moyenne":110000}],"SCANIA":[{"modele":"P-Series","petite":10000,"grande":55000,"moyenne":32500},{"modele":"G-Series","petite":12000,"grande":60000,"moyenne":36000},{"modele":"R-Series","petite":15000,"grande":65000,"moyenne":40000},{"modele":"S-Series","petite":20000,"grande":75000,"moyenne":47500},{"modele":"L-Series","petite":8000,"grande":45000,"moyenne":26500}],"SEAT":[{"modele":"Ibiza","petite":500,"grande":15000,"moyenne":7750},{"modele":"Leon","petite":800,"grande":22000,"moyenne":11400},{"modele":"Arona","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Ateca","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Tarraco","petite":10000,"grande":32000,"moyenne":21000},{"modele":"Alhambra","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Mii","petite":300,"grande":8000,"moyenne":4150},{"modele":"Toledo","petite":500,"grande":10000,"moyenne":5250},{"modele":"Altea","petite":500,"grande":8000,"moyenne":4250},{"modele":"Exeo","petite":600,"grande":8000,"moyenne":4300}],"SKODA":[{"modele":"Fabia","petite":500,"grande":14000,"moyenne":7250},{"modele":"Octavia","petite":800,"grande":22000,"moyenne":11400},{"modele":"Superb","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Kamiq","petite":8000,"grande":22000,"moyenne":15000},{"modele":"Karoq","petite":8000,"grande":28000,"moyenne":18000},{"modele":"Kodiaq","petite":8000,"grande":35000,"moyenne":21500},{"modele":"Scala","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Rapid","petite":500,"grande":12000,"moyenne":6250},{"modele":"Enyaq","petite":18000,"grande":40000,"moyenne":29000},{"modele":"Roomster","petite":500,"grande":6000,"moyenne":3250},{"modele":"Yeti","petite":1000,"grande":12000,"moyenne":6500}],"SMART":[{"modele":"ForTwo","petite":500,"grande":12000,"moyenne":6250},{"modele":"ForFour","petite":500,"grande":10000,"moyenne":5250}],"SSANGYONG":[{"modele":"Tivoli","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Korando","petite":2000,"grande":20000,"moyenne":11000},{"modele":"Rexton","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Musso","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Rodius","petite":1500,"grande":12000,"moyenne":6750},{"modele":"Actyon","petite":1000,"grande":8000,"moyenne":4500}],"SUBARU":[{"modele":"Impreza","petite":500,"grande":18000,"moyenne":9250},{"modele":"WRX","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Legacy","petite":800,"grande":15000,"moyenne":7900},{"modele":"Outback","petite":2000,"grande":28000,"moyenne":15000},{"modele":"Forester","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Crosstrek","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Ascent","petite":10000,"grande":30000,"moyenne":20000},{"modele":"BRZ","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Levorg","petite":3000,"grande":20000,"moyenne":11500},{"modele":"XV","petite":3000,"grande":22000,"moyenne":12500},{"modele":"Tribeca","petite":1500,"grande":10000,"moyenne":5750},{"modele":"Justy","petite":300,"grande":4000,"moyenne":2150}],"SUZUKI":[{"modele":"Swift","petite":500,"grande":14000,"moyenne":7250},{"modele":"Vitara","petite":3000,"grande":22000,"moyenne":12500},{"modele":"S-Cross","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Jimny","petite":5000,"grande":25000,"moyenne":15000},{"modele":"Ignis","petite":3000,"grande":14000,"moyenne":8500},{"modele":"Alto","petite":200,"grande":4000,"moyenne":2100},{"modele":"Baleno","petite":500,"grande":10000,"moyenne":5250},{"modele":"Celerio","petite":300,"grande":8000,"moyenne":4150},{"modele":"SX4","petite":800,"grande":10000,"moyenne":5400},{"modele":"SX4 S-Cross","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Grand Vitara","petite":1500,"grande":15000,"moyenne":8250},{"modele":"Carry","petite":500,"grande":8000,"moyenne":4250},{"modele":"Every","petite":500,"grande":6000,"moyenne":3250},{"modele":"Wagon R","petite":300,"grande":5000,"moyenne":2650},{"modele":"APV","petite":800,"grande":8000,"moyenne":4400},{"modele":"Ertiga","petite":2000,"grande":14000,"moyenne":8000},{"modele":"XL7","petite":5000,"grande":18000,"moyenne":11500},{"modele":"Splash","petite":400,"grande":6000,"moyenne":3200}],"TATA":[{"modele":"Nexon","petite":3000,"grande":15000,"moyenne":9000},{"modele":"Harrier","petite":5000,"grande":20000,"moyenne":12500},{"modele":"Safari","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Punch","petite":2000,"grande":12000,"moyenne":7000}],"TESLA":[{"modele":"Model 3","petite":15000,"grande":42000,"moyenne":28500},{"modele":"Model Y","petite":18000,"grande":48000,"moyenne":33000},{"modele":"Model S","petite":15000,"grande":60000,"moyenne":37500},{"modele":"Model X","petite":20000,"grande":65000,"moyenne":42500},{"modele":"Cybertruck","petite":30000,"grande":70000,"moyenne":50000}],"TOYOTA":[{"modele":"Yaris","petite":500,"grande":18000,"moyenne":9250},{"modele":"Yaris Cross","petite":12000,"grande":25000,"moyenne":18500},{"modele":"Corolla","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Corolla Touring Sports","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Camry","petite":10000,"grande":32000,"moyenne":21000},{"modele":"C-HR","petite":8000,"grande":28000,"moyenne":18000},{"modele":"RAV4","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Land Cruiser","petite":5000,"grande":55000,"moyenne":30000},{"modele":"Hilux","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Proace","petite":5000,"grande":30000,"moyenne":17500},{"modele":"Proace City","petite":5000,"grande":22000,"moyenne":13500},{"modele":"Prius","petite":2000,"grande":22000,"moyenne":12000},{"modele":"Aygo","petite":500,"grande":10000,"moyenne":5250},{"modele":"Supra","petite":25000,"grande":50000,"moyenne":37500},{"modele":"Highlander","petite":20000,"grande":45000,"moyenne":32500},{"modele":"Fortuner","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Avensis","petite":500,"grande":12000,"moyenne":6250},{"modele":"Verso","petite":800,"grande":15000,"moyenne":7900},{"modele":"Auris","petite":600,"grande":15000,"moyenne":7800},{"modele":"4Runner","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Tacoma","petite":8000,"grande":35000,"moyenne":21500},{"modele":"Tundra","petite":8000,"grande":42000,"moyenne":25000},{"modele":"FJ Cruiser","petite":8000,"grande":30000,"moyenne":19000},{"modele":"Sequoia","petite":5000,"grande":45000,"moyenne":25000},{"modele":"Avalon","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Sienna","petite":3000,"grande":30000,"moyenne":16500},{"modele":"Venza","petite":5000,"grande":28000,"moyenne":16500},{"modele":"Matrix","petite":800,"grande":8000,"moyenne":4400},{"modele":"Rush","petite":3000,"grande":18000,"moyenne":10500},{"modele":"Avanza","petite":2000,"grande":15000,"moyenne":8500},{"modele":"Crown","petite":1000,"grande":15000,"moyenne":8000},{"modele":"Mark X","petite":1000,"grande":12000,"moyenne":6500},{"modele":"Carina","petite":300,"grande":5000,"moyenne":2650},{"modele":"RunX","petite":400,"grande":6000,"moyenne":3200},{"modele":"Innova","petite":3000,"grande":20000,"moyenne":11500},{"modele":"Wish","petite":800,"grande":8000,"moyenne":4400},{"modele":"Fielder","petite":500,"grande":8000,"moyenne":4250},{"modele":"Premio","petite":600,"grande":8000,"moyenne":4300},{"modele":"Allion","petite":600,"grande":8000,"moyenne":4300},{"modele":"Harrier","petite":3000,"grande":28000,"moyenne":15500},{"modele":"Vanguard","petite":2000,"grande":15000,"moyenne":8500},{"modele":"IST","petite":400,"grande":6000,"moyenne":3200},{"modele":"Ractis","petite":400,"grande":6000,"moyenne":3200},{"modele":"Belta","petite":400,"grande":6000,"moyenne":3200},{"modele":"Passo","petite":300,"grande":5000,"moyenne":2650},{"modele":"Urban Cruiser","petite":2000,"grande":12000,"moyenne":7000},{"modele":"Land Cruiser Prado","petite":5000,"grande":45000,"moyenne":25000},{"modele":"HiAce","petite":3000,"grande":25000,"moyenne":14000}],"VOLKSWAGEN":[{"modele":"Polo","petite":500,"grande":18000,"moyenne":9250},{"modele":"Golf","petite":600,"grande":25000,"moyenne":12800},{"modele":"Golf SW","petite":700,"grande":28000,"moyenne":14350},{"modele":"Passat","petite":800,"grande":28000,"moyenne":14400},{"modele":"Passat SW","petite":900,"grande":30000,"moyenne":15450},{"modele":"Arteon","petite":8000,"grande":35000,"moyenne":21500},{"modele":"T-Cross","petite":8000,"grande":22000,"moyenne":15000},{"modele":"T-Roc","petite":8000,"grande":28000,"moyenne":18000},{"modele":"Tiguan","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Touareg","petite":5000,"grande":50000,"moyenne":27500},{"modele":"Touran","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Caddy","petite":2000,"grande":25000,"moyenne":13500},{"modele":"Transporter","petite":3000,"grande":35000,"moyenne":19000},{"modele":"Crafter","petite":3000,"grande":38000,"moyenne":20500},{"modele":"Up!","petite":500,"grande":10000,"moyenne":5250},{"modele":"ID.3","petite":15000,"grande":32000,"moyenne":23500},{"modele":"ID.4","petite":18000,"grande":40000,"moyenne":29000},{"modele":"Taigo","petite":10000,"grande":22000,"moyenne":16000},{"modele":"Multivan","petite":15000,"grande":45000,"moyenne":30000},{"modele":"Coccinelle","petite":3000,"grande":25000,"moyenne":14000},{"modele":"Jetta","petite":600,"grande":18000,"moyenne":9300},{"modele":"Amarok","petite":5000,"grande":35000,"moyenne":20000},{"modele":"Atlas","petite":10000,"grande":35000,"moyenne":22500},{"modele":"Bora","petite":400,"grande":6000,"moyenne":3200},{"modele":"Beetle","petite":1000,"grande":15000,"moyenne":8000},{"modele":"Sharan","petite":1500,"grande":22000,"moyenne":11750},{"modele":"Scirocco","petite":2000,"grande":18000,"moyenne":10000},{"modele":"Eos","petite":1500,"grande":12000,"moyenne":6750}],"VOLVO":[{"modele":"XC40","petite":10000,"grande":38000,"moyenne":24000},{"modele":"XC60","petite":8000,"grande":48000,"moyenne":28000},{"modele":"XC90","petite":10000,"grande":55000,"moyenne":32500},{"modele":"V40","petite":2000,"grande":20000,"moyenne":11000},{"modele":"V60","petite":5000,"grande":35000,"moyenne":20000},{"modele":"V90","petite":8000,"grande":40000,"moyenne":24000},{"modele":"S60","petite":5000,"grande":32000,"moyenne":18500},{"modele":"S90","petite":8000,"grande":38000,"moyenne":23000},{"modele":"C30","petite":800,"grande":10000,"moyenne":5400},{"modele":"C40","petite":18000,"grande":40000,"moyenne":29000},{"modele":"S40","petite":500,"grande":8000,"moyenne":4250},{"modele":"V40 Cross Country","petite":3000,"grande":22000,"moyenne":12500},{"modele":"V50","petite":600,"grande":8000,"moyenne":4300},{"modele":"XC70","petite":2000,"grande":18000,"moyenne":10000}]};</script>
 <script src="/referentiel_douane.js?v=4"></script>
+<script src="/argus_4616_reference.js?v=1"></script>
 <script>
 // ── Modèle de liquidation — simulations calibrées sur les barèmes en vigueur ──
 // Valeur CAF = cote (€, référentiel douanier) × 655,957 + fret forfaitaire de zone.
@@ -1207,7 +1250,7 @@ function recToVal(rec, src) {
   return { mode: 'caf', caf: rec[1], cat: rec[2], n: rec[3], src: src };
 }
 
-// Valorisation depuis une série du référentiel (exacte, interpolée ou année proche).
+// Valorisation depuis une série du référentiel (exacte, interpolée ou millésime antérieur).
 function getReferenceValuation(mm, annee) {
   if (mm) {
     const rec = mm.y[String(annee)];
@@ -1228,17 +1271,14 @@ function getReferenceValuation(mm, annee) {
         const near = (annee - before.y) <= (after.y - annee) ? before.rec : after.rec;
         return { mode: 'cote', cote: cote, zone: near[4] || null, cat: near[2], n: 0, src: 'interp' };
       }
-      const near = before || after;
+      // Aucune hausse automatique au-delà du dernier millésime documenté :
+      // l'Argus 4616 s'arrête à 2021 et ne justifie pas une extrapolation de +8 %/an.
+      if (before && !after) return null;
+      const near = after;
       const gap = Math.abs(annee - near.y);
-      let cote;
-      if (annee < near.y) {
-        // Barème douanier sous le plus ancien millésime coté : -1 an → 80 %, -2 ans → 60 %, -3 ans et au-delà → 40 %
-        const coef = gap === 1 ? 0.80 : gap === 2 ? 0.60 : 0.40;
-        cote = Math.round(near.rec[1] * coef);
-      } else {
-        cote = Math.round(near.rec[1] * Math.pow(1.08, gap));
-      }
-      return { mode: 'cote', cote: cote, zone: near.rec[4] || null, cat: near.rec[2], n: 0, src: 'proche' };
+      // Barème douanier sous le plus ancien millésime coté : -1 an → 80 %, -2 ans → 60 %, -3 ans et au-delà → 40 %.
+      const coef = gap === 1 ? 0.80 : gap === 2 ? 0.60 : 0.40;
+      return { mode: 'cote', cote: Math.round(near.rec[1] * coef), zone: near.rec[4] || null, cat: near.rec[2], n: 0, src: 'proche', coefficient: coef, sourceYear: near.y };
     }
     const firstKey = Object.keys(mm.y)[0];
     const anyRec = mm.y[firstKey];
@@ -1247,15 +1287,111 @@ function getReferenceValuation(mm, annee) {
   return null;
 }
 
+function normalizeTraceKey(value) {
+  return normalizeArgusKey(value).replace(/[^A-Z0-9]/g, '');
+}
+
+function argusVehicleKey(marque, modele) {
+  return normalizeTraceKey(marque) + '|' + normalizeTraceKey(modele);
+}
+
+function getArgusLink(marque, modele) {
+  return (window.ARGUS_4616_LINKS || {})[argusVehicleKey(marque, modele)] || null;
+}
+
+function getArgusFamily(marque, modele) {
+  const link = getArgusLink(marque, modele);
+  if (!link) return null;
+  return (window.ARGUS_4616_FAMILIES || {})[normalizeTraceKey(link[0]) + '|' + normalizeTraceKey(link[1])] || null;
+}
+
+function getExactArgusTrace(marque, modele, annee) {
+  return (window.ARGUS_4616_TRACE || {})[argusVehicleKey(marque, modele) + '|' + String(annee)] || null;
+}
+
+// Retourne une cote directement reconstructible depuis une famille de l'Argus 4616.
+// Sans version/finition saisie, la moyenne basse/haute reste explicitement indicative.
+function getArgusFamilyValuation(marque, modele, annee) {
+  const link = getArgusLink(marque, modele);
+  const family = getArgusFamily(marque, modele);
+  if (!link || !family) return null;
+  const years = Object.keys(family.years).map(Number).sort(function (a, b) { return a - b; });
+  if (!years.length) return null;
+  let sourceYear = annee, coefficient = 1, rec = family.years[String(annee)];
+  if (!rec) {
+    const firstYear = years[0];
+    if (annee >= firstYear) return null;
+    const gap = firstYear - annee;
+    coefficient = gap === 1 ? 0.80 : gap === 2 ? 0.60 : 0.40;
+    sourceYear = firstYear;
+    rec = family.years[String(firstYear)];
+  }
+  const baseValue = rec[2];
+  const retained = Math.round(baseValue * coefficient);
+  const lines = [{ value: rec[0], id: rec[6], page: rec[3], pdfPage: rec[4], version: rec[8], status: 'VALIDE' }];
+  if (rec[7] && rec[7] !== rec[6]) lines.push({ value: rec[1], id: rec[7], page: rec[3], pdfPage: rec[4], version: rec[9], status: 'VALIDE' });
+  return {
+    mode: 'cote', cote: retained, zone: null, cat: null, n: rec[5] || 0, src: 'argus4616',
+    trace: {
+      status: 'reference_only', relation: link[2], sourceBrand: family.brand, sourceModel: family.model,
+      sourceYear: sourceYear, retained: retained, baseValue: baseValue, coefficient: coefficient,
+      method: coefficient < 1 ? 'depreciated_range' : 'midrange', low: rec[0], high: rec[1],
+      pages: [rec[3]], pdfPages: [rec[4]], lines: lines, note: link[3]
+    }
+  };
+}
+
+function withArgusTrace(val, marque, modele, annee) {
+  if (!val) return null;
+  val.trace = getExactArgusTrace(marque, modele, annee);
+  if (!val.trace && val.mode === 'cote') {
+    const familyValuation = getArgusFamilyValuation(marque, modele, annee);
+    if (familyValuation && familyValuation.trace) {
+      val.trace = familyValuation.trace;
+      val.trace.argusRetained = val.trace.retained;
+      val.trace.retained = val.cote;
+      val.trace.method = 'reference_range';
+      val.trace.note = (val.trace.note ? val.trace.note + ' ' : '') + 'La valeur utilisée provient du référentiel empirique ; la plage Argus sert de pièce de rapprochement.';
+    }
+  }
+  return val;
+}
+
 // Valorisation d'un véhicule.
-// src : 'ref' | 'interp' | 'proche' | 'assimilation' | 'argus'.
+// 2022+ : valeur facture/AVD ; jusqu'à 2021 : référence empirique recoupée avec l'Argus 4616.
 function getValuation(marque, modele, annee) {
   const mm = refModelEntry(marque, modele);
-  const direct = getReferenceValuation(mm, annee);
-  if (direct) return direct;
 
-  // Le modèle n'est pas nommé dans le référentiel : utiliser son équivalent douanier documenté.
+  // L'édition 4616 ne couvre aucun millésime après 2021.
+  // La catégorie éventuelle est conservée, mais jamais la cote extrapolée.
+  if (annee >= 2022) {
+    const rec = mm && mm.y[String(annee)];
+    return { mode: 'transaction', cote: null, zone: rec && rec[4] || null, cat: rec && rec[2] || null, n: 0, src: 'transaction', trace: null };
+  }
+
+  const exactRec = mm && mm.y[String(annee)];
+  if (exactRec) return withArgusTrace(recToVal(exactRec, 'ref'), marque, modele, annee);
+
+  // Si le modèle n'est pas nommé, une équivalence douanière documentée peut fournir une valeur exacte.
   const assimilation = findDouaneAssimilation(marque, modele);
+  if (assimilation) {
+    const target = refModelEntry(assimilation.toBrand, assimilation.toModel);
+    const targetRec = target && target.y[String(annee)];
+    if (targetRec) {
+      const assimilated = recToVal(targetRec, 'assimilation');
+      assimilated.src = 'assimilation';
+      assimilated.assimilation = assimilation;
+      return withArgusTrace(assimilated, marque, modele, annee);
+    }
+  }
+
+  // Priorité à une ligne/famille réellement présente dans l'édition 4616.
+  const argus = getArgusFamilyValuation(marque, modele, annee);
+  if (argus) return argus;
+
+  // Dernier recours documenté : interpolation entre années empiriques ou dépréciation sous la première année.
+  const direct = getReferenceValuation(mm, annee);
+  if (direct) return withArgusTrace(direct, marque, modele, annee);
   if (assimilation) {
     const target = refModelEntry(assimilation.toBrand, assimilation.toModel);
     const assimilated = getReferenceValuation(target, annee);
@@ -1263,22 +1399,18 @@ function getValuation(marque, modele, annee) {
       assimilated.baseSrc = assimilated.src;
       assimilated.src = 'assimilation';
       assimilated.assimilation = assimilation;
-      return assimilated;
+      return withArgusTrace(assimilated, marque, modele, annee);
     }
   }
 
-  // Modèle absent du référentiel : estimation indicative via la table Argus générique
-  const list = ARGUS_BY_KEY[normalizeArgusKey(marque)] || [];
-  const key = canonicalArgusModelKey(modele);
-  const entry = list.find(function (x) { return x.modele === modele || canonicalArgusModelKey(x.modele) === key; });
-  if (!entry) return null;
-  const age = Math.max(0, new Date().getFullYear() - annee);
-  const cote = age === 0 ? entry.grande : Math.max(entry.petite, Math.round(entry.grande * Math.pow(0.88, age)));
-  return { mode: 'cote', cote: cote, zone: null, cat: null, n: 0, src: 'argus' };
+  // Pas de cote générique inventée : l'utilisateur est orienté vers une vérification manuelle.
+  return null;
 }
 
 function getValuationLabel(val) {
   if (!val) return '€ TTC';
+  if (val.src === 'transaction') return '€ · facture / AVD (millésime hors Argus 4616)';
+  if (val.src === 'argus4616') return '€ TTC · L\'argus n° 4616 du 29 juin 2022';
   if (val.src === 'ref') {
     if (val.mode === 'plancher') return 'Plancher réglementaire · référence ADTL';
     return '€ TTC · référence ADTL 2026';
@@ -1316,7 +1448,11 @@ function refreshValuationDisplay() {
   document.getElementById('val-petite').textContent = lo !== null ? fmtEur(lo) : '—';
   document.getElementById('val-grande').textContent = hi !== null ? fmtEur(hi) : '—';
   const val = annee ? getValuation(m, mod, annee) : null;
-  if (val && val.mode === 'cote') {
+  if (val && val.mode === 'transaction') {
+    const transaction = parseFloat(document.getElementById('inp-transaction-value')?.value || '');
+    document.getElementById('val-moyenne').textContent = !isNaN(transaction) && transaction > 0 ? fmtEur(transaction) : '—';
+    document.getElementById('val-moyenne-desc').textContent = getValuationLabel(val);
+  } else if (val && val.mode === 'cote') {
     document.getElementById('val-moyenne').textContent = fmtEur(val.cote);
     document.getElementById('val-moyenne-desc').textContent = getValuationLabel(val);
   } else if (val && val.mode === 'plancher') {
@@ -1345,6 +1481,95 @@ function fmtEur(n) {
   return n.toLocaleString('fr-FR', {maximumFractionDigits:0}).replace(/\u202f/g, ' ');
 }
 
+function renderArgusTrace(val, marque, modele, annee) {
+  const set = function (id, value) { const el = document.getElementById(id); if (el) el.textContent = value || '—'; };
+  const statusEl = document.getElementById('trace-status');
+  if (!statusEl) return;
+
+  if (val && val.src === 'transaction') {
+    const amount = val.cote ? fmtEur(val.cote) + ' €' : 'Valeur non renseignée';
+    set('trace-title', 'Valeur transactionnelle justifiée');
+    statusEl.textContent = 'Facture / AVD'; statusEl.className = 'argus-trace-status transaction';
+    set('trace-source', marque + ' ' + modele + ' · millésime ' + annee);
+    set('trace-versions', 'Version et caractéristiques figurant sur la facture / l\'AVD');
+    set('trace-method', 'Valeur facture ou AVD, sans extrapolation de l\'Argus 4616');
+    set('trace-values', amount);
+    set('trace-page', 'Hors périmètre de L\'argus n° 4616 (millésimes après 2021)');
+    set('trace-ids', 'Référence de facture / AVD à joindre au dossier');
+    set('trace-warning', 'La facture, l\'AVD et les caractéristiques du véhicule doivent être présentées à l\'inspecteur vérificateur.');
+    return;
+  }
+
+  const trace = val && val.trace;
+  if (!trace) {
+    set('trace-title', 'Rapprochement documentaire incomplet');
+    statusEl.textContent = 'À vérifier'; statusEl.className = 'argus-trace-status unverified';
+    set('trace-source', marque + ' ' + modele + ' · ' + annee);
+    set('trace-versions', 'Aucune version Argus individualisée avec une confiance suffisante');
+    set('trace-method', val && val.src === 'interp' ? 'Interpolation entre liquidations empiriques' : 'Référence empirique sans ligne Argus individualisée');
+    set('trace-values', val && val.cote ? fmtEur(val.cote) + ' € utilisés' : '—');
+    set('trace-page', 'Aucune page Argus 4616 attribuée avec une confiance suffisante');
+    set('trace-ids', 'Vérification manuelle requise');
+    set('trace-warning', 'Ne pas présenter cette valeur comme une cote Argus exacte : faites valider le rapprochement avant dépôt.');
+    return;
+  }
+
+  const statuses = {
+    verified: ['Traçabilité Argus vérifiée', 'Vérifiée'],
+    corroborated: ['Valeur Argus recoupée', 'Recoupée'],
+    reference_only: ['Rapprochement Argus documenté', 'Indicatif']
+  };
+  const status = statuses[trace.status] || statuses.reference_only;
+  set('trace-title', status[0]);
+  statusEl.textContent = status[1]; statusEl.className = 'argus-trace-status ' + (trace.status || 'reference_only');
+
+  const relation = trace.relation === 'assimilation' ? 'assimilation' : trace.relation === 'alias' ? 'libellé rapproché' : 'correspondance directe';
+  set('trace-source', trace.sourceBrand + ' ' + trace.sourceModel + ' · millésime ' + trace.sourceYear + ' (' + relation + ')');
+  set('trace-versions', (trace.lines || []).map(function (line) {
+    return (line.version || 'Version non lisible') + (line.value != null ? ' — ' + fmtEur(line.value) + ' €' : '');
+  }).join(' · '));
+
+  const methods = {
+    variant: 'Cote d\'une version Argus concordante',
+    midrange: 'Moyenne de la cote basse et de la cote haute',
+    range: 'Rapprochement avec la plage de versions du modèle',
+    reference_range: 'Valeur empirique rapprochée d\'une plage Argus',
+    depreciated_variant: 'Cote de version × coefficient de dépréciation',
+    depreciated_range: 'Moyenne basse/haute × coefficient de dépréciation'
+  };
+  set('trace-method', (methods[trace.method] || 'Rapprochement Argus') + (trace.coefficient < 1 ? ' (' + Math.round(trace.coefficient * 100) + ' %)' : ''));
+
+  let valueText = '';
+  if (trace.method === 'reference_range') {
+    if (trace.low != null && trace.high != null && trace.low !== trace.high) valueText += 'Plage Argus ' + fmtEur(trace.low) + '–' + fmtEur(trace.high) + ' € ; ';
+    else if (trace.argusRetained != null) valueText += 'Repère Argus ' + fmtEur(trace.argusRetained) + ' € ; ';
+    if (trace.coefficient < 1 && trace.argusRetained != null) valueText += 'repère déprécié ' + fmtEur(trace.argusRetained) + ' € ; ';
+    valueText += 'valeur empirique utilisée ';
+  } else if (trace.coefficient < 1) {
+    if (trace.low != null && trace.high != null && trace.low !== trace.high) valueText += 'Plage ' + fmtEur(trace.low) + '–' + fmtEur(trace.high) + ' € ; ';
+    valueText += 'base ' + fmtEur(trace.baseValue) + ' € × ' + Math.round(trace.coefficient * 100) + ' % = ';
+  } else if (trace.low != null && trace.high != null && trace.low !== trace.high) {
+    valueText += fmtEur(trace.low) + '–' + fmtEur(trace.high) + ' € ; ';
+  } else if (trace.baseValue != null) {
+    valueText += 'Base ' + fmtEur(trace.baseValue) + ' € ; ';
+  }
+  valueText += fmtEur(trace.retained) + ' € retenus';
+  set('trace-values', valueText);
+
+  const pages = (trace.pages || []).join(', ');
+  const pdfPages = (trace.pdfPages || []).join(', ');
+  set('trace-page', 'L\'argus n° 4616 du 29 juin 2022 · page imprimée ' + (pages || '—') + (pdfPages ? ' · page PDF ' + pdfPages : ''));
+  set('trace-ids', (trace.lines || []).map(function (line) { return line.id; }).filter(Boolean).join(' · '));
+
+  if (trace.status === 'verified') {
+    set('trace-warning', (trace.note ? trace.note + ' ' : '') + 'Les identifiants permettent de retrouver les lignes utilisées dans l\'extraction de l\'édition 4616.');
+  } else if (trace.status === 'corroborated') {
+    set('trace-warning', 'La valeur concorde avec le référentiel empirique, mais la ligne OCR doit être contrôlée visuellement dans la page indiquée avant dépôt.');
+  } else {
+    set('trace-warning', (trace.note ? trace.note + ' ' : '') + 'La version exacte n\'étant pas saisie, ce rapprochement reste indicatif et doit être validé par l\'inspecteur.');
+  }
+}
+
 // ── Populate marque dropdown ─────────────────────────────────────────────────
 // ── Fret officiel par continent (XOF) — document formation douanes ──
 const FRET_TABLE = {
@@ -1358,6 +1583,7 @@ const FRET_TABLE = {
 const selMarque  = document.getElementById('sel-marque');
 const selModele  = document.getElementById('sel-modele');
 const inpAnnee   = document.getElementById('inp-annee');
+const inpTransaction = document.getElementById('inp-transaction-value');
 const inpFret    = document.getElementById('inp-fret');
 const chkTgc     = document.getElementById('chk-tgc');
 const selOrigine = document.getElementById('sel-origine');
@@ -1380,7 +1606,7 @@ const selType    = document.getElementById('sel-type');
   const p = new URLSearchParams(window.location.search);
   const m = p.get('marque'), a = p.get('annee'), f = p.get('fret'), o = p.get('origine');
   if (m) { selMarque.value = m; onMarqueChange(); }
-  if (a) inpAnnee.value = a;
+  if (a) { inpAnnee.value = a; updateTransactionControl(); }
   if (o) { selOrigine.value = o; onOrigineChange(); }
   if (f) { inpFret.value = f; inpFret.dataset.auto = ''; }
 })();
@@ -1440,6 +1666,7 @@ function onModeleChange() {
   document.getElementById('argus-empty').style.display = 'none';
   document.getElementById('argus-data').style.display  = 'block';
   refreshValuationDisplay();
+  updateTransactionControl();
   updateTgcControl();
   calculate();
 }
@@ -1485,8 +1712,21 @@ function onTypeChange() {
   calculate();
 }
 
+function updateTransactionControl() {
+  const box = document.getElementById('transaction-box');
+  if (!box || !inpTransaction) return;
+  const useTransaction = parseInt(inpAnnee.value) >= 2022;
+  box.style.display = useTransaction ? 'block' : 'none';
+  inpTransaction.required = useTransaction;
+  if (!useTransaction) {
+    inpTransaction.classList.remove('input-error');
+    inpTransaction.removeAttribute('aria-invalid');
+  }
+}
+
 // ── On année change ──────────────────────────────────────────────────────────
 function onAnneeChange() {
+  updateTransactionControl();
   updateTgcControl();
   refreshValuationDisplay();
   calculate();
@@ -1759,6 +1999,7 @@ function getEffectiveFret() {
 function calculateAndShowResults() {
   const feedback = document.getElementById('calc-feedback');
   const requiredFields = [selMarque, selModele, inpAnnee, selOrigine];
+  if (parseInt(inpAnnee.value) >= 2022) requiredFields.push(inpTransaction);
   requiredFields.forEach(function (field) {
     field.classList.remove('input-error');
     field.removeAttribute('aria-invalid');
@@ -1770,7 +2011,9 @@ function calculateAndShowResults() {
   if (invalid) {
     invalid.classList.add('input-error');
     invalid.setAttribute('aria-invalid', 'true');
-    if (feedback) feedback.textContent = 'Complétez les champs obligatoires avant de lancer le calcul.';
+    if (feedback) feedback.textContent = invalid === inpTransaction
+      ? 'Pour un millésime 2022 ou plus récent, indiquez la valeur de la facture ou de l\'AVD en euros.'
+      : 'Complétez les champs obligatoires avant de lancer le calcul.';
     invalid.focus();
     resetResults();
     return;
@@ -1790,7 +2033,7 @@ function calculateAndShowResults() {
 }
 
 // ── Main calculation — Formule officielle douanes Bénin ─────────────────────
-// CIF = FOB + Fret → VD = max(1 050 000, CIF × 0,70) → taxes sur VD
+// CAF = valeur véhicule + fret → assiette = 70 % du CAF → taxes sur l'assiette
 // Frais annexes réalistes 2025-2026
 const FRAIS_USN = 100000;
 const FRAIS_FORMALITES = 80000;
@@ -1815,6 +2058,12 @@ function calculate() {
   const val = getValuation(m, mod, annee);
   if (!val) { resetResults(); return; }
 
+  if (val.mode === 'transaction') {
+    const transactionValue = parseFloat(inpTransaction?.value || '');
+    if (isNaN(transactionValue) || transactionValue <= 0) { resetResults(); return; }
+    val.cote = transactionValue;
+  }
+
   // ── Catégorie fiscale réelle ──
   // A : tourisme ≥ 13 CV (accise 10 %) · B : tourisme standard · C : camions/utilitaires · D : tracteurs
   let cat;
@@ -1825,7 +2074,7 @@ function calculate() {
 
   // ── Valeur CAF (valeur en douane SYDONIA) ──
   let fob = null, fret = 0, rawCAF = 0;
-  if (val.mode === 'cote') {
+  if (val.mode === 'cote' || val.mode === 'transaction') {
     fob = Math.round(val.cote * EUR_XOF);
     fret = getEffectiveFret() || FRET_TABLE[val.zone] || 0;
     rawCAF = fob + fret;
@@ -1837,12 +2086,15 @@ function calculate() {
   const isPlancherApplied = rawCAF < plancher;
 
   refreshValuationDisplay();
+  renderArgusTrace(val, m, mod, annee);
 
   const coeffRow = document.getElementById('coeff-row');
   coeffRow.style.display = 'flex';
   document.getElementById('coeff-label').textContent = 'Abattement réglementaire : assiette = 70 % de la valeur CAF';
   document.getElementById('coeff-desc').textContent =
-    val.src === 'ref'    ? 'Valeur issue du référentiel de simulation ADTL 2026' :
+    val.src === 'transaction' ? 'Valeur facture / AVD — millésime hors périmètre de l\'Argus 4616' :
+    val.src === 'argus4616' ? 'Cote reconstruite depuis L\'argus n° 4616 du 29 juin 2022' :
+    val.src === 'ref'    ? 'Valeur empirique recoupée avec les données de l\'Argus 4616 lorsqu\'une ligne concordante existe' :
     val.src === 'interp' ? 'Cote interpolée entre les années voisines du référentiel de simulation' :
     val.src === 'proche' ? 'Cote estimée à partir d\'une année proche du référentiel douanier' :
     val.src === 'assimilation' && val.assimilation
@@ -1883,6 +2135,12 @@ function calculate() {
   } else if (val.src === 'ref') {
     document.getElementById('badge-regime').textContent = 'Référence ADTL confirmée';
     document.getElementById('badge-regime').className = 'badge-regime badge-calc';
+  } else if (val.src === 'transaction') {
+    document.getElementById('badge-regime').textContent = 'Valeur facture / AVD';
+    document.getElementById('badge-regime').className = 'badge-regime badge-calc';
+  } else if (val.src === 'argus4616') {
+    document.getElementById('badge-regime').textContent = 'Référence Argus 4616';
+    document.getElementById('badge-regime').className = 'badge-regime badge-calc';
   } else if (val.src === 'assimilation') {
     document.getElementById('badge-regime').textContent = 'Assimilation douanière';
     document.getElementById('badge-regime').className = 'badge-regime badge-calc';
@@ -1895,7 +2153,7 @@ function calculate() {
   document.getElementById('res-val-brute').textContent = fob !== null ? fmt(fob) : '—';
   document.getElementById('res-preref-row').style.display = 'none';
 
-  if (fret > 0 && val.mode === 'cote') {
+  if (fret > 0 && (val.mode === 'cote' || val.mode === 'transaction')) {
     document.getElementById('res-fret-row').style.display = 'flex';
     document.getElementById('res-fret-val').textContent = fmt(fret);
   } else {
@@ -2115,13 +2373,19 @@ function getSimulationData() {
       origine: document.getElementById('sel-origine')?.value || '',
       type_vehicule: document.getElementById('sel-type')?.value || '',
       tgc: document.getElementById('chk-tgc')?.checked || false,
-      fret: document.getElementById('inp-fret')?.value || ''
+      fret: document.getElementById('inp-fret')?.value || '',
+      valeur_transactionnelle_eur: document.getElementById('inp-transaction-value')?.value || ''
     },
     result_data: {
       cif: document.getElementById('res-cif')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
       vd: document.getElementById('res-vd')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
       total_douane: document.getElementById('res-total-douane')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
-      total: document.getElementById('res-total')?.textContent?.replace(/\s/g,'').replace('XOF','') || ''
+      total: document.getElementById('res-total')?.textContent?.replace(/\s/g,'').replace('XOF','') || '',
+      source_valeur: document.getElementById('trace-source')?.textContent || '',
+      versions_argus: document.getElementById('trace-versions')?.textContent || '',
+      statut_trace: document.getElementById('trace-status')?.textContent || '',
+      edition_page: document.getElementById('trace-page')?.textContent || '',
+      identifiants_argus: document.getElementById('trace-ids')?.textContent || ''
     }
   };
 }
@@ -2153,6 +2417,13 @@ function buildDevisHTML(nom, prenom, email, phone) {
   const totalDouane = v('res-total-douane');
   const totalGeneral = v('res-total');
   const fretVal = v('res-fret-val');
+  const traceStatus = v('trace-status');
+  const traceSource = v('trace-source');
+  const traceVersions = v('trace-versions');
+  const traceMethod = v('trace-method');
+  const traceValues = v('trace-values');
+  const tracePage = v('trace-page');
+  const traceIds = v('trace-ids');
 
   return `
 <div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;background:#f7f7f7;padding:0;">
@@ -2201,6 +2472,12 @@ function buildDevisHTML(nom, prenom, email, phone) {
         <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:8px 0;color:#525252;">+ Fret maritime</td><td style="padding:8px 0;text-align:right;font-weight:600;">${fretVal}</td></tr>
         <tr><td style="padding:10px 0;font-weight:700;color:#0A0A0A;">Base véhicule + fret</td><td style="padding:10px 0;text-align:right;font-weight:700;font-size:16px;color:#0A0A0A;">${cif}</td></tr>
       </table>
+    </div>
+
+    <!-- Traçabilité Argus / facture -->
+    <div style="background:#eef5f8;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #d7e3ea;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#607d8b;margin-bottom:12px;">Traçabilité de la valeur — ${traceStatus}</div>
+      <div style="font-size:13px;color:#253746;line-height:1.65;"><strong>Référence :</strong> ${traceSource}<br/><strong>Version(s) :</strong> ${traceVersions}<br/><strong>Méthode :</strong> ${traceMethod}<br/><strong>Valeur :</strong> ${traceValues}<br/><strong>Édition :</strong> ${tracePage}<br/><strong>Lignes :</strong> ${traceIds}</div>
     </div>
 
     <!-- TOTAL box -->
@@ -2439,6 +2716,7 @@ function collectReportData() {
     tel: lead.tel || '—',
     marque: selMarque.value || '—', modele: selModele.value || '—',
     annee: inpAnnee.value || '—',
+    transaction: inpTransaction?.value ? fmtEur(Number(inpTransaction.value)) + ' €' : '—',
     origine: selOrigine.options[selOrigine.selectedIndex] ? selOrigine.options[selOrigine.selectedIndex].text : '—',
     type: selType.options[selType.selectedIndex] ? selType.options[selType.selectedIndex].text : '—',
     cv13: document.getElementById('chk-tgc')?.checked ? 'Oui' : 'Non',
@@ -2447,6 +2725,8 @@ function collectReportData() {
     ddLabel: v('res-dd-label'), dd: v('res-dd'), prel: v('res-pcs'), tva: v('res-tva'),
     acc: v('res-tgc'), fixe: v('res-afs'),
     totalDouane: v('res-total-douane'), totalGeneral: v('res-total'),
+    traceStatus: v('trace-status'), traceSource: v('trace-source'), traceVersions: v('trace-versions'), traceMethod: v('trace-method'),
+    traceValues: v('trace-values'), tracePage: v('trace-page'), traceIds: v('trace-ids'), traceWarning: v('trace-warning'),
     etapes: etapes, docs: docs,
     date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }),
     ref: 'ADTL-' + Date.now().toString(36).toUpperCase()
@@ -2492,6 +2772,19 @@ function buildPdfReport(doc, d) {
     doc.setLineWidth(0.2); doc.line(M, y + 1.6, W - M, y + 1.6);
     y += 6;
   }
+  function block(label, value) {
+    np();
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8);
+    doc.setTextColor(gray[0], gray[1], gray[2]);
+    doc.text(label.toUpperCase(), M, y);
+    y += 4;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5);
+    doc.setTextColor(navy[0], navy[1], navy[2]);
+    const lines = doc.splitTextToSize(String(value || '—'), W - 2 * M);
+    if (y + lines.length * 4.2 > 275) { doc.addPage(); y = 16; }
+    doc.text(lines, M, y);
+    y += lines.length * 4.2 + 3;
+  }
   function checkItem(txt, done) {
     np();
     doc.setDrawColor(navy[0], navy[1], navy[2]);
@@ -2517,10 +2810,19 @@ function buildPdfReport(doc, d) {
   row('Statut du calcul', d.badge);
   y += 2;
   section('Base de calcul');
-  row('Valeur véhicule retenue (référentiel douanier)', d.valBrute);
+  row(d.transaction !== '—' ? 'Valeur véhicule retenue (facture / AVD)' : 'Valeur véhicule retenue', d.valBrute);
   if (d.fret !== '—') row('Fret maritime forfaitaire', d.fret);
   row('Valeur CAF (base douanière)', d.caf, true);
   if (!d.isReexport) row('Assiette taxable (70 % du CAF — abattement 30 %)', d.assiette);
+  y += 2;
+  section('Traçabilité de la valeur');
+  row('Statut', d.traceStatus, true);
+  block('Véhicule de référence', d.traceSource);
+  block('Version(s) Argus citée(s)', d.traceVersions);
+  block('Méthode et valeur', d.traceMethod + ' — ' + d.traceValues);
+  block('Édition et page', d.tracePage);
+  block('Identifiants de ligne', d.traceIds);
+  block('Observation', d.traceWarning);
   y += 2;
   section('Détail des droits et taxes');
   row(d.ddLabel, d.dd);
