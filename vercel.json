@@ -46,7 +46,7 @@
       ]
     },
     {
-      "source": "/(referentiel_douane|vehicles_db|config|cookie-consent|achat-vehicules)\\.(js|css)",
+      "source": "/(referentiel_douane|argus_4616_reference|vehicles_db|config|cookie-consent|achat-vehicules)\\.(js|css)",
       "headers": [
         {
           "key": "Cache-Control",
