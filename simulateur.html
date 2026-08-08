@@ -94,6 +94,8 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 .badge-regime { display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:600; }
 .badge-fixed { background:#FFF3CD;color:#856404; }
 .badge-calc { background:#D4EDDA;color:#155724; }
+.badge-review { background:#FEF3C7;color:#92400E; }
+.valuation-profile-note { margin-top:8px;padding:10px 12px;border:1px solid #FDE68A;border-radius:10px;background:#FFFBEB;color:#78350F;font-size:12px;line-height:1.45; }
 .spin { animation:spin .8s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
 @keyframes slideDown { from { opacity:0;transform:translate(-50%,-20px); } to { opacity:1;transform:translate(-50%,0); } }
@@ -510,13 +512,22 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
           </select>
           <div class="text-xs text-g400 mt-1">En réexportation, la douane applique un forfait unique — transport routier non inclus. <a href="/transit-niger" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">Voir le corridor Niger</a></div>
         </div>
+        <!-- Profils de valorisation observés dans les déclarations SAD -->
+        <div id="valuation-profile-box" style="display:none;" class="sm:col-span-2">
+          <label class="sim-label" for="sel-valuation-profile">Valeur douanière observée <span class="text-red-500">*</span></label>
+          <select class="sim-input sim-select" id="sel-valuation-profile" onchange="onValuationProfileChange()"></select>
+          <div class="valuation-profile-note" id="valuation-profile-note"></div>
+        </div>
         <!-- TGC — Taxe Grosses Cylindrées -->
         <div id="tgc-box" style="display:none;">
-          <label class="sim-label">Puissance du véhicule</label>
-          <div class="flex items-center gap-3 mt-1">
-            <input type="checkbox" id="chk-tgc" onchange="calculate()" class="w-4 h-4 accent-[#0D1B2A]">
-            <label for="chk-tgc" class="text-sm text-g400" id="tgc-label">Cochez si le véhicule fait 13 CV ou plus (cylindrée ≥ 2 181 cm³, ≈ 2,2 L)</label>
-          </div>
+          <label class="sim-label" for="sel-tax-category">Puissance / catégorie fiscale</label>
+          <select class="sim-input sim-select" id="sel-tax-category" onchange="onTaxCategoryChange()">
+            <option value="auto">Automatique — selon la référence sélectionnée</option>
+            <option value="B">Moins de 13 CV / cylindrée &lt; 2 181 cm³ — sans accise</option>
+            <option value="A">13 CV ou plus / cylindrée ≥ 2 181 cm³ — accise 10 %</option>
+          </select>
+          <div class="text-xs text-g400 mt-1" id="tgc-label">Vérifiez la puissance fiscale ou la cylindrée sur la carte grise. Ce choix modifie directement les droits.</div>
+          <input type="checkbox" id="chk-tgc" style="display:none;" tabindex="-1" aria-hidden="true">
         </div>
         <!-- Origine -->
         <div>
@@ -1151,6 +1162,30 @@ const EUR_XOF = 655.96;  // taux effectif constaté dans le référentiel douani
 const FORFAIT_REEXPORT = 305000;  // forfait EX8 (depuis févr. 2025)
 if (typeof REF_DOUANE === 'undefined') { window.REF_DOUANE = {}; console.warn('referentiel_douane.js absent — estimations Argus seules'); }
 
+// Profils réellement observés dans les extractions SAD consolidées.
+// Ils ne sont pas présentés comme des lignes Argus : l'édition 4616 ne contient pas
+// de Tucson 2014 individualisé. Le choix reste donc visible et vérifiable par le déclarant.
+const EMPIRICAL_SAD_PROFILES = {
+  'HYUNDAI|TUCSON|2014': {
+    defaultId: 'sad-o121r',
+    note: 'Deux valorisations ont été constatées sur 7 déclarations distinctes. La valeur haute est sélectionnée par prudence ; confirmez la version et la cylindrée avec le déclarant.',
+    profiles: [
+      {
+        id: 'sad-o121r', label: '7 675 € — valeur haute observée (O121R, 26/02/2026)',
+        cote: 7675, cat: 'A', zone: 'usa', observedCount: 1,
+        declaration: 'O121R', liquidationDate: '26/02/2026', officialCaf: 5634496, officialTaxes: 2364117,
+        evidence: 'Déclaration O121R · liquidée le 26/02/2026 · CAF 5 634 496 XOF · droits et taxes 2 364 117 XOF'
+      },
+      {
+        id: 'sad-6300', label: '6 300 € — valeur la plus fréquente (6 déclarations)',
+        cote: 6300, cat: 'A', zone: 'usa', observedCount: 6,
+        declaration: '6 dossiers', liquidationDate: '2024–2026', officialCaf: 4732549, officialTaxes: null,
+        evidence: 'SM149, AH0968, SAJ250030, BTC00101, TW038625AR et O623M · CAF observée ≈ 4 732 549 XOF'
+      }
+    ]
+  }
+};
+
 function normalizeArgusKey(value) {
   return String(value || '')
     .toUpperCase()
@@ -1177,6 +1212,31 @@ function canonicalArgusModelKey(value) {
     'COROLLA VERSO': 'VERSO'
   };
   return aliases[key] || key;
+}
+
+function empiricalProfileKey(marque, modele, annee) {
+  return normalizeArgusKey(marque) + '|' + canonicalArgusModelKey(modele).replace(/ /g, '') + '|' + String(annee || '');
+}
+
+function getEmpiricalProfileGroup(marque, modele, annee) {
+  return EMPIRICAL_SAD_PROFILES[empiricalProfileKey(marque, modele, annee)] || null;
+}
+
+function applyEmpiricalProfile(val, marque, modele, annee) {
+  const group = getEmpiricalProfileGroup(marque, modele, annee);
+  if (!val || !group) return val;
+  const select = document.getElementById('sel-valuation-profile');
+  const selectedId = select && select.value ? select.value : group.defaultId;
+  const profile = group.profiles.find(function (p) { return p.id === selectedId; }) || group.profiles[0];
+  val.mode = 'cote';
+  val.cote = profile.cote;
+  val.cat = profile.cat;
+  val.zone = profile.zone;
+  val.n = profile.observedCount;
+  val.src = 'empirical_sad';
+  val.empiricalProfile = profile;
+  val.empiricalGroup = group;
+  return val;
 }
 
 // ── Accès tolérant à la table Argus générique (repli) ──
@@ -1370,7 +1430,10 @@ function getValuation(marque, modele, annee) {
   }
 
   const exactRec = mm && mm.y[String(annee)];
-  if (exactRec) return withArgusTrace(recToVal(exactRec, 'ref'), marque, modele, annee);
+  if (exactRec) {
+    const exactVal = withArgusTrace(recToVal(exactRec, 'ref'), marque, modele, annee);
+    return applyEmpiricalProfile(exactVal, marque, modele, annee);
+  }
 
   // Si le modèle n'est pas nommé, une équivalence douanière documentée peut fournir une valeur exacte.
   const assimilation = findDouaneAssimilation(marque, modele);
@@ -1410,6 +1473,7 @@ function getValuation(marque, modele, annee) {
 function getValuationLabel(val) {
   if (!val) return '€ TTC';
   if (val.src === 'transaction') return '€ · facture / AVD (millésime hors Argus 4616)';
+  if (val.src === 'empirical_sad') return '€ TTC · valeur observée dans les déclarations SAD';
   if (val.src === 'argus4616') return '€ TTC · L\'argus n° 4616 du 29 juin 2022';
   if (val.src === 'ref') {
     if (val.mode === 'plancher') return 'Plancher réglementaire · référence ADTL';
@@ -1497,6 +1561,20 @@ function renderArgusTrace(val, marque, modele, annee) {
     set('trace-page', 'Hors périmètre de L\'argus n° 4616 (millésimes après 2021)');
     set('trace-ids', 'Référence de facture / AVD à joindre au dossier');
     set('trace-warning', 'La facture, l\'AVD et les caractéristiques du véhicule doivent être présentées à l\'inspecteur vérificateur.');
+    return;
+  }
+
+  if (val && val.src === 'empirical_sad' && val.empiricalProfile) {
+    const profile = val.empiricalProfile;
+    set('trace-title', 'Référence SAD observée — rapprochement Argus à compléter');
+    statusEl.textContent = 'À vérifier'; statusEl.className = 'argus-trace-status corroborated';
+    set('trace-source', marque + ' ' + modele + ' · ' + annee);
+    set('trace-versions', profile.observedCount + ' déclaration' + (profile.observedCount > 1 ? 's' : '') + ' avec cette valeur ; version exacte à confirmer');
+    set('trace-method', 'Valeur empirique sélectionnée dans les extractions SAD consolidées, sans attribution d\'une page Argus 4616');
+    set('trace-values', fmtEur(profile.cote) + ' € utilisés · CAF de contrôle ' + fmt(profile.officialCaf));
+    set('trace-page', 'Aucune page de L\'argus n° 4616 attribuée au Tucson 2014 avec une confiance suffisante');
+    set('trace-ids', profile.evidence);
+    set('trace-warning', 'Présentez la déclaration de référence, la carte grise et la version du véhicule à l\'inspecteur vérificateur. Cette référence SAD ne remplace pas une ligne Argus individualisée.');
     return;
   }
 
@@ -1650,6 +1728,7 @@ function onMarqueChange() {
   }
   document.getElementById('argus-empty').style.display = 'block';
   document.getElementById('argus-data').style.display  = 'none';
+  updateValuationProfileControl();
   resetResults();
 }
 
@@ -1660,55 +1739,113 @@ function onModeleChange() {
   if (!m || !mod) {
     document.getElementById('argus-empty').style.display = 'block';
     document.getElementById('argus-data').style.display  = 'none';
+    updateValuationProfileControl();
     resetResults();
     return;
   }
   document.getElementById('argus-empty').style.display = 'none';
   document.getElementById('argus-data').style.display  = 'block';
+  updateValuationProfileControl();
   refreshValuationDisplay();
   updateTransactionControl();
-  updateTgcControl();
+  updateTgcControl(true);
   calculate();
 }
 
-function updateTgcControl() {
+function updateValuationProfileControl() {
+  const box = document.getElementById('valuation-profile-box');
+  const select = document.getElementById('sel-valuation-profile');
+  const note = document.getElementById('valuation-profile-note');
+  if (!box || !select || !note) return;
+  const annee = parseInt(inpAnnee.value);
+  const group = getEmpiricalProfileGroup(selMarque.value, selModele.value, annee);
+  const key = group ? empiricalProfileKey(selMarque.value, selModele.value, annee) : '';
+  if (!group) {
+    box.style.display = 'none';
+    select.innerHTML = '';
+    select.dataset.profileKey = '';
+    return;
+  }
+  box.style.display = 'block';
+  if (select.dataset.profileKey !== key) {
+    select.innerHTML = '';
+    group.profiles.forEach(function (profile) {
+      const option = document.createElement('option');
+      option.value = profile.id;
+      option.textContent = profile.label;
+      select.appendChild(option);
+    });
+    select.value = group.defaultId;
+    select.dataset.profileKey = key;
+  }
+  note.textContent = group.note;
+}
+
+function onValuationProfileChange() {
+  refreshValuationDisplay();
+  updateTgcControl(true);
+  calculate();
+}
+
+function resolveTaxCategory(val, typeVeh) {
+  if (val && (val.cat === 'C' || val.cat === 'D')) return val.cat;
+  if (typeVeh === 'luxe') return 'A';
+  if (!isTgcEligibleType(typeVeh)) return (TAUX_TYPES[typeVeh] || TAUX_TYPES.tourisme).cat;
+  const select = document.getElementById('sel-tax-category');
+  if (select && (select.value === 'A' || select.value === 'B')) return select.value;
+  return val && (val.cat === 'A' || val.cat === 'B') ? val.cat : 'B';
+}
+
+function syncTgcCompatibility(val, typeVeh) {
+  const hidden = document.getElementById('chk-tgc');
+  if (hidden) hidden.checked = resolveTaxCategory(val, typeVeh) === 'A';
+}
+
+function onTaxCategoryChange() {
+  const annee = parseInt(inpAnnee.value);
+  const val = selMarque.value && selModele.value && annee ? getValuation(selMarque.value, selModele.value, annee) : null;
+  syncTgcCompatibility(val, selType.value);
+  calculate();
+}
+
+function updateTgcControl(resetChoice) {
   const typeVeh = selType.value;
   const tgcBox = document.getElementById('tgc-box');
-  const tgcChk = document.getElementById('chk-tgc');
+  const taxSelect = document.getElementById('sel-tax-category');
   const tgcLabel = document.getElementById('tgc-label');
   if (!isTgcEligibleType(typeVeh)) {
     tgcBox.style.display = 'none';
-    tgcChk.checked = false;
-    tgcChk.disabled = true;
+    taxSelect.disabled = true;
+    syncTgcCompatibility(null, typeVeh);
     return;
   }
 
   tgcBox.style.display = 'block';
   if (typeVeh === 'luxe') {
-    tgcChk.checked = true;
-    tgcChk.disabled = true;
-    tgcLabel.textContent = 'Pris en compte : véhicule 13 CV ou plus';
+    taxSelect.value = 'A';
+    taxSelect.disabled = true;
+    tgcLabel.textContent = 'Catégorie A appliquée pour une grosse cylindrée / véhicule de luxe.';
+    syncTgcCompatibility(null, typeVeh);
     return;
   }
-  tgcChk.disabled = false;
-  // Détection automatique depuis le référentiel calibré sur les barèmes en vigueur
+  taxSelect.disabled = false;
+  if (resetChoice) taxSelect.value = 'auto';
   const annee = parseInt(inpAnnee.value);
   const val = (selMarque.value && selModele.value && annee) ? getValuation(selMarque.value, selModele.value, annee) : null;
   if (val && (val.cat === 'A' || val.cat === 'B')) {
-    tgcChk.checked = (val.cat === 'A');
-    tgcLabel.textContent = val.cat === 'A'
-      ? 'Détecté : 13 CV ou plus (accise appliquée sur ce modèle en douane) — décochez si votre version est plus petite'
-      : 'Détecté : moins de 13 CV (pas d\'accise sur ce modèle en douane) — cochez si votre version fait 13 CV ou plus';
+    taxSelect.options[0].textContent = val.cat === 'A'
+      ? 'Automatique — catégorie A, accise 10 % appliquée'
+      : 'Automatique — catégorie B, sans accise';
+    tgcLabel.textContent = 'Vérifiez la puissance fiscale ou la cylindrée sur la carte grise. Un choix manuel remplace la recommandation.';
   } else {
-    // Modèle hors référentiel (estimation Argus) : catégorie inconnue, on ne peut pas deviner —
-    // on repart d'un état non coché plutôt que de garder l'état du véhicule précédemment consulté.
-    tgcChk.checked = false;
-    tgcLabel.textContent = 'Cochez si le véhicule fait 13 CV ou plus (cylindrée ≥ 2 181 cm³, ≈ 2,2 L)';
+    taxSelect.options[0].textContent = 'Automatique — catégorie B par défaut, à vérifier';
+    tgcLabel.textContent = 'Puissance inconnue : sélectionnez la catégorie à partir de la carte grise.';
   }
+  syncTgcCompatibility(val, typeVeh);
 }
 
 function onTypeChange() {
-  updateTgcControl();
+  updateTgcControl(false);
   calculate();
 }
 
@@ -1726,8 +1863,9 @@ function updateTransactionControl() {
 
 // ── On année change ──────────────────────────────────────────────────────────
 function onAnneeChange() {
+  updateValuationProfileControl();
   updateTransactionControl();
-  updateTgcControl();
+  updateTgcControl(true);
   refreshValuationDisplay();
   calculate();
 }
@@ -2051,7 +2189,6 @@ function calculate() {
   const typeVeh = document.getElementById('sel-type').value;
   const origine = selOrigine.value;
   const cfg = TAUX_TYPES[typeVeh] || TAUX_TYPES['tourisme'];
-  const chk13 = document.getElementById('chk-tgc')?.checked || false;
 
   if (!m || !mod || !annee || !origine) { resetResults(); return; }
 
@@ -2066,17 +2203,18 @@ function calculate() {
 
   // ── Catégorie fiscale réelle ──
   // A : tourisme ≥ 13 CV (accise 10 %) · B : tourisme standard · C : camions/utilitaires · D : tracteurs
-  let cat;
-  if (val.cat === 'C' || val.cat === 'D') cat = val.cat;
-  else if (typeVeh === 'luxe') cat = 'A';
-  else if (isTgcEligibleType(typeVeh)) cat = chk13 ? 'A' : 'B';
-  else cat = cfg.cat;
+  const cat = resolveTaxCategory(val, typeVeh);
+  syncTgcCompatibility(val, typeVeh);
 
   // ── Valeur CAF (valeur en douane SYDONIA) ──
   let fob = null, fret = 0, rawCAF = 0;
   if (val.mode === 'cote' || val.mode === 'transaction') {
-    fob = Math.round(val.cote * EUR_XOF);
     fret = getEffectiveFret() || FRET_TABLE[val.zone] || 0;
+    if (val.src === 'empirical_sad' && val.empiricalProfile && val.empiricalProfile.officialCaf) {
+      fob = val.empiricalProfile.officialCaf - (FRET_TABLE[val.empiricalProfile.zone] || 0);
+    } else {
+      fob = Math.round(val.cote * EUR_XOF);
+    }
     rawCAF = fob + fret;
   } else if (val.mode === 'caf') {
     rawCAF = val.caf;
@@ -2093,6 +2231,7 @@ function calculate() {
   document.getElementById('coeff-label').textContent = 'Abattement réglementaire : assiette = 70 % de la valeur CAF';
   document.getElementById('coeff-desc').textContent =
     val.src === 'transaction' ? 'Valeur facture / AVD — millésime hors périmètre de l\'Argus 4616' :
+    val.src === 'empirical_sad' ? 'Valeur observée dans les déclarations SAD consolidées — page Argus à confirmer' :
     val.src === 'argus4616' ? 'Cote reconstruite depuis L\'argus n° 4616 du 29 juin 2022' :
     val.src === 'ref'    ? 'Valeur empirique recoupée avec les données de l\'Argus 4616 lorsqu\'une ligne concordante existe' :
     val.src === 'interp' ? 'Cote interpolée entre les années voisines du référentiel de simulation' :
@@ -2132,9 +2271,14 @@ function calculate() {
   } else if (isPlancherApplied || val.mode === 'plancher') {
     document.getElementById('badge-regime').textContent = 'Minimum douane appliqué';
     document.getElementById('badge-regime').className = 'badge-regime badge-fixed';
+  } else if (val.src === 'empirical_sad') {
+    document.getElementById('badge-regime').textContent = 'Référence SAD observée — à vérifier';
+    document.getElementById('badge-regime').className = 'badge-regime badge-review';
   } else if (val.src === 'ref') {
-    document.getElementById('badge-regime').textContent = 'Référence ADTL confirmée';
-    document.getElementById('badge-regime').className = 'badge-regime badge-calc';
+    const traceStatus = val.trace && val.trace.status;
+    const isDocumented = traceStatus === 'verified' || traceStatus === 'corroborated';
+    document.getElementById('badge-regime').textContent = isDocumented ? 'Référence documentée' : 'Référence à vérifier';
+    document.getElementById('badge-regime').className = 'badge-regime ' + (isDocumented ? 'badge-calc' : 'badge-review');
   } else if (val.src === 'transaction') {
     document.getElementById('badge-regime').textContent = 'Valeur facture / AVD';
     document.getElementById('badge-regime').className = 'badge-regime badge-calc';
