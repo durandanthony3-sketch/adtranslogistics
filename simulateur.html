@@ -23,9 +23,9 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "Combien coûte le dédouanement d'un véhicule au Bénin en 2026 ?", "acceptedAnswer": {"@type": "Answer", "text": "Le coût dépend du type de véhicule, de son année, de son origine et de sa valeur de référence douanière. Pour une Toyota Corolla 2015 (origine USA), comptez environ 1 650 000 XOF de droits et taxes, plus environ 550 000 XOF de frais annexes. SUV et grosses cylindrées (13 CV et plus) sont taxés plus lourdement."}},
+    {"@type": "Question", "name": "Combien coûte le dédouanement d'un véhicule au Bénin en 2026 ?", "acceptedAnswer": {"@type": "Answer", "text": "Le coût dépend du type de véhicule, de son année, de son origine et de la valeur retenue par la douane. Le simulateur ajoute 189 668 XOF de frais complémentaires actuels : BFU GUCE/PAC 34 668 XOF et frais communiqués 155 000 XOF. Le bon à délivrer, le magasinage et les frais exceptionnels restent au réel."}},
     {"@type": "Question", "name": "Quelles informations faut-il pour estimer le dédouanement ?", "acceptedAnswer": {"@type": "Answer", "text": "Il faut la marque, le modèle, l'année du véhicule, sa catégorie et sa zone d'achat. Le simulateur estime automatiquement le fret et les frais."}},
-    {"@type": "Question", "name": "Que comprend le montant affiché ?", "acceptedAnswer": {"@type": "Answer", "text": "Le montant affiché inclut les droits et taxes estimés, les frais de sortie, les formalités, la plaque, la carte grise et l'accompagnement AD TRANS LOGISTICS."}},
+    {"@type": "Question", "name": "Que comprend le montant affiché ?", "acceptedAnswer": {"@type": "Answer", "text": "Le montant affiché inclut les droits et taxes estimés, le BFU GUCE/PAC vérifié, l'émission de la déclaration, la liquidation, Interpol, la plaque et l'enlèvement. Les frais variables non connus sont exclus."}},
     {"@type": "Question", "name": "Combien coûte le fret maritime pour un véhicule vers Cotonou ?", "acceptedAnswer": {"@type": "Answer", "text": "Europe : 300 000 XOF, USA/Canada : 600 000 XOF, Asie : 450 000 XOF, Moyen-Orient : 450 000 XOF, Intra-Afrique : 50 000 XOF."}}
   ]
 }
@@ -339,7 +339,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 <section class="pt-28 pb-6 lg:pt-36 lg:pb-10 bg-white overflow-hidden">
 <div class="container mx-auto px-6 max-w-[1440px]">
   <div class="max-w-[720px] mx-auto text-center">
-    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Barème réel 2026 — Douanes Bénin</div>
+    <div class="tag mb-3 mx-auto" style="display:inline-flex;"><div class="dot"></div>Estimation 2026 — références observées</div>
     <h1 class="font-heading font-bold text-brand mb-3" style="font-size:clamp(2.2rem,5.5vw,64px);line-height:1.05;letter-spacing:-.025em;">
       Combien va coûter<br/><span class="text-g400 font-medium italic">le dédouanement ?</span>
     </h1>
@@ -353,7 +353,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
       </div>
       <div class="flex items-center gap-2 text-sm text-g500 bg-g50 rounded-full px-4 py-2">
         <span class="material-symbols-outlined text-base text-brand">check_circle</span>
-        Barème douanier 2026 vérifié
+        Liquidations 2026 documentées
       </div>
     </div>
     <p class="text-xs text-g400 mt-2 italic">* Estimation indicative — simulations calibrées sur les barèmes en vigueur. Le montant définitif peut varier selon le code SH et le régime.</p>
@@ -700,7 +700,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
               <span class="result-value tax" id="res-user-douane">—</span>
             </div>
             <div class="result-row" style="border-bottom:none;">
-              <span class="result-label">Frais de sortie et accompagnement</span>
+              <span class="result-label">Frais complémentaires actuels</span>
               <span class="result-value tax" id="res-user-frais">—</span>
             </div>
           </div>
@@ -803,34 +803,30 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
 
             <!-- Frais annexes -->
             <div id="res-frais-block" class="mb-4">
-              <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3 mt-4">Frais annexes (estimatifs)</div>
+              <div class="text-xs text-g400 uppercase tracking-wider font-semibold mb-3 mt-4">Frais complémentaires actuels</div>
               <div class="result-row">
-                <span class="result-label">USN — Guichet unique</span>
-                <span class="result-value tax">100 000 XOF</span>
+                <span class="result-label">BFU GUCE / PAC vérifié</span>
+                <span class="result-value tax">34 668 XOF</span>
               </div>
               <div class="result-row">
-                <span class="result-label">Formalités</span>
-                <span class="result-value tax">80 000 XOF</span>
+                <span class="result-label">Émission de la déclaration</span>
+                <span class="result-value tax">10 000 XOF</span>
               </div>
               <div class="result-row">
-                <span class="result-label">Interpool</span>
+                <span class="result-label">Liquidation</span>
+                <span class="result-value tax">10 000 XOF</span>
+              </div>
+              <div class="result-row">
+                <span class="result-label">Interpol</span>
                 <span class="result-value tax">20 000 XOF</span>
               </div>
               <div class="result-row">
-                <span class="result-label">Enlèvement</span>
-                <span class="result-value tax">75 000 XOF</span>
-              </div>
-              <div class="result-row">
-                <span class="result-label">Vacation</span>
-                <span class="result-value tax">35 000 XOF</span>
-              </div>
-              <div class="result-row">
-                <span class="result-label">Plaque + Carte grise</span>
+                <span class="result-label">Plaque</span>
                 <span class="result-value tax">40 000 XOF</span>
               </div>
               <div class="result-row" style="border-bottom:2px solid #E5E5E5;">
-                <span class="result-label" style="font-weight:600;color:#0A0A0A;">Transit AD TRANS LOGISTICS</span>
-                <span class="result-value tax" style="font-weight:700;">200 000 XOF</span>
+                <span class="result-label" style="font-weight:600;color:#0A0A0A;">Enlèvement</span>
+                <span class="result-value tax" style="font-weight:700;">75 000 XOF</span>
               </div>
             </div>
 
@@ -878,8 +874,8 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
       <div class="space-y-2 text-sm text-white/70">
         <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Droits et taxes de douane estimés</div>
         <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Fret maritime estimé selon la zone d'achat</div>
-        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Frais de sortie, plaque, carte grise et formalités</div>
-        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Accompagnement AD TRANS LOGISTICS inclus dans l'estimation</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>BFU GUCE/PAC, émission, liquidation, Interpol, plaque et enlèvement</div>
+        <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Frais variables signalés séparément lorsqu'ils ne sont pas connus</div>
         <div class="flex gap-2"><span class="text-white/40 flex-shrink-0">◾</span>Valeur de référence et règles douanières appliquées automatiquement</div>
       </div>
       <div class="mt-4 p-3 rounded-lg bg-white/10 text-xs text-amber-300 font-semibold">
@@ -1016,7 +1012,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
       </summary>
       <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
-        Le coût dépend du type de véhicule, de son année, de son origine et de sa valeur de référence douanière. Pour un véhicule de tourisme d'occasion type Toyota Corolla 2015 (origine USA), comptez environ <strong>1 650 000 XOF</strong> de droits et taxes, plus environ 550 000 XOF de frais annexes (transit, enlèvement, plaque). Les SUV et véhicules de luxe sont taxés plus lourdement.
+        Le coût dépend du type de véhicule, de son année, de son origine et de la valeur retenue par la douane. Le simulateur ajoute actuellement <strong>189 668 XOF</strong> : BFU GUCE/PAC vérifié 34 668 XOF, émission 10 000, liquidation 10 000, Interpol 20 000, plaque 40 000 et enlèvement 75 000. Le BAD, le magasinage et les frais exceptionnels restent au réel.
       </div>
     </details>
     <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
@@ -1034,7 +1030,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         <span class="material-symbols-outlined text-g400 group-open:rotate-180 transition-transform">expand_more</span>
       </summary>
       <div class="px-5 pb-5 text-sm text-g600 leading-relaxed">
-        Le montant affiché regroupe les droits et taxes estimés, les frais de sortie, les formalités, la plaque, la carte grise et l'accompagnement AD TRANS LOGISTICS. Le montant estimé et le détail ligne par ligne s'affichent gratuitement après validation de vos coordonnées.
+        Le montant affiché regroupe les droits et taxes estimés et les frais complémentaires actuels de 189 668 XOF. Il n'ajoute aucune commission distincte. Le montant estimé et le détail ligne par ligne s'affichent gratuitement après validation de vos coordonnées.
       </div>
     </details>
     <details class="bg-white rounded-xl border border-g200 overflow-hidden group">
@@ -1163,8 +1159,8 @@ const FORFAIT_REEXPORT = 305000;  // forfait EX8 (depuis févr. 2025)
 if (typeof REF_DOUANE === 'undefined') { window.REF_DOUANE = {}; console.warn('referentiel_douane.js absent — estimations Argus seules'); }
 
 // Profils réellement observés dans les extractions SAD consolidées.
-// Ils ne sont pas présentés comme des lignes Argus : l'édition 4616 ne contient pas
-// de Tucson 2014 individualisé. Le choix reste donc visible et vérifiable par le déclarant.
+// Ils ne sont pas présentés comme des lignes Argus individualisées : le choix reste
+// visible, prudent et vérifiable par le déclarant à partir du VIN et de l'AVD.
 const EMPIRICAL_SAD_PROFILES = {
   'HYUNDAI|TUCSON|2014': {
     defaultId: 'sad-o121r',
@@ -1181,6 +1177,72 @@ const EMPIRICAL_SAD_PROFILES = {
         cote: 6300, cat: 'A', zone: 'usa', observedCount: 6,
         declaration: '6 dossiers', liquidationDate: '2024–2026', officialCaf: 4732549, officialTaxes: null,
         evidence: 'SM149, AH0968, SAJ250030, BTC00101, TW038625AR et O623M · CAF observée ≈ 4 732 549 XOF'
+      }
+    ]
+  },
+  'TOYOTA|RAV4|2012': {
+    defaultId: 'rav4-2012-observed',
+    note: 'Une liquidation RAV4 2012 payée a été retrouvée en 2026. Le profil reproduit son CAF et sa liquidation ; confirmez le VIN, la cylindrée et l’AVD avant embarquement.',
+    profiles: [
+      {
+        id: 'rav4-2012-observed', label: 'CAF 4 383 351 XOF — liquidation observée 1 483 652 XOF',
+        cote: 6225, cat: 'B', zone: 'europe', observedCount: 1, useOfficialCaf: true,
+        declaration: '1 dossier 2026', liquidationDate: '07/01/2026', officialCaf: 4383351, officialTaxes: 1483652,
+        evidence: '1 liquidation RAV4 2012 payée · CAF 4 383 351 XOF · droits et taxes 1 483 652 XOF'
+      }
+    ]
+  },
+  'TOYOTA|RAV4|2013': {
+    defaultId: 'rav4-2013-observed',
+    note: 'Cinq liquidations RAV4 2013 payées affichent toutes 2 410 275 XOF. Le profil prudent est classé A ; choisissez B uniquement si les documents du véhicule confirment moins de 13 CV.',
+    profiles: [
+      {
+        id: 'rav4-2013-observed', label: 'CAF 5 749 286 XOF — 5 liquidations identiques à 2 410 275 XOF',
+        cote: 7850, cat: 'A', zone: 'usa', observedCount: 5, useOfficialCaf: true,
+        declaration: '5 dossiers 2026', liquidationDate: '28/01–05/03/2026', officialCaf: 5749286, officialTaxes: 2410275,
+        evidence: '5 liquidations RAV4 2013 payées · CAF 5 749 286/5 749 287 XOF · droits et taxes 2 410 275 XOF'
+      }
+    ]
+  },
+  'TOYOTA|RAV4|2014': {
+    defaultId: 'rav4-2014-high',
+    note: 'Deux niveaux ont été observés en 2026. Le niveau haut est sélectionné par prudence ; choisissez l’autre profil seulement après rapprochement du VIN et de l’AVD.',
+    profiles: [
+      {
+        id: 'rav4-2014-high', label: 'Profil prudent — CAF 6 880 817 XOF · liquidation 2 865 239 XOF',
+        cote: 9575, cat: 'A', zone: 'usa', observedCount: 1, useOfficialCaf: true,
+        declaration: '1 dossier 2026', liquidationDate: '17/02/2026', officialCaf: 6880817, officialTaxes: 2865239,
+        evidence: 'Liquidation RAV4 2014 haute observée · CAF 6 880 817 XOF · droits et taxes 2 865 239 XOF'
+      },
+      {
+        id: 'rav4-2014-low', label: 'Profil observé — CAF 5 995 271 XOF · liquidation 2 509 178 XOF',
+        cote: 8225, cat: 'A', zone: 'usa', observedCount: 1, useOfficialCaf: true,
+        declaration: '1 dossier 2026', liquidationDate: '15/01/2026', officialCaf: 5995271, officialTaxes: 2509178,
+        evidence: 'Liquidation RAV4 2014 basse observée · CAF 5 995 271 XOF · droits et taxes 2 509 178 XOF'
+      }
+    ]
+  },
+  'TOYOTA|RAV4|2015': {
+    defaultId: 'rav4-2015-high',
+    note: 'Trois niveaux ont été observés en 2026. Le niveau haut est sélectionné par prudence ; le profil 2,0 L doit être confirmé par le VIN, la puissance fiscale et l’AVD.',
+    profiles: [
+      {
+        id: 'rav4-2015-high', label: 'Profil prudent — CAF 8 963 490 XOF · liquidation 3 702 641 XOF',
+        cote: 12750, cat: 'A', zone: 'usa', observedCount: 1, useOfficialCaf: true,
+        declaration: '1 dossier 2026', liquidationDate: '24/02/2026', officialCaf: 8963490, officialTaxes: 3702641,
+        evidence: 'Liquidation RAV4 2015 haute observée · CAF 8 963 490 XOF · droits et taxes 3 702 641 XOF'
+      },
+      {
+        id: 'rav4-2015-mid', label: 'Profil intermédiaire — CAF 6 880 817 XOF · liquidation 2 865 239 XOF',
+        cote: 9575, cat: 'A', zone: 'usa', observedCount: 1, useOfficialCaf: true,
+        declaration: '1 dossier 2026', liquidationDate: '19/02/2026', officialCaf: 6880817, officialTaxes: 2865239,
+        evidence: 'Liquidation RAV4 2015 intermédiaire observée · CAF 6 880 817 XOF · droits et taxes 2 865 239 XOF'
+      },
+      {
+        id: 'rav4-2015-low', label: 'Profil bas — CAF 6 580 817 XOF · liquidation 2 178 007 XOF',
+        cote: 9575, cat: 'B', zone: 'europe', observedCount: 1, useOfficialCaf: true,
+        declaration: '1 dossier 2026', liquidationDate: '22/01/2026', officialCaf: 6580817, officialTaxes: 2178007,
+        evidence: 'Liquidation RAV4 2015 basse observée · CAF 6 580 817 XOF · droits et taxes 2 178 007 XOF'
       }
     ]
   }
@@ -1228,8 +1290,9 @@ function applyEmpiricalProfile(val, marque, modele, annee) {
   const select = document.getElementById('sel-valuation-profile');
   const selectedId = select && select.value ? select.value : group.defaultId;
   const profile = group.profiles.find(function (p) { return p.id === selectedId; }) || group.profiles[0];
-  val.mode = 'cote';
+  val.mode = profile.useOfficialCaf ? 'caf' : 'cote';
   val.cote = profile.cote;
+  if (profile.useOfficialCaf) val.caf = profile.officialCaf;
   val.cat = profile.cat;
   val.zone = profile.zone;
   val.n = profile.observedCount;
@@ -1473,6 +1536,7 @@ function getValuation(marque, modele, annee) {
 function getValuationLabel(val) {
   if (!val) return '€ TTC';
   if (val.src === 'transaction') return '€ · facture / AVD (millésime hors Argus 4616)';
+  if (val.src === 'empirical_sad' && val.mode === 'caf') return 'CAF observée dans les déclarations SAD';
   if (val.src === 'empirical_sad') return '€ TTC · valeur observée dans les déclarations SAD';
   if (val.src === 'argus4616') return '€ TTC · L\'argus n° 4616 du 29 juin 2022';
   if (val.src === 'ref') {
@@ -1523,7 +1587,9 @@ function refreshValuationDisplay() {
     document.getElementById('val-moyenne').textContent = '—';
     document.getElementById('val-moyenne-desc').textContent = 'Plancher douanier appliqué';
   } else if (val && val.mode === 'caf') {
-    document.getElementById('val-moyenne').textContent = fmtEur(Math.round(val.caf / EUR_XOF));
+    document.getElementById('val-moyenne').textContent = val.src === 'empirical_sad'
+      ? fmt(val.caf)
+      : fmtEur(Math.round(val.caf / EUR_XOF));
     document.getElementById('val-moyenne-desc').textContent = getValuationLabel(val);
   } else {
     document.getElementById('val-moyenne').textContent = hi !== null ? fmtEur(hi) : '—';
@@ -1566,15 +1632,21 @@ function renderArgusTrace(val, marque, modele, annee) {
 
   if (val && val.src === 'empirical_sad' && val.empiricalProfile) {
     const profile = val.empiricalProfile;
-    set('trace-title', 'Référence SAD observée — rapprochement Argus à compléter');
+    set('trace-title', 'Référence SAD observée — rapprochement documentaire à confirmer');
     statusEl.textContent = 'À vérifier'; statusEl.className = 'argus-trace-status corroborated';
     set('trace-source', marque + ' ' + modele + ' · ' + annee);
     set('trace-versions', profile.observedCount + ' déclaration' + (profile.observedCount > 1 ? 's' : '') + ' avec cette valeur ; version exacte à confirmer');
-    set('trace-method', 'Valeur empirique sélectionnée dans les extractions SAD consolidées, sans attribution d\'une page Argus 4616');
-    set('trace-values', fmtEur(profile.cote) + ' € utilisés · CAF de contrôle ' + fmt(profile.officialCaf));
-    set('trace-page', 'Aucune page de L\'argus n° 4616 attribuée au Tucson 2014 avec une confiance suffisante');
+    set('trace-method', profile.useOfficialCaf
+      ? 'CAF et liquidation payée observées dans les extractions SAD 2026'
+      : 'Valeur empirique sélectionnée dans les extractions SAD consolidées, sans attribution d\'une page Argus 4616');
+    set('trace-values', profile.useOfficialCaf
+      ? 'CAF observée ' + fmt(profile.officialCaf) + ' · droits et taxes observés ' + fmt(profile.officialTaxes)
+      : fmtEur(profile.cote) + ' € utilisés · CAF de contrôle ' + fmt(profile.officialCaf));
+    set('trace-page', profile.useOfficialCaf
+      ? 'Référence de liquidation 2026 ; version, origine et cylindrée à rapprocher du VIN'
+      : 'Aucune page de L\'argus n° 4616 attribuée avec une confiance suffisante');
     set('trace-ids', profile.evidence);
-    set('trace-warning', 'Présentez la déclaration de référence, la carte grise et la version du véhicule à l\'inspecteur vérificateur. Cette référence SAD ne remplace pas une ligne Argus individualisée.');
+    set('trace-warning', 'Présentez la déclaration de référence, la carte grise et les caractéristiques du véhicule à l\'inspecteur vérificateur. Cette observation ne garantit pas le montant du VIN à importer.');
     return;
   }
 
@@ -2172,15 +2244,14 @@ function calculateAndShowResults() {
 
 // ── Main calculation — Formule officielle douanes Bénin ─────────────────────
 // CAF = valeur véhicule + fret → assiette = 70 % du CAF → taxes sur l'assiette
-// Frais annexes réalistes 2025-2026
-const FRAIS_USN = 100000;
-const FRAIS_FORMALITES = 80000;
-const FRAIS_INTERPOOL = 20000;
+// Frais complémentaires actualisés le 23/08/2026 à partir du BFU vérifié et des montants ADTL communiqués.
+const FRAIS_GUCE_PAC = 34668;
+const FRAIS_EMISSION_DECLARATION = 10000;
+const FRAIS_LIQUIDATION = 10000;
+const FRAIS_INTERPOL = 20000;
 const FRAIS_ENLEVEMENT = 75000;
-const FRAIS_VACATION = 35000;
-const FRAIS_PLAQUE_CG = 40000;
-const FRAIS_TRANSIT_AD = 200000; // Transit AD TRANS LOGISTICS
-const FRAIS_ANNEXES = FRAIS_USN + FRAIS_FORMALITES + FRAIS_INTERPOOL + FRAIS_ENLEVEMENT + FRAIS_VACATION + FRAIS_PLAQUE_CG + FRAIS_TRANSIT_AD; // 550 000
+const FRAIS_PLAQUE = 40000;
+const FRAIS_ANNEXES = FRAIS_GUCE_PAC + FRAIS_EMISSION_DECLARATION + FRAIS_LIQUIDATION + FRAIS_INTERPOL + FRAIS_ENLEVEMENT + FRAIS_PLAQUE; // 189 668
 
 function calculate() {
   const m     = selMarque.value;
@@ -2231,7 +2302,7 @@ function calculate() {
   document.getElementById('coeff-label').textContent = 'Abattement réglementaire : assiette = 70 % de la valeur CAF';
   document.getElementById('coeff-desc').textContent =
     val.src === 'transaction' ? 'Valeur facture / AVD — millésime hors périmètre de l\'Argus 4616' :
-    val.src === 'empirical_sad' ? 'Valeur observée dans les déclarations SAD consolidées — page Argus à confirmer' :
+    val.src === 'empirical_sad' ? 'Liquidation SAD observée — VIN, cylindrée et AVD à confirmer' :
     val.src === 'argus4616' ? 'Cote reconstruite depuis L\'argus n° 4616 du 29 juin 2022' :
     val.src === 'ref'    ? 'Valeur empirique recoupée avec les données de l\'Argus 4616 lorsqu\'une ligne concordante existe' :
     val.src === 'interp' ? 'Cote interpolée entre les années voisines du référentiel de simulation' :
@@ -2257,9 +2328,17 @@ function calculate() {
   let acc  = cat === 'A' ? Math.round(baseTaxes * 0.10) : 0;
   let redevances = TAXES_FIXES;
   let fraisAnnexesEff = FRAIS_ANNEXES;
+  const officialProfile = val.src === 'empirical_sad' && val.empiricalProfile && val.empiricalProfile.useOfficialCaf
+    && cat === val.empiricalProfile.cat && Number.isFinite(val.empiricalProfile.officialTaxes);
+  if (officialProfile) {
+    const observedAdjustment = val.empiricalProfile.officialTaxes - (dd + prel + tva + acc + redevances);
+    // Les SAD observés présentent parfois un écart de ±3 XOF lié aux arrondis par rubrique.
+    if (cat === 'A') acc += observedAdjustment;
+    else tva += observedAdjustment;
+  }
   if (isReexport) {
     dd = FORFAIT_REEXPORT; prel = 0; tva = 0; acc = 0; redevances = 0;
-    fraisAnnexesEff = FRAIS_ANNEXES - FRAIS_PLAQUE_CG; // pas d'immatriculation béninoise
+    fraisAnnexesEff = FRAIS_ANNEXES - FRAIS_PLAQUE; // pas d'immatriculation béninoise
   }
   const totalDouane = dd + prel + tva + acc + redevances;
   const totalGeneral = totalDouane + fraisAnnexesEff;
@@ -2661,15 +2740,14 @@ function buildDevisHTML(nom, prenom, email, phone) {
 
     <!-- Frais annexes -->
     <div style="background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #e5e5e5;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#a3a3a3;margin-bottom:12px;">Frais annexes (estimatifs)</div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#a3a3a3;margin-bottom:12px;">Frais complémentaires actuels</div>
       <table style="width:100%;font-size:13px;color:#333;border-collapse:collapse;">
-        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">USN — Guichet unique</td><td style="padding:6px 0;text-align:right;font-weight:600;">100 000 XOF</td></tr>
-        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Formalités</td><td style="padding:6px 0;text-align:right;font-weight:600;">80 000 XOF</td></tr>
-        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Interpool</td><td style="padding:6px 0;text-align:right;font-weight:600;">20 000 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">BFU GUCE / PAC vérifié</td><td style="padding:6px 0;text-align:right;font-weight:600;">34 668 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Émission de la déclaration</td><td style="padding:6px 0;text-align:right;font-weight:600;">10 000 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Liquidation</td><td style="padding:6px 0;text-align:right;font-weight:600;">10 000 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Interpol</td><td style="padding:6px 0;text-align:right;font-weight:600;">20 000 XOF</td></tr>
+        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Plaque</td><td style="padding:6px 0;text-align:right;font-weight:600;">40 000 XOF</td></tr>
         <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Enlèvement</td><td style="padding:6px 0;text-align:right;font-weight:600;">75 000 XOF</td></tr>
-        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Vacation</td><td style="padding:6px 0;text-align:right;font-weight:600;">35 000 XOF</td></tr>
-        <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;color:#525252;">Plaque + Carte grise</td><td style="padding:6px 0;text-align:right;font-weight:600;">40 000 XOF</td></tr>
-        <tr><td style="padding:6px 0;color:#525252;font-weight:600;">Transit AD TRANS LOGISTICS</td><td style="padding:6px 0;text-align:right;font-weight:700;">200 000 XOF</td></tr>
       </table>
     </div>
 
@@ -2781,7 +2859,7 @@ const ETAPES_IM4 = [
   ["Bon à délivrer", "Échangez le connaissement (BL) contre le bon à délivrer auprès de la compagnie (frais de compagnie à régler)."],
   ["Déclaration en douane", "Faites établir la déclaration (SAD) dans SYDONIA par votre déclarant agréé / AD TRANS LOGISTICS."],
   ["Paiement des droits", "Réglez les droits et taxes liquidés à la douane et conservez la quittance."],
-  ["Frais de port et de parc", "Réglez l'acconage, la manutention et les frais de parc (USN, vacation…)."],
+  ["Frais de port et de parc", "Réglez le BFU GUCE/PAC, la manutention et les éventuels frais variables de parc."],
   ["Contrôle douanier", "Présentez le véhicule à la visite si le circuit de contrôle l'exige."],
   ["Bon à enlever (BAE)", "Obtenez le BAE et procédez à l'enlèvement du véhicule du parc."],
   ["Immatriculation", "Faites établir la plaque et la carte grise auprès de l'ANaTT."],
@@ -2976,14 +3054,13 @@ function buildPdfReport(doc, d) {
   row('Taxes et redevances fixes', d.fixe);
   row('TOTAL DROITS ET TAXES DOUANE', d.totalDouane, true);
   y += 2;
-  section('Frais annexes et accompagnement');
-  row('USN — Guichet unique', '100 000 XOF');
-  row('Formalités', '80 000 XOF');
-  row('Interpool', '20 000 XOF');
+  section('Frais complémentaires actuels');
+  row('BFU GUCE / PAC vérifié', '34 668 XOF');
+  row('Émission de la déclaration', '10 000 XOF');
+  row('Liquidation', '10 000 XOF');
+  row('Interpol', '20 000 XOF');
   row('Enlèvement', '75 000 XOF');
-  row('Vacation', '35 000 XOF');
-  if (!d.isReexport) row('Plaque + Carte grise', '40 000 XOF');
-  row('Transit AD TRANS LOGISTICS', '200 000 XOF');
+  if (!d.isReexport) row('Plaque', '40 000 XOF');
   y += 2;
   np();
   doc.setFillColor(navy[0], navy[1], navy[2]);
@@ -3061,7 +3138,7 @@ function shareOnWhatsApp() {
 
   const msg = `🚗 *Estimation dédouanement — ${marque} ${modele} ${annee}*\n\n` +
     `📋 Droits et taxes estimés : ${totalDouane}\n` +
-    `📋 Frais de sortie et accompagnement : ${frais}\n` +
+    `📋 Frais complémentaires actuels : ${frais}\n` +
     `💰 *À prévoir : ${total}*\n\n` +
     `Calculé sur www.adtranslogistics.com/simulateur\n` +
     `📞 AD TRANS LOGISTICS — +229 01 97 50 05 55`;
