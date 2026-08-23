@@ -22,7 +22,10 @@ function calculate(cote, category, observedCaf) {
 assert(html.includes("id: 'sad-o121r'"), 'Profil prudent O121R absent');
 assert(html.includes("id: 'sad-6300'"), 'Profil fréquent 6 300 € absent');
 assert(html.includes('id="sel-tax-category"'), 'Sélecteur explicite de catégorie fiscale absent');
-assert(html.includes('Référence SAD observée — à vérifier'), 'Statut de vérification SAD absent');
+assert(html.includes('Profil de calcul retenu'), 'Libellé neutre du profil de calcul absent');
+assert(!html.includes('id="argus-trace-card"'), 'Le bloc public de traçabilité est encore présent');
+assert(!html.includes('Sources & méthode'), 'Le bloc public des sources est encore présent');
+assert(!html.includes('Référence SAD observée — à vérifier'), 'L’ancien statut public est encore présent');
 assert(!html.includes('Référence ADTL confirmée'), 'Le statut trompeur « confirmé » est encore présent');
 assert(html.includes("id: 'rav4-2012-observed'"), 'Profil RAV4 2012 absent');
 assert(html.includes("id: 'rav4-2013-observed'"), 'Profil RAV4 2013 absent');

@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Generate public, anonymised SAD profiles from the global 2026 audit.
+"""Generate the calculation profiles used by the public vehicle simulator.
 
-Only observations reproduced by the normal A-D liquidation engine (within five
-francs, which covers per-line rounding) are published. Declaration numbers,
-VINs, importers and other dossier identifiers never leave the audit report.
+Dossier identifiers never leave the private audit report. Public labels expose
+only the amounts required to choose a calculation profile.
 """
 
 from __future__ import annotations
@@ -124,7 +123,7 @@ def main() -> None:
                     "id": profile_id,
                     "label": (
                         f"{prefix}CAF {xof(record['caf'])} XOF · "
-                        f"liquidation {xof(record['taxes'])} XOF"
+                        f"droits et taxes {xof(record['taxes'])} XOF"
                     ),
                     "cat": record["category"],
                     "zone": zone,
@@ -132,11 +131,6 @@ def main() -> None:
                     "useOfficialCaf": True,
                     "officialCaf": record["caf"],
                     "officialTaxes": record["taxes"],
-                    "evidence": (
-                        f"{count} liquidation{'s' if count > 1 else ''} payée"
-                        f"{'s' if count > 1 else ''} observée{'s' if count > 1 else ''} en 2026 · "
-                        f"CAF {xof(record['caf'])} XOF · droits et taxes {xof(record['taxes'])} XOF"
-                    ),
                 }
             )
             accepted_observations += count
@@ -144,28 +138,27 @@ def main() -> None:
         if not profiles:
             continue
         accepted_vehicle_years += 1
-        count = sum(profile["observedCount"] for profile in profiles)
         public_profiles[key] = {
             "defaultId": profiles[0]["id"],
             "note": (
-                f"{count} liquidation{'s' if count > 1 else ''} payée"
-                f"{'s' if count > 1 else ''} observée{'s' if count > 1 else ''} en 2026. "
-                "Le niveau le plus élevé est présélectionné par prudence ; confirmez le VIN, "
-                "la cylindrée et l’AVD avant embarquement."
+                "Plusieurs profils de calcul sont disponibles. Le niveau le plus élevé est "
+                "présélectionné par prudence ; confirmez le VIN, la cylindrée et l’AVD avant "
+                "embarquement."
+                if len(profiles) > 1
+                else "Un profil de calcul est disponible. Confirmez le VIN, la cylindrée et "
+                "l’AVD avant embarquement."
             ),
             "profiles": profiles,
         }
 
     meta = {
-        "sheet": "2026",
         "acceptedObservations": accepted_observations,
         "vehicleYearProfiles": accepted_vehicle_years,
         "formulaToleranceXof": 5,
         "excludedSpecialCases": audit["vehicleRowsMatched"] - accepted_observations,
-        "sourceLabel": "Liquidations payées 2026, anonymisées",
     }
     payload = (
-        "// Profils SAD 2026 anonymisés — générés par tools/generate_sad_2026_profiles.py\n"
+        "// Profils de calcul du simulateur — fichier généré automatiquement\n"
         "window.SAD_2026_META = "
         + json.dumps(meta, ensure_ascii=False, separators=(",", ":"))
         + ";\nwindow.SAD_2026_PROFILES = "

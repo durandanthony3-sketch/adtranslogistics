@@ -6,9 +6,9 @@
 <title>Benin Car Import Duty Calculator (English) | AD TRANS LOGISTICS</title>
 <meta name="description" content="Calculate Benin customs duty for your car in seconds — English simulator by customs transit specialists at the Port of Cotonou. 2,253 vehicles referenced, results in FCFA and USD."/>
 <link rel="canonical" href="https://www.adtranslogistics.com/en-simulator"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Benin Car Import Duty Calculator","url":"https://www.adtranslogistics.com/en-simulator","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Indicative Benin vehicle-clearance estimate using anonymised paid 2026 observations when available. Final customs assessment prevails.","offers":{"@type":"Offer","price":"1000","priceCurrency":"XOF"},"provider":{"@id":"https://www.adtranslogistics.com/#org"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Benin Car Import Duty Calculator","url":"https://www.adtranslogistics.com/en-simulator","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Indicative Benin vehicle-clearance estimate based on the information entered. The final customs assessment prevails.","offers":{"@type":"Offer","price":"1000","priceCurrency":"XOF"},"provider":{"@id":"https://www.adtranslogistics.com/#org"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.adtranslogistics.com/en"},{"@type":"ListItem","position":2,"name":"Duty calculator","item":"https://www.adtranslogistics.com/en-simulator"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is Benin car import duty estimated?","acceptedAnswer":{"@type":"Answer","text":"The estimate uses the customs value accepted for the vehicle, its fiscal category and anonymised paid 2026 observations when available. The official customs assessment prevails."}},{"@type":"Question","name":"What is CIF value?","acceptedAnswer":{"@type":"Answer","text":"CIF = Cost + Insurance + Freight: the vehicle value plus shipping and insurance to the Port of Cotonou. Customs may verify the declared value through documentary inspection and an AVD."}},{"@type":"Question","name":"What costs are excluded?","acceptedAnswer":{"@type":"Answer","text":"Shipping-line delivery orders, storage, demurrage and exceptional inspections vary by shipment and remain payable at actual cost."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is Benin car import duty estimated?","acceptedAnswer":{"@type":"Answer","text":"The estimate uses the customs value retained for the vehicle, its fiscal category and the information entered. The official customs assessment prevails."}},{"@type":"Question","name":"What is CIF value?","acceptedAnswer":{"@type":"Answer","text":"CIF = Cost + Insurance + Freight: the vehicle value plus shipping and insurance to the Port of Cotonou. Customs may verify the declared value through documentary inspection and an AVD."}},{"@type":"Question","name":"What costs are excluded?","acceptedAnswer":{"@type":"Answer","text":"Shipping-line delivery orders, storage, demurrage and exceptional inspections vary by shipment and remain payable at actual cost."}}]}</script>
 
 <meta property="og:title" content="Benin Car Import Duty Calculator (English) | AD TRANS LOGISTICS"/>
 <meta property="og:description" content="Calculate Benin customs duty for your car in seconds — English simulator by customs transit specialists at the Port of Cotonou. 2,253 vehicles referenced, results in FCFA and USD."/>
@@ -85,7 +85,7 @@
   </div>
 
   <section class="hero">
-    <span class="tag">Port of Cotonou · Indicative 2026 references</span>
+    <span class="tag">Port of Cotonou · Indicative 2026 estimate</span>
     <h1>Benin Car Import<br/>Duty Calculator</h1>
     <p>Pick your car, get the duty in seconds — in FCFA and USD. Professional simulations by customs transit specialists at the Port of Cotonou. 2,253 vehicles referenced.</p>
   </section>
@@ -99,7 +99,7 @@
       <label class="f" for="s-year">Year *</label>
       <select id="s-year" disabled onchange="onYear()"><option value="">— Select model first —</option></select>
       <div id="profile-box" class="hidden">
-        <label class="f" for="s-profile">Observed 2026 customs-value profile</label>
+        <label class="f" for="s-profile">Calculation profile</label>
         <select id="s-profile" onchange="calc()"></select>
         <div class="muted" id="profile-note" style="margin-top:5px;"></div>
       </div>
@@ -167,7 +167,7 @@
 
     <div class="card muted">
       <b style="color:var(--navy);">How accurate is this?</b><br/>
-      Estimates use anonymised paid liquidations observed in 2026 when available, plus an indicative fallback model. The final amount depends on the accepted customs value, HS classification, engine specifications and official declaration. Variable shipping-line charges, storage and exceptional inspections remain payable at actual cost. Vehicle not listed? <a href="https://wa.me/2290197500555" style="color:var(--navy);font-weight:700;">Ask us on WhatsApp</a>.
+      This is an indicative estimate. The final amount depends on the accepted customs value, HS classification, engine specifications and official declaration. Variable shipping-line charges, storage and exceptional inspections remain payable at actual cost. Vehicle not listed? <a href="https://wa.me/2290197500555" style="color:var(--navy);font-weight:700;">Ask us on WhatsApp</a>.
     </div>
     <div class="muted" style="text-align:center;margin:14px 0;">Prefer a human? <a href="https://wa.me/2290197500555?text=Hello%20ADTL%2C%20I%20have%20a%20question%20before%20unlocking%20my%20duty%20report." target="_blank" style="color:var(--navy);font-weight:700;">Chat with us on WhatsApp (English)</a> — quick reply.</div>
   </div>
@@ -183,7 +183,7 @@
   <div class="toast" id="toast"></div>
 
   <script src="/referentiel_douane.js?v=4"></script>
-  <script src="/sad_2026_profiles.js?v=20260823"></script>
+  <script src="/sad_2026_profiles.js?v=20260823b"></script>
   <script src="/assets/adtl-pay.js?v=3"></script>
   <script>
   // ── Engine (same real model as the French simulator) ──
@@ -265,12 +265,17 @@
     var select = document.getElementById('s-profile'), note = document.getElementById('profile-note');
     select.innerHTML = '';
     if (group) {
-      group.profiles.forEach(function (profile) {
+      group.profiles.forEach(function (profile, index) {
         var option = document.createElement('option');
-        option.value = profile.id; option.textContent = profile.label; select.appendChild(option);
+        var prefix = index === 0 && group.profiles.length > 1 ? 'Prudent profile — ' : '';
+        option.value = profile.id;
+        option.textContent = prefix + 'CIF ' + fmtF(profile.officialCaf) + ' · duties and taxes ' + fmtF(profile.officialTaxes);
+        select.appendChild(option);
       });
       select.value = group.defaultId;
-      note.textContent = group.note;
+      note.textContent = group.profiles.length > 1
+        ? 'Several calculation profiles are available. The highest level is selected by default; confirm the VIN, engine size and AVD before shipping.'
+        : 'A calculation profile is available. Confirm the VIN, engine size and AVD before shipping.';
       box.classList.remove('hidden');
     } else {
       box.classList.add('hidden');
@@ -380,7 +385,7 @@
     var observedApplied = !!(observed && cat === observed.cat);
     var result = { cat:cat, caf:caf, parts:parts, customs:parts.customs, fees:ANCILLARY_FEES,
       total:parts.customs + ANCILLARY_FEES, isReexport:false, observed:observedApplied };
-    setTotal(result.total, observedApplied ? 'PAID 2026 OBSERVATION' : (isFloor ? 'PRUDENT FLOOR APPLIED' : 'INDICATIVE REFERENCE'),
+    setTotal(result.total, observedApplied ? 'CALCULATION PROFILE' : (isFloor ? 'PRUDENT FLOOR APPLIED' : 'INDICATIVE ESTIMATE'),
       'Customs: ' + fmtF(result.customs) + ' · listed local fees: ' + fmtF(result.fees) + ' · variable storage/shipping-line charges excluded.');
     renderPaid(result);
   }
@@ -582,7 +587,7 @@
       DOCS.forEach(function (d) { line('- ' + d, ''); });
       y += 4;
       doc.setFont('helvetica', 'italic'); doc.setFontSize(7.5); doc.setTextColor(115, 115, 115);
-      doc.text(doc.splitTextToSize('Indicative estimate using anonymised paid 2026 observations when available. The official customs assessment prevails. Shipping-line charges, storage and exceptional inspections remain payable at actual cost. This report is not a customs receipt.', W - 2 * M), M, y);
+      doc.text(doc.splitTextToSize('Indicative estimate. The official customs assessment prevails. Shipping-line charges, storage and exceptional inspections remain payable at actual cost. This report is not a customs receipt.', W - 2 * M), M, y);
       doc.save('Benin-Duty-Report-' + selMake.value + '-' + selYear.value + '.pdf');
       st.textContent = 'Report downloaded.';
     }).catch(function () { st.textContent = 'PDF module unavailable - check your connection.'; });
