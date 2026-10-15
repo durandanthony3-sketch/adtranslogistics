@@ -86,7 +86,7 @@
 .adtl-elegant.adtl-home .hero-tracking-card::after {
   content: ''; position: absolute; inset: 8px; border: 1px solid rgb(255 255 255 / 5%); border-radius: 21px; pointer-events: none;
 }
-.adtl-elegant.adtl-home .hero-tracking-card [style*="color:rgba(255,255,255,.3)"] { color: #b8b8b8 !important; }
+.adtl-elegant.adtl-home .hero-tracking-card [style*="color:rgba(255,255,255,.72)"] { color: #b8b8b8 !important; }
 .adtl-elegant.adtl-home .hero-tracking-card [style*="color:rgba(255,255,255,.2)"] { color: #b8b8b8 !important; }
 .adtl-elegant.adtl-home .hero-tracking-card [style*="color:rgba(255,255,255,.12)"] { color: #a6a6a6 !important; }
 .adtl-elegant.adtl-home .usa-import-card {

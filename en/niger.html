@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
     <!-- Material Symbols -->
     <!-- Tailwind CSS -->
-<link rel="stylesheet" href="/assets/adtl.css?v=3"/>
+<link rel="stylesheet" href="/assets/adtl.css?v=20261015"/>
 
     <style>
         html { scroll-behavior: smooth; overflow-x:hidden; }
@@ -53,7 +53,7 @@
 
 /* ── Bottom nav bar (mobile only) ── */
 #bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E5E5E5;z-index:990;height:62px;}
-.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;font-size:10px;font-weight:600;color:#A3A3A3;text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif;letter-spacing:.01em;}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;font-size:10px;font-weight:600;color:#767676;text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif;letter-spacing:.01em;}
 .bn-item:hover,.bn-item.active{color:#0A0A0A;}
 .bn-item svg{stroke:currentColor;}
 @media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
@@ -78,7 +78,7 @@
 details.faq{background:#fff;border:1px solid #E5E5E5;border-radius:14px;margin-bottom:12px;overflow:hidden}
 details.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:20px 24px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#0A0A0A}
 details.faq summary::-webkit-details-marker{display:none}
-details.faq summary::after{content:'+';font-size:20px;color:#A3A3A3;margin-left:12px}
+details.faq summary::after{content:'+';font-size:20px;color:#767676;margin-left:12px}
 details.faq[open] summary::after{content:'–'}
 details.faq .faq-body{padding:0 24px 20px;font-size:14px;color:#737373;line-height:1.7}
 .step-num{width:34px;height:34px;border-radius:999px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;font-family:'Space Grotesk',sans-serif}
@@ -283,7 +283,7 @@ The Port of Cotonou is landlocked Niger's natural gateway to the sea. Used vehic
 </div>
 <!-- Services -->
 <div>
-<h4 class="font-heading font-bold text-sm text-brand mb-6">Services</h4>
+<h3 class="font-heading font-bold text-sm text-brand mb-6">Services</h3>
 <ul class="space-y-3 text-[13px]">
 <li><a href="/en" class="text-g500 hover:text-brand transition-colors">Customs Transit</a></li>
 <li><a href="/vehicules" class="text-g500 hover:text-brand transition-colors">Vehicle Imports</a></li>
@@ -293,7 +293,7 @@ The Port of Cotonou is landlocked Niger's natural gateway to the sea. Used vehic
 </div>
 <!-- Resources -->
 <div>
-<h4 class="font-heading font-bold text-sm text-brand mb-6">Resources</h4>
+<h3 class="font-heading font-bold text-sm text-brand mb-6">Resources</h3>
 <ul class="space-y-3 text-[13px]">
 <li><a href="/en-simulator" class="text-g500 hover:text-brand transition-colors">Cost simulator</a></li>
 <li><a href="/suivi" class="text-g500 hover:text-brand transition-colors">Real-time tracking</a></li>
@@ -303,7 +303,7 @@ The Port of Cotonou is landlocked Niger's natural gateway to the sea. Used vehic
 </div>
 <!-- Contact & Social -->
 <div>
-<h4 class="font-heading font-bold text-sm text-brand mb-6">Contact</h4>
+<h3 class="font-heading font-bold text-sm text-brand mb-6">Contact</h3>
 <ul class="space-y-3 text-[13px] mb-6">
 <li><a href="tel:+2290197500555" class="text-g500 hover:text-brand transition-colors">+229 01 97 50 05 55</a></li>
 <li><a href="mailto:adtranslogistics@hotmail.com" class="text-g500 hover:text-brand transition-colors">adtranslogistics@hotmail.com</a></li>
@@ -311,13 +311,10 @@ The Port of Cotonou is landlocked Niger's natural gateway to the sea. Used vehic
 <li class="text-g600">Lagos warehouse: Alasia, Ojo<br/>Lagos State, Nigeria — <a href="https://www.google.com/maps?q=6.4951183,3.1410583&amp;z=17" target="_blank" rel="noopener" class="hover:text-brand" style="text-decoration:underline;">map</a></li>
 </ul>
 <div class="flex gap-3">
-<a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" rel="noopener" aria-label="Chaîne YouTube AD TRANS LOGISTICS" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
 <span class="material-symbols-outlined text-sm">play_arrow</span>
 </a>
-<a href="#" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
-<span class="material-symbols-outlined text-sm">facebook</span>
-</a>
-<a href="https://wa.me/2290197500555" target="_blank" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<a href="https://wa.me/2290197500555" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
 <span class="material-symbols-outlined text-sm">message</span>
 </a>
 </div>

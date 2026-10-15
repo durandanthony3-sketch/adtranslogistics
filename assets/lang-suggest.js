@@ -9,7 +9,7 @@
     var map={'/transit-nigeria':'/en/nigeria','/transit-niger':'/en/niger','/simulateur':'/en-simulator','/produits-digitaux':'/en-products'};
     var target=map[location.pathname]||'/en';
     var b=document.createElement('div');
-    b.setAttribute('role','dialog');
+    b.setAttribute('role','dialog'); b.setAttribute('aria-label', t);
     b.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0D1B2A;color:#fff;padding:11px 18px;border-radius:999px;z-index:9999;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.28);display:flex;align-items:center;gap:6px;font-family:Inter,system-ui,sans-serif;max-width:92vw;';
     b.innerHTML='\ud83c\udf10 <a href="'+target+'" style="color:#fff;font-weight:600;text-decoration:underline;white-space:nowrap;">'+t+'</a><button aria-label="Close" style="background:none;border:none;color:#fff;opacity:.65;margin-left:10px;cursor:pointer;font-size:15px;line-height:1;">\u2715</button>';
     b.querySelector('button').onclick=function(){b.remove();try{localStorage.setItem('adtl_lang_dismiss','1')}catch(e){}};
