@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Track your container at the Port of Cotonou — live destuffing status | AD TRANS LOGISTICS</title>
+    <meta content="Enter your tracking code or container + B/L numbers to see the 13 destuffing steps of your container at the Port of Cotonou, updated live by AD TRANS LOGISTICS." name="description"/>
+    <!-- PWA / Application Mobile -->
+    <link rel="manifest" href="/manifest.json"/>
+    <meta name="theme-color" content="#0A0A0A"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-title" content="AD TRANS"/>
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
+    <!-- Fonts: Space Grotesk for Headings, Instrument Sans for Body -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <!-- Tailwind CSS -->
+<link rel="stylesheet" href="/assets/adtl.css?v=20261015"/>
+
+    <style>
+        html { scroll-behavior: smooth; overflow-x:hidden; }
+        body { -webkit-font-smoothing: antialiased; overflow-x:hidden; }
+
+
+
+
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes pulse-green { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        .animate-blink { animation: blink 2s infinite; }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .animate-pulse-green { animation: pulse-green 2s ease-in-out infinite; }
+
+
+        .whatsapp-btn { position:fixed; bottom:1.5rem; right:1.5rem; width:64px; height:64px; background:#25D366; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 15px rgba(0,0,0,.1); z-index:999; transition:all .3s; }
+        .whatsapp-btn:hover { transform:scale(1.1); box-shadow:0 25px 50px rgba(0,0,0,.15); }
+        .whatsapp-btn svg { width:32px; height:32px; }
+
+        .price-up { color: #16a34a; }
+        .price-down { color: #dc2626; }
+    </style>
+<style>
+#mobileMenu{position:fixed!important;top:0!important;left:-100%!important;width:min(320px,88vw)!important;height:100vh!important;overflow-y:auto!important;box-shadow:6px 0 32px rgba(0,0,0,.14)!important;transition:left .32s cubic-bezier(.4,0,.2,1)!important;display:flex!important;flex-direction:column;padding-top:72px;padding-left:24px;padding-right:24px;gap:4px;z-index:999!important;background:#fff!important;}
+#mobileMenu.flex{left:0!important;}
+#mob-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:998;display:none;}
+#mob-overlay.visible{display:block;}
+
+/* ── Bottom nav bar (mobile only) ── */
+#bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E5E5E5;z-index:990;height:62px;}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;font-size:10px;font-weight:600;color:#767676;text-decoration:none;transition:color .2s;font-family:'Instrument Sans',sans-serif;letter-spacing:.01em;}
+.bn-item:hover,.bn-item.active{color:#0A0A0A;}
+.bn-item svg{stroke:currentColor;}
+@media(max-width:1023px){#bottomnav{display:flex;}body{padding-bottom:62px;}.whatsapp-btn{bottom:calc(1rem + 68px)!important;}}
+
+.mob-tw-open .mob-tw-sub { display:block!important; }
+.mob-tw-open .mob-tw-chevron { transform:rotate(180deg); }
+
+    </style>
+<link rel="canonical" href="https://www.adtranslogistics.com/en/track"/>
+<link rel="alternate" hreflang="en" href="https://www.adtranslogistics.com/en/track"/>
+<link rel="alternate" hreflang="fr" href="https://www.adtranslogistics.com/suivi"/>
+<link rel="alternate" hreflang="x-default" href="https://www.adtranslogistics.com/suivi"/>
+<meta property="og:title" content="Track your container at Cotonou — AD TRANS LOGISTICS"/>
+<meta property="og:description" content="Enter your tracking code or container + B/L numbers to see the 13 destuffing steps of your container at the Port of Cotonou, updated live by AD TRANS LOGISTICS."/>
+<meta property="og:url" content="https://www.adtranslogistics.com/en/track"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:locale:alternate" content="fr_FR"/>
+<meta property="og:image" content="https://www.adtranslogistics.com/icons/og-cover.png"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.adtranslogistics.com/en"}, {"@type": "ListItem", "position": 2, "name": "Track a container", "item": "https://www.adtranslogistics.com/en/track"}]}</script>
+
+<style>
+details.faq{background:#fff;border:1px solid #E5E5E5;border-radius:14px;margin-bottom:12px;overflow:hidden}
+details.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:20px 24px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#0A0A0A}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:'+';font-size:20px;color:#767676;margin-left:12px}
+details.faq[open] summary::after{content:'–'}
+details.faq .faq-body{padding:0 24px 20px;font-size:14px;color:#737373;line-height:1.7}
+.step-num{width:34px;height:34px;border-radius:999px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;font-family:'Space Grotesk',sans-serif}
+</style>
+<link rel="stylesheet" href="/adtl-polish.css?v=20260906"/>
+<link rel="stylesheet" href="/adtl-elegant.css?v=20261015"/>
+<link rel="stylesheet" href="/adtl-cards.css?v=20260911-3"/>
+<link rel="stylesheet" href="/assets/site-logo-20260919.css">
+</head>
+<body class="adtl-elegant adtl-modern bg-white text-g800 font-sans">
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20le%20negoce%20de%20matieres%20premieres." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
+    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="width:32px;height:32px;min-width:32px;min-height:32px;">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast"></div>
+
+<!-- NAVIGATION -->
+<nav class="glass-nav transition-all duration-300" id="navbar">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="flex items-center justify-between h-20">
+<a class="adtl-site-logo" href="/en" aria-label="AD TRANS LOGISTICS — Home"><img class="adtl-site-logo__image" src="/assets/logo-adtl-160.webp" srcset="/assets/logo-adtl-160.webp 1x, /assets/logo-adtl-320.webp 2x" width="160" height="121" alt="" decoding="async" fetchpriority="high"></a>
+<ul class="hidden lg:flex items-center gap-1 list-none">
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Customs duties <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Import</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/en-simulator">Used vehicle</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">New vehicle</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Goods</a>
+            <div class="border-t border-gray-100 mx-3 my-1"></div>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Export</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=exportation">Export duty assessment</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Importation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Required documents</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Commercial invoice</li><li>&#10003; Bill of lading (B/L) or AWB</li><li>&#10003; Packing list</li><li>&#10003; Certificate of origin</li><li>&#10003; Import licence / permit</li></ul>
+            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/en/importer-of-record-benin">Importer of Record in Benin →</a>
+            <a href="/demande?service=importation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Submit a request &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Exportation <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Required documents</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Commercial / pro-forma invoice</li><li>&#10003; Certificate of origin</li><li>&#10003; Phytosanitary certificate</li><li>&#10003; Export licence</li><li>&#10003; Customs declaration</li></ul>
+            <a href="/demande?service=exportation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Submit a request &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Transit <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Required documents</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Transit declaration (T1)</li><li>&#10003; Transit guarantee</li><li>&#10003; Bill of lading (B/L) or AWB</li><li>&#10003; Commercial invoice</li><li>&#10003; Certificate of origin</li></ul>
+            <a href="/demande?service=transit" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Submit a request &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Destuffing <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Required documents</div>
+            <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Delivery order</li><li>&#10003; Bill of lading (B/L)</li><li>&#10003; Commercial invoice</li><li>&#10003; Packing list</li><li>&#10003; Customs declaration</li></ul>
+            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/en/container-destuffing-cotonou">Container destuffing at Cotonou →</a>
+            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/en/track">Track a container →</a>
+            <a href="/demande?service=depotage" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Submit a request &rarr;</a>
+        </div>
+    </li>
+    <li class="relative group">
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Boutique <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="/boutique">Vehicles</a>
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Items</a>
+        </div>
+    </li>
+    <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/en/global-coverage">Coverage</a></li>
+    <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/en/track">Track</a></li>
+    <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/connexion">My account</a></li>
+</ul>
+<button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
+<span class="block w-5 h-0.5 bg-current transition-all"></span>
+</button>
+</div>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob-overlay" onclick="this.classList.remove('visible');document.getElementById('mobileMenu').classList.remove('flex');document.getElementById('mobileMenu').classList.add('hidden');"></div>
+<div class="z-[999]" id="mobileMenu">
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/en" onclick="closeMobile()">Home</a>
+<div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-semibold text-brand rounded-brand-sm cursor-pointer bg-g50">
+        <span>Customs duties</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Import</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/en-simulator" onclick="closeMobile()">Used vehicle</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">New vehicle</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Goods</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Export</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=exportation" onclick="closeMobile()">Export duty assessment</a>
+    </div>
+</div>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=importation" onclick="closeMobile()">Imports</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=exportation" onclick="closeMobile()">Exports</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=transit" onclick="closeMobile()">Transit</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/en/container-destuffing-cotonou" onclick="closeMobile()">Container destuffing</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/en/importer-of-record-benin" onclick="closeMobile()">Importer of Record</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/en/global-coverage" onclick="closeMobile()">Global coverage</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/en/track" onclick="closeMobile()">Track a container</a>
+<div>
+    <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-medium text-g700 rounded-brand-sm cursor-pointer hover:bg-g50">
+        <span>Shop</span>
+        <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-tw-sub hidden pl-8 pb-2">
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/boutique" onclick="closeMobile()">Vehicles</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Items</a>
+    </div>
+</div>
+<a class="btn-brand btn-brand-dark justify-center mt-4" href="/demande" onclick="closeMobile()">Free quote</a>
+</div>
+
+<style>
+.tk-search{background:#fff;border:1px solid #E5E5E5;border-radius:24px;padding:28px;box-shadow:0 1px 2px rgba(10,10,10,.04),0 12px 40px -24px rgba(10,10,10,.25)}
+.tk-modes{display:inline-flex;background:#F0F0F0;border-radius:999px;padding:4px;margin-bottom:22px}
+.tk-mode{border:0;background:transparent;padding:9px 18px;border-radius:999px;font:600 14px 'Instrument Sans',sans-serif;color:#737373;cursor:pointer;transition:all .2s}
+.tk-mode.active{background:#fff;color:#0A0A0A;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tk-label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#737373;margin-bottom:8px}
+.tk-row{display:flex;gap:10px;align-items:stretch}
+.tk-row-end{justify-content:flex-end;margin-top:14px}
+.tk-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tk-input{width:100%;height:56px;border:1.5px solid #E5E5E5;border-radius:14px;padding:0 18px;font:600 16px 'Instrument Sans',sans-serif;color:#0A0A0A;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;text-transform:uppercase}
+.tk-input::placeholder{color:#767676;text-transform:none;font-weight:500}
+.tk-input:focus{border-color:#0A0A0A;box-shadow:0 0 0 4px rgba(10,10,10,.06)}
+.tk-input-code{font-family:'Space Grotesk',sans-serif;font-size:22px;letter-spacing:.22em;font-weight:700}
+.tk-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:56px;padding:0 26px;border-radius:14px;background:#0A0A0A;color:#fff;border:0;font:700 15px 'Instrument Sans',sans-serif;cursor:pointer;white-space:nowrap;transition:all .2s;text-decoration:none}
+.tk-btn:hover{background:#262626;transform:translateY(-1px)}
+.tk-btn:disabled{opacity:.55;cursor:wait;transform:none}
+.tk-btn-white{background:#fff;color:#0A0A0A;height:48px;border-radius:999px;margin-top:14px}
+.tk-btn-white:hover{background:#F0F0F0}
+.tk-help{font-size:13px;color:#737373;margin-top:12px;line-height:1.5}
+.tk-status{margin-top:10px;font-size:14px;font-weight:600;min-height:0}
+.tk-status.err{color:#B91C1C}.tk-status.ok{color:#166534}
+.tk-result{margin-top:20px}
+.tk-empty{background:#fff;border:1px dashed #D4D4D4;border-radius:20px;padding:28px;text-align:center}
+.tk-empty h3{font-family:'Space Grotesk',sans-serif;font-size:20px;margin-bottom:6px}
+.tk-empty p{color:#737373;font-size:14px;line-height:1.6;max-width:520px;margin:0 auto}
+.tk-empty a{color:#0A0A0A;font-weight:700;text-decoration:underline}
+.tk-aside{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:20px}
+.tk-aside-card{background:#fff;border:1px solid #E5E5E5;border-radius:20px;padding:24px}
+.tk-aside-k{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#737373;margin-bottom:8px}
+.tk-aside-card h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:12px;line-height:1.2}
+.tk-aside-card p{font-size:14px;color:#525252;line-height:1.6}
+.tk-phases-list{list-style:none;margin:0;padding:0;counter-reset:ph;display:grid;gap:10px}
+.tk-phases-list li{counter-increment:ph;display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:13.5px;color:#525252;line-height:1.5}
+.tk-phases-list li::before{content:counter(ph);width:26px;height:26px;border-radius:50%;background:#0A0A0A;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.tk-phases-list b{display:block;color:#0A0A0A;font-size:14px}
+.tk-aside-dark{background:#0A0A0A;color:#fff;border-color:#0A0A0A}
+.tk-aside-dark .tk-aside-k{color:rgba(255,255,255,.72)}.tk-aside-dark p{color:rgba(255,255,255,.65)}
+.tk-skel{height:220px;border-radius:24px;background:linear-gradient(90deg,#F0F0F0 25%,#F7F7F7 50%,#F0F0F0 75%);background-size:200% 100%;animation:tkShimmer 1.2s infinite}
+@keyframes tkShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media(max-width:720px){.tk-search{padding:20px;border-radius:18px}.tk-grid{grid-template-columns:1fr}.tk-row{flex-direction:column}.tk-btn{width:100%}.tk-aside{grid-template-columns:1fr}.tk-input-code{font-size:18px}}
+</style>
+<section class="pt-32 pb-12 lg:pt-44 lg:pb-16 bg-white">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="text-center max-w-3xl mx-auto">
+<div class="tag mb-6 mx-auto w-fit"><div class="w-1.5 h-1.5 rounded-full bg-brand animate-blink"></div>Destuffing tracker · updated by our team at the port</div>
+<h1 class="font-heading text-4xl lg:text-[62px] font-bold leading-[1.08] tracking-tight text-brand mb-6">Where is your container?<br/><span class="text-g400 font-medium italic">13 steps, live</span></h1>
+<p class="text-lg lg:text-xl text-g500 leading-relaxed max-w-[600px] mx-auto">Enter the tracking code received by WhatsApp, or your container and bill of lading numbers. Every step completed at the Port of Cotonou appears here immediately.</p>
+</div>
+</div>
+</section>
+
+<section class="py-14 bg-g50" id="track">
+<div class="container mx-auto px-6 max-w-5xl">
+<div class="tk-search">
+  <div class="tk-modes" role="tablist">
+    <button class="tk-mode active" id="tk-mode-code" type="button" onclick="tkMode('code')" role="tab">Tracking code</button>
+    <button class="tk-mode" id="tk-mode-ref" type="button" onclick="tkMode('ref')" role="tab">Container + B/L</button>
+  </div>
+  <form class="tk-form" id="tk-form-code" onsubmit="return tkSearch(event,'code')">
+    <label class="tk-label" for="tk-code">Tracking code (8 characters)</label>
+    <div class="tk-row">
+      <input class="tk-input tk-input-code" id="tk-code" inputmode="latin" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="8" placeholder="E.G. K7M2PQ9D"/>
+      <button class="tk-btn" type="submit" id="tk-btn-code">Track <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </div>
+    <p class="tk-help">The code is in every WhatsApp message from AD TRANS LOGISTICS about your container.</p>
+  </form>
+  <form class="tk-form hidden" id="tk-form-ref" onsubmit="return tkSearch(event,'ref')">
+    <div class="tk-grid">
+      <div><label class="tk-label" for="tk-container">Container number</label><input class="tk-input" id="tk-container" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="E.G. MSKU1234567"/></div>
+      <div><label class="tk-label" for="tk-bl">Bill of lading (B/L) number</label><input class="tk-input" id="tk-bl" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="E.G. MAEU123456789"/></div>
+    </div>
+    <div class="tk-row tk-row-end">
+      <button class="tk-btn" type="submit" id="tk-btn-ref">Track <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </div>
+    <p class="tk-help">Both references are on your bill of lading. They are checked together to protect your data.</p>
+  </form>
+  <div class="tk-status" id="tk-status" aria-live="polite"></div>
+</div>
+<div id="tk-result" class="tk-result"></div>
+<div class="tk-aside">
+  <div class="tk-aside-card">
+    <div class="tk-aside-k">How it works</div>
+    <h3>4 phases, 13 steps, no phone calls</h3>
+    <ol class="tk-phases-list">
+      <li><b>Documents</b> Document exchange, delivery order, provisional destuffing list, transfer request, customs declaration.</li>
+      <li><b>Approvals</b> Port, Bénin Manutention, Bénin Terminal and BESC invoices — processed <em>in parallel</em> to save days.</li>
+      <li><b>Release</b> Release authorised, then positioning request for the container.</li>
+      <li><b>Destuffing</b> Destuffing sheets, deconsolidation and handover of the goods.</li>
+    </ol>
+  </div>
+  <div class="tk-aside-card tk-aside-dark">
+    <div class="tk-aside-k">Shipping to Cotonou?</div>
+    <h3>One gateway for Benin and the Sahel</h3>
+    <p>Customs clearing, destuffing, Importer of Record and bonded transit to Niger, Burkina Faso, Mali and Nigeria — quotes in English within 24 business hours.</p>
+    <a class="tk-btn tk-btn-white" href="/en/global-coverage">See our global coverage</a>
+  </div>
+</div>
+</div>
+</section>
+
+<section class="py-20 bg-brand text-white">
+<div class="container mx-auto px-6 text-center">
+<h2 class="font-heading text-3xl lg:text-4xl font-bold mb-4">Need help with your tracking?</h2>
+<p class="text-white/70 text-lg mb-10 max-w-xl mx-auto">Our team answers in English on WhatsApp and by e-mail.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a class="btn-brand btn-brand-white" href="https://wa.me/2290197500555?text=Hello%20AD%20TRANS%20LOGISTICS%2C%20I%20need%20help%20tracking%20my%20container." target="_blank" rel="noopener">WhatsApp us</a>
+<a class="btn-brand bg-white/10 border border-white/20 text-white hover:bg-white/20" href="/en/container-destuffing-cotonou">How destuffing works</a>
+</div>
+</div>
+</section>
+
+<footer class="bg-g50 border-t border-g200 py-16">
+<div class="container mx-auto px-6 max-w-[1440px]">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<!-- Company Info -->
+<div>
+<div class="font-heading font-bold text-base text-brand mb-6">AD TRANS LOGISTICS</div>
+<p class="text-sm text-g500 mb-4">Customs clearing, commodities trading and port logistics at the Port of Cotonou, Benin.</p>
+<div class="space-y-2 text-[13px] text-g600">
+<p><strong>IFU:</strong> 3202465578499</p>
+<p><strong>RCCM:</strong> RB/COT/24 B 38537</p>
+</div>
+</div>
+<!-- Services -->
+<div>
+<h3 class="font-heading font-bold text-sm text-brand mb-6">Services</h3>
+<ul class="space-y-3 text-[13px]">
+<li><a href="/en" class="text-g500 hover:text-brand transition-colors">Customs Transit</a></li>
+<li><a href="/vehicules" class="text-g500 hover:text-brand transition-colors">Vehicle Imports</a></li>
+<li><a href="/negoce" class="text-g500 hover:text-brand transition-colors font-medium text-brand">Commodities Trading</a></li>
+<li><a href="/en/container-destuffing-cotonou" class="text-g500 hover:text-brand transition-colors">Container destuffing</a></li>
+<li><a href="/en/importer-of-record-benin" class="text-g500 hover:text-brand transition-colors">Importer of Record</a></li>
+<li><a href="/en/global-coverage" class="text-g500 hover:text-brand transition-colors">Global coverage</a></li>
+</ul>
+</div>
+<!-- Resources -->
+<div>
+<h3 class="font-heading font-bold text-sm text-brand mb-6">Resources</h3>
+<ul class="space-y-3 text-[13px]">
+<li><a href="/en-simulator" class="text-g500 hover:text-brand transition-colors">Cost simulator</a></li>
+<li><a href="/en-products" class="text-g500 hover:text-brand transition-colors">English guides &amp; memos</a></li>
+<li><a href="/en/track" class="text-g500 hover:text-brand transition-colors">Real-time tracking</a></li>
+<li><a href="/en" class="text-g500 hover:text-brand transition-colors">FAQ</a></li>
+<li><a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="text-g500 hover:text-brand transition-colors">YouTube channel</a></li>
+</ul>
+</div>
+<!-- Contact & Social -->
+<div>
+<h3 class="font-heading font-bold text-sm text-brand mb-6">Contact</h3>
+<ul class="space-y-3 text-[13px] mb-6">
+<li><a href="tel:+2290197500555" class="text-g500 hover:text-brand transition-colors">+229 01 97 50 05 55</a></li>
+<li><a href="mailto:adtranslogistics@hotmail.com" class="text-g500 hover:text-brand transition-colors">adtranslogistics@hotmail.com</a></li>
+<li class="text-g600">Missessin C/6<br/>Cotonou, Benin</li>
+<li class="text-g600">Lagos warehouse: Alasia, Ojo<br/>Lagos State, Nigeria — <a href="https://www.google.com/maps?q=6.4951183,3.1410583&amp;z=17" target="_blank" rel="noopener" class="hover:text-brand" style="text-decoration:underline;">map</a></li>
+</ul>
+<div class="flex gap-3">
+<a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" rel="noopener" aria-label="Chaîne YouTube AD TRANS LOGISTICS" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+</a>
+<a href="https://wa.me/2290197500555" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp" class="w-8 h-8 bg-white border border-g200 rounded-brand-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all">
+<span class="material-symbols-outlined text-sm">message</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Footer Bottom -->
+<div class="border-t border-g200 pt-8">
+<p class="text-center text-[13px] text-g500">&copy; 2026 AD TRANS LOGISTICS. All rights reserved. | Commodities trading in West Africa. | <a href="/mentions-legales" class="hover:text-brand" style="text-decoration:underline;">Legal notice &amp; Terms</a> · <a href="/confidentialite" class="hover:text-brand" style="text-decoration:underline;">Privacy</a></p>
+</div>
+</div>
+</footer>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+// Mobile Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+    const overlay = document.getElementById('mob-overlay');
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+    if(overlay) overlay.classList.toggle('visible');
+});
+
+function closeMobile() {
+    mobileMenu.classList.add('hidden');
+    mobileMenu.classList.remove('flex');
+    const overlay = document.getElementById('mob-overlay');
+    if(overlay) overlay.classList.remove('visible');
+}
+
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Toast Notification
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// Live Price Animation
+const basePrices = {
+    cajou: 1250,
+    karite: 950,
+    coton: 1800,
+    cacao: 3200,
+    soja: 580,
+    mais: 320,
+    minerais: 450,
+    petrole: 78
+};
+
+let currentPrices = { ...basePrices };
+
+function updatePrices() {
+    const priceCards = document.querySelectorAll('.price-value');
+    const changeCards = document.querySelectorAll('.price-change');
+
+    priceCards.forEach((card, index) => {
+        const base = parseFloat(card.dataset.base);
+        const unit = card.dataset.unit;
+
+        // Random variation +/- 3%
+        const variation = (Math.random() - 0.5) * 0.06;
+        const newPrice = Math.round(base * (1 + variation));
+        const pctChange = ((newPrice - base) / base * 100).toFixed(1);
+        const isUp = newPrice >= base;
+
+        card.textContent = `$${newPrice.toLocaleString('en-US')}`;
+
+        const changeEl = changeCards[index];
+        if (changeEl) {
+            const icon = changeEl.querySelector('.material-symbols-outlined');
+            const text = changeEl.querySelector('.text-\\[13px\\]');
+
+            if (isUp) {
+                changeEl.classList.remove('price-down');
+                changeEl.classList.add('price-up');
+                if (icon) icon.textContent = 'trending_up';
+                if (text) text.textContent = `+${Math.abs(pctChange)}%`;
+            } else {
+                changeEl.classList.remove('price-up');
+                changeEl.classList.add('price-down');
+                if (icon) icon.textContent = 'trending_down';
+                if (text) text.textContent = `-${Math.abs(pctChange)}%`;
+            }
+
+            // Flash animation
+            card.style.transition = 'color 0.3s';
+            card.style.color = isUp ? '#16a34a' : '#dc2626';
+            setTimeout(() => {
+                card.style.color = '#0A0A0A';
+            }, 800);
+        }
+    });
+}
+
+setInterval(updatePrices, 5000);
+
+// Form Submission
+function submitNegoce(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    // Build WhatsApp message
+    const msg = `Bonjour AD TRANS LOGISTICS,%0A%0ADemande de devis Negoce :%0A- Nom: ${data.nom}%0A- Tel: ${data.tel}%0A- Email: ${data.email}%0A- Entreprise: ${data.entreprise || 'N/A'}%0A- Matiere: ${data.matiere}%0A- Quantite: ${data.quantite} ${data.unite}%0A- Destination: ${data.destination}%0A- Incoterm: ${data.incoterm}%0A- Description: ${data.description || 'N/A'}%0A%0AMerci.`;
+
+    window.open(`https://wa.me/2290197500555?text=${msg}`, '_blank');
+    showToast('Votre demande a ete envoyee via WhatsApp. Nous vous recontacterons rapidement.');
+    form.reset();
+}
+</script>
+
+    <!-- Enregistrement du Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+        });
+      }
+    </script>
+<!-- ── Bottom Navigation Mobile ── -->
+<nav id="bottomnav" aria-label="Navigation rapide">
+  <a href="/en" class="bn-item" data-page="/">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+    <span>Home</span>
+  </a>
+  <a href="/en-simulator" class="bn-item" data-page="/simulateur">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg>
+    <span>Customs</span>
+  </a>
+  <a href="/boutique" class="bn-item" data-page="/boutique">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+    <span>Shop</span>
+  </a>
+  <a href="/demande" class="bn-item" data-page="/contact">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span>Contact</span>
+  </a>
+  <a href="/espace-client" class="bn-item" data-page="/espace-client">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Account</span>
+  </a>
+</nav>
+<script src="/config.js?v=4"></script>
+<script src="/assets/depotage.js?v=20261016"></script>
+<script>
+// ============ SUIVI DÉPOTAGE (données réelles via Supabase RPC track_depotage) ============
+(function () {
+  const DP = window.ADTLDepotage; DP.injectCSS();
+  const { SUPABASE_URL, SUPABASE_ANON_KEY } = window.ADTL_CONFIG;
+  const el = id => document.getElementById(id);
+  let busy = false;
+
+  window.tkMode = function (mode) {
+    ['code', 'ref'].forEach(m => {
+      el('tk-mode-' + m).classList.toggle('active', m === mode);
+      el('tk-form-' + m).classList.toggle('hidden', m !== mode);
+    });
+    el('tk-status').textContent = '';
+    (mode === 'code' ? el('tk-code') : el('tk-container')).focus();
+  };
+
+  async function rpc(params) {
+    const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 15000);
+    try {
+      const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/track_depotage', {
+        method: 'POST', signal: ctrl.signal,
+        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY },
+        body: JSON.stringify(params)
+      });
+      if (!r.ok) throw new Error('http_' + r.status);
+      return await r.json();
+    } finally { clearTimeout(t); }
+  }
+
+  function setStatus(msg, kind) { const s = el('tk-status'); s.textContent = msg || ''; s.className = 'tk-status' + (kind ? ' ' + kind : ''); }
+
+  function renderEmpty(mode) {
+    el('tk-result').innerHTML = `<div class="tk-empty animate-slide-up">
+      <h3>No file found</h3>
+      <p>${mode === 'code'
+        ? 'Check the tracking code (8 characters, no spaces). If your container has just arrived, our team opens the file at the document exchange step.'
+        : 'Check the container number and the bill of lading number: they must match your B/L exactly.'}
+      Need help? <a href="https://wa.me/2290197500555?text=${encodeURIComponent('Hello AD TRANS LOGISTICS, I cannot find the tracking of my container.')}" target="_blank" rel="noopener">Write to us on WhatsApp</a>.</p>
+    </div>`;
+  }
+
+  window.tkSearch = async function (event, mode) {
+    if (event) event.preventDefault();
+    if (busy) return false;
+    let params;
+    if (mode === 'code') {
+      const code = el('tk-code').value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+      el('tk-code').value = code;
+      if (code.length < 6) { setStatus('Enter your full tracking code (8 characters).', 'err'); return false; }
+      params = { p_code: code };
+    } else {
+      const c = el('tk-container').value.trim().toUpperCase().replace(/\s/g, '');
+      const bl = el('tk-bl').value.trim().toUpperCase();
+      el('tk-container').value = c; el('tk-bl').value = bl;
+      if (c.length < 6 || bl.length < 3) { setStatus('Enter the container number and the B/L number.', 'err'); return false; }
+      params = { p_container: c, p_bl: bl };
+    }
+    busy = true; setStatus('Searching…');
+    el('tk-btn-code').disabled = el('tk-btn-ref').disabled = true;
+    el('tk-result').innerHTML = '<div class="tk-skel"></div>';
+    try {
+      const data = await rpc(params);
+      if (!data) { setStatus('', ''); renderEmpty(mode); }
+      else {
+        setStatus('', '');
+        el('tk-result').innerHTML = DP.renderCard(data, { open: true });
+        el('tk-result').firstElementChild.classList.add('animate-slide-up');
+        const url = new URL(location.href); url.searchParams.set('code', data.tracking_code); url.searchParams.delete('conteneur'); url.searchParams.delete('bl');
+        history.replaceState(null, '', url);
+      }
+      el('tk-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (e) {
+      el('tk-result').innerHTML = '';
+      setStatus('The tracking service is temporarily unavailable. Please try again in a moment.', 'err');
+    } finally {
+      busy = false; el('tk-btn-code').disabled = el('tk-btn-ref').disabled = false;
+    }
+    return false;
+  };
+
+  // Pré-remplissage depuis l'URL (liens envoyés par WhatsApp)
+  const q = new URLSearchParams(location.search);
+  if (q.get('code')) { el('tk-code').value = q.get('code'); tkSearch(null, 'code'); }
+  else if (q.get('conteneur')) { tkMode('ref'); el('tk-container').value = q.get('conteneur'); el('tk-bl').value = q.get('bl') || ''; if (q.get('bl')) tkSearch(null, 'ref'); }
+})();
+</script>
+
+
+<script src="/cookie-consent.js?v=5"></script>
+<script defer src="/assets/material-icons-fallback.js?v=3"></script>
+<div style="position:fixed;bottom:18px;right:18px;z-index:60;"><a href="/en-simulator" style="background:#c9a227;color:#0D1B2A;font-weight:800;padding:13px 20px;border-radius:9999px;text-decoration:none;font-size:14px;box-shadow:0 10px 26px rgba(0,0,0,.3);">🧮 Duty calculator · 📘 English guides →</a></div>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

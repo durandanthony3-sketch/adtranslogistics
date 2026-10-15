@@ -22,13 +22,16 @@
   ].join('\n');
   document.head.appendChild(style);
 
+  var EN = String(document.documentElement.lang || '').slice(0, 2).toLowerCase() === 'en';
   var banner = document.createElement('div');
   banner.id = 'cookie-banner';
   banner.setAttribute('role', 'dialog');
-  banner.setAttribute('aria-label', 'Information sur les cookies');
-  banner.innerHTML =
-    '<p><strong>Cookies techniques uniquement</strong>Ce site utilise des cookies nécessaires à son fonctionnement (espace client, paiement sécurisé, préférences). Aucun traceur publicitaire.</p>' +
-    '<div class="cb-row"><button class="cb-ok" type="button" onclick="cookieConsent(true)">J’ai compris</button><a href="/confidentialite">En savoir plus</a></div>';
+  banner.setAttribute('aria-label', EN ? 'Cookie information' : 'Information sur les cookies');
+  banner.innerHTML = EN
+    ? '<p><strong>Essential cookies only</strong>This site uses cookies required for it to work (client area, secure payment, preferences). No advertising trackers.</p>' +
+      '<div class="cb-row"><button class="cb-ok" type="button" onclick="cookieConsent(true)">Got it</button><a href="/confidentialite">Learn more</a></div>'
+    : '<p><strong>Cookies techniques uniquement</strong>Ce site utilise des cookies nécessaires à son fonctionnement (espace client, paiement sécurisé, préférences). Aucun traceur publicitaire.</p>' +
+      '<div class="cb-row"><button class="cb-ok" type="button" onclick="cookieConsent(true)">J’ai compris</button><a href="/confidentialite">En savoir plus</a></div>';
   document.body.appendChild(banner);
   setTimeout(function () { banner.classList.add('show'); }, 1200);
 

@@ -6,12 +6,15 @@ import re, io, os, json, html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 tpl = io.open(os.path.join(ROOT, 'suivi.html'), encoding='utf-8').read().replace('\r\n', '\n')
 
-def build(slug, title, description, h1, content, breadcrumb_name, extra_ld, og_title=None):
+def build(slug, title, description, h1, content, breadcrumb_name, extra_ld, og_title=None, en_alt=None):
     s = tpl
     url = 'https://www.adtranslogistics.com/' + slug
     s = re.sub(r'<title>.*?</title>', '<title>' + html.escape(title, quote=False) + '</title>', s, count=1, flags=re.S)
     s = re.sub(r'<meta content="[^"]*" name="description"/>', '<meta content="' + html.escape(description) + '" name="description"/>', s, count=1)
-    s = s.replace('<link rel="canonical" href="https://www.adtranslogistics.com/suivi"/>', '<link rel="canonical" href="' + url + '"/>')
+    hl = '<link rel="canonical" href="' + url + '"/>'
+    if en_alt:
+        hl += '\n<link rel="alternate" hreflang="fr" href="' + url + '"/>\n<link rel="alternate" hreflang="en" href="https://www.adtranslogistics.com/' + en_alt + '"/>\n<link rel="alternate" hreflang="x-default" href="' + url + '"/>'
+    s = s.replace('<link rel="canonical" href="https://www.adtranslogistics.com/suivi"/>', hl)
     bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.adtranslogistics.com/"},
         {"@type": "ListItem", "position": 2, "name": breadcrumb_name, "item": url}]}
@@ -186,7 +189,7 @@ build('depotage-conteneur-cotonou',
       'Dépotage de conteneur à Cotonou : transitaire, suivi en temps réel | AD TRANS LOGISTICS',
       'Dépotage de conteneurs au port de Cotonou par AD TRANS LOGISTICS : 13 étapes tracées, validations Port / Manutention / Terminal / BESC en parallèle, notification WhatsApp à chaque étape. Devis en 24 h.',
       None, dep_content, 'Dépotage de conteneur à Cotonou', dep_ld,
-      og_title='Dépotage de conteneur à Cotonou — suivi étape par étape | AD TRANS LOGISTICS')
+      og_title='Dépotage de conteneur à Cotonou — suivi étape par étape | AD TRANS LOGISTICS', en_alt='en/container-destuffing-cotonou')
 
 # ───────────────────────── Page 2 : À propos ─────────────────────────
 apropos_content = CSS + '''

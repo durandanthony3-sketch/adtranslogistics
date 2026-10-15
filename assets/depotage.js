@@ -5,32 +5,37 @@
 (function () {
   'use strict';
 
+  // Langue d'affichage : 'en' sur les pages /en (lang="en") ou si window.ADTL_LANG = 'en' ; français sinon.
+  const LANG = String(window.ADTL_LANG || document.documentElement.lang || 'fr').slice(0, 2).toLowerCase() === 'en' ? 'en' : 'fr';
+  const T = (fr, en) => (LANG === 'en' ? en : fr);
+  const L = o => (LANG === 'en' && o.en ? o.en : o.label);
+
   const STEPS = [
-    { code: 'echange_documentaire',      phase: 1, label: 'Échange documentaire' },
-    { code: 'bon_a_delivrer',            phase: 1, label: 'Bon à délivrer (BAD)' },
-    { code: 'liste_previsionnelle',      phase: 1, label: 'Liste prévisionnelle de dépotage' },
-    { code: 'demande_transfert',         phase: 1, label: 'Demande de transfert' },
-    { code: 'declaration_douane',        phase: 1, label: 'Déclaration en douane du conteneur' },
-    { code: 'facture_port',              phase: 2, label: 'Facture Port de Cotonou',   short: 'Port' },
-    { code: 'facture_benin_manutention', phase: 2, label: 'Facture Bénin Manutention', short: 'Manutention' },
-    { code: 'facture_benin_terminal',    phase: 2, label: 'Facture Bénin Terminal',    short: 'Terminal' },
-    { code: 'besc',                      phase: 2, label: 'BESC',                      short: 'BESC' },
-    { code: 'relache',                   phase: 3, label: 'Relâche autorisée' },
-    { code: 'positionnement',            phase: 3, label: 'Demande de positionnement' },
-    { code: 'fiches_depotage',           phase: 4, label: 'Fiches de dépotage' },
-    { code: 'degroupage',                phase: 4, label: 'Dégroupage & remise des marchandises' }
+    { code: 'echange_documentaire',      phase: 1, label: 'Échange documentaire',               en: 'Document exchange' },
+    { code: 'bon_a_delivrer',            phase: 1, label: 'Bon à délivrer (BAD)',               en: 'Delivery order (BAD)' },
+    { code: 'liste_previsionnelle',      phase: 1, label: 'Liste prévisionnelle de dépotage',   en: 'Provisional destuffing list' },
+    { code: 'demande_transfert',         phase: 1, label: 'Demande de transfert',               en: 'Transfer request' },
+    { code: 'declaration_douane',        phase: 1, label: 'Déclaration en douane du conteneur', en: 'Customs declaration of the container' },
+    { code: 'facture_port',              phase: 2, label: 'Facture Port de Cotonou',   short: 'Port',        en: 'Port of Cotonou invoice' },
+    { code: 'facture_benin_manutention', phase: 2, label: 'Facture Bénin Manutention', short: 'Manutention', en: 'Bénin Manutention invoice' },
+    { code: 'facture_benin_terminal',    phase: 2, label: 'Facture Bénin Terminal',    short: 'Terminal',    en: 'Bénin Terminal invoice' },
+    { code: 'besc',                      phase: 2, label: 'BESC',                      short: 'BESC',        en: 'BESC / ECTN' },
+    { code: 'relache',                   phase: 3, label: 'Relâche autorisée',                  en: 'Release authorised' },
+    { code: 'positionnement',            phase: 3, label: 'Demande de positionnement',          en: 'Positioning request' },
+    { code: 'fiches_depotage',           phase: 4, label: 'Fiches de dépotage',                 en: 'Destuffing sheets' },
+    { code: 'degroupage',                phase: 4, label: 'Dégroupage & remise des marchandises', en: 'Deconsolidation & handover of goods' }
   ];
   const PHASES = [
-    { n: 1, label: 'Documents',       hint: 'Échange documentaire, BAD, liste prévisionnelle, transfert, déclaration' },
-    { n: 2, label: 'Validations',     hint: 'Port, Bénin Manutention, Bénin Terminal, BESC — en parallèle', parallel: true },
-    { n: 3, label: 'Relâche',         hint: 'Relâche autorisée, demande de positionnement' },
-    { n: 4, label: 'Dépotage',        hint: 'Fiches de dépotage, dégroupage et remise' }
+    { n: 1, label: 'Documents',       en: 'Documents',   hint: 'Échange documentaire, BAD, liste prévisionnelle, transfert, déclaration' },
+    { n: 2, label: 'Validations',     en: 'Approvals',   hint: 'Port, Bénin Manutention, Bénin Terminal, BESC — en parallèle', parallel: true },
+    { n: 3, label: 'Relâche',         en: 'Release',     hint: 'Relâche autorisée, demande de positionnement' },
+    { n: 4, label: 'Dépotage',        en: 'Destuffing',  hint: 'Fiches de dépotage, dégroupage et remise' }
   ];
   const STATUS = {
-    en_cours: { label: 'En cours',  cls: 'dp-st-cours' },
-    bloque:   { label: 'Bloqué',    cls: 'dp-st-bloque' },
-    termine:  { label: 'Terminé',   cls: 'dp-st-termine' },
-    annule:   { label: 'Annulé',    cls: 'dp-st-annule' }
+    en_cours: { label: 'En cours',  en: 'In progress', cls: 'dp-st-cours' },
+    bloque:   { label: 'Bloqué',    en: 'On hold',     cls: 'dp-st-bloque' },
+    termine:  { label: 'Terminé',   en: 'Completed',   cls: 'dp-st-termine' },
+    annule:   { label: 'Annulé',    en: 'Cancelled',   cls: 'dp-st-annule' }
   };
   const LINES = ['Maersk', 'MSC', 'CMA CGM', 'Hapag-Lloyd', 'Grimaldi', 'ONE', 'PIL', 'Evergreen', 'COSCO', 'Autre'];
   const TEAM = ['Pascal', 'Michée', 'Rabib', 'Carolive', 'Anthony'];
@@ -41,15 +46,15 @@
     const d = new Date(v); if (isNaN(d)) return '—';
     const o = { day: '2-digit', month: 'short', year: 'numeric' };
     if (withTime) { o.hour = '2-digit'; o.minute = '2-digit'; }
-    return d.toLocaleDateString('fr-FR', o).replace('.', '');
+    return d.toLocaleDateString(LANG === 'en' ? 'en-GB' : 'fr-FR', o).replace('.', '');
   };
   const ago = v => {
     if (!v) return '';
     const s = Math.max(0, (Date.now() - new Date(v).getTime()) / 1000);
-    if (s < 60) return 'à l’instant';
-    if (s < 3600) return 'il y a ' + Math.round(s / 60) + ' min';
-    if (s < 86400) return 'il y a ' + Math.round(s / 3600) + ' h';
-    const d = Math.round(s / 86400); return 'il y a ' + d + ' jour' + (d > 1 ? 's' : '');
+    if (s < 60) return T('à l’instant', 'just now');
+    if (s < 3600) return T('il y a ' + Math.round(s / 60) + ' min', Math.round(s / 60) + ' min ago');
+    if (s < 86400) return T('il y a ' + Math.round(s / 3600) + ' h', Math.round(s / 3600) + ' h ago');
+    const d = Math.round(s / 86400); return T('il y a ' + d + ' jour' + (d > 1 ? 's' : ''), d + ' day' + (d > 1 ? 's' : '') + ' ago');
   };
 
   /** Calcule l'avancement : étapes faites, phase courante, pourcentage. */
@@ -65,7 +70,7 @@
     const pct = Math.round(done.size / STEPS.length * 100);
     // Prochaine étape attendue (ordre logique, phase 2 en parallèle)
     const next = STEPS.filter(s => !done.has(s.code));
-    const nextLabel = next.length ? (next[0].phase === 2 ? 'Validations en cours (' + perPhase[1].done + '/4)' : next[0].label) : 'Conteneur dépoté';
+    const nextLabel = next.length ? (next[0].phase === 2 ? T('Validations en cours (', 'Approvals in progress (') + perPhase[1].done + '/4)' : L(next[0])) : T('Conteneur dépoté', 'Container destuffed');
     return { done, perPhase, current, pct, nextLabel, count: done.size };
   }
 
@@ -81,7 +86,7 @@
       const state = ph.complete ? 'done' : (ph.n === p.current ? 'active' : 'todo');
       return `<div class="dp-phase dp-phase-${state}">
         <div class="dp-phase-dot">${ph.complete ? checkIcon() : ph.n}</div>
-        <div class="dp-phase-label">${esc(ph.label)}<span>${ph.done}/${ph.total}</span></div>
+        <div class="dp-phase-label">${esc(L(ph))}<span>${ph.done}/${ph.total}</span></div>
       </div>`;
     }).join('<div class="dp-phase-line"></div>');
 
@@ -92,50 +97,50 @@
         const state = e ? 'done' : (ph.n === p.current ? 'pending' : 'todo');
         return `<li class="dp-step dp-step-${state}">
           <span class="dp-step-mark">${e ? checkIcon() : ''}</span>
-          <span class="dp-step-body"><span class="dp-step-label">${esc(ph.parallel ? (s.label) : s.label)}</span>
-          <span class="dp-step-meta">${e ? fmtDate(e.done_at, true) + (e.note ? ' · ' + esc(e.note) : '') : (state === 'pending' ? 'En cours' : 'À venir')}</span></span>
+          <span class="dp-step-body"><span class="dp-step-label">${esc(L(s))}</span>
+          <span class="dp-step-meta">${e ? fmtDate(e.done_at, true) + (e.note ? ' · ' + esc(e.note) : '') : (state === 'pending' ? T('En cours', 'In progress') : T('À venir', 'Upcoming'))}</span></span>
         </li>`;
       }).join('');
       const info = p.perPhase[ph.n - 1];
       return `<div class="dp-tl-phase ${info.complete ? 'is-done' : (ph.n === p.current ? 'is-active' : '')}">
-        <div class="dp-tl-head"><strong>Phase ${ph.n} · ${esc(ph.label)}</strong><span>${info.done}/${info.total}${ph.parallel ? ' · en parallèle' : ''}</span></div>
+        <div class="dp-tl-head"><strong>Phase ${ph.n} · ${esc(L(ph))}</strong><span>${info.done}/${info.total}${ph.parallel ? T(' · en parallèle', ' · in parallel') : ''}</span></div>
         <ul class="dp-steps ${ph.parallel ? 'dp-steps-grid' : ''}">${items}</ul>
       </div>`;
     }).join('');
 
     const alert = d.status === 'bloque' && d.blocked_reason
-      ? `<div class="dp-note dp-note-warn"><strong>Dossier bloqué</strong> ${esc(d.blocked_reason)}</div>` : '';
-    const msg = d.client_message ? `<div class="dp-note"><strong>Message d’AD TRANS LOGISTICS</strong> ${esc(d.client_message)}</div>` : '';
+      ? `<div class="dp-note dp-note-warn"><strong>${T('Dossier bloqué', 'File on hold')}</strong> ${esc(d.blocked_reason)}</div>` : '';
+    const msg = d.client_message ? `<div class="dp-note"><strong>${T('Message d’AD TRANS LOGISTICS', 'Message from AD TRANS LOGISTICS')}</strong> ${esc(d.client_message)}</div>` : '';
     const notifs = (d.notifications || []);
     const lastNotif = notifs[0];
 
     return `<article class="dp-card ${opts.compact ? 'dp-card-compact' : ''}" data-id="${esc(d.id || '')}">
       <header class="dp-head">
         <div>
-          <div class="dp-kicker">${esc(d.reference || 'Dépotage')} · Code de suivi <b>${esc(d.tracking_code || '')}</b></div>
+          <div class="dp-kicker">${esc(d.reference || T('Dépotage', 'Destuffing'))} · ${T('Code de suivi', 'Tracking code')} <b>${esc(d.tracking_code || '')}</b></div>
           <h3 class="dp-title">${esc(d.container_no)}</h3>
           <div class="dp-sub">${esc(d.container_type || '')}${d.shipping_line ? ' · ' + esc(d.shipping_line) : ''}${d.vessel ? ' · ' + esc(d.vessel) : ''}</div>
         </div>
         <div class="dp-head-right">
-          <span class="dp-status ${st.cls}">${st.label}</span>
-          <span class="dp-updated">Mis à jour ${ago(d.updated_at)}</span>
+          <span class="dp-status ${st.cls}">${L(st)}</span>
+          <span class="dp-updated">${T('Mis à jour', 'Updated')} ${ago(d.updated_at)}</span>
         </div>
       </header>
       <div class="dp-progress">
-        <div class="dp-progress-top"><span>${p.count}/${STEPS.length} étapes · ${p.pct}%</span><span class="dp-next">Prochaine étape : <b>${esc(p.nextLabel)}</b></span></div>
+        <div class="dp-progress-top"><span>${p.count}/${STEPS.length} ${T('étapes', 'steps')} · ${p.pct}%</span><span class="dp-next">${T('Prochaine étape : ', 'Next step: ')}<b>${esc(p.nextLabel)}</b></span></div>
         <div class="dp-bar"><div class="dp-bar-fill" style="width:${p.pct}%"></div></div>
         <div class="dp-phases">${phaseBar}</div>
       </div>
       ${alert}${msg}
       <dl class="dp-meta">
-        <div><dt>Connaissement (BL)</dt><dd>${esc(d.bl_no || '—')}</dd></div>
-        <div><dt>Arrivée navire</dt><dd>${fmtDate(d.eta)}</dd></div>
-        <div><dt>Marchandises</dt><dd>${esc(d.cargo || '—')}${d.vehicles_count && !/v[ée]hicule/i.test(d.cargo || '') ? ' · ' + d.vehicles_count + ' véhicule' + (d.vehicles_count > 1 ? 's' : '') : ''}</dd></div>
-        <div><dt>Client</dt><dd>${esc(d.client_company || d.client_name || '—')}</dd></div>
-        <div><dt>Ouvert le</dt><dd>${fmtDate(d.created_at)}</dd></div>
-        <div><dt>Notifications</dt><dd>${notifs.length ? notifs.length + ' envoyée' + (notifs.length > 1 ? 's' : '') + (lastNotif ? ' · dernière ' + fmtDate(lastNotif.sent_at) : '') : 'Aucune pour l’instant'}</dd></div>
+        <div><dt>${T('Connaissement (BL)', 'Bill of lading (BL)')}</dt><dd>${esc(d.bl_no || '—')}</dd></div>
+        <div><dt>${T('Arrivée navire', 'Vessel arrival')}</dt><dd>${fmtDate(d.eta)}</dd></div>
+        <div><dt>${T('Marchandises', 'Cargo')}</dt><dd>${esc(d.cargo || '—')}${d.vehicles_count && !/v[ée]hicule|vehicle/i.test(d.cargo || '') ? ' · ' + d.vehicles_count + T(' véhicule', ' vehicle') + (d.vehicles_count > 1 ? 's' : '') : ''}</dd></div>
+        <div><dt>${T('Client', 'Customer')}</dt><dd>${esc(d.client_company || d.client_name || '—')}</dd></div>
+        <div><dt>${T('Ouvert le', 'Opened on')}</dt><dd>${fmtDate(d.created_at)}</dd></div>
+        <div><dt>Notifications</dt><dd>${notifs.length ? notifs.length + T(' envoyée', ' sent') + (notifs.length > 1 && LANG !== 'en' ? 's' : '') + (lastNotif ? T(' · dernière ', ' · last ') + fmtDate(lastNotif.sent_at) : '') : T('Aucune pour l’instant', 'None yet')}</dd></div>
       </dl>
-      ${opts.compact ? '' : `<details class="dp-details" ${opts.open ? 'open' : ''}><summary>Détail des 13 étapes</summary><div class="dp-timeline">${timeline}</div></details>`}
+      ${opts.compact ? '' : `<details class="dp-details" ${opts.open ? 'open' : ''}><summary>${T('Détail des 13 étapes', 'All 13 steps in detail')}</summary><div class="dp-timeline">${timeline}</div></details>`}
     </article>`;
   }
 
@@ -221,5 +226,5 @@
 `;
   function injectCSS() { if (document.getElementById('dp-css')) return; const s = document.createElement('style'); s.id = 'dp-css'; s.textContent = CSS; document.head.appendChild(s); }
 
-  window.ADTLDepotage = { STEPS, PHASES, STATUS, LINES, TEAM, esc, fmtDate, ago, progress, renderCard, whatsappMessage, waLink, injectCSS };
+  window.ADTLDepotage = { LANG, STEPS, PHASES, STATUS, LINES, TEAM, esc, fmtDate, ago, progress, renderCard, whatsappMessage, waLink, injectCSS };
 })();
