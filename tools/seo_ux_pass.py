@@ -19,7 +19,8 @@ for f in pages():
     s = read(f); o = s
     s = s.replace('>Depotage <svg', '>Dépotage <svg').replace('>Depotage</a>', '>Dépotage</a>')
     # Menu desktop (pages standard) : lien vers la page service au-dessus de « Soumettre une demande »
-    s = s.replace('<a href="/demande?service=depotage" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>',
+    if 'href="/depotage-conteneur-cotonou">Dépotage de conteneur à Cotonou →' not in s:
+      s = s.replace('<a href="/demande?service=depotage" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>',
                   '<a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/depotage-conteneur-cotonou">Dépotage de conteneur à Cotonou →</a>\n            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/suivi">Suivre un conteneur →</a>\n            <a href="/demande?service=depotage" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>')
     if s != o: write(f, s)
 
@@ -162,3 +163,34 @@ if 'Disallow: /api/' not in rb:
 
 print('fichiers modifiés :', len(changed))
 for c in sorted(changed): print(' -', c)
+
+# ───────── 9. Menu « Calcul des droits de douane » : dépotage + hub simulateurs ─────────
+for f in pages():
+    s = read(f); o = s
+    if 'href="/simulateur-depotage"' not in s:
+        s = s.replace('<a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Marchandises</a>',
+                      '<a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Marchandises</a>\n            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/simulateur-depotage">Dépotage de conteneur</a>')
+        s = s.replace('<a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=exportation">Étude des droits à l’export</a>\n        </div>',
+                      '<a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=exportation">Étude des droits à l’export</a>\n            <div class="border-t border-gray-100 mx-3 my-1"></div>\n            <a class="block px-4 py-2 text-sm font-semibold text-black hover:bg-gray-50" href="/simulateurs">Tous les simulateurs →</a>\n        </div>')
+        s = s.replace('<a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Marchandises</a>',
+                      '<a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Marchandises</a>\n        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/simulateur-depotage" onclick="closeMobile()">Dépotage de conteneur</a>\n        <a class="block p-3 text-sm font-semibold text-black" href="/simulateurs" onclick="closeMobile()">Tous les simulateurs →</a>')
+        # index.html (structure drop-link / mob-sub-link)
+        s = s.replace('<a href="/calculateur" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Marchandises</a>',
+                      '<a href="/calculateur" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Marchandises</a>\n                <a href="/simulateur-depotage" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Dépotage de conteneur</a>')
+        s = s.replace('<a href="/calculateur" onclick="closeMobile()" class="mob-sub-link">Marchandises</a>',
+                      '<a href="/calculateur" onclick="closeMobile()" class="mob-sub-link">Marchandises</a>\n                <a href="/simulateur-depotage" onclick="closeMobile()" class="mob-sub-link">Dépotage de conteneur</a>\n                <a href="/simulateurs" onclick="closeMobile()" class="mob-sub-link" style="font-weight:700;color:var(--black);">Tous les simulateurs →</a>')
+    if s != o: write(f, s)
+# index.html : lien hub dans le menu desktop après Export
+s = read('index.html')
+if 'href="/simulateurs" class="drop-link"' not in s:
+    m = re.search(r'(<a href="/demande\?service=exportation" class="drop-link">.*?</a>)\n(\s*)</div>', s, flags=re.S)
+    if m:
+        s = s[:m.end(1)] + '\n                <div style="border-top:1px solid var(--gray100);margin:4px 8px;"></div>\n                <a href="/simulateurs" class="drop-link" style="font-weight:700;">Tous les simulateurs →</a>' + s[m.end(1):]
+        write('index.html', s)
+# Sitemap : nouvelles pages
+sm = read('sitemap.xml')
+for slug, prio in (('simulateurs', '0.9'), ('simulateur-depotage', '0.8'), ('estimation-marchandises', '0.8')):
+    if '/' + slug + '<' not in sm:
+        sm = sm.replace('</urlset>', '  <url>\n    <loc>https://www.adtranslogistics.com/%s</loc>\n    <lastmod>%s</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>%s</priority>\n  </url>\n</urlset>' % (slug, today, prio))
+write('sitemap.xml', sm)
+print('menus simulateurs OK')
