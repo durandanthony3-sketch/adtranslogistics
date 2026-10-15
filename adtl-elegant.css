@@ -46,9 +46,6 @@
 .adtl-elegant :is(.icon-box, .quick-path-icon) { background: linear-gradient(145deg, #fff, #ededed); box-shadow: inset 0 1px 0 #fff, 0 4px 10px -6px rgb(0 0 0 / 20%); }
 .adtl-elegant .result-total-value { font-variant-numeric: tabular-nums; }
 .adtl-elegant :is(.field, .lead-form) :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) { border-color: #d7d7d7; border-radius: 10px; }
-.adtl-elegant #cookie-banner > div { background: linear-gradient(130deg, #151515, #303030) !important; border-top: 1px solid #494949 !important; }
-.adtl-elegant #cookie-banner .cb-text a { color: #fff; }
-.adtl-elegant #cookie-banner .cb-accept:hover { background: #e8e8e8; }
 .adtl-elegant .whatsapp-btn { background: #171717 !important; box-shadow: 0 8px 26px -8px rgb(0 0 0 / 40%); }
 .adtl-elegant .result-total-row { background: linear-gradient(140deg, #303030, #0a0a0a) !important; }
 .adtl-elegant :is(.caf-card, #sticky-unlock, .pb-btn),
@@ -136,5 +133,4 @@
   html:has(.adtl-elegant) { scroll-behavior: auto; }
   .adtl-elegant *, .adtl-elegant *::before, .adtl-elegant *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .adtl-elegant :is(.card, .card-gray, .quick-path-card, .btn, .btn-brand-dark):hover { transform: none !important; }
-  .adtl-elegant #cookie-banner { transform: none !important; }
 }

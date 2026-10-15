@@ -5,6 +5,9 @@
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /equipe
+Disallow: /admin
 
 User-agent: AhrefsBot
 Crawl-delay: 10
