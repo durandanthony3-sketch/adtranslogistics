@@ -1,0 +1,33 @@
+/* Academy covers: full square artwork with product badges below the image. */
+:is(#formation-grid, #collection-grid) .formation-media--academy {
+  display: block;
+  aspect-ratio: auto;
+  padding: 0;
+}
+
+:is(#formation-grid, #collection-grid) .formation-media--academy::before {
+  display: none;
+}
+
+:is(#formation-grid, #collection-grid) .formation-media.formation-media--academy img,
+:is(#formation-grid, #collection-grid) .card:hover .formation-media.formation-media--academy img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 0;
+  transform: none;
+  filter: none;
+  transition: none;
+}
+
+:is(#formation-grid, #collection-grid) .formation-media--academy > div {
+  position: static !important;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: none;
+  gap: 6px;
+  padding: 12px 16px;
+  background: #fff;
+}

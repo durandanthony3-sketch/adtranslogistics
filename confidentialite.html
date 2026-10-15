@@ -87,8 +87,11 @@
 .legal-table td{padding:12px 16px;color:#525252;border-bottom:1px solid #F0F0F0;line-height:1.6;vertical-align:top;}
 .legal-table tr:last-child td{border-bottom:none;}
 </style>
+<link rel="stylesheet" href="/adtl-elegant.css?v=20260911"/>
+<link rel="stylesheet" href="/adtl-cards.css?v=20260911-3"/>
+<link rel="stylesheet" href="/assets/site-logo-20260919.css">
 </head>
-<body class="bg-white text-g800 font-sans">
+<body class="adtl-elegant bg-white text-g800 font-sans">
 
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20j%27ai%20une%20question%20concernant%20mes%20donnees%20personnelles." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
@@ -104,21 +107,18 @@
 <nav class="glass-nav transition-all duration-300" id="navbar">
 <div class="container mx-auto px-6 max-w-[1440px]">
 <div class="flex items-center justify-between h-20">
-<a class="flex items-center gap-2.5 group" href="/">
-<div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
-<div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
-</a>
+<a class="adtl-site-logo" href="/" aria-label="AD TRANS LOGISTICS — Accueil"><img class="adtl-site-logo__image" src="/assets/logo-adtl-20260919.jpeg" width="1080" height="817" alt="" decoding="async"></a>
 <ul class="hidden lg:flex items-center gap-1 list-none">
     <li class="relative group">
-        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Calcul droit de douane <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Calcul des droits de douane <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Véhicule</div>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/simulateur">Occasion</a>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">Neuf</a>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Import</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/simulateur">Véhicule d’occasion</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">Véhicule neuf</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Marchandises</a>
             <div class="border-t border-gray-100 mx-3 my-1"></div>
-            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Marchandise</div>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Import</a>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur?mode=export">Export</a>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Export</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=exportation">Étude des droits à l’export</a>
         </div>
     </li>
     <li class="relative group">
@@ -160,7 +160,8 @@
             <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Articles</a>
         </div>
     </li>
-    <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/connexion">Mon compte</a></li>
+    <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/suivi">Suivi</a></li>
+        <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/connexion">Mon compte</a></li>
 </ul>
 <button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
 <span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
@@ -177,22 +178,23 @@
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Accueil</a>
 <div>
     <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-semibold text-brand rounded-brand-sm cursor-pointer bg-g50">
-        <span>Calcul droit de douane</span>
+        <span>Calcul des droits de douane</span>
         <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="mob-tw-sub hidden pl-8 pb-2">
-        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Véhicule</div>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/simulateur" onclick="closeMobile()">Occasion</a>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">Neuf</a>
-        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Marchandise</div>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Import</a>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur?mode=export" onclick="closeMobile()">Export</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Import</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/simulateur" onclick="closeMobile()">Véhicule d’occasion</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">Véhicule neuf</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Marchandises</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Export</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=exportation" onclick="closeMobile()">Étude des droits à l’export</a>
     </div>
 </div>
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=importation" onclick="closeMobile()">Importation</a>
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=exportation" onclick="closeMobile()">Exportation</a>
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=transit" onclick="closeMobile()">Transit</a>
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=depotage" onclick="closeMobile()">Dépotage</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/suivi" onclick="closeMobile()">Suivi conteneur</a>
 <div>
     <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-medium text-g700 rounded-brand-sm cursor-pointer hover:bg-g50">
         <span>Boutique</span>
@@ -218,7 +220,7 @@ Politique de confidentialité
 <p class="text-lg lg:text-xl text-g500 leading-relaxed mb-6" style="max-width:680px;">
 Cette page explique, sans jargon, quelles données AD TRANS LOGISTICS collecte sur ce site, pourquoi, avec qui elles transitent et combien de temps nous les gardons — ainsi que vos droits pour y accéder, les corriger ou les faire effacer.
 </p>
-<p class="text-[13px] text-g400">Dernière mise à jour&nbsp;: 26 juillet 2026 — Version applicable au site www.adtranslogistics.com</p>
+<p class="text-[13px] text-g400">Dernière mise à jour&nbsp;: 11 septembre 2026 — Version applicable au site www.adtranslogistics.com</p>
 </div>
 </div>
 </section>
@@ -234,7 +236,7 @@ Cette page explique, sans jargon, quelles données AD TRANS LOGISTICS collecte s
 <p>Le responsable du traitement est <strong>AD TRANS LOGISTICS SURL</strong>, transitaire agréé au port de Cotonou&nbsp;:</p>
 <ul>
 <li>Siège&nbsp;: Missessin C/6, Cotonou, Bénin — Magasin Lagos&nbsp;: Alasia, Ojo, Lagos State, Nigeria</li>
-<li>IFU&nbsp;: 3202113824203 — RCCM&nbsp;: RB/COT/21 B 31505</li>
+<li>IFU&nbsp;: 3202465578499 — RCCM&nbsp;: RB/COT/24 B 38537</li>
 <li>Gérant&nbsp;: M.&nbsp;Anthony DURAND</li>
 <li>Contact&nbsp;: <a href="mailto:adtranslogistics@hotmail.com">adtranslogistics@hotmail.com</a> ou WhatsApp <a href="https://wa.me/2290197500555" target="_blank" rel="noopener">+229&nbsp;01&nbsp;97&nbsp;50&nbsp;05&nbsp;55</a></li>
 </ul>
@@ -243,32 +245,32 @@ Cette page explique, sans jargon, quelles données AD TRANS LOGISTICS collecte s
 <div class="legal-card">
 <h2><span class="legal-num">2</span>Quelles données collectons-nous&nbsp;?</h2>
 <h3>Formulaire de demande de devis (<a href="/demande">/demande</a>)</h3>
-<p>Nom, société (facultatif), email, téléphone, ainsi que les informations de votre expédition (marchandise, origine, destination, poids/volume, incoterm, message libre). Ces informations nous sont transmises par email et servent uniquement à traiter votre demande.</p>
+<p>Nom, prénom, société (facultatif), email, téléphone, ainsi que les informations de votre expédition (marchandise, origine, destination, poids/volume, incoterm, message libre). Ces informations nous sont transmises par email et servent uniquement à traiter votre demande.</p>
 <h3>Simulateur et calculateur de droits de douane</h3>
-<p>Avant l'affichage du résultat sur le <a href="/simulateur">simulateur véhicules</a>, le <a href="/calculateur">calculateur marchandises</a> et la <a href="/en-simulator">version anglaise</a>, nous vous demandons votre nom, votre prénom et votre numéro de téléphone, avec les caractéristiques du véhicule ou de la marchandise simulée. Ces outils fournissent des simulations calibrées sur les barèmes en vigueur.</p>
+<p>Avant l'affichage du résultat sur le <a href="/simulateur">simulateur véhicules</a>, le <a href="/calculateur">calculateur marchandises</a> et la <a href="/en-simulator">version anglaise</a>, nous vous demandons votre nom, votre prénom, votre numéro de téléphone et votre adresse e-mail, avec les caractéristiques du véhicule ou de la marchandise simulée. Les coordonnées et les caractéristiques de la demande sont transmises à AD TRANS LOGISTICS par email via FormSubmit lorsque vous envoyez une demande d’étude. Pour une simulation payante, la notification contenant vos coordonnées et les caractéristiques du véhicule ou de la marchandise est envoyée uniquement après confirmation du paiement par KKiaPay, avec la référence de transaction. Après vérification du paiement, le rapport PDF est proposé au téléchargement et envoyé à l’adresse e-mail renseignée par le client, avec une copie à AD TRANS LOGISTICS, via FormSubmit. Ces coordonnées servent à transmettre le rapport et à assurer le suivi de la demande.</p>
 <h3>Compte client (<a href="/connexion">/connexion</a> et espace client)</h3>
 <p>Adresse email, mot de passe (stocké uniquement sous forme chiffrée — nous n'y avons jamais accès en clair) et les informations de vos dossiers de transit pour le suivi en ligne.</p>
 <h3>Paiement en ligne</h3>
-<p><strong>Les paiements (accès 1&nbsp;000&nbsp;F au simulateur/calculateur, <a href="/produits-digitaux">mémos PDF</a>) sont intégralement traités par KkiaPay.</strong> Nous ne voyons ni ne stockons jamais votre numéro Mobile Money ou de carte bancaire&nbsp;: nous recevons uniquement la confirmation de la transaction (identifiant, montant, statut).</p>
-<h3>Publicité et données non collectées par AD TRANS LOGISTICS</h3>
-<p>Avec votre accord, Google AdSense peut déposer des cookies ou utiliser des identifiants afin de diffuser et mesurer des publicités personnalisées ou non personnalisées. AD TRANS LOGISTICS ne vend ni ne loue jamais les données que vous nous confiez et n'utilise pas de pixel de réseau social ni de géolocalisation précise.</p>
+<p><strong>Les paiements (simulation véhicule avec PDF à 500&nbsp;F&nbsp;CFA hors frais KKiaPay éventuels, simulation marchandises avec PDF à 500&nbsp;F&nbsp;CFA, sous réserve d’un calcul GUCE complet, <a href="/produits-digitaux">mémos PDF</a>) sont intégralement traités par KkiaPay.</strong> Le téléphone du client est recueilli avec sa demande. Un numéro de paiement différent peut être saisi pour préremplir KKiaPay ; il n’est pas inclus dans notre notification de demande. Les données de carte bancaire sont saisies auprès de KKiaPay. Le serveur vérifie la transaction (identifiant, montant, statut) pour autoriser le résultat.</p>
+<h3>Ce que nous ne collectons pas</h3>
+<p>Pas de cookies publicitaires, pas de pixels de réseaux sociaux, pas de profilage, pas de géolocalisation. Nous ne vendons ni ne louons jamais vos données à des tiers.</p>
 </div>
 
 <div class="legal-card">
+<p>Avec votre acceptation du bandeau, les simulateurs émettent des événements de parcours (validation du formulaire, ouverture du paiement, affichage du résultat et lancement du PDF). Ces événements ne contiennent ni coordonnées, ni code SH, ni montant douanier, ni référence de paiement. Ils servent à comprendre et améliorer le parcours ; un événement navigateur ne remplace pas le rapprochement des ventes KKiaPay.</p>
 <h2><span class="legal-num">3</span>Pourquoi ces données&nbsp;? (finalités)</h2>
 <ul>
 <li><strong>Traiter vos demandes</strong>&nbsp;: répondre à vos demandes de devis et à vos questions (transit, importation, exportation, dépotage).</li>
 <li><strong>Exécuter le service payé</strong>&nbsp;: vous donner l'accès 24&nbsp;h au résultat détaillé du simulateur ou du calculateur, réaliser la vérification par un conseiller (5&nbsp;000&nbsp;F) et vous livrer les documents achetés.</li>
 <li><strong>Relance commerciale</strong>&nbsp;: vous recontacter au sujet de votre projet d'importation, uniquement pour nos propres services.</li>
 <li><strong>Gérer votre compte client</strong> et le suivi en ligne de vos dossiers.</li>
-<li><strong>Financer les contenus gratuits du site</strong> grâce aux annonces Google AdSense, uniquement après votre consentement lorsque celui-ci est requis.</li>
 <li><strong>Respecter nos obligations</strong> légales, comptables et fiscales (factures, justificatifs de paiement).</li>
 </ul>
 </div>
 
 <div class="legal-card">
 <h2><span class="legal-num">4</span>Avec qui vos données transitent-elles&nbsp;?</h2>
-<p>Le destinataire principal des données fournies dans nos formulaires est AD TRANS LOGISTICS. Pour faire fonctionner et financer le site, nous utilisons les prestataires suivants&nbsp;:</p>
+<p>AD TRANS LOGISTICS reçoit les informations nécessaires au traitement de votre demande. Le paiement et l’hébergement utilisent les prestataires ci-dessous. Pour une simulation marchandises, les paramètres techniques (régime, origine, code SH, valeur, devise, masse et unités) sont envoyés au service public GUCE. Aucun nom, téléphone ni renseignement de carte ne lui est envoyé par ce calculateur. Ce service public constitue la source du calcul, sans partenariat revendiqué.</p>
 <div class="legal-table-wrap">
 <table class="legal-table">
 <thead><tr><th>Prestataire</th><th>Rôle</th><th>Localisation</th></tr></thead>
@@ -277,7 +279,6 @@ Cette page explique, sans jargon, quelles données AD TRANS LOGISTICS collecte s
 <tr><td><strong>FormSubmit</strong> (formsubmit.co)</td><td>Acheminement des formulaires du site vers notre boîte email</td><td>États-Unis</td></tr>
 <tr><td><strong>Supabase</strong></td><td>Base de données des comptes clients et des dossiers de suivi</td><td>Union européenne / États-Unis</td></tr>
 <tr><td><strong>KkiaPay</strong></td><td>Encaissement sécurisé des paiements (Mobile Money, cartes)</td><td>Bénin</td></tr>
-<tr><td><strong>Google AdSense</strong></td><td>Diffusion, personnalisation éventuelle et mesure des publicités après consentement</td><td>États-Unis / infrastructure mondiale</td></tr>
 </tbody>
 </table>
 </div>
@@ -290,19 +291,19 @@ Cette page explique, sans jargon, quelles données AD TRANS LOGISTICS collecte s
 <li><strong>Prospects</strong> (demande de devis sans suite, coordonnées laissées sur le simulateur ou le calculateur)&nbsp;: <strong>36 mois</strong> après le dernier contact de votre part, puis suppression.</li>
 <li><strong>Clients</strong>&nbsp;: pendant toute la durée de la relation commerciale, puis pendant les durées légales de conservation applicables au Bénin (notamment <strong>10 ans</strong> pour les pièces comptables et justificatifs, conformément au droit OHADA).</li>
 <li><strong>Compte client</strong>&nbsp;: tant que le compte est actif&nbsp;; supprimé sur simple demande.</li>
-<li><strong>Données stockées sur votre appareil</strong> (localStorage — voir section 6)&nbsp;: elles restent sous votre contrôle et ne quittent pas votre navigateur.</li>
+<li><strong>Données stockées sur votre appareil</strong> (localStorage — voir section 6)&nbsp;: vous pouvez les effacer dans les réglages du navigateur. Les coordonnées et paramètres nécessaires au traitement sont également transmis au serveur lorsque vous soumettez une demande de simulation.</li>
 </ul>
 </div>
 
 <div class="legal-card">
 <h2><span class="legal-num">6</span>Cookies et stockage local</h2>
-<p>Le site charge Google AdSense afin de présenter, lorsque la réglementation l'exige, un message de consentement géré par la plate-forme de gestion du consentement (CMP) certifiée de Google. Ce message propose trois choix&nbsp;: «&nbsp;Autoriser&nbsp;», «&nbsp;Ne pas consentir&nbsp;» et «&nbsp;Gérer les options&nbsp;». Google adapte l'utilisation des cookies et identifiants publicitaires au choix exprimé.</p>
+<p>Le site n'utilise <strong>aucun cookie publicitaire ni traceur tiers</strong>. Nous utilisons uniquement le stockage local de votre navigateur (localStorage) pour des besoins techniques&nbsp;:</p>
 <ul>
+<li><code>adtl_cookie_consent</code>&nbsp;: mémorise votre choix (Accepter/Refuser) sur le bandeau de consentement, pour ne pas vous le réafficher.</li>
 <li><code>adtl_lead_v1</code> et <code>adtl_contact</code>&nbsp;: retiennent les coordonnées que vous avez saisies sur le simulateur/calculateur, pour ne pas vous les redemander.</li>
-<li><code>adtl_paid_sim_v1</code> (et clés équivalentes)&nbsp;: preuve locale de votre accès 24&nbsp;h après paiement, pour ne pas vous refaire payer pendant cette période.</li>
+<li><code>adtl_simulation_pending_v2</code> et <code>adtl_simulation_receipt_v2</code>&nbsp;: conservent la référence de commande ou le reçu chiffré, les paramètres et les coordonnées de la simulation. Le serveur vérifie ces références pour retrouver un résultat déjà payé. Les historiques véhicules et marchandises conservent également les références chiffrées de leurs rapports et commandes. Le brouillon marchandises conserve les paramètres saisis. Ces éléments restent sur ce navigateur jusqu’à leur effacement par vos soins ; ils permettent la reprise sans nouveau paiement pour les mêmes paramètres.</li>
 </ul>
-<p>Pour comprendre comment Google utilise les informations provenant des sites partenaires, consultez <a href="https://policies.google.com/technologies/partner-sites?hl=fr" target="_blank" rel="noopener">la page d'information de Google</a>. Vous pouvez gérer vos choix dans le message de confidentialité Google lorsqu'il est affiché ou le faire réapparaître en effaçant les cookies et données du site dans votre navigateur.</p>
-<p>Vous pouvez effacer ces éléments à tout moment via les réglages de votre navigateur (« Effacer les données de navigation »). Attention&nbsp;: l'effacement supprime aussi votre accès 24&nbsp;h payé sur cet appareil — contactez-nous sur WhatsApp si cela arrive, nous rétablirons votre accès sur présentation de la référence de paiement.</p>
+<p>Vous pouvez effacer ces éléments à tout moment via les réglages de votre navigateur (« Effacer les données de navigation »). Attention&nbsp;: l’effacement supprime aussi votre référence de simulation payée sur cet appareil — contactez-nous sur WhatsApp si cela arrive, nous vérifierons le paiement et les possibilités de récupération sur présentation de votre reçu.</p>
 </div>
 
 <div class="legal-card">
@@ -333,7 +334,7 @@ Cette page explique, sans jargon, quelles données AD TRANS LOGISTICS collecte s
 <div class="container mx-auto px-6 max-w-[1440px]">
 <div class="bg-g50 rounded-brand-lg border border-g200 p-8 text-center" style="padding:48px 32px;">
 <h2 class="title-h2" style="margin-bottom:12px;">Une question&nbsp;? Un projet d'importation&nbsp;?</h2>
-<p class="subtitle mx-auto" style="margin-bottom:32px;">Estimez vos droits de douane en toute confiance&nbsp;: <a href="/simulateur" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">simulateur véhicules</a> ou <a href="/calculateur" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">calculateur marchandises</a> — obtenez votre montant exact pour 1&nbsp;000&nbsp;F, accès 24&nbsp;h. Vous pouvez aussi consulter nos <a href="/guides" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">guides pratiques</a>.</p>
+<p class="subtitle mx-auto" style="margin-bottom:32px;">Estimez vos droits de douane en toute confiance&nbsp;: <a href="/simulateur" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">simulateur véhicules</a> ou <a href="/calculateur" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">calculateur marchandises</a> — simulation et PDF à 500&nbsp;F&nbsp;CFA, hors frais de paiement éventuels. Il s’agit d’une estimation indicative ; un calcul marchandises incomplet n’ouvre aucun paiement. Vous pouvez aussi consulter nos <a href="/guides" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">guides pratiques</a>.</p>
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
 <a class="btn-brand btn-brand-dark" href="/simulateur">Obtenez votre montant exact — 1&nbsp;000&nbsp;F, accès 24&nbsp;h <span class="material-symbols-outlined !text-sm">arrow_forward</span></a>
 <a class="btn-brand btn-brand-ghost" href="/demande">Soumettre une demande de devis</a>
@@ -351,8 +352,8 @@ Cette page explique, sans jargon, quelles données AD TRANS LOGISTICS collecte s
 <div class="font-heading font-bold text-base text-brand mb-6">AD TRANS LOGISTICS</div>
 <p class="text-sm text-g500 mb-4">SURL spécialisée en transit douanier, négoce de matières premières et logistique portuaire au port de Cotonou, Bénin.</p>
 <div class="space-y-2 text-[13px] text-g600">
-<p><strong>IFU:</strong> 3202113824203</p>
-<p><strong>RCCM:</strong> RB/COT/21 B 31505</p>
+<p><strong>IFU:</strong> 3202465578499</p>
+<p><strong>RCCM:</strong> RB/COT/24 B 38537</p>
 </div>
 </div>
 <!-- Services -->
@@ -476,7 +477,7 @@ function showToast(message, type = 'success') {
     <span>Compte</span>
   </a>
 </nav>
-<script src="/cookie-consent.js?v=5"></script>
+<script src="/cookie-consent.js?v=3"></script>
 <script defer src="/assets/material-icons-fallback.js?v=3"></script>
 <script src="/assets/lang-suggest.js?v=3" defer></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>

@@ -1,0 +1,10 @@
+.paid-declarations { padding:16px;border:1px solid #E5E5E5;background:#F7F7F7;border-radius:12px;margin:18px 0;color:#262626; }
+.paid-declarations[hidden] { display:none; }
+.paid-declarations h3 { margin:0 0 12px;font-size:14px;line-height:1.4;font-weight:700; }
+.paid-declarations-intro { font-size:12px;line-height:1.5;margin:0 0 6px;font-weight:600; }
+.paid-declarations-note { font-size:11px;line-height:1.6;margin:5px 0;color:#737373; }
+.paid-declarations-grid { display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0; }
+.paid-declarations-cell { background:white;border:1px solid #E5E5E5;border-radius:8px;padding:10px; }
+.paid-declarations-cell dt { font-size:11px;line-height:1.4;color:#737373; }
+.paid-declarations-cell dd { margin:3px 0;font-size:14px;font-weight:700; }
+.paid-declarations-range { display:block;font-size:11px;line-height:1.5;color:#737373; }

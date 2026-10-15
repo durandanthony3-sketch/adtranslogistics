@@ -83,8 +83,12 @@ details.faq[open] summary::after{content:'–'}
 details.faq .faq-body{padding:0 24px 20px;font-size:14px;color:#737373;line-height:1.7}
 .step-num{width:34px;height:34px;border-radius:999px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;font-family:'Space Grotesk',sans-serif}
 </style>
+<link rel="stylesheet" href="/adtl-polish.css?v=20260906"/>
+<link rel="stylesheet" href="/adtl-elegant.css?v=20260911"/>
+<link rel="stylesheet" href="/adtl-cards.css?v=20260911-3"/>
+<link rel="stylesheet" href="/assets/site-logo-20260919.css">
 </head>
-<body class="bg-white text-g800 font-sans">
+<body class="adtl-elegant adtl-modern bg-white text-g800 font-sans">
 
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20le%20negoce%20de%20matieres%20premieres." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
@@ -100,21 +104,18 @@ details.faq .faq-body{padding:0 24px 20px;font-size:14px;color:#737373;line-heig
 <nav class="glass-nav transition-all duration-300" id="navbar">
 <div class="container mx-auto px-6 max-w-[1440px]">
 <div class="flex items-center justify-between h-20">
-<a class="flex items-center gap-2.5 group" href="/">
-<div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
-<div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
-</a>
+<a class="adtl-site-logo" href="/en" aria-label="AD TRANS LOGISTICS — Home"><img class="adtl-site-logo__image" src="/assets/logo-adtl-20260919.jpeg" width="1080" height="817" alt="" decoding="async"></a>
 <ul class="hidden lg:flex items-center gap-1 list-none">
     <li class="relative group">
-        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Duty calculator <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Customs duties <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Vehicles</div>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/en-simulator">Used</a>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">New (brand-new)</a>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Import</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/en-simulator">Used vehicle</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">New vehicle</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Goods</a>
             <div class="border-t border-gray-100 mx-3 my-1"></div>
-            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Cargo</div>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Import</a>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur?mode=export">Export</a>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Export</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=exportation">Export duty assessment</a>
         </div>
     </li>
     <li class="relative group">
@@ -173,16 +174,16 @@ details.faq .faq-body{padding:0 24px 20px;font-size:14px;color:#737373;line-heig
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Home</a>
 <div>
     <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-semibold text-brand rounded-brand-sm cursor-pointer bg-g50">
-        <span>Duty calculator</span>
+        <span>Customs duties</span>
         <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="mob-tw-sub hidden pl-8 pb-2">
-        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Vehicles</div>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/en-simulator" onclick="closeMobile()">Used</a>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">New (brand-new)</a>
-        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Cargo</div>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Import</a>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur?mode=export" onclick="closeMobile()">Export</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Import</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/en-simulator" onclick="closeMobile()">Used vehicle</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">New vehicle</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Goods</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Export</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=exportation" onclick="closeMobile()">Export duty assessment</a>
     </div>
 </div>
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=importation" onclick="closeMobile()">Imports</a>
@@ -216,7 +217,7 @@ Customs clearing, vehicle imports and cross-border transit to <strong>Niger</str
 </p>
 <div class="flex flex-col sm:flex-row gap-4 mb-16">
 <a class="btn-brand btn-brand-dark" href="https://wa.me/2290197500555?text=Hello%20AD%20TRANS%20LOGISTICS%2C%20I%20would%20like%20a%20quote.">Get a WhatsApp quote <span class="material-symbols-outlined !text-sm">arrow_forward</span></a>
-<a class="btn-brand btn-brand-ghost" href="/en-simulator">Estimate import duties</a>
+<a class="btn-brand btn-brand-ghost" href="/en-simulator">Vehicle estimate + PDF · 500 F CFA</a>
 </div>
 <div class="flex gap-12 flex-wrap">
 <div><div class="font-heading text-3xl font-bold text-brand">24/7</div><div class="text-[13px] text-g400 mt-1">Online shipment tracking</div></div>
@@ -234,12 +235,12 @@ Customs clearing, vehicle imports and cross-border transit to <strong>Niger</str
 <p class="subtitle mx-auto">From a single car to regular container flows — handled with the same rigour.</p>
 </div>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-<div class="bg-white p-8 rounded-brand-lg border border-g100"><div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">inventory_2</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Customs clearing</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Full import clearing at the Port of Cotonou: declaration, duties, port formalities and release. Fixed, transparent fees announced upfront.</p></div>
-<div class="bg-white p-8 rounded-brand-lg border border-g100"><div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">directions_car</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Vehicle imports</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Cars from US auctions (Copart, IAAI), Europe, Dubai and Asia. Purchase support, ocean freight, clearing and registration in Benin.</p></div>
-<div class="bg-white p-8 rounded-brand-lg border border-g100"><div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">route</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Transit to Niger</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">T1 international transit from Cotonou to Niamey under customs escort via Malanville–Gaya. <a href="/en/niger" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">Niger corridor →</a></p></div>
-<div class="bg-white p-8 rounded-brand-lg border border-g100"><div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">local_shipping</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Nigeria corridor</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Clearing in Cotonou and delivery to Lagos through Sèmè-Kraké — including regulated goods. <a href="/en/nigeria" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">Nigeria corridor →</a></p></div>
-<div class="bg-white p-8 rounded-brand-lg border border-g100"><div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">handshake</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Importer of Record & sourcing</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Shipping to West Africa without a local entity? We act as your consignee/IOR in Benin, handle compliance and forward to the final market.</p></div>
-<div class="bg-white p-8 rounded-brand-lg border border-g100"><div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">warehouse</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Port logistics & warehousing</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Container unstuffing, short-term storage, regrouping and last-mile delivery in Benin and across the sub-region.</p></div>
+<div class="adtl-content-card bg-white p-8 rounded-brand-lg border border-g100"><div class="adtl-card-icon w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">inventory_2</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Customs clearing</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Full import clearing at the Port of Cotonou: declaration, duties, port formalities and release. A personalised quotation after review of your documents and shipment.</p></div>
+<div class="adtl-content-card bg-white p-8 rounded-brand-lg border border-g100"><div class="adtl-card-icon w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">directions_car</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Vehicle imports</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Cars from US auctions (Copart, IAA), Europe, Dubai and Asia. Purchase support, ocean freight, clearing and registration in Benin.</p><p class="text-sm text-g500 leading-relaxed" style="margin:16px 0 0;">ADTL represents Youxinpai in Benin and handles enquiries for every brand offered on its platform. Prices and availability are confirmed before ordering. <a href="/vehicules-chine" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">Browse vehicles from China (French) →</a></p></div>
+<div class="adtl-content-card bg-white p-8 rounded-brand-lg border border-g100"><div class="adtl-card-icon w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">route</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Transit to Niger</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">T1 international transit from Cotonou to Niamey under customs escort via Malanville–Gaya. <a href="/en/niger" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">Niger corridor →</a></p></div>
+<div class="adtl-content-card bg-white p-8 rounded-brand-lg border border-g100"><div class="adtl-card-icon w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">local_shipping</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Nigeria corridor</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Clearing in Cotonou and delivery to Lagos through Sèmè-Kraké — including regulated goods. <a href="/en/nigeria" style="color:#0A0A0A;font-weight:600;text-decoration:underline;">Nigeria corridor →</a></p></div>
+<div class="adtl-content-card bg-white p-8 rounded-brand-lg border border-g100"><div class="adtl-card-icon w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">handshake</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Importer of Record & sourcing</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Shipping to West Africa without a local entity? We act as your consignee/IOR in Benin, handle compliance and forward to the final market.</p></div>
+<div class="adtl-content-card bg-white p-8 rounded-brand-lg border border-g100"><div class="adtl-card-icon w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">warehouse</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Port logistics & warehousing</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Container unstuffing, short-term storage, regrouping and last-mile delivery in Benin and across the sub-region.</p></div>
 </div>
 </div>
 </section>
@@ -250,9 +251,9 @@ Customs clearing, vehicle imports and cross-border transit to <strong>Niger</str
 <h2 class="title-h2">Why importers choose us</h2>
 </div>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-<div class="bg-white p-8 rounded-brand-lg border border-g100"><div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">visibility</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Total transparency</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Every duty, tax and fee is itemised before you commit. No surprises at the port — our duty simulator is public and verified.</p></div>
-<div class="bg-white p-8 rounded-brand-lg border border-g100"><div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">support_agent</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">One point of contact</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">A dedicated coordinator follows your file from booking to delivery and answers on WhatsApp, in English or French.</p></div>
-<div class="bg-white p-8 rounded-brand-lg border border-g100"><div class="w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">gps_fixed</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Real-time tracking</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Each shipment gets an online tracking link: vessel arrival, customs status, escort departure, delivery confirmation.</p></div>
+<div class="adtl-content-card bg-white p-8 rounded-brand-lg border border-g100"><div class="adtl-card-icon w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">visibility</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Total transparency</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Every duty, tax and fee is itemised before you commit. The vehicle simulator provides an indicative estimate and PDF for 500 F CFA, excluding payment fees. The final amount remains subject to customs assessment.</p></div>
+<div class="adtl-content-card bg-white p-8 rounded-brand-lg border border-g100"><div class="adtl-card-icon w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">support_agent</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">One point of contact</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">A dedicated coordinator follows your file from booking to delivery and answers on WhatsApp, in English or French.</p></div>
+<div class="adtl-content-card bg-white p-8 rounded-brand-lg border border-g100"><div class="adtl-card-icon w-14 h-14 bg-amber-50 rounded-brand-sm flex items-center justify-center mb-6 border border-amber-100"><span class="material-symbols-outlined text-amber-600 text-2xl">gps_fixed</span></div><h3 class="font-heading text-lg font-semibold text-brand mb-2">Real-time tracking</h3><p class="text-sm text-g500 leading-relaxed" style="margin:0;">Each shipment gets an online tracking link: vessel arrival, customs status, escort departure, delivery confirmation.</p></div>
 </div>
 </div>
 </section>
@@ -286,10 +287,10 @@ Customs clearing, vehicle imports and cross-border transit to <strong>Niger</str
 <!-- Company Info -->
 <div>
 <div class="font-heading font-bold text-base text-brand mb-6">AD TRANS LOGISTICS</div>
-<p class="text-sm text-g500 mb-4">SURL specialisee en transit douanier, negoce de matieres premieres et logistique portuaire au port de Cotonou, Benin.</p>
+<p class="text-sm text-g500 mb-4">Customs clearing, commodities trading and port logistics at the Port of Cotonou, Benin.</p>
 <div class="space-y-2 text-[13px] text-g600">
-<p><strong>IFU:</strong> 3202113824203</p>
-<p><strong>RCCM:</strong> RB/COT/21 B 31505</p>
+<p><strong>IFU:</strong> 3202465578499</p>
+<p><strong>RCCM:</strong> RB/COT/24 B 38537</p>
 </div>
 </div>
 <!-- Services -->
@@ -337,7 +338,7 @@ Customs clearing, vehicle imports and cross-border transit to <strong>Niger</str
 </div>
 <!-- Footer Bottom -->
 <div class="border-t border-g200 pt-8">
-<p class="text-center text-[13px] text-g500">&copy; 2026 AD TRANS LOGISTICS. Tous droits reserves. | Negoce de matieres premieres en Afrique de l'Ouest. | <a href="/mentions-legales" class="hover:text-brand" style="text-decoration:underline;">Legal notice &amp; Terms</a> · <a href="/confidentialite" class="hover:text-brand" style="text-decoration:underline;">Privacy</a></p>
+<p class="text-center text-[13px] text-g500">&copy; 2026 AD TRANS LOGISTICS. All rights reserved. | Commodities trading in West Africa. | <a href="/mentions-legales" class="hover:text-brand" style="text-decoration:underline;">Legal notice &amp; Terms</a> · <a href="/confidentialite" class="hover:text-brand" style="text-decoration:underline;">Privacy</a></p>
 </div>
 </div>
 </footer>
@@ -488,7 +489,7 @@ function submitNegoce(e) {
     <span>Account</span>
   </a>
 </nav>
-<script src="/cookie-consent.js?v=5"></script>
+<script src="/cookie-consent.js?v=3"></script>
 <script defer src="/assets/material-icons-fallback.js?v=3"></script>
 <div style="position:fixed;bottom:18px;right:18px;z-index:60;"><a href="/en-simulator" style="background:#c9a227;color:#0D1B2A;font-weight:800;padding:13px 20px;border-radius:9999px;text-decoration:none;font-size:14px;box-shadow:0 10px 26px rgba(0,0,0,.3);">🧮 Duty calculator · 📘 English guides →</a></div>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>

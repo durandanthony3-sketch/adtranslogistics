@@ -1,0 +1,137 @@
+/* AD TRANS LOGISTICS — shared public identity, September 2026.
+   Apply body.adtl-brand. Homepage composition uses .adtl-home only. */
+body.adtl-brand{--black:#13262b;--dark:#13262b;--gray800:#243a3f;--gray600:#46575a;--gray500:#5b6b6d;--gray400:#728082;--gray300:#c4cdca;--gray200:#dce2dc;--gray100:#eef1eb;--gray50:#f6f6ef;--white:#fff;--brand-teal:#176858;--brand-cream:#f6f6ef;--brand-gold:#ccb986;background:#f8f8f3;color:#13262b;font-family:'Instrument Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body.adtl-brand h1,body.adtl-brand h2,body.adtl-brand h3,body.adtl-brand h4{font-family:'Space Grotesk','Instrument Sans',Arial,sans-serif;letter-spacing:-.035em}
+body.adtl-brand a:focus-visible,body.adtl-brand button:focus-visible,body.adtl-brand input:focus-visible,body.adtl-brand select:focus-visible,body.adtl-brand textarea:focus-visible{outline:3px solid #176858;outline-offset:4px}
+body.adtl-brand #navbar{background:rgba(248,248,243,.97)!important;border-bottom:1px solid #dce2dc!important;backdrop-filter:blur(16px);box-shadow:none}
+body.adtl-brand #navbar.scrolled{box-shadow:0 4px 24px #13262b0a}
+body.adtl-brand #navbar>div{max-width:1328px!important}
+body.adtl-brand .navl{font-weight:600!important;font-size:12.5px!important;letter-spacing:-.01em;border-radius:6px!important}
+body.adtl-brand .navl:hover,body.adtl-brand .drop-link:hover{background:#e9efea!important;color:#176858!important}
+body.adtl-brand .nav-drop{border:1px solid #dce2dc!important;border-radius:12px!important;box-shadow:0 20px 50px #13262b14!important}
+body.adtl-brand .btn,body.adtl-brand .btn-brand-dark{border-radius:7px!important;min-height:48px;line-height:1.4;padding:14px 23px;font-weight:600;box-shadow:none}
+body.adtl-brand .btn-dark,body.adtl-brand .btn-brand-dark{background:#176858!important;color:#fff!important}
+body.adtl-brand .btn-dark:hover,body.adtl-brand .btn-brand-dark:hover{background:#125347!important;box-shadow:0 6px 18px #12534720;transform:translateY(-2px)}
+body.adtl-brand .btn-outline{border-color:#bac7bf!important}
+body.adtl-brand .card,body.adtl-brand .card-gray{border-radius:12px!important;border-color:#dce2dc;box-shadow:none}
+body.adtl-brand .card:hover,body.adtl-brand .card-gray:hover{box-shadow:0 12px 30px #13262b0c;transform:translateY(-3px)}
+body.adtl-brand .fi{border-radius:7px;border-color:#ccd6ce;min-height:46px}
+body.adtl-brand .tag{color:#176858;font-weight:600;letter-spacing:.13em}
+body.adtl-brand footer{--black:#f5f5eb;--gray700:#e2e8de;--gray600:#c5d2ce;--gray500:#b7c7c2;--gray400:#a6bab2;--gray200:#344c4e;--white:#20383c;background:#13262b!important;color:#eef1e9;border-top:1px solid #344c4e!important}
+body.adtl-brand footer a:hover{color:#fff!important}
+body.adtl-brand footer a{overflow-wrap:anywhere}
+body.adtl-brand #bottomnav{background:#f8f8f3!important;border-top:1px solid #dce2dc!important}
+body.adtl-brand .bn-item.active{color:#176858!important}
+body.adtl-brand .whatsapp-btn{background:#176858;width:52px;height:52px;box-shadow:0 5px 20px #13262b29;right:22px;bottom:24px}
+body.adtl-brand .brand-logo{width:42px;height:42px;object-fit:contain;border-radius:50%;flex-shrink:0}
+body.adtl-brand .brand-wordmark{gap:11px!important}
+body.adtl-brand .brand-wordmark>span{font-size:13px!important;letter-spacing:.015em!important;line-height:1.35}
+body.adtl-brand .brand-wordmark>span>span{display:block;letter-spacing:.2em;font-size:9px!important;color:#5b6b6d!important;font-weight:600!important}
+body.adtl-brand .brand-account-link{border:1px solid #ccd6ce;margin-left:8px}
+/* Vertical entrances keep off-screen cards inside the mobile viewport. */
+body.adtl-brand [data-reveal="left"],body.adtl-brand [data-reveal="right"]{transform:translateY(24px)}
+body.adtl-brand [data-reveal="left"].revealed,body.adtl-brand [data-reveal="right"].revealed{transform:none}
+body.adtl-brand #simulateur-vehicule .grid>div{min-width:0}
+body.adtl-brand #simulateur-vehicule input,body.adtl-brand #simulateur-vehicule select{min-width:0;max-width:100%}
+body.adtl-home section{scroll-margin-top:88px}
+/* Keep home content readable immediately, including after fast scroll or reduced motion. */
+body.adtl-home [data-reveal]{opacity:1!important;transform:none!important}
+body.adtl-home .brand-shell{max-width:1280px;margin:auto;padding:0 32px}
+body.adtl-home .brand-hero{padding:110px 0 70px!important;background:#f6f6ef!important;border-bottom:1px solid #dce2dc;overflow:hidden}
+body.adtl-home .brand-hero-top{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #d3dbd1;padding-bottom:21px;margin-bottom:57px;font-size:10px;font-weight:600;letter-spacing:.15em;color:#53635b}
+body.adtl-home #hero-grid.brand-hero-grid{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:70px!important;align-items:center;text-align:left}
+body.adtl-home .brand-eyebrow{display:flex;gap:10px;align-items:center;color:#176858;font-size:10px;line-height:1.5;letter-spacing:.17em;font-weight:700;margin:0 0 26px;text-transform:uppercase}
+body.adtl-home .brand-eyebrow>span{display:block;width:6px;height:6px;background:#176858;border-radius:100%}
+body.adtl-home #hero-title{font-size:clamp(40px,4.5vw,65px)!important;line-height:1.04;letter-spacing:-.06em;font-weight:500;margin:0 0 25px;color:#13262b;max-width:690px}
+body.adtl-home #hero-title em{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.055em;color:#176858}
+body.adtl-home .hero-service-summary{font-size:17px;line-height:1.75;color:#54645e;max-width:545px;margin:0 0 30px!important}
+body.adtl-home .hero-actions{align-items:center;gap:25px;margin:0 0 42px!important}
+body.adtl-home .brand-text-link{display:inline-flex;align-items:center;gap:18px;text-decoration:none;color:#13262b;font-size:13px;font-weight:600;min-height:44px}
+body.adtl-home .brand-text-link:hover{color:#176858}
+body.adtl-home .brand-hero-note{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:10px;line-height:1.6;color:#68766a}
+body.adtl-home .brand-hero-note span:before{content:'+';margin-right:6px;color:#176858}
+body.adtl-home .brand-route-board{display:block!important;position:relative;background:#173339;color:#f4f3e8;border:1px solid #28484b;border-radius:4px 4px 70px 4px;padding:30px 34px 37px;min-height:435px;box-shadow:18px 18px 0 #e5e9de;isolation:isolate}
+body.adtl-home .brand-route-board:before{content:'';position:absolute;inset:0;z-index:-1;background-image:linear-gradient(#ffffff03 1px,transparent 1px),linear-gradient(90deg,#ffffff03 1px,transparent 1px);background-size:35px 35px;border-radius:inherit;pointer-events:none}
+body.adtl-home .brand-board-head{display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:.19em;color:#a6bdb8;border-bottom:1px solid #3e5756;padding-bottom:20px}
+body.adtl-home .brand-board-head>span:last-child{font-size:20px;color:#d9c78f}
+body.adtl-home .brand-small{display:block;font-size:8px;letter-spacing:.19em;color:#afc2b6;margin-bottom:9px}
+body.adtl-home .brand-origin{padding:30px 0 0}
+body.adtl-home .brand-origin strong{font-family:'Space Grotesk',sans-serif;font-size:22px;letter-spacing:-.03em;font-weight:500}
+body.adtl-home .brand-origin p,body.adtl-home .brand-destination p{color:#9fb9b3;font-size:10px;margin:7px 0 0;line-height:1.7}
+body.adtl-home .brand-route-spine{height:60px;display:flex;flex-direction:column;align-items:center;width:8px;margin-left:8px}
+body.adtl-home .brand-route-spine span{height:5px;width:5px;background:#d8c68f;border-radius:50%;flex-shrink:0}
+body.adtl-home .brand-route-spine i{height:50px;border-left:1px dashed #8d9c83}
+body.adtl-home .brand-destination{padding:13px 0 28px}
+body.adtl-home .brand-destination>div{display:flex;gap:20px;align-items:center}
+body.adtl-home .brand-destination strong{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:500;letter-spacing:-.04em}
+body.adtl-home .brand-destination b{color:#80938c;font-family:Georgia,serif;font-style:italic;font-weight:400}
+body.adtl-home .brand-route-footer{border-top:1px solid #3e5756;padding-top:21px}
+body.adtl-home .brand-route-footer>span{font-size:8px;letter-spacing:.18em;color:#afc2b6}
+body.adtl-home .brand-route-footer>div{display:flex;gap:30px;margin-top:11px}
+body.adtl-home .brand-route-footer a{font-size:12px;text-decoration:none;color:#eeeede}
+body.adtl-home .brand-route-footer b{margin-left:12px;color:#d8c68f;font-weight:400}
+body.adtl-home .brand-board-corner{position:absolute;right:33px;top:155px;writing-mode:vertical-rl;font-size:8px;letter-spacing:.23em;color:#73918a}
+body.adtl-home #parcours-rapides{padding:66px 0 76px!important;background:#fff!important;border-bottom:1px solid #e1e7df}
+body.adtl-home #parcours-rapides>div{max-width:1280px!important;padding:0 32px!important}
+body.adtl-home #parcours-rapides .title-h2{font-size:32px!important;font-weight:500;letter-spacing:-.045em;margin-bottom:0}
+body.adtl-home .quick-path-grid{gap:0;border:1px solid #dce2dc;border-radius:9px;overflow:hidden}
+body.adtl-home .quick-path-card{min-height:224px!important;border:none!important;border-right:1px solid #dce2dc!important;border-radius:0!important;padding:22px!important;background:#fff;box-shadow:none!important;transform:none!important}
+body.adtl-home .quick-path-card:last-child{border-right:0!important}
+body.adtl-home .quick-path-card:hover{background:#f1f5ed}
+body.adtl-home .quick-path-card h3{font-size:14px;line-height:1.45;letter-spacing:-.025em;margin:9px 0}
+body.adtl-home .quick-path-card p{font-size:11px;line-height:1.7;color:#657266}
+body.adtl-home .quick-path-icon{background:#edf3ec!important;color:#176858!important;border:none!important;width:35px;height:35px;font-size:18px!important;border-radius:6px!important;margin-bottom:16px}
+body.adtl-home .quick-path-type{font-size:8px;letter-spacing:.14em;color:#768376}
+body.adtl-home .quick-path-arrow{right:20px;bottom:17px;font-size:19px;color:#176858}
+body.adtl-home .brand-services{padding:88px 0!important;background:#f6f6ef!important}
+body.adtl-home .brand-section-head{display:flex;align-items:end;justify-content:space-between;gap:45px;margin-bottom:42px}
+body.adtl-home .brand-section-head .brand-eyebrow{margin-bottom:17px}
+body.adtl-home .brand-section-head .title-h2{font-size:clamp(30px,3.5vw,43px);font-weight:500;line-height:1.12;letter-spacing:-.05em;margin:0}
+body.adtl-home .brand-section-head>p{font-size:14px;line-height:1.8;color:#627060;max-width:375px;margin:0}
+body.adtl-home .brand-services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+body.adtl-home .brand-service-card{display:flex;flex-direction:column;padding:30px;border:1px solid #d5dfd0;background:#fbfcf6;border-radius:8px;min-height:366px}
+body.adtl-home .brand-card-number{font-size:8px;letter-spacing:.12em;color:#73816c;font-weight:600;margin-bottom:30px}
+body.adtl-home .brand-line-icon{font-size:30px;line-height:1;color:#176858;margin-bottom:23px;display:block}
+body.adtl-home .brand-service-card h3{font-size:23px;line-height:1.2;font-weight:500;letter-spacing:-.045em;margin:0 0 15px}
+body.adtl-home .brand-service-card p{font-size:13px;color:#667361;line-height:1.8;margin:0 0 25px}
+body.adtl-home .brand-service-card>a,body.adtl-home .brand-corridor-links{margin-top:auto}
+body.adtl-home .brand-service-card a{display:inline-flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px;font-weight:600;text-decoration:none;color:#176858;padding-top:15px;border-top:1px solid #dbe3d5;min-height:44px}
+body.adtl-home .brand-service-dark{background:#18373c;border-color:#18373c;color:#f1f2e8}
+body.adtl-home .brand-service-dark .brand-card-number,body.adtl-home .brand-service-dark p{color:#adc1b6}
+body.adtl-home .brand-service-dark a,body.adtl-home .brand-service-dark .brand-line-icon{color:#d9c78f;border-color:#3e5756}
+body.adtl-home .brand-corridor-links{display:flex;gap:28px}
+body.adtl-home #importation-expedition-vehicules{padding:0 0 80px!important;background:#f6f6ef!important}
+body.adtl-home #importation-expedition-vehicules>div{max-width:1280px!important;padding:0 32px!important}
+body.adtl-home .brand-vehicle-card{background:#e7eee2!important;border:1px solid #d4dfce;border-radius:8px!important;padding:36px 40px!important}
+body.adtl-home .brand-vehicle-card .usa-import-grid>div>div{background:transparent!important;color:#56734e!important;border:none!important;padding:0!important;font-size:9px!important;letter-spacing:.12em!important}
+body.adtl-home .brand-vehicle-card .usa-import-grid>div>div>span{display:none}
+body.adtl-home .brand-vehicle-card h2{font-size:31px!important;font-weight:500;letter-spacing:-.045em!important;color:#173339!important}
+body.adtl-home .brand-vehicle-card p{color:#596e53!important;font-size:13px!important;line-height:1.8!important;max-width:730px!important}
+body.adtl-home .brand-vehicle-card .btn-white{background:#173339!important;color:#fff!important}
+body.adtl-home .brand-vehicle-card .btn-white-outline{color:#173339!important;border-color:#8aa282!important;font-size:12px!important}
+body.adtl-home .brand-method{padding:84px 0!important;background:white!important}
+body.adtl-home .brand-method-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:45px}
+body.adtl-home .brand-method-grid article{border-top:1px solid #cad6c8;padding-top:25px}
+body.adtl-home .brand-method-grid span{font-family:Georgia,serif;font-size:35px;color:#b1bba5;display:block;margin-bottom:17px}
+body.adtl-home .brand-method-grid h3{font-size:18px;font-weight:500;margin:0 0 12px}
+body.adtl-home .brand-method-grid p{font-size:13px;line-height:1.8;color:#637260;margin:0}
+body.adtl-home .brand-commitment{padding:74px 0!important;background:#18373c!important;color:#eef3e8}
+body.adtl-home .brand-commitment .brand-shell{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+body.adtl-home .brand-commitment .brand-eyebrow{color:#b8c69d;font-size:8px}
+body.adtl-home .brand-commitment h2{font-size:clamp(29px,3.4vw,43px);font-weight:500;line-height:1.12;letter-spacing:-.05em;margin:0}
+body.adtl-home .brand-commitment h2 em{font-family:Georgia,serif;font-weight:400;color:#d8c68e}
+body.adtl-home .brand-commitment p:not(.brand-eyebrow){font-size:14px;color:#b5c6bb;line-height:1.85;margin:0 0 23px}
+body.adtl-home #formation-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+body.adtl-home #formation,body.adtl-home #faq,body.adtl-home #contact{padding-top:76px!important;padding-bottom:76px!important}
+body.adtl-home .brand-contact-card{background:#eef3e8!important;padding:36px!important;align-self:center}
+body.adtl-home .brand-contact-card .brand-eyebrow{margin-bottom:17px}
+body.adtl-home .brand-contact-card h3{font-size:30px;font-weight:500;margin:0 0 18px}
+body.adtl-home .brand-contact-card p:not(.brand-eyebrow){font-size:14px;color:#5b7052;line-height:1.8;margin:0 0 27px}
+body.adtl-home .brand-contact-card .btn{width:100%;justify-content:space-between}
+body.adtl-home .brand-contact-alternatives{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px}
+body.adtl-home .brand-contact-alternatives a{font-size:12px;color:#365d43;min-height:32px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:1150px){body.adtl-home #hero-grid.brand-hero-grid{gap:38px!important}body.adtl-home .brand-route-board{padding:25px;box-shadow:10px 10px 0 #e5e9de}body.adtl-home .brand-services-grid{gap:15px}body.adtl-home .brand-service-card{padding:25px}body.adtl-brand .navl{font-size:11px!important}}
+@media(max-width:900px){body.adtl-home #hero-grid.brand-hero-grid{grid-template-columns:1fr!important;gap:35px!important;text-align:left!important}body.adtl-home #accueil #hero-grid>.brand-route-board{display:block!important;max-width:540px;width:100%;margin:0 auto}body.adtl-home .brand-hero{padding:98px 0 50px!important}body.adtl-home .brand-hero-top{margin-bottom:38px}body.adtl-home .brand-hero-top>span:last-child{display:none}body.adtl-home .hero-actions{justify-content:flex-start!important}body.adtl-home .brand-hero-copy{max-width:650px}body.adtl-home .brand-services-grid{grid-template-columns:1fr!important}body.adtl-home .brand-service-card{min-height:0}body.adtl-home .brand-section-head{align-items:start;gap:24px;flex-direction:column}body.adtl-home .brand-commitment .brand-shell{grid-template-columns:1fr;gap:28px}body.adtl-home .brand-method-grid{gap:25px}body.adtl-home #formation-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}body.adtl-brand .whatsapp-btn{bottom:80px;right:15px}}
+@media(max-width:600px){body.adtl-home .brand-shell,body.adtl-home #parcours-rapides>div,body.adtl-home #importation-expedition-vehicules>div{padding-left:22px!important;padding-right:22px!important}body.adtl-home #hero-title{font-size:43px!important;line-height:1.06;letter-spacing:-.057em}body.adtl-home .hero-service-summary{font-size:15px;line-height:1.75}body.adtl-home .hero-actions{gap:14px;margin-bottom:28px!important}body.adtl-home .hero-actions .btn{width:100%;justify-content:space-between!important}body.adtl-home .hero-actions .brand-text-link{min-height:44px}body.adtl-home .brand-hero-note{gap:8px 12px;font-size:9px}body.adtl-home .brand-route-board{border-radius:4px 4px 45px 4px;min-height:405px}body.adtl-home .brand-origin strong{font-size:20px}body.adtl-home .brand-destination strong{font-size:28px}body.adtl-home .brand-origin p{max-width:225px}body.adtl-home .brand-board-corner{right:20px}body.adtl-home #parcours-rapides{padding:44px 0!important}body.adtl-home .quick-path-grid{grid-template-columns:1fr!important}body.adtl-home .quick-path-card{min-height:150px!important;border-bottom:1px solid #dce2dc!important;border-right:0!important;padding:22px 22px 22px 78px!important}body.adtl-home .quick-path-card:last-child{border-bottom:0!important}body.adtl-home .quick-path-icon{position:absolute;left:22px;top:24px}body.adtl-home .quick-path-card h3{font-size:16px;margin:5px 0}body.adtl-home .quick-path-card p{max-width:90%;font-size:12px}body.adtl-home .quick-path-card h3 br{display:none}body.adtl-home .quick-path-card h3 br:after{content:' '}body.adtl-home .brand-services,body.adtl-home .brand-method,body.adtl-home .brand-commitment{padding:52px 0!important}body.adtl-home .brand-vehicle-card{padding:26px!important}body.adtl-home .brand-vehicle-card h2{font-size:29px!important}body.adtl-home #importation-expedition-vehicules{padding-bottom:52px!important}body.adtl-home .brand-method-grid{grid-template-columns:1fr;gap:28px}body.adtl-home .brand-section-head .title-h2{font-size:32px}body.adtl-home #formation-grid{grid-template-columns:1fr!important}body.adtl-home .brand-contact-card{padding:26px!important}body.adtl-home .brand-contact-card h3{font-size:27px}body.adtl-brand .brand-wordmark>span{font-size:12px!important}body.adtl-brand .brand-logo{width:38px;height:38px}body.adtl-brand footer{padding-top:44px!important}}
+@media(prefers-reduced-motion:reduce){body.adtl-brand *,body.adtl-brand *:before,body.adtl-brand *:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+@media(max-width:600px){body.adtl-home .quick-path-card h3 br{display:block}body.adtl-home .quick-path-card h3 br:after{content:none}}

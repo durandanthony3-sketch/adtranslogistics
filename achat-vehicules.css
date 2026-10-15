@@ -1314,3 +1314,59 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
+/* Integrated Youxinpai selection uses the same catalogue and quotation basket. */
+.catalogue-tools { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.catalogue-tools .segment-control { grid-column: 1 / -1; }
+.catalogue-load-status { align-items: center; display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+.catalogue-load-status p, .catalogue-source-note { color: var(--muted); font-size: .85rem; line-height: 1.65; margin: 0; }
+.catalogue-source-note { margin-top: 24px; }
+.catalogue-source-note a { text-decoration: underline; text-underline-offset: 3px; }
+.quote-card-link { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px 12px; }
+.youxinpai-card .vehicle-photo-track img, .youxinpai-dialog .dialog-photo-track img { object-fit: contain; }
+.youxinpai-card .vehicle-status { top: auto; bottom: 12px; max-width: calc(100% - 70px); }
+.youxinpai-card .vehicle-ref { font-size: .68rem; max-width: calc(100% - 24px); overflow-wrap: anywhere; }
+.youxinpai-card .vehicle-price { align-items: start; flex-direction: column; gap: 3px; }
+.youxinpai-card .vehicle-price strong { font-size: 1.16rem; }
+.youxinpai-card .vehicle-body { align-content: start; }
+.youxinpai-dialog .dialog-media { min-height: 280px; }
+.vehicle-dialog { max-height: calc(100dvh - 40px); overflow-y: auto; }
+.vehicle-dialog .close-dialog { right: 8px; top: 8px; }
+.selection-total { flex-wrap: wrap; gap: 10px; }
+.selection-total strong { overflow-wrap: anywhere; }
+.pending-selection { grid-template-columns: minmax(0, 1fr) auto; }
+.quote-delivery-label { display: block; color: var(--muted); font-size: .85rem; font-weight: 500; margin-top: 4px; }
+.dialog-body .secondary-card { text-align: center; padding: 10px 12px; }
+.photo-gallery { min-width: 0; width: 100%; }
+.photo-gallery--card, .photo-gallery--card .photo-gallery-viewport { height: 100%; }
+.photo-gallery-viewport { position: relative; min-width: 0; overflow: hidden; }
+.photo-gallery--dialog .photo-gallery-viewport { aspect-ratio: 4 / 3; }
+.dialog-media, .youxinpai-dialog .dialog-media { display: block; min-height: 0; align-self: start; }
+.photo-gallery [data-gallery-track] { overscroll-behavior-x: contain; scroll-behavior: auto; }
+.photo-gallery [data-gallery-track]:focus-visible { outline: 3px solid #a66d16; outline-offset: -3px; }
+.gallery-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 1;
+  width: 44px; height: 44px; min-width: 44px; padding: 0; border-radius: 50%;
+  display: grid; place-items: center; border: 1px solid rgba(255,255,255,.75);
+  background: rgba(13,28,40,.87); color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.22);
+  font-size: 32px; line-height: 1; cursor: pointer;
+}
+.gallery-arrow--previous { left: 8px; }
+.gallery-arrow--next { right: 8px; }
+.gallery-arrow:disabled { opacity: .38; cursor: default; }
+.gallery-arrow:focus-visible, .gallery-thumbnail:focus-visible { outline: 3px solid #c48d38; outline-offset: 2px; }
+.gallery-photo-count { position: absolute; right: 12px; bottom: 12px; border-radius: 999px; padding: 6px 10px; background: rgba(0,0,0,.72); color: #fff; font-size: .8rem; font-weight: 700; }
+.gallery-thumbnail { flex: 0 0 72px; width: 72px; height: 72px; padding: 0; border: 3px solid transparent; border-radius: 10px; overflow: hidden; background: #f0f0f0; cursor: pointer; }
+.dialog-gallery .gallery-thumbnail img { display: block; width: 100%; height: 100%; border-radius: 5px; object-fit: cover; }
+.gallery-thumbnail[aria-current="true"] { border-color: #a66d16; }
+.vehicle-condition-note { background: #fff6e7; border: 1px solid #e5c792; border-radius: 12px; color: #654217; font-size: .83rem; line-height: 1.55; margin: 0; padding: 12px; overflow-wrap: anywhere; }
+.vehicle-condition-note strong { display: block; margin-bottom: 4px; }
+[hidden] { display: none !important; }
+@media (max-width: 860px) {
+  .catalogue-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .catalogue-tools .segment-control { grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 18px; }
+}
+@media (max-width: 520px) {
+  .catalogue-tools { grid-template-columns: 1fr; }
+  .catalogue-tools .segment-control { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

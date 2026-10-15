@@ -148,8 +148,10 @@
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
 <meta name="robots" content="noindex,nofollow"/>
+<link rel="stylesheet" href="/adtl-elegant.css?v=20260911"/>
+<link rel="stylesheet" href="/adtl-cards.css?v=20260911-3"/>
 </head>
-<body>
+<body class="adtl-elegant">
 
 <!-- Loading overlay -->
 <div id="loading-page">
@@ -177,7 +179,7 @@
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px;">
         <div>
             <h1 style="font-size:clamp(1.4rem,3vw,28px);margin-bottom:6px;">Bonjour, <span id="user-greeting">—</span> 👋</h1>
-            <p style="font-size:14px;color:var(--gray500);">Suivez et gérez vos dossiers de dédouanement</p>
+            <p style="font-size:14px;color:var(--gray500);">Vos conteneurs en dépotage et vos dossiers de dédouanement, en temps réel</p>
         </div>
         <button onclick="openPanel()" class="btn btn-dark">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -203,13 +205,34 @@
 
     <!-- Tabs -->
     <div style="display:flex;gap:4px;background:var(--gray100);border-radius:12px;padding:4px;margin-bottom:24px;">
-        <button onclick="switchSection('dossiers')" id="tab-dossiers" style="flex:1;padding:10px;border-radius:9px;border:none;background:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:'Instrument Sans',sans-serif;color:var(--black);box-shadow:0 2px 8px rgba(0,0,0,.08);transition:all .2s;">Mes dossiers</button>
+        <button onclick="switchSection('conteneurs')" id="tab-conteneurs" style="flex:1;padding:10px;border-radius:9px;border:none;background:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:'Instrument Sans',sans-serif;color:var(--black);box-shadow:0 2px 8px rgba(0,0,0,.08);transition:all .2s;">Mes conteneurs <span id="tab-conteneurs-n" style="display:none;margin-left:4px;background:#0A0A0A;color:#fff;border-radius:999px;padding:1px 7px;font-size:11px;"></span></button>
+        <button onclick="switchSection('dossiers')" id="tab-dossiers" style="flex:1;padding:10px;border-radius:9px;border:none;background:transparent;font-size:14px;font-weight:600;cursor:pointer;font-family:'Instrument Sans',sans-serif;color:var(--gray500);transition:all .2s;">Mes dossiers</button>
         <button onclick="switchSection('documents')" id="tab-documents" style="flex:1;padding:10px;border-radius:9px;border:none;background:transparent;font-size:14px;font-weight:600;cursor:pointer;font-family:'Instrument Sans',sans-serif;color:var(--gray500);transition:all .2s;">Mes documents</button>
         <button onclick="switchSection('simulations')" id="tab-simulations" style="flex:1;padding:10px;border-radius:9px;border:none;background:transparent;font-size:14px;font-weight:600;cursor:pointer;font-family:'Instrument Sans',sans-serif;color:var(--gray500);transition:all .2s;">Mes simulations</button>
     </div>
 
+    <!-- Conteneurs (dépotage) -->
+    <div id="section-conteneurs">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+            <div>
+                <h2 style="font-size:18px;font-weight:700;margin-bottom:4px;">Mes conteneurs en dépotage</h2>
+                <p style="font-size:13px;color:var(--gray500);">Mis à jour en direct par l’équipe AD TRANS LOGISTICS au port de Cotonou.</p>
+            </div>
+            <div style="display:flex;gap:6px;background:var(--gray100);border-radius:999px;padding:3px;">
+                <button class="ct-f active" data-f="actifs" onclick="ctFilter('actifs',this)">En cours</button>
+                <button class="ct-f" data-f="termine" onclick="ctFilter('termine',this)">Terminés</button>
+                <button class="ct-f" data-f="" onclick="ctFilter('',this)">Tous</button>
+            </div>
+        </div>
+        <div id="conteneur-list"></div>
+    </div>
+    <style>
+    .ct-f{border:0;background:transparent;padding:7px 14px;border-radius:999px;font:600 13px 'Instrument Sans',sans-serif;color:var(--gray500);cursor:pointer}
+    .ct-f.active{background:#fff;color:var(--black);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+    </style>
+
     <!-- Dossiers list -->
-    <div id="section-dossiers">
+    <div id="section-dossiers" style="display:none;">
         <h2 style="font-size:18px;font-weight:700;margin-bottom:16px;">Mes dossiers</h2>
         <div id="dossier-list"></div>
     </div>
@@ -327,6 +350,7 @@
 
 <script src="/config.js?v=3"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/assets/depotage.js?v=20261015"></script>
 <script>
 // html2pdf (192 KB) n'est chargé qu'au clic sur « Télécharger le PDF »
 function loadHtml2Pdf() {
@@ -371,7 +395,8 @@ const STATUT_LABELS = {
     if (session.user.email === ADMIN) { window.location.href = '/admin'; return; }
     currentUser = session.user;
     initUI();
-    await loadDossiers();
+    await Promise.all([loadDossiers(), loadConteneurs()]);
+    subscribeConteneurs();
     document.getElementById('loading-page').style.display = 'none';
     document.getElementById('main-page').style.display = 'block';
 })();
@@ -394,6 +419,48 @@ async function loadDossiers() {
     dossiers = data || [];
     renderStats();
     renderList();
+}
+
+// ── Conteneurs en dépotage (module partagé /assets/depotage.js) ──
+let conteneurs = [], ctFilterValue = 'actifs', ctChannel = null;
+async function loadConteneurs() {
+    const DP = window.ADTLDepotage; DP.injectCSS();
+    const [{data:d, error}, {data:e}, {data:n}] = await Promise.all([
+        sb.from('depotage_dossiers').select('*').order('updated_at',{ascending:false}),
+        sb.from('depotage_etapes').select('dossier_id,code,done_at,note'),
+        sb.from('depotage_notifications').select('dossier_id,channel,etape_code,sent_at').order('sent_at',{ascending:false})
+    ]);
+    if (error) { document.getElementById('conteneur-list').innerHTML = '<div class="empty"><p style="font-size:14px;color:var(--gray500);">Suivi des conteneurs momentanément indisponible.</p></div>'; return; }
+    const byD = {}; (e||[]).forEach(x => (byD[x.dossier_id] ||= []).push(x));
+    const nbyD = {}; (n||[]).forEach(x => (nbyD[x.dossier_id] ||= []).push(x));
+    conteneurs = (d||[]).map(x => ({...x, steps: byD[x.id]||[], notifications: nbyD[x.id]||[]}));
+    const actifs = conteneurs.filter(c => c.status==='en_cours'||c.status==='bloque').length;
+    const badge = document.getElementById('tab-conteneurs-n'); badge.textContent = actifs; badge.style.display = actifs ? 'inline' : 'none';
+    renderConteneurs();
+}
+function ctFilter(v, btn) { ctFilterValue = v; document.querySelectorAll('.ct-f').forEach(b => b.classList.toggle('active', b===btn)); renderConteneurs(); }
+function renderConteneurs() {
+    const DP = window.ADTLDepotage;
+    const el = document.getElementById('conteneur-list');
+    const list = conteneurs.filter(c => ctFilterValue==='actifs' ? (c.status==='en_cours'||c.status==='bloque') : (!ctFilterValue || c.status===ctFilterValue));
+    if (!conteneurs.length) {
+        el.innerHTML = `<div class="empty">
+            <div class="empty-icon">🚢</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">Aucun conteneur pour l’instant</h3>
+            <p style="font-size:14px;color:var(--gray500);max-width:460px;margin:0 auto 16px;line-height:1.6;">Dès que notre équipe enregistre un conteneur avec l’adresse <b>${DP.esc(currentUser.email)}</b>, il apparaît ici automatiquement avec ses 13 étapes de dépotage.</p>
+            <a href="https://wa.me/2290197500555?text=${encodeURIComponent('Bonjour AD TRANS LOGISTICS, je souhaite confier le dépotage d’un conteneur. Mon e-mail client : ' + currentUser.email)}" target="_blank" rel="noopener" class="btn btn-dark" style="width:auto;">Confier un dépotage</a>
+        </div>`;
+        return;
+    }
+    if (!list.length) { el.innerHTML = '<div class="empty"><p style="font-size:14px;color:var(--gray500);">Aucun conteneur dans cette vue.</p></div>'; return; }
+    el.innerHTML = list.map(c => DP.renderCard(c, { open: list.length === 1 })).join('');
+}
+function subscribeConteneurs() {
+    let t; const bump = () => { clearTimeout(t); t = setTimeout(loadConteneurs, 500); };
+    ctChannel = sb.channel('depotage-client')
+        .on('postgres_changes', { event:'*', schema:'public', table:'depotage_dossiers' }, bump)
+        .on('postgres_changes', { event:'*', schema:'public', table:'depotage_etapes' }, bump)
+        .subscribe();
 }
 
 function renderStats() {
@@ -539,7 +606,7 @@ function showToast(msg) {
 
 // ── Tabs ──
 function switchSection(tab) {
-    const tabs = ['dossiers','documents','simulations'];
+    const tabs = ['conteneurs','dossiers','documents','simulations'];
     tabs.forEach(t => {
         document.getElementById('section-'+t).style.display = t===tab ? 'block' : 'none';
         const btn = document.getElementById('tab-'+t);
@@ -551,6 +618,7 @@ function switchSection(tab) {
     });
     if (tab==='simulations') loadSimulations();
     if (tab==='documents') loadDocuments();
+    if (tab==='conteneurs') loadConteneurs();
 }
 
 // ── Simulations ──

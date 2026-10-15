@@ -3,6 +3,23 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/calculateur",
+      "has": [
+        {
+          "type": "query",
+          "key": "mode",
+          "value": "export"
+        }
+      ],
+      "destination": "/demande?service=exportation",
+      "permanent": false
+    },
+    {
+      "source": "/transport-conteneur-copart-iaai",
+      "destination": "/transport-conteneur-vehicules",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [
         {
@@ -81,5 +98,18 @@
         }
       ]
     }
-  ]
+  ],
+  "framework": null,
+  "buildCommand": "node build-public.cjs",
+  "outputDirectory": "public",
+  "functions": {
+    "api/sim-pay.js": {
+      "includeFiles": "{lib/**,data/argus4616-catalogue.json,assets/vendor/jspdf.umd.min.js,assets/logo-adtl-20260919.jpeg}",
+      "maxDuration": 60
+    },
+    "api/goods.js": {
+      "includeFiles": "{lib/**,assets/goods-budget.js,assets/vendor/jspdf.umd.min.js,assets/logo-adtl-20260919.jpeg}",
+      "maxDuration": 60
+    }
+  }
 }

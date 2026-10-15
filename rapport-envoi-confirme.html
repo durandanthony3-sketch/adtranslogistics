@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Envoi du rapport — AD TRANS LOGISTICS</title></head>
+<body><p>Votre rapport a été transmis au service d’envoi. Vous pouvez revenir à votre simulation.</p>
+<script>
+const attempt=new URLSearchParams(location.search).get('attempt');
+if(window.parent!==window&&/^[a-f0-9]{48}$/.test(attempt||''))window.parent.postMessage({type:'adtl-report-email-accepted',attempt},location.origin);
+</script></body></html>

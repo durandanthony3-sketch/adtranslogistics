@@ -66,15 +66,15 @@
 
     </style>
 <meta name="robots" content="noindex,nofollow"/>
+<link rel="stylesheet" href="/adtl-elegant.css?v=20260911"/>
+<link rel="stylesheet" href="/adtl-cards.css?v=20260911-3"/>
+<link rel="stylesheet" href="/assets/site-logo-20260919.css">
 </head>
-<body>
+<body class="adtl-elegant">
 
 <nav class="topnav">
     <div class="topnav-inner">
-        <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-            <div style="width:34px;height:34px;border-radius:8px;background:var(--black);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;">AD</div>
-            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--black);">AD TRANS <span style="color:var(--gray400);font-weight:400;">LOGISTICS</span></span>
-        </a>
+        <a class="adtl-site-logo" href="/" aria-label="AD TRANS LOGISTICS — Accueil"><img class="adtl-site-logo__image" src="/assets/logo-adtl-20260919.jpeg" width="1080" height="817" alt="" decoding="async"></a>
     </div>
 </nav>
 
@@ -184,8 +184,18 @@ sb.auth.getSession().then(({data:{session}}) => {
     if (session) redirect(session.user.email);
 });
 
-function redirect(email) {
-    window.location.href = email === ADMIN ? '/admin' : '/espace-client';
+// Redirection selon le rôle : admin → /admin, équipe dépotage → /equipe, client → /espace-client
+async function redirect(email) {
+    const next = new URLSearchParams(location.search).get('next');
+    if (next && /^\/[a-z0-9\-\/?=&]*$/i.test(next)) { window.location.href = next; return; }
+    if (email === ADMIN) { window.location.href = '/admin'; return; }
+    try {
+        const {data:{user}} = await sb.auth.getUser();
+        const {data:p} = await sb.from('profiles').select('is_admin,is_staff').eq('id', user.id).maybeSingle();
+        if (p?.is_admin) { window.location.href = '/admin'; return; }
+        if (p?.is_staff) { window.location.href = '/equipe'; return; }
+    } catch (_) {}
+    window.location.href = '/espace-client';
 }
 function showErr(m) {
     const e=document.getElementById('msg-err'); e.textContent=m; e.style.display='block';

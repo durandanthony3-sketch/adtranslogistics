@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Console dépotage | AD TRANS LOGISTICS</title>
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png"/>
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+<meta name="theme-color" content="#0A0A0A"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--black:#0A0A0A;--dark:#171717;--g800:#262626;--g700:#404040;--g600:#525252;--g500:#737373;--g400:#A3A3A3;--g300:#D4D4D4;--g200:#E5E5E5;--g100:#F0F0F0;--g50:#F7F7F7;--white:#fff;--ok:#166534;--okbg:#DCFCE7;--warn:#92400E;--warnbg:#FEF3C7;--err:#B91C1C;--errbg:#FEE2E2}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:'Instrument Sans',sans-serif;background:var(--g50);color:var(--black);min-height:100vh}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-.01em}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:inherit}
+.hidden{display:none!important}
+/* Top bar */
+.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--g200)}
+.top-in{max-width:1440px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:var(--black);color:#fff;display:flex;align-items:center;justify-content:center;font:700 13px 'Space Grotesk',sans-serif}
+.brand b{font-family:'Space Grotesk',sans-serif;font-size:15px;display:block;line-height:1.1}
+.brand span{font-size:11px;color:var(--g500);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.who{font-size:13px;color:var(--g600);text-align:right;line-height:1.2}
+.who b{display:block;color:var(--black)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1px solid var(--g200);background:#fff;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;white-space:nowrap}
+.pill:hover{border-color:var(--black)}
+.pill-dark{background:var(--black);color:#fff;border-color:var(--black)}
+.pill-dark:hover{background:var(--g800)}
+/* Layout */
+.wrap{max-width:1440px;margin:0 auto;padding:20px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kpi{background:#fff;border:1px solid var(--g200);border-radius:16px;padding:16px 18px}
+.kpi small{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g500);margin-bottom:6px}
+.kpi b{font:700 28px 'Space Grotesk',sans-serif;line-height:1}
+.kpi i{font-style:normal;font-size:12px;color:var(--g500);margin-left:6px}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.search{flex:1;min-width:220px;position:relative}
+.search input{width:100%;height:44px;border:1px solid var(--g200);border-radius:12px;padding:0 14px 0 40px;background:#fff;outline:none}
+.search input:focus{border-color:var(--black)}
+.search svg{position:absolute;left:13px;top:13px;color:var(--g400)}
+.sel{height:44px;border:1px solid var(--g200);border-radius:12px;padding:0 12px;background:#fff;outline:none;font-size:14px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:16px;align-items:start}
+/* List */
+.list{display:grid;gap:10px}
+.row{background:#fff;border:1px solid var(--g200);border-radius:16px;padding:14px 16px;cursor:pointer;transition:border-color .15s,box-shadow .15s;display:grid;gap:10px}
+.row:hover{border-color:var(--g400)}
+.row.sel{border-color:var(--black);box-shadow:0 0 0 3px rgba(10,10,10,.06)}
+.row-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.row-ct{font:700 17px 'Space Grotesk',sans-serif}
+.row-cl{font-size:13px;color:var(--g600);margin-top:2px}
+.badge{display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.04em;white-space:nowrap}
+.b-en_cours{background:var(--black);color:#fff}.b-bloque{background:var(--warnbg);color:var(--warn)}.b-termine{background:var(--okbg);color:var(--ok)}.b-annule{background:var(--g100);color:var(--g500)}
+.dots{display:flex;gap:4px;align-items:center}
+.dot{height:6px;flex:1;border-radius:3px;background:var(--g200)}
+.dot.on{background:var(--black)}.dot.half{background:var(--g400)}
+.row-foot{display:flex;justify-content:space-between;font-size:12px;color:var(--g500)}
+.empty{background:#fff;border:1px dashed var(--g300);border-radius:16px;padding:40px;text-align:center;color:var(--g500);font-size:14px}
+/* Panel */
+.panel{background:#fff;border:1px solid var(--g200);border-radius:20px;position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto}
+.panel-head{padding:20px 22px;border-bottom:1px solid var(--g100);display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.panel-head h2{font-size:24px}
+.panel-head .meta{font-size:13px;color:var(--g500);margin-top:4px}
+.panel-body{padding:18px 22px;display:grid;gap:18px}
+.sect-k{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g500);margin-bottom:8px}
+.ctrl-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--g600);margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--g200);border-radius:10px;padding:10px 12px;background:#fff;outline:none;font-size:14px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--black)}
+.field textarea{min-height:70px;resize:vertical}
+.phase{border:1px solid var(--g200);border-radius:14px;overflow:hidden}
+.phase.active{border-color:var(--black)}
+.phase-h{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--g50);font-size:13px;font-weight:700}
+.phase-h span{color:var(--g500);font-weight:600}
+.steps{display:grid}
+.steps.par{grid-template-columns:1fr 1fr}
+.step{display:flex;align-items:center;gap:12px;padding:11px 14px;border-top:1px solid var(--g100);cursor:pointer;transition:background .15s}
+.steps.par .step:nth-child(odd){border-right:1px solid var(--g100)}
+.step:hover{background:var(--g50)}
+.step.busy{opacity:.5;pointer-events:none}
+.chk{width:22px;height:22px;border-radius:7px;border:1.5px solid var(--g300);display:flex;align-items:center;justify-content:center;color:#fff;flex:none;transition:all .15s}
+.step.done .chk{background:var(--black);border-color:var(--black)}
+.step-t{font-size:14px;font-weight:600;line-height:1.2}
+.step-m{font-size:12px;color:var(--g500);margin-top:2px}
+.step-note{margin-left:auto;color:var(--g400);flex:none;padding:4px;border-radius:6px}
+.step-note:hover{color:var(--black);background:var(--g100)}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 16px;border-radius:12px;border:1px solid var(--g200);background:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;text-decoration:none}
+.btn:hover{border-color:var(--black)}
+.btn-dark{background:var(--black);color:#fff;border-color:var(--black)}.btn-dark:hover{background:var(--g800)}
+.btn-wa{background:#25D366;color:#fff;border-color:#25D366}.btn-wa:hover{background:#1fb455}
+.btn-danger{color:var(--err)}.btn-danger:hover{border-color:var(--err)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.log{display:grid;gap:8px}
+.log-i{display:flex;gap:10px;font-size:13px;align-items:flex-start}
+.log-i .when{color:var(--g500);white-space:nowrap;min-width:110px}
+.alert{padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.5}
+.alert-warn{background:var(--warnbg);color:var(--warn)}
+.alert-info{background:var(--g50);color:var(--g700)}
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(10,10,10,.5);display:flex;align-items:flex-start;justify-content:center;padding:24px;z-index:100;overflow:auto}
+.modal-c{background:#fff;border-radius:20px;width:min(760px,100%);padding:24px;margin:auto}
+.modal-c h2{font-size:22px;margin-bottom:4px}
+.modal-c .sub{font-size:13px;color:var(--g500);margin-bottom:18px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid .full{grid-column:1/-1}
+.modal-f{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+.team{display:grid;gap:8px}
+.team-i{display:flex;align-items:center;gap:10px;font-size:13px;padding:8px 10px;border:1px solid var(--g100);border-radius:10px}
+.team-i b{flex:1}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(0,0,0,.2);border-top-color:#000;border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black);color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;font-weight:600;opacity:0;transition:all .3s;z-index:200;pointer-events:none;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.loading{display:flex;align-items:center;justify-content:center;min-height:60vh;color:var(--g500);gap:10px}
+.wa-preview{width:100%;min-height:200px;font-size:13px;line-height:1.5}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.panel{position:fixed;inset:0;border-radius:0;max-height:none;z-index:60;display:none}.panel.open{display:block}.panel-close{display:inline-flex!important}}
+.panel-close{display:none}
+@media(max-width:560px){.ctrl-row,.form-grid,.steps.par{grid-template-columns:1fr}.steps.par .step:nth-child(odd){border-right:0}.who{display:none}.top-in{padding:0 14px}.wrap{padding:14px}}
+</style>
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="/equipe"><div class="brand-mark">AD</div><div><b>Console dépotage</b><span>AD TRANS LOGISTICS</span></div></a>
+    <div class="top-right">
+      <div class="who" id="who"></div>
+      <a class="pill" href="/suivi" target="_blank" rel="noopener">Page suivi client ↗</a>
+      <a class="pill hidden" id="lnk-admin" href="/admin">Administration</a>
+      <button class="pill" onclick="doLogout()">Déconnexion</button>
+    </div>
+  </div>
+</header>
+
+<div class="loading" id="loading"><span class="spin"></span> Chargement de la console…</div>
+
+<main class="wrap hidden" id="main">
+  <div class="kpis">
+    <div class="kpi"><small>En cours</small><b id="k-cours">0</b></div>
+    <div class="kpi"><small>Bloqués</small><b id="k-bloque">0</b></div>
+    <div class="kpi"><small>Terminés</small><b id="k-termine">0</b></div>
+    <div class="kpi"><small>Relâche → dépotage</small><b id="k-delai">—</b><i>jours en moyenne</i></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="f-q" placeholder="Conteneur, BL, client, référence…" oninput="renderList()"/></div>
+    <select class="sel" id="f-status" onchange="renderList()"><option value="actifs">Actifs (en cours + bloqués)</option><option value="en_cours">En cours</option><option value="bloque">Bloqués</option><option value="termine">Terminés</option><option value="annule">Annulés</option><option value="">Tous</option></select>
+    <select class="sel" id="f-who" onchange="renderList()"><option value="">Toute l’équipe</option></select>
+    <button class="pill pill-dark" onclick="openForm()">+ Nouveau conteneur</button>
+    <button class="pill hidden" id="btn-team" onclick="openTeam()">Équipe</button>
+  </div>
+
+  <div class="grid">
+    <div class="list" id="list"></div>
+    <aside class="panel" id="panel"><div class="empty" style="border:0;">Sélectionnez un conteneur pour voir ses 13 étapes.</div></aside>
+  </div>
+</main>
+
+<!-- Modal : nouveau / modifier -->
+<div class="modal hidden" id="modal-form">
+  <form class="modal-c" onsubmit="return saveForm(event)">
+    <h2 id="mf-title">Nouveau conteneur</h2>
+    <div class="sub">Un dossier = un conteneur. Le client reçoit un code de suivi dès l’enregistrement.</div>
+    <div class="form-grid">
+      <div class="field"><label>N° de conteneur *</label><input id="mf-container" required placeholder="MSKU1234567" style="text-transform:uppercase"/></div>
+      <div class="field"><label>N° de connaissement (BL) *</label><input id="mf-bl" required placeholder="MAEU123456789" style="text-transform:uppercase"/></div>
+      <div class="field"><label>Compagnie maritime</label><select id="mf-line"></select></div>
+      <div class="field"><label>Type</label><select id="mf-type"><option>40HC</option><option>40DV</option><option>20DV</option><option>45HC</option><option>40RF</option><option>20RF</option></select></div>
+      <div class="field"><label>Navire</label><input id="mf-vessel" placeholder="Nom du navire"/></div>
+      <div class="field"><label>Arrivée navire (ETA)</label><input id="mf-eta" type="date"/></div>
+      <div class="field full"><label>Marchandises</label><input id="mf-cargo" placeholder="Ex. 4 véhicules d’occasion + pièces détachées"/></div>
+      <div class="field"><label>Nombre de véhicules</label><input id="mf-vehicles" type="number" min="0" max="50"/></div>
+      <div class="field"><label>Responsable ADTL</label><select id="mf-assigned"></select></div>
+      <div class="field"><label>Client (nom) *</label><input id="mf-client" required placeholder="Nom du client"/></div>
+      <div class="field"><label>Société du client</label><input id="mf-company" placeholder="Raison sociale"/></div>
+      <div class="field"><label>E-mail du client</label><input id="mf-email" type="email" placeholder="Pour rattacher son espace client"/></div>
+      <div class="field"><label>WhatsApp du client</label><input id="mf-phone" placeholder="229 01 97 50 05 55"/></div>
+      <div class="field"><label>Employé à notifier (nom)</label><input id="mf-nname" placeholder="Si le client l’a demandé"/></div>
+      <div class="field"><label>Employé à notifier (WhatsApp)</label><input id="mf-nphone" placeholder="229 …"/></div>
+      <div class="field full"><label>Notes internes (invisibles pour le client)</label><textarea id="mf-notes"></textarea></div>
+    </div>
+    <div class="modal-f"><button type="button" class="btn" onclick="closeForm()">Annuler</button><button type="submit" class="btn btn-dark" id="mf-save">Enregistrer</button></div>
+  </form>
+</div>
+
+<!-- Modal : notifier -->
+<div class="modal hidden" id="modal-wa">
+  <div class="modal-c">
+    <h2>Notifier le client</h2>
+    <div class="sub">Le message s’ouvre dans WhatsApp, prêt à envoyer. L’envoi est consigné dans le journal du dossier.</div>
+    <div class="form-grid">
+      <div class="field"><label>Destinataire</label><select id="wa-to"></select></div>
+      <div class="field"><label>Étape concernée</label><select id="wa-step" onchange="waRefresh()"></select></div>
+      <div class="field full"><label>Message</label><textarea id="wa-text" class="wa-preview"></textarea></div>
+    </div>
+    <div class="modal-f"><button type="button" class="btn" onclick="closeWa()">Annuler</button><button type="button" class="btn btn-wa" onclick="waSend()">Ouvrir WhatsApp & consigner</button></div>
+  </div>
+</div>
+
+<!-- Modal : équipe (admin) -->
+<div class="modal hidden" id="modal-team">
+  <div class="modal-c">
+    <h2>Équipe dépotage</h2>
+    <div class="sub">Chaque membre crée d’abord son compte sur /connexion, puis vous l’ajoutez ici avec son e-mail.</div>
+    <div class="team" id="team-list"></div>
+    <div class="form-grid" style="margin-top:14px">
+      <div class="field full"><label>Ajouter un membre (e-mail du compte)</label><input id="team-email" type="email" placeholder="prenom@exemple.com"/></div>
+    </div>
+    <div class="modal-f"><button type="button" class="btn" onclick="closeTeam()">Fermer</button><button type="button" class="btn btn-dark" onclick="addTeam()">Ajouter à l’équipe</button></div>
+  </div>
+</div>
+
+<script src="/config.js?v=4"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/assets/depotage.js?v=20261015"></script>
+<script>
+const { SUPABASE_URL: SB_URL, SUPABASE_ANON_KEY: SB_KEY } = window.ADTL_CONFIG;
+const sb = supabase.createClient(SB_URL, SB_KEY);
+const DP = window.ADTLDepotage;
+const $ = id => document.getElementById(id);
+let me = null, profile = null, dossiers = [], current = null, editing = null, channel = null;
+
+// ── Init ──
+(async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { location.href = '/connexion?next=/equipe'; return; }
+  me = session.user;
+  const { data: p } = await sb.from('profiles').select('full_name,email,is_admin,is_staff').eq('id', me.id).maybeSingle();
+  profile = p || {};
+  if (!profile.is_admin && !profile.is_staff) {
+    $('loading').innerHTML = '<div class="empty" style="max-width:480px"><h3 style="margin-bottom:8px">Accès réservé à l’équipe</h3>Votre compte (' + DP.esc(me.email) + ') n’est pas encore membre de l’équipe dépotage. Demandez à l’administrateur de vous ajouter, puis rechargez la page.<br><br><a class="btn" href="/espace-client">Aller à mon espace client</a></div>';
+    return;
+  }
+  $('who').innerHTML = '<b>' + DP.esc(profile.full_name || me.email) + '</b>' + (profile.is_admin ? 'Administrateur' : 'Équipe dépotage');
+  if (profile.is_admin) { $('lnk-admin').classList.remove('hidden'); $('btn-team').classList.remove('hidden'); }
+  DP.TEAM.forEach(n => { $('f-who').insertAdjacentHTML('beforeend', `<option>${n}</option>`); $('mf-assigned').insertAdjacentHTML('beforeend', `<option>${n}</option>`); });
+  $('mf-assigned').insertAdjacentHTML('afterbegin', '<option value="">—</option>');
+  $('mf-line').innerHTML = '<option value="">—</option>' + DP.LINES.map(l => `<option>${l}</option>`).join('');
+  await loadAll();
+  subscribe();
+  $('loading').classList.add('hidden'); $('main').classList.remove('hidden');
+  const id = new URLSearchParams(location.search).get('id'); if (id) openDossier(id);
+})();
+
+async function loadAll() {
+  const [{ data: d, error }, { data: e }, { data: n }, { data: k }] = await Promise.all([
+    sb.from('depotage_dossiers').select('*').order('updated_at', { ascending: false }),
+    sb.from('depotage_etapes').select('*'),
+    sb.from('depotage_notifications').select('*').order('sent_at', { ascending: false }),
+    sb.from('depotage_kpi').select('*').maybeSingle()
+  ]);
+  if (error) { toast('Erreur de chargement : ' + error.message); return; }
+  const byD = {}; (e || []).forEach(x => (byD[x.dossier_id] ||= []).push(x));
+  const nbyD = {}; (n || []).forEach(x => (nbyD[x.dossier_id] ||= []).push(x));
+  dossiers = (d || []).map(x => ({ ...x, steps: byD[x.id] || [], notifications: nbyD[x.id] || [] }));
+  $('k-cours').textContent = k?.en_cours ?? dossiers.filter(x => x.status === 'en_cours').length;
+  $('k-bloque').textContent = k?.bloques ?? dossiers.filter(x => x.status === 'bloque').length;
+  $('k-termine').textContent = k?.termines ?? dossiers.filter(x => x.status === 'termine').length;
+  $('k-delai').textContent = k?.delai_relache_depotage_jours ?? '—';
+  renderList();
+  if (current) { current = dossiers.find(x => x.id === current.id) || null; renderPanel(); }
+}
+
+function subscribe() {
+  let t;
+  const bump = () => { clearTimeout(t); t = setTimeout(loadAll, 400); };
+  channel = sb.channel('depotage-console')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'depotage_dossiers' }, bump)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'depotage_etapes' }, bump)
+    .subscribe();
+}
+
+// ── Liste ──
+function renderList() {
+  const q = $('f-q').value.trim().toLowerCase(), st = $('f-status').value, who = $('f-who').value;
+  const list = dossiers.filter(d => {
+    const hay = [d.container_no, d.bl_no, d.reference, d.tracking_code, d.client_name, d.client_company, d.shipping_line, d.cargo].join(' ').toLowerCase();
+    const okSt = st === 'actifs' ? (d.status === 'en_cours' || d.status === 'bloque') : (!st || d.status === st);
+    return (!q || hay.includes(q)) && okSt && (!who || d.assigned_to === who);
+  });
+  if (!list.length) { $('list').innerHTML = '<div class="empty">Aucun conteneur dans cette vue.<br><br><button class="pill pill-dark" onclick="openForm()">+ Enregistrer un conteneur</button></div>'; return; }
+  $('list').innerHTML = list.map(d => {
+    const p = DP.progress(d);
+    const dots = p.perPhase.map(ph => `<div class="dot ${ph.complete ? 'on' : (ph.done ? 'half' : '')}" title="${ph.label} ${ph.done}/${ph.total}"></div>`).join('');
+    return `<div class="row ${current?.id === d.id ? 'sel' : ''}" onclick="openDossier('${d.id}')">
+      <div class="row-top"><div><div class="row-ct">${DP.esc(d.container_no)}</div><div class="row-cl">${DP.esc(d.client_company || d.client_name)} · ${DP.esc(d.shipping_line || d.container_type)}${d.assigned_to ? ' · ' + DP.esc(d.assigned_to) : ''}</div></div><span class="badge b-${d.status}">${DP.STATUS[d.status]?.label || d.status}</span></div>
+      <div class="dots">${dots}</div>
+      <div class="row-foot"><span>${p.count}/13 · ${DP.esc(p.nextLabel)}</span><span>${DP.ago(d.updated_at)}</span></div>
+    </div>`;
+  }).join('');
+}
+
+// ── Panneau ──
+function openDossier(id) { current = dossiers.find(d => d.id === id); renderList(); renderPanel(); $('panel').classList.add('open'); history.replaceState(null, '', '?id=' + id); }
+function closePanel() { $('panel').classList.remove('open'); }
+
+function renderPanel() {
+  const d = current; if (!d) { $('panel').innerHTML = '<div class="empty" style="border:0;">Sélectionnez un conteneur.</div>'; return; }
+  const p = DP.progress(d);
+  const done = p.done;
+  const phases = DP.PHASES.map(ph => {
+    const info = p.perPhase[ph.n - 1];
+    const steps = DP.STEPS.filter(s => s.phase === ph.n).map(s => {
+      const e = done.get(s.code);
+      return `<div class="step ${e ? 'done' : ''}" id="st-${s.code}" onclick="toggleStep('${s.code}')">
+        <div class="chk">${e ? '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : ''}</div>
+        <div><div class="step-t">${DP.esc(s.label)}</div><div class="step-m">${e ? DP.fmtDate(e.done_at, true) + (e.done_by_name ? ' · ' + DP.esc(e.done_by_name) : '') + (e.note ? ' · ' + DP.esc(e.note) : '') : 'Non franchie'}</div></div>
+        ${e ? `<button class="step-note" title="Ajouter une note" onclick="event.stopPropagation();noteStep('${s.code}')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>` : ''}
+      </div>`;
+    }).join('');
+    return `<div class="phase ${info.complete ? '' : (ph.n === p.current ? 'active' : '')}"><div class="phase-h">Phase ${ph.n} · ${ph.label}<span>${info.done}/${info.total}${ph.parallel ? ' · en parallèle' : ''}</span></div><div class="steps ${ph.parallel ? 'par' : ''}">${steps}</div></div>`;
+  }).join('');
+  const notifs = (d.notifications || []).slice(0, 8).map(n => `<div class="log-i"><span class="when">${DP.fmtDate(n.sent_at, true)}</span><span>${n.channel === 'whatsapp' ? 'WhatsApp' : n.channel} → ${DP.esc(n.recipient)}${n.etape_code ? ' · ' + DP.esc(DP.STEPS.find(s => s.code === n.etape_code)?.label || n.etape_code) : ''}</span></div>`).join('') || '<div class="alert alert-info">Aucune notification envoyée pour ce conteneur.</div>';
+  $('panel').innerHTML = `
+    <div class="panel-head">
+      <div>
+        <div class="sect-k" style="margin-bottom:4px">${DP.esc(d.reference || '')} · code <b style="letter-spacing:.15em">${DP.esc(d.tracking_code)}</b></div>
+        <h2>${DP.esc(d.container_no)}</h2>
+        <div class="meta">${DP.esc(d.client_company || d.client_name)}${d.client_company ? ' · ' + DP.esc(d.client_name) : ''} · BL ${DP.esc(d.bl_no)} · ${DP.esc(d.shipping_line || '')} ${DP.esc(d.container_type)}${d.eta ? ' · ETA ' + DP.fmtDate(d.eta) : ''}</div>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+        <button class="pill panel-close" onclick="closePanel()">✕ Fermer</button>
+        <button class="pill" onclick="openForm(current)">Modifier</button>
+        <a class="pill" href="/suivi?code=${DP.esc(d.tracking_code)}" target="_blank" rel="noopener">Vue client ↗</a>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="ctrl-row">
+        <div class="field"><label>Statut</label><select onchange="setField('status', this.value)">${Object.entries(DP.STATUS).map(([k, v]) => `<option value="${k}" ${d.status === k ? 'selected' : ''}>${v.label}</option>`).join('')}</select></div>
+        <div class="field"><label>Responsable</label><select onchange="setField('assigned_to', this.value||null)"><option value="">—</option>${DP.TEAM.map(n => `<option ${d.assigned_to === n ? 'selected' : ''}>${n}</option>`).join('')}</select></div>
+      </div>
+      ${d.status === 'bloque' ? `<div class="field"><label>Motif du blocage (visible par le client)</label><input value="${DP.esc(d.blocked_reason || '')}" placeholder="Ex. documents manquants : facture commerciale" onchange="setField('blocked_reason', this.value)"/></div>` : ''}
+      <div>
+        <div class="sect-k">Avancement · ${p.count}/13 · ${p.pct}%</div>
+        <div style="display:grid;gap:10px">${phases}</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-wa" onclick="openWa()"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.645-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Notifier le client</button>
+        <button class="btn" onclick="copyCode()">Copier le lien de suivi</button>
+        ${profile.is_admin ? `<button class="btn btn-danger" onclick="deleteDossier()">Supprimer</button>` : ''}
+      </div>
+      <div class="field"><label>Message au client (affiché sur sa page de suivi)</label><textarea placeholder="Ex. Votre conteneur est positionné, dépotage prévu demain matin." onchange="setField('client_message', this.value)">${DP.esc(d.client_message || '')}</textarea></div>
+      <div class="field"><label>Notes internes</label><textarea onchange="setField('internal_notes', this.value)">${DP.esc(d.internal_notes || '')}</textarea></div>
+      <div><div class="sect-k">Journal des notifications</div><div class="log">${notifs}</div></div>
+      <div class="alert alert-info">Client : ${DP.esc(d.client_name)}${d.client_phone ? ' · WhatsApp ' + DP.esc(d.client_phone) : ''}${d.client_email ? ' · ' + DP.esc(d.client_email) : ''}${d.notify_name ? ' · À notifier : ' + DP.esc(d.notify_name) + (d.notify_phone ? ' (' + DP.esc(d.notify_phone) + ')' : '') : ''}${d.user_id ? ' · Espace client rattaché ✓' : ' · Pas encore d’espace client'}</div>
+    </div>`;
+}
+
+async function toggleStep(code) {
+  const d = current; if (!d) return;
+  const row = $('st-' + code); row.classList.add('busy');
+  const existing = d.steps.find(s => s.code === code);
+  let error;
+  if (existing) {
+    if (!confirm('Retirer cette étape ? (' + DP.STEPS.find(s => s.code === code).label + ')')) { row.classList.remove('busy'); return; }
+    ({ error } = await sb.from('depotage_etapes').delete().eq('id', existing.id));
+  } else {
+    ({ error } = await sb.from('depotage_etapes').insert({ dossier_id: d.id, code, done_by: me.id, done_by_name: profile.full_name || me.email }));
+  }
+  if (error) { toast('Erreur : ' + error.message); row.classList.remove('busy'); return; }
+  await loadAll();
+  // Terminer automatiquement si les 13 étapes sont faites
+  const fresh = dossiers.find(x => x.id === d.id);
+  if (fresh && fresh.steps.length === DP.STEPS.length && fresh.status !== 'termine') { await sb.from('depotage_dossiers').update({ status: 'termine' }).eq('id', d.id); await loadAll(); toast('Conteneur dépoté — dossier terminé.'); }
+  else if (!existing) {
+    const s = DP.STEPS.find(x => x.code === code);
+    if (['echange_documentaire', 'declaration_douane', 'relache', 'positionnement', 'degroupage'].includes(code)) { toast('Étape franchie : ' + s.label + ' — pensez à notifier le client.'); }
+    else toast('Étape franchie : ' + s.label);
+  }
+}
+async function noteStep(code) {
+  const e = current?.steps.find(s => s.code === code); if (!e) return;
+  const note = prompt('Note pour « ' + DP.STEPS.find(s => s.code === code).label + ' »', e.note || ''); if (note === null) return;
+  const { error } = await sb.from('depotage_etapes').update({ note: note.trim() || null }).eq('id', e.id);
+  if (error) toast('Erreur : ' + error.message); else loadAll();
+}
+async function setField(field, value) {
+  if (!current) return;
+  const { error } = await sb.from('depotage_dossiers').update({ [field]: value }).eq('id', current.id);
+  if (error) toast('Erreur : ' + error.message); else { toast('Enregistré'); loadAll(); }
+}
+async function deleteDossier() {
+  if (!current || !confirm('Supprimer définitivement le dossier ' + current.container_no + ' ?')) return;
+  const { error } = await sb.from('depotage_dossiers').delete().eq('id', current.id);
+  if (error) toast('Erreur : ' + error.message); else { current = null; closePanel(); history.replaceState(null, '', location.pathname); loadAll(); }
+}
+function copyCode() {
+  const url = 'https://www.adtranslogistics.com/suivi?code=' + current.tracking_code;
+  navigator.clipboard?.writeText(url).then(() => toast('Lien copié : ' + url)).catch(() => prompt('Lien de suivi', url));
+}
+
+// ── Formulaire ──
+function openForm(d) {
+  editing = d || null;
+  $('mf-title').textContent = d ? 'Modifier ' + d.container_no : 'Nouveau conteneur';
+  const v = (id, val) => { $(id).value = val ?? ''; };
+  v('mf-container', d?.container_no); v('mf-bl', d?.bl_no); v('mf-line', d?.shipping_line); v('mf-type', d?.container_type || '40HC'); v('mf-vessel', d?.vessel); v('mf-eta', d?.eta);
+  v('mf-cargo', d?.cargo); v('mf-vehicles', d?.vehicles_count); v('mf-assigned', d?.assigned_to); v('mf-client', d?.client_name); v('mf-company', d?.client_company);
+  v('mf-email', d?.client_email); v('mf-phone', d?.client_phone); v('mf-nname', d?.notify_name); v('mf-nphone', d?.notify_phone); v('mf-notes', d?.internal_notes);
+  $('modal-form').classList.remove('hidden'); setTimeout(() => $('mf-container').focus(), 50);
+}
+function closeForm() { $('modal-form').classList.add('hidden'); }
+async function saveForm(e) {
+  e.preventDefault();
+  const val = id => $(id).value.trim() || null;
+  const payload = {
+    container_no: val('mf-container'), bl_no: val('mf-bl'), shipping_line: val('mf-line'), container_type: val('mf-type') || '40HC', vessel: val('mf-vessel'), eta: val('mf-eta'),
+    cargo: val('mf-cargo'), vehicles_count: val('mf-vehicles') ? Number(val('mf-vehicles')) : null, assigned_to: val('mf-assigned'),
+    client_name: val('mf-client'), client_company: val('mf-company'), client_email: val('mf-email'), client_phone: val('mf-phone'),
+    notify_name: val('mf-nname'), notify_phone: val('mf-nphone'), internal_notes: val('mf-notes')
+  };
+  if (!/^[A-Z]{4}\d{7}$/i.test(payload.container_no.replace(/\s/g, '')) && !confirm('Le numéro de conteneur ne ressemble pas au format habituel (4 lettres + 7 chiffres). Enregistrer quand même ?')) return false;
+  $('mf-save').disabled = true;
+  let res;
+  if (editing) res = await sb.from('depotage_dossiers').update(payload).eq('id', editing.id).select().single();
+  else res = await sb.from('depotage_dossiers').insert(payload).select().single();
+  $('mf-save').disabled = false;
+  if (res.error) { toast('Erreur : ' + (res.error.code === '23505' ? 'ce conteneur existe déjà.' : res.error.message)); return false; }
+  closeForm(); await loadAll(); openDossier(res.data.id);
+  toast(editing ? 'Dossier mis à jour' : 'Conteneur enregistré · code ' + res.data.tracking_code);
+  return false;
+}
+
+// ── WhatsApp ──
+function openWa() {
+  const d = current; if (!d) return;
+  const to = [];
+  if (d.client_phone) to.push({ v: d.client_phone, l: (d.client_name || 'Client') + ' · ' + d.client_phone });
+  if (d.notify_phone) to.push({ v: d.notify_phone, l: (d.notify_name || 'Employé référent') + ' · ' + d.notify_phone });
+  if (!to.length) { toast('Aucun numéro WhatsApp enregistré : modifiez le dossier.'); return; }
+  $('wa-to').innerHTML = to.map(t => `<option value="${DP.esc(t.v)}">${DP.esc(t.l)}</option>`).join('');
+  const doneCodes = d.steps.map(s => s.code);
+  const lastDone = DP.STEPS.filter(s => doneCodes.includes(s.code)).pop();
+  $('wa-step').innerHTML = '<option value="">Point d’avancement général</option>' + DP.STEPS.map(s => `<option value="${s.code}" ${lastDone?.code === s.code ? 'selected' : ''}>${doneCodes.includes(s.code) ? '✓ ' : ''}${s.label}</option>`).join('');
+  waRefresh(); $('modal-wa').classList.remove('hidden');
+}
+function waRefresh() { $('wa-text').value = DP.whatsappMessage(current, $('wa-step').value || null); }
+function closeWa() { $('modal-wa').classList.add('hidden'); }
+async function waSend() {
+  const d = current, to = $('wa-to').value, step = $('wa-step').value || null, text = $('wa-text').value;
+  window.open(DP.waLink(to, text), '_blank', 'noopener');
+  const { error } = await sb.from('depotage_notifications').insert({ dossier_id: d.id, channel: 'whatsapp', recipient: to, etape_code: step, message: text, sent_by: me.id });
+  if (error) toast('Message ouvert, mais journal non enregistré : ' + error.message); else toast('Notification consignée');
+  closeWa(); loadAll();
+}
+
+// ── Équipe (admin) ──
+async function openTeam() {
+  const { data } = await sb.from('profiles').select('email,full_name,is_staff,is_admin').or('is_staff.eq.true,is_admin.eq.true').order('full_name');
+  $('team-list').innerHTML = (data || []).map(p => `<div class="team-i"><b>${DP.esc(p.full_name || p.email)}</b><span style="color:var(--g500)">${DP.esc(p.email)}</span>${p.is_admin ? '<span class="badge b-en_cours">Admin</span>' : `<button class="pill" onclick="removeTeam('${DP.esc(p.email)}')">Retirer</button>`}</div>`).join('') || '<div class="alert alert-info">Aucun membre pour l’instant.</div>';
+  $('modal-team').classList.remove('hidden');
+}
+function closeTeam() { $('modal-team').classList.add('hidden'); }
+async function addTeam() {
+  const email = $('team-email').value.trim(); if (!email) return;
+  const { data, error } = await sb.rpc('set_staff', { target_email: email, flag: true });
+  if (error) { toast('Erreur : ' + error.message); return; }
+  if (!data?.length) { toast('Aucun compte avec cet e-mail : la personne doit d’abord créer son compte sur /connexion.'); return; }
+  $('team-email').value = ''; toast(data[0].full_name + ' ajouté(e) à l’équipe'); openTeam();
+}
+async function removeTeam(email) {
+  if (!confirm('Retirer ' + email + ' de l’équipe ?')) return;
+  const { error } = await sb.rpc('set_staff', { target_email: email, flag: false });
+  if (error) toast('Erreur : ' + error.message); else openTeam();
+}
+
+async function doLogout() { await sb.auth.signOut(); location.href = '/connexion'; }
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 3200); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeForm(); closeWa(); closeTeam(); } });
+</script>
+</body>
+</html>

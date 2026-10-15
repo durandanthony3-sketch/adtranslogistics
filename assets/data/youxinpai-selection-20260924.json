@@ -1,0 +1,374 @@
+{
+  "verifiedAt": "2026-09-24",
+  "sourceUrl": "https://youxinpai.cn/",
+  "catalogueUrl": "https://youxinpai.cn/auctions",
+  "availability": "Disponibilité et prix à confirmer auprès de Youxinpai avant toute offre.",
+  "vehicles": [
+    {
+      "id": "8812718",
+      "brand": "BYD",
+      "title": "Sea Lion 07 DM-i",
+      "registrationDate": "2025-06",
+      "mileageKm": 31085,
+      "fuel": "Hybride",
+      "transmission": null,
+      "category": "SUV",
+      "image": "/assets/youxinpai/8812718-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?publishId=8812718&tab=extended",
+      "sourceTitle": "BYD BYD Sea Lion 07 DM-i 2025 135 highPerformancelidarEdition",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/8812718-1.webp",
+        "/assets/youxinpai/8812718-2.webp",
+        "/assets/youxinpai/8812718-3.webp",
+        "/assets/youxinpai/8812718-4.webp"
+      ],
+      "conditionNote": "Youxinpai signale des dommages légers aux renforts et une dépose de la batterie de traction lors d’une réparation de climatisation. Historique et rapport à examiner avant toute offre."
+    },
+    {
+      "id": "67782555622304",
+      "brand": "Tank",
+      "title": "300 2.0T Conqueror",
+      "registrationDate": "2023-09",
+      "mileageKm": 60200,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "4x4",
+      "image": "/assets/youxinpai/67782555622304-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67782555622304",
+      "sourceTitle": "Tank Tank 300 2023 Off-road 2.0T AT conqueror",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67782555622304-1.webp",
+        "/assets/youxinpai/67782555622304-2.webp",
+        "/assets/youxinpai/67782555622304-3.webp",
+        "/assets/youxinpai/67782555622304-4.jpg"
+      ]
+    },
+    {
+      "id": "8816014",
+      "brand": "Mercedes-Benz",
+      "title": "Classe E 300 L Luxury",
+      "registrationDate": "2023-03",
+      "mileageKm": 21283,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "Berline",
+      "image": "/assets/youxinpai/8816014-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?publishId=8816014&tab=extended",
+      "sourceTitle": "Mercedes-Benz E-Class 2023 2.0T AT E 300 L Luxury",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/8816014-1.webp",
+        "/assets/youxinpai/8816014-2.webp",
+        "/assets/youxinpai/8816014-3.webp",
+        "/assets/youxinpai/8816014-4.webp"
+      ],
+      "conditionNote": "Youxinpai indique qu’un transfert de propriété supplémentaire est nécessaire. Formalités et disponibilité à confirmer avant toute offre."
+    },
+    {
+      "id": "8814505",
+      "brand": "Volkswagen",
+      "title": "Sagitar 300TSI DSG",
+      "registrationDate": "2023-05",
+      "mileageKm": 52887,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "Berline",
+      "image": "/assets/youxinpai/8814505-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?publishId=8814505&tab=extended",
+      "sourceTitle": "Volkswagen Sagitar 2023 1.5T AT 300TSI DSGSurpass",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/8814505-1.webp",
+        "/assets/youxinpai/8814505-2.webp",
+        "/assets/youxinpai/8814505-3.webp",
+        "/assets/youxinpai/8814505-4.webp"
+      ],
+      "conditionNote": "Le rapport Youxinpai signale des dommages légers aux renforts du véhicule. Rapport à examiner avant toute offre."
+    },
+    {
+      "id": "66875377834553",
+      "brand": "Tesla",
+      "title": "Model Y propulsion",
+      "registrationDate": "2022-04",
+      "mileageKm": 39800,
+      "fuel": "Électrique",
+      "transmission": null,
+      "category": "SUV",
+      "image": "/assets/youxinpai/66875377834553-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=66875377834553",
+      "sourceTitle": "Tesla Model Y 2022 rear wheel driveEdition",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/66875377834553-1.webp",
+        "/assets/youxinpai/66875377834553-2.webp",
+        "/assets/youxinpai/66875377834553-3.webp",
+        "/assets/youxinpai/66875377834553-4.webp"
+      ]
+    },
+    {
+      "id": "8799717",
+      "brand": "BYD",
+      "title": "Song Plus DM-i 110KM",
+      "registrationDate": "2023-08",
+      "mileageKm": 48285,
+      "fuel": "Hybride",
+      "transmission": "Automatique",
+      "category": "SUV",
+      "image": "/assets/youxinpai/8799717-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?publishId=8799717&tab=extended",
+      "sourceTitle": "BYD Song Plus PHEV 2023 Champion 1.5L AT DM-i 110KM FlagshipPLUS",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/8799717-1.webp",
+        "/assets/youxinpai/8799717-2.webp",
+        "/assets/youxinpai/8799717-3.webp",
+        "/assets/youxinpai/8799717-4.webp"
+      ],
+      "conditionNote": "Youxinpai signale des dommages légers aux renforts. Le film couvrant la carrosserie empêche de vérifier l’état de la peinture. Rapport à examiner avant toute offre."
+    },
+    {
+      "id": "8814595",
+      "brand": "Nissan",
+      "title": "Kicks 1.5 Luxury",
+      "registrationDate": "2018-11",
+      "mileageKm": 121464,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "SUV",
+      "image": "/assets/youxinpai/8814595-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?publishId=8814595&tab=extended",
+      "sourceTitle": "Nissan Kicks 2018 1.5 AT Smart ConnectLuxury",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/8814595-1.webp",
+        "/assets/youxinpai/8814595-2.webp",
+        "/assets/youxinpai/8814595-3.webp",
+        "/assets/youxinpai/8814595-4.webp"
+      ],
+      "conditionNote": "Youxinpai signale des dommages légers aux renforts et un état extérieur/intérieur moyen. Le transfert est annoncé local : possibilités d’exportation à confirmer."
+    },
+    {
+      "id": "8782737",
+      "brand": "Buick",
+      "title": "Envision Plus 20T Elite",
+      "registrationDate": "2016-02",
+      "mileageKm": 116110,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "SUV",
+      "image": "/assets/youxinpai/8782737-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?publishId=8782737&tab=extended",
+      "sourceTitle": "Buick Envision Plus 2016 1.5T AT 20TElite FWD",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/8782737-1.webp",
+        "/assets/youxinpai/8782737-2.webp",
+        "/assets/youxinpai/8782737-3.webp",
+        "/assets/youxinpai/8782737-4.webp"
+      ],
+      "conditionNote": "Le rapport Youxinpai signale des dommages structurels importants, dont une déformation de la cloison arrière de plus de 10 cm. Rapport à examiner avant toute offre."
+    },
+    {
+      "id": "66686183986574",
+      "brand": "BMW",
+      "title": "Série 5 525Li M Sport",
+      "registrationDate": "2020-01",
+      "mileageKm": 76000,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "Berline",
+      "sourceTitle": "BMW 5 Series 2020 2.0T AT 525Li MSport Pkg",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/66686183986574-1.webp",
+        "/assets/youxinpai/66686183986574-2.webp",
+        "/assets/youxinpai/66686183986574-3.webp",
+        "/assets/youxinpai/66686183986574-4.webp"
+      ],
+      "image": "/assets/youxinpai/66686183986574-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=66686183986574"
+    },
+    {
+      "id": "67858695500686",
+      "brand": "Haval",
+      "title": "M6 PLUS Elite 1.5T",
+      "registrationDate": "2021-08",
+      "mileageKm": 20000,
+      "fuel": "Essence",
+      "transmission": "Manuelle",
+      "category": "SUV",
+      "sourceTitle": "Haval Haval M6 2021 1.5T MT PLUSEliteSmart Connect",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67858695500686-1.webp",
+        "/assets/youxinpai/67858695500686-2.webp",
+        "/assets/youxinpai/67858695500686-3.webp",
+        "/assets/youxinpai/67858695500686-4.webp"
+      ],
+      "image": "/assets/youxinpai/67858695500686-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67858695500686"
+    },
+    {
+      "id": "67867060346768",
+      "brand": "Mercedes-Benz",
+      "title": "GLC 260 Luxury",
+      "registrationDate": "2018-01",
+      "mileageKm": 80000,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "SUV",
+      "sourceTitle": "Mercedes-Benz GLC-Class 2018 2.0T AT GLC260Luxury Facelift",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67867060346768-1.webp",
+        "/assets/youxinpai/67867060346768-2.webp",
+        "/assets/youxinpai/67867060346768-3.webp",
+        "/assets/youxinpai/67867060346768-4.webp"
+      ],
+      "image": "/assets/youxinpai/67867060346768-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67867060346768"
+    },
+    {
+      "id": "67869911267598",
+      "brand": "BYD",
+      "title": "Song Plus DM-i 51KM Honor",
+      "registrationDate": "2021-08",
+      "mileageKm": 58000,
+      "fuel": "Hybride",
+      "transmission": "Automatique",
+      "category": "SUV",
+      "sourceTitle": "BYD Song Plus PHEV 2021 1.5L AT DM-i 51KM Honor",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67869911267598-1.webp",
+        "/assets/youxinpai/67869911267598-2.webp",
+        "/assets/youxinpai/67869911267598-3.webp",
+        "/assets/youxinpai/67869911267598-4.webp"
+      ],
+      "image": "/assets/youxinpai/67869911267598-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67869911267598"
+    },
+    {
+      "id": "67867045211396",
+      "brand": "Honda",
+      "title": "Civic 220TURBO 1.5T",
+      "registrationDate": "2019-03",
+      "mileageKm": 70000,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "Berline",
+      "sourceTitle": "Honda Civic 2019 1.5T AT 220TURBOPowermoveEdition China V",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67867045211396-1.webp",
+        "/assets/youxinpai/67867045211396-2.webp",
+        "/assets/youxinpai/67867045211396-3.webp",
+        "/assets/youxinpai/67867045211396-4.webp"
+      ],
+      "image": "/assets/youxinpai/67867045211396-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67867045211396"
+    },
+    {
+      "id": "67869592220814",
+      "brand": "BYD",
+      "title": "Han EV 4WD Flagship",
+      "registrationDate": "2020-11",
+      "mileageKm": 61000,
+      "fuel": "Électrique",
+      "transmission": null,
+      "category": "Berline",
+      "sourceTitle": "BYD Han 2020 EV 4WDHigh PerformanceFlagship",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67869592220814-1.webp",
+        "/assets/youxinpai/67869592220814-2.webp",
+        "/assets/youxinpai/67869592220814-3.webp",
+        "/assets/youxinpai/67869592220814-4.webp"
+      ],
+      "image": "/assets/youxinpai/67869592220814-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67869592220814"
+    },
+    {
+      "id": "67869217841055",
+      "brand": "Nissan",
+      "title": "X-Trail 2.0 Comfort",
+      "registrationDate": "2017-03",
+      "mileageKm": 80000,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "SUV",
+      "sourceTitle": "Nissan X-Trail 2017 2.0 AT ComfortFWD",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67869217841055-1.webp",
+        "/assets/youxinpai/67869217841055-2.webp",
+        "/assets/youxinpai/67869217841055-3.webp",
+        "/assets/youxinpai/67869217841055-4.webp"
+      ],
+      "image": "/assets/youxinpai/67869217841055-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67869217841055"
+    },
+    {
+      "id": "67869417446049",
+      "brand": "Geely",
+      "title": "Emgrand EV450 Premium",
+      "registrationDate": "2018-09",
+      "mileageKm": 94000,
+      "fuel": "Électrique",
+      "transmission": null,
+      "category": "Berline",
+      "sourceTitle": "Geely Auto Emgrand EV 2018 EV450Premium EV",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67869417446049-1.webp",
+        "/assets/youxinpai/67869417446049-2.webp",
+        "/assets/youxinpai/67869417446049-3.webp",
+        "/assets/youxinpai/67869417446049-4.webp"
+      ],
+      "image": "/assets/youxinpai/67869417446049-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67869417446049"
+    },
+    {
+      "id": "67826394453941",
+      "brand": "Haval",
+      "title": "H6 1.5T Champion",
+      "registrationDate": "2022-01",
+      "mileageKm": 33000,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "SUV",
+      "sourceTitle": "Haval Haval H6 2021 1.5T AT China tideChampion",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67826394453941-1.webp",
+        "/assets/youxinpai/67826394453941-2.webp",
+        "/assets/youxinpai/67826394453941-3.webp",
+        "/assets/youxinpai/67826394453941-4.webp"
+      ],
+      "image": "/assets/youxinpai/67826394453941-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67826394453941"
+    },
+    {
+      "id": "67868943278894",
+      "brand": "Toyota",
+      "title": "Vios 1.5 Zhizhen",
+      "registrationDate": "2016-03",
+      "mileageKm": 113000,
+      "fuel": "Essence",
+      "transmission": "Automatique",
+      "category": "Berline",
+      "sourceTitle": "Toyota Vios 2014 1.5 AT ZhizhenEdition",
+      "price": null,
+      "gallery": [
+        "/assets/youxinpai/67868943278894-1.webp",
+        "/assets/youxinpai/67868943278894-2.webp",
+        "/assets/youxinpai/67868943278894-3.webp",
+        "/assets/youxinpai/67868943278894-4.webp"
+      ],
+      "image": "/assets/youxinpai/67868943278894-1.webp",
+      "sourceUrl": "https://youxinpai.cn/auction/detail?tab=preview-vehicles&infoId=67868943278894"
+    }
+  ]
+}

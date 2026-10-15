@@ -118,8 +118,12 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
 <meta property="og:site_name" content="AD TRANS LOGISTICS"/>
 <meta property="og:locale" content="fr_FR"/>
 <meta name="twitter:card" content="summary"/>
+<link rel="stylesheet" href="/adtl-polish.css?v=20260906"/>
+<link rel="stylesheet" href="/adtl-elegant.css?v=20260911"/>
+<link rel="stylesheet" href="/adtl-cards.css?v=20260911-3"/>
+<link rel="stylesheet" href="/assets/site-logo-20260919.css">
 </head>
-<body>
+<body class="adtl-elegant adtl-modern">
 
 <!-- WhatsApp -->
 <a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS" target="_blank" class="whatsapp-btn" title="WhatsApp">
@@ -130,21 +134,18 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
 <nav id="navbar">
 <div style="max-width:1440px;margin:0 auto;padding:0 24px;">
 <div style="display:flex;align-items:center;justify-content:space-between;height:72px;">
-    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-        <div style="width:36px;height:36px;border-radius:9px;background:var(--black);display:flex;align-items:center;justify-content:center;color:var(--white);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;letter-spacing:.05em;">AD</div>
-        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--black);">AD TRANS <span style="color:var(--gray400);font-weight:400;">LOGISTICS</span></span>
-    </a>
+    <a class="adtl-site-logo" href="/" aria-label="AD TRANS LOGISTICS — Accueil"><img class="adtl-site-logo__image" src="/assets/logo-adtl-20260919.jpeg" width="1080" height="817" alt="" decoding="async"></a>
     <ul id="desknav" style="display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0;">
         <li class="nav-dropdown">
-            <button class="navl nav-btn">Calcul droit de douane <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <button class="navl nav-btn">Calcul des droits de douane <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="nav-drop">
-                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Vehicule</div>
-                <a href="/simulateur" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Occasion</a>
-                <a href="/demande?service=vehicule-neuf" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Neuf</a>
+                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Import</div>
+                <a href="/simulateur" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Véhicule d’occasion</a>
+                <a href="/demande?service=vehicule-neuf" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Véhicule neuf</a>
+                <a href="/calculateur" class="drop-link">Marchandises</a>
                 <div style="border-top:1px solid var(--gray100);margin:4px 8px;"></div>
-                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Marchandise</div>
-                <a href="/calculateur" class="drop-link">Import</a>
-                <a href="/calculateur?mode=export" class="drop-link">Export</a>
+                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Export</div>
+                <a href="/demande?service=exportation" class="drop-link">Étude des droits à l’export</a>
             </div>
         </li>
         <li class="nav-dropdown">
@@ -210,6 +211,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
                 <a href="https://adtranslogistics.mychariow.shop" target="_blank" class="drop-link">Articles</a>
             </div>
         </li>
+        <li><a class="navl" href="/suivi">Suivi</a></li>
         <li><a class="navl" href="/connexion">Mon compte</a></li>
     </ul>
     <button id="hamburger" style="display:none;width:44px;height:44px;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:0;" aria-label="Menu">
@@ -225,10 +227,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
 <!-- MOBILE MENU -->
 <div id="mobileMenu">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--gray200);position:sticky;top:0;background:#fff;z-index:1;">
-        <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-            <div style="width:32px;height:32px;border-radius:8px;background:var(--black);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;">AD</div>
-            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--black);">AD TRANS <span style="color:var(--gray400);font-weight:400;">LOGISTICS</span></span>
-        </a>
+        <a class="adtl-site-logo" href="/" aria-label="AD TRANS LOGISTICS — Accueil"><img class="adtl-site-logo__image" src="/assets/logo-adtl-20260919.jpeg" width="1080" height="817" alt="" decoding="async"></a>
         <button onclick="closeMobile()" aria-label="Fermer" style="width:36px;height:36px;border-radius:9px;border:1px solid var(--gray200);background:var(--gray50);display:flex;align-items:center;justify-content:center;cursor:pointer;">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
@@ -237,16 +236,16 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
         <a href="/" class="mob-link"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Accueil</a>
         <div class="mob-expandable">
             <button onclick="this.parentElement.classList.toggle('mob-open')" class="mob-link" style="width:100%;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:600;color:var(--black);">
-                <span style="display:flex;align-items:center;gap:12px;"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg> Calcul droit de douane</span>
+                <span style="display:flex;align-items:center;gap:12px;"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg> Calcul des droits de douane</span>
                 <svg class="mob-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="mob-sub">
-                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Vehicule</div>
-                <a href="/simulateur" onclick="closeMobile()" class="mob-sub-link">Occasion</a>
-                <a href="/demande?service=vehicule-neuf" onclick="closeMobile()" class="mob-sub-link">Neuf</a>
-                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Marchandise</div>
-                <a href="/calculateur" onclick="closeMobile()" class="mob-sub-link">Import</a>
-                <a href="/calculateur?mode=export" onclick="closeMobile()" class="mob-sub-link">Export</a>
+                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Import</div>
+                <a href="/simulateur" onclick="closeMobile()" class="mob-sub-link">Véhicule d’occasion</a>
+                <a href="/demande?service=vehicule-neuf" onclick="closeMobile()" class="mob-sub-link">Véhicule neuf</a>
+                <a href="/calculateur" onclick="closeMobile()" class="mob-sub-link">Marchandises</a>
+                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Export</div>
+                <a href="/demande?service=exportation" onclick="closeMobile()" class="mob-sub-link">Étude des droits à l’export</a>
             </div>
         </div>
         <a href="/demande?service=importation" class="mob-link"><svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Importation</a>
@@ -291,9 +290,12 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
 
     <div class="form-card" id="form-card">
         <h3 class="form-title" id="form-title">Votre demande</h3>
+        <p id="vehicle-prefill-status" role="status" aria-live="polite" aria-atomic="true" hidden style="margin:0 0 20px;padding:12px 14px;border-radius:10px;background:var(--gray50);color:var(--gray600);font-size:14px;line-height:1.5;"></p>
+        <p id="youxinpai-request-status" role="status" aria-live="polite" aria-atomic="true" hidden style="margin:0 0 20px;padding:12px 14px;border-radius:10px;background:var(--gray50);color:var(--gray600);font-size:14px;line-height:1.5;"></p>
         <form id="demande-form" action="https://formsubmit.co/adtranslogistics@hotmail.com" method="POST">
             <!-- FormSubmit config -->
             <input type="hidden" name="_subject" id="email-subject" value="Nouvelle demande - AD TRANS LOGISTICS"/>
+            <input type="hidden" name="_replyto" id="email-replyto"/>
             <input type="hidden" name="_captcha" value="false"/>
             <input type="hidden" name="_next" id="form-next"/>
             <input type="hidden" name="_template" value="table"/>
@@ -304,23 +306,104 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
                 <select name="Service" id="f-service" required>
                     <option value="">-- Choisir un service --</option>
                     <option value="Importation">Importation</option>
+                    <option value="Expédition de colis">Expédition de colis</option>
+                    <option value="Transport en conteneur — USA, Europe, Chine">Transport en conteneur — USA, Europe, Chine</option>
                     <option value="Exportation">Exportation</option>
                     <option value="Transit douanier">Transit douanier</option>
                     <option value="Depotage">Depotage</option>
                     <option value="Marchandise - Import">Marchandise - Import</option>
                     <option value="Marchandise - Export">Marchandise - Export</option>
                     <option value="Marchandise - Transit">Marchandise - Transit</option>
+                    <option value="Véhicule neuf">Véhicule neuf</option>
+                    <option value="Véhicule d’occasion">Véhicule d’occasion</option>
+                    <option value="Véhicules Chine — Youxinpai">Véhicules Chine — Youxinpai</option>
                 </select>
+            </div>
+            <div id="transport-fields" style="display:none;">
+                <div style="margin:8px 0 22px;padding:20px;border:1px solid var(--gray200);border-radius:14px;background:var(--gray50);">
+                    <h4 style="margin:0 0 6px;font-family:'Space Grotesk',sans-serif;font-size:17px;color:var(--black);">Informations pour le transport du véhicule</h4>
+                    <p style="margin:0;color:var(--gray500);font-size:13px;line-height:1.6;">Ces éléments nous permettent de vérifier la prise en charge chez le vendeur ou au parc, le remorquage éventuel et la solution de conteneur adaptée avant de confirmer le devis.</p>
+                </div>
+                <div class="grid2">
+                    <div class="field">
+                        <label for="f-plateforme">Source ou vendeur du véhicule *</label>
+                        <select name="Plateforme_encheres" id="f-plateforme" data-transport-required disabled>
+                            <option value="">-- Choisir --</option>
+                            <option value="Copart">Copart</option>
+                            <option value="IAA">IAA</option>
+                            <option value="Fournisseur en Chine">Fournisseur en Chine</option>
+                            <option value="Autre site d'encheres aux Etats-Unis ou en Europe">Autre site d'enchères aux États-Unis, en Europe ou en Chine</option>
+                            <option value="Autre vendeur ou fournisseur aux Etats-Unis ou en Europe">Autre vendeur ou fournisseur aux États-Unis, en Europe ou en Chine</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="f-lot">Numéro de lot ou référence</label>
+                        <input type="text" name="Numero_lot" id="f-lot" placeholder="Lot, VIN ou référence du vendeur" disabled/>
+                    </div>
+                </div>
+                <div class="grid2">
+                    <div class="field">
+                        <label for="f-parc">Lieu de prise en charge *</label>
+                        <input type="text" name="Parc_encheres" id="f-parc" placeholder="Parc, concessionnaire, vendeur ou fournisseur" data-transport-required disabled/>
+                    </div>
+                    <div class="field">
+                        <label for="f-ville-etat">Pays, ville et État ou région de prise en charge *</label>
+                        <input type="text" name="Ville_Etat_enlevement" id="f-ville-etat" placeholder="Ex : Shanghai, Chine ou Anvers, Belgique" data-transport-required disabled/>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="f-vehicule-transport">Véhicule *</label>
+                    <input type="text" name="Vehicule" id="f-vehicule-transport" placeholder="Marque, modèle, année et gabarit" data-transport-required disabled/>
+                </div>
+                <div class="grid2">
+                    <div class="field">
+                        <label for="f-roulant">État roulant *</label>
+                        <select name="Etat_roulant" id="f-roulant" data-transport-required disabled>
+                            <option value="">-- Choisir --</option>
+                            <option value="Roulant">Roulant</option>
+                            <option value="Non roulant">Non roulant</option>
+                            <option value="A verifier">À vérifier</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="f-cle">Clé disponible *</label>
+                        <select name="Cle_disponible" id="f-cle" data-transport-required disabled>
+                            <option value="">-- Choisir --</option>
+                            <option value="Oui">Oui</option>
+                            <option value="Non">Non</option>
+                            <option value="A verifier">À vérifier</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid2">
+                    <div class="field">
+                        <label for="f-destination-transport">Destination finale *</label>
+                        <input type="text" name="Destination_transport" id="f-destination-transport" placeholder="Ex : Cotonou, Porto-Novo, Parakou" data-transport-required disabled/>
+                    </div>
+                    <div class="field">
+                        <label for="f-mode-transport">Type de transport *</label>
+                        <select name="Type_transport" id="f-mode-transport" data-transport-required disabled>
+                            <option value="">-- Choisir --</option>
+                            <option value="Transport seul">Transport seul</option>
+                            <option value="Groupage">Groupage</option>
+                            <option value="Conseil demande">Je souhaite être conseillé</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="grid2">
                 <div class="field">
-                    <label for="f-nom">Nom complet *</label>
-                    <input type="text" name="Nom" id="f-nom" placeholder="Jean Dupont" required/>
+                    <label for="f-nom">Nom de famille *</label>
+                    <input type="text" name="Nom" id="f-nom" placeholder="Dupont" maxlength="80" autocomplete="family-name" required/>
                 </div>
                 <div class="field">
-                    <label for="f-societe">Societe</label>
-                    <input type="text" name="Societe" id="f-societe" placeholder="Nom de votre societe"/>
+                    <label for="f-prenom">Prénom *</label>
+                    <input type="text" name="Prenom" id="f-prenom" placeholder="Jean" maxlength="80" autocomplete="given-name" required/>
                 </div>
+            </div>
+            <div class="field">
+                <label for="f-societe">Societe</label>
+                <input type="text" name="Societe" id="f-societe" placeholder="Nom de votre societe"/>
             </div>
             <div class="grid2">
                 <div class="field">
@@ -329,9 +412,10 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
                 </div>
                 <div class="field">
                     <label for="f-tel">Telephone *</label>
-                    <input type="tel" name="Telephone" id="f-tel" placeholder="+229 01 XX XX XX" required/>
+                    <input type="tel" name="Telephone" id="f-tel" placeholder="+229 01 XX XX XX" maxlength="25" autocomplete="tel" required/>
                 </div>
             </div>
+            <div id="standard-logistics-fields">
             <div class="field">
                 <label for="f-marchandise">Description de la marchandise</label>
                 <input type="text" name="Marchandise" id="f-marchandise" placeholder="Nature, type, reference..."/>
@@ -359,6 +443,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
                         <option>CFR</option><option>DAP</option><option>DDP</option>
                     </select>
                 </div>
+            </div>
             </div>
             <div class="field">
                 <label for="f-details">Details complementaires</label>
@@ -389,6 +474,7 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;}
   </a>
 </nav>
 
+<script src="/assets/client-contact.js?v=20260923-email1"></script>
 <script>
 // Mobile menu
 function openMobile(){document.getElementById('mobileMenu').classList.add('open');document.getElementById('mob-overlay').classList.add('visible');}
@@ -402,6 +488,19 @@ const SERVICES = {
         desc: 'Soumettez votre demande d\'importation de marchandises au Benin.',
         docs: ['Facture commerciale','Connaissement (BL) ou LTA','Liste de colisage','Certificat d\'origine','Licence / autorisation d\'import','Bon a enlever'],
         select: 'Importation'
+    },
+    'colis': {
+        title: 'Expédier mon colis',
+        desc: 'Décrivez votre colis, son origine, sa destination et vos coordonnées afin de recevoir une proposition de prise en charge adaptée.',
+        docs: ['Description du contenu','Poids et dimensions estimés','Facture ou preuve de valeur si disponible','Adresse de prise en charge','Destination et coordonnées du destinataire'],
+        select: 'Expédition de colis'
+    },
+    'transport-conteneur': {
+        title: 'Transport en conteneur — USA, Europe, Chine',
+        desc: 'Demandez un devis personnalisé pour la prise en charge chez Copart, IAA ou tout autre vendeur ou fournisseur aux États-Unis, en Europe ou en Chine, le chargement en conteneur, le fret vers Cotonou et, selon votre choix, le dédouanement et la livraison.',
+        docs: ['Facture ou preuve d\'achat du véhicule','Autorisation de sortie ou informations de prise en charge','Numéro de lot, référence vendeur et adresse d\'enlèvement','Titre du véhicule ou document disponible','Photos et état réel du véhicule'],
+        select: 'Transport en conteneur — USA, Europe, Chine',
+        transport: true
     },
     'exportation': {
         title: 'Exportation',
@@ -433,11 +532,23 @@ const SERVICES = {
         docs: ['Facture commerciale','Description detaillee de la marchandise','Pays de destination','Certificat d\'origine','Poids et volume'],
         select: 'Marchandise - Export'
     },
+    'vehicule-chine': {
+        title: 'Véhicules Chine — Youxinpai',
+        desc: 'Préparez votre achat et votre importation depuis la Chine avec AD TRANS LOGISTICS, représentant de Youxinpai au Bénin. Prix, disponibilité, fret et dédouanement seront confirmés sur devis.',
+        docs: ['Référence ou lien de l’annonce Youxinpai, si disponible','Marque et modèle recherchés','Budget d’achat souhaité','Destination et délai souhaités'],
+        select: 'Véhicules Chine — Youxinpai'
+    },
     'vehicule-neuf': {
-        title: 'Dedouanement Vehicule Neuf',
-        desc: 'Soumettez votre demande de dedouanement pour un vehicule neuf importe au Benin (regime 4000 822).',
-        docs: ['Facture commerciale (prix AVD)','Connaissement (BL)','Carte grise / certificat de conformite','Quittance IMF','Attestation IFU du client','Carte CPI du client'],
-        select: 'Vehicule Neuf'
+        title: 'Étude d’un véhicule neuf',
+        desc: 'Faites vérifier les droits et taxes selon les caractéristiques du véhicule, son prix d’achat et sa destination.',
+        docs: ['Caractéristiques du véhicule et prix d’achat','Facture commerciale, si disponible','Fiche technique ou certificat de conformité, si disponible','Connaissement (BL), si disponible'],
+        select: 'Véhicule neuf'
+    },
+    'vehicule-occasion': {
+        title: 'Étude d’un véhicule d’occasion',
+        desc: 'Transmettez les caractéristiques du véhicule pour faire vérifier sa référence et recevoir une estimation personnalisée.',
+        docs: ['Marque, modèle et année du véhicule','Carte grise ou fiche technique disponible','Connaissement (BL), si disponible'],
+        select: 'Véhicule d’occasion'
     }
 };
 
@@ -445,6 +556,22 @@ const SERVICES = {
 const params = new URLSearchParams(window.location.search);
 const service = params.get('service');
 const cfg = service ? SERVICES[service] : null;
+const transportFields = document.getElementById('transport-fields');
+const transportControls = transportFields.querySelectorAll('input, select, textarea');
+const standardLogisticsFields = document.getElementById('standard-logistics-fields');
+const standardLogisticsControls = standardLogisticsFields.querySelectorAll('input, select, textarea');
+
+function setTransportFields(active) {
+    transportFields.style.display = active ? 'block' : 'none';
+    transportControls.forEach((control) => {
+        control.disabled = !active;
+        control.required = active && control.hasAttribute('data-transport-required');
+    });
+    standardLogisticsFields.style.display = active ? 'none' : 'block';
+    standardLogisticsControls.forEach((control) => {
+        control.disabled = active;
+    });
+}
 
 if (cfg) {
     document.getElementById('hero-title').textContent = cfg.title;
@@ -465,6 +592,117 @@ if (cfg) {
         cfg.docs.map(d => '<li>' + d + '</li>').join('') + '</ul></div>';
 }
 
+function updateEmailSubject() {
+    const selectedService = document.getElementById('f-service').value;
+    document.getElementById('email-subject').value = 'Nouvelle demande' +
+        (selectedService ? ' ' + selectedService : '') + ' - AD TRANS LOGISTICS';
+}
+
+setTransportFields(Boolean(cfg && cfg.transport));
+updateEmailSubject();
+document.getElementById('f-service').addEventListener('change', (event) => {
+    setTransportFields(event.target.value === 'Transport en conteneur — USA, Europe, Chine');
+    updateEmailSubject();
+});
+
+document.getElementById('demande-form').addEventListener('submit', (event) => {
+    if (!window.ADTLClientContact || !window.ADTLClientContact.validate(true)) {
+        event.preventDefault();
+        return;
+    }
+    const email = document.getElementById('f-email');
+    email.value = email.value.trim();
+    if (!email.checkValidity()) {
+        event.preventDefault();
+        email.reportValidity();
+        return;
+    }
+    updateEmailSubject();
+    document.getElementById('email-replyto').value = email.value;
+});
+
+// Reprise locale des caractéristiques : le client relit et envoie lui-même sa demande.
+function prefillVehicleRequest() {
+    if (params.get('from') !== 'simulateur' || params.get('sent') === '1' ||
+        (service !== 'vehicule-neuf' && service !== 'vehicule-occasion')) return;
+
+    let saved;
+    try {
+        const raw = window.sessionStorage.getItem('adtl_vehicle_request_v1');
+        if (!raw || raw.length > 12000) return;
+        saved = JSON.parse(raw);
+    } catch (_) {
+        return;
+    }
+    if (!saved || typeof saved !== 'object' || Array.isArray(saved) || saved.version !== 1 ||
+        !['neuf', 'occasion'].includes(saved.condition) || service !== 'vehicule-' + saved.condition ||
+        typeof saved.createdAt !== 'number' || !Number.isFinite(saved.createdAt)) return;
+    const age = Date.now() - saved.createdAt;
+    if (age < 0 || age > 30 * 60 * 1000) return;
+
+    const text = (value, limit) => typeof value === 'string'
+        ? value.replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, limit)
+        : '';
+    const number = (value, minimum, maximum, decimals) => {
+        if (typeof value !== 'string' || value.length > 16) return '';
+        const normalized = value.trim().replace(',', '.');
+        const pattern = decimals ? /^\d{1,12}(?:\.\d{1,2})?$/ : /^\d{1,8}$/;
+        if (!pattern.test(normalized)) return '';
+        const parsed = Number(normalized);
+        return Number.isFinite(parsed) && parsed >= minimum && parsed <= maximum
+            ? String(parsed) : '';
+    };
+    const brand = text(saved.brand, 80);
+    const model = text(saved.model, 120);
+    const year = number(saved.year, 1900, new Date().getFullYear() + 2, false);
+    const condition = saved.condition === 'neuf' ? 'Véhicule neuf' : 'Véhicule d’occasion';
+    const identity = [condition, brand, model, year].filter(Boolean).join(' — ');
+    const origin = text(saved.origin, 100);
+    const destination = text(saved.destination, 100);
+    const lines = ['Demande préparée depuis le simulateur ADTL.', identity];
+    const add = (label, value, unit) => {
+        if (value) lines.push(label + ' : ' + value + (unit ? ' ' + unit : ''));
+    };
+    add('Type de véhicule', text(saved.vehicleType, 80));
+    add('Énergie', text(saved.energy, 50));
+    add('Cylindrée', number(saved.engineCapacity, 1, 30000, true), 'cm³');
+    add('Puissance du moteur', number(saved.electricPower, 0.01, 10000, true), 'kW');
+    add('Nombre de places', number(saved.seats, 1, 200, false));
+    if (saved.condition === 'neuf') {
+        const price = number(saved.purchasePrice, 0.01, 10000000000, true);
+        const currency = text(saved.currency, 3).toUpperCase();
+        if (price && ['XOF', 'EUR', 'USD', 'GBP', 'CNY', 'JPY', 'CAD', 'CHF', 'AED', 'AUD', 'NOK', 'SEK', 'DKK'].includes(currency)) {
+            add('Prix d’achat déclaré', Number(price).toLocaleString('fr-FR', { maximumFractionDigits: 2 }), currency);
+        }
+    }
+    add('Origine', origin);
+    add('Destination', destination);
+    add('Motif de l’étude', text(saved.reason, 400) || (saved.condition === 'neuf'
+        ? 'Étude personnalisée du véhicule neuf à partir de ses caractéristiques et de sa facture d’achat.'
+        : 'Vérification de la référence du véhicule pour établir une estimation.'));
+
+    const customer = saved.customer;
+    if (customer && typeof customer === 'object' && !Array.isArray(customer) &&
+        ['lastName', 'firstName', 'phone'].every(key => typeof customer[key] === 'string') &&
+        window.ADTLClientContact) {
+        window.ADTLClientContact.set({
+            lastName: text(customer.lastName, 80),
+            firstName: text(customer.firstName, 80),
+            phone: text(customer.phone, 25),
+            email: text(customer.email, 254)
+        });
+    }
+
+    document.getElementById('f-marchandise').value = identity;
+    document.getElementById('f-origine').value = origin;
+    document.getElementById('f-destination').value = destination;
+    document.getElementById('f-details').value = lines.join('\n');
+    const status = document.getElementById('vehicle-prefill-status');
+    status.textContent = 'Informations du véhicule reprises. Vérifiez et complétez vos coordonnées avant d’envoyer la demande.';
+    status.hidden = false;
+}
+prefillVehicleRequest();
+
 // Set redirect URL
 document.getElementById('form-next').value = window.location.origin + '/demande?service=' + (service||'') + '&sent=1';
 
@@ -480,5 +718,6 @@ if (params.get('sent') === '1') {
 <script src="/assets/lang-suggest.js?v=3" defer></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
-</body>
+<script defer src="/assets/goods-request.js?v=20260923-container1"></script>
+<script defer src="/assets/youxinpai-request-20260924.js?v=galeries18"></script></body>
 </html>

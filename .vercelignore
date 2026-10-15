@@ -6,3 +6,7 @@ supabase-fix-rls.sql
 $currentTools
 CLAUDE.md
 _data
+tools
+*.md
+public
+.env*

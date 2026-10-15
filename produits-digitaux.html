@@ -420,27 +420,29 @@ nav .max-w-\[1440px\] {
   #prodToast { position:fixed;top:18px;left:50%;transform:translateX(-50%);background:var(--black);color:var(--white);padding:14px 24px;border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.3);font-size:14px;z-index:999;display:none; }
 </style>
 <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+<link rel="stylesheet" href="/adtl-polish.css?v=20260906"/>
+<link rel="stylesheet" href="/adtl-elegant.css?v=20260911"/>
+<link rel="stylesheet" href="/adtl-cards.css?v=20260911-3"/>
+<link rel="stylesheet" href="/assets/site-logo-20260919.css">
+<link rel="stylesheet" href="/assets/academy-covers-20260923.css">
 </head>
-<body>
+<body class="adtl-elegant adtl-modern">
 <nav id="navbar">
 <div style="max-width:1440px;margin:0 auto;padding:0 24px;">
 <div style="display:flex;align-items:center;justify-content:space-between;height:72px;">
-    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
-        <div style="width:36px;height:36px;border-radius:9px;background:var(--black);display:flex;align-items:center;justify-content:center;color:var(--white);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;letter-spacing:.05em;">AD</div>
-        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--black);">AD TRANS <span style="color:var(--gray400);font-weight:400;">LOGISTICS</span></span>
-    </a>
+    <a class="adtl-site-logo" href="/" aria-label="AD TRANS LOGISTICS — Accueil"><img class="adtl-site-logo__image" src="/assets/logo-adtl-20260919.jpeg" width="1080" height="817" alt="" decoding="async"></a>
     <ul id="desknav" style="display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0;">
         <!-- Calcul droit de douane -->
         <li class="nav-dropdown">
-            <button class="navl nav-btn">Calcul droit de douane <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <button class="navl nav-btn">Calcul des droits de douane <svg style="width:14px;height:14px;margin-left:3px;vertical-align:middle;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="nav-drop">
-                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Véhicule</div>
-                <a href="/simulateur" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Occasion</a>
-                <a href="/demande?service=vehicule-neuf" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Neuf</a>
+                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Import</div>
+                <a href="/simulateur" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Véhicule d’occasion</a>
+                <a href="/demande?service=vehicule-neuf" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Véhicule neuf</a>
+                <a href="/calculateur" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Marchandises</a>
                 <div style="border-top:1px solid var(--gray100);margin:4px 8px;"></div>
-                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Marchandise</div>
-                <a href="/calculateur" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Import</a>
-                <a href="/calculateur?mode=export" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> Export</a>
+                <div style="padding:6px 14px 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Export</div>
+                <a href="/demande?service=exportation" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> Étude des droits à l’export</a>
             </div>
         </li>
         <!-- Importation -->
@@ -512,6 +514,7 @@ nav .max-w-\[1440px\] {
                 <a href="/produits-digitaux" class="drop-link"><svg class="drop-icon-s" viewBox="0 0 24 24"><path d="M12 2l9 4.9V17L12 22l-9-4.9V7z"/></svg> Produits digitaux</a>
             </div>
         </li>
+        <li><a class="navl" href="/suivi">Suivi</a></li>
         <li><a class="navl" href="/connexion">Mon compte</a></li>
     </ul>
     <button id="hamburger" style="display:none;width:44px;height:44px;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:0;" aria-label="Menu">
@@ -529,10 +532,7 @@ nav .max-w-\[1440px\] {
 
     <!-- Drawer header -->
     <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--gray200);position:sticky;top:0;background:#fff;z-index:1;">
-        <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-            <div style="width:32px;height:32px;border-radius:8px;background:var(--black);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;letter-spacing:.03em;">AD</div>
-            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--black);">AD TRANS <span style="color:var(--gray400);font-weight:400;">LOGISTICS</span></span>
-        </a>
+        <a class="adtl-site-logo" href="/" aria-label="AD TRANS LOGISTICS — Accueil"><img class="adtl-site-logo__image" src="/assets/logo-adtl-20260919.jpeg" width="1080" height="817" alt="" decoding="async"></a>
         <button onclick="closeMobile()" aria-label="Fermer" style="width:36px;height:36px;border-radius:9px;border:1px solid var(--gray200);background:var(--gray50);display:flex;align-items:center;justify-content:center;cursor:pointer;">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#525252" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
@@ -549,17 +549,17 @@ nav .max-w-\[1440px\] {
             <button onclick="this.parentElement.classList.toggle('mob-open')" class="mob-link" style="width:100%;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:600;color:var(--black);">
                 <span style="display:flex;align-items:center;gap:12px;">
                     <svg class="mob-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><rect x="8" y="10" width="3" height="3"/><rect x="13" y="10" width="3" height="3"/><rect x="8" y="15" width="3" height="3"/><rect x="13" y="15" width="3" height="3"/></svg>
-                    Calcul droit de douane
+                    Calcul des droits de douane
                 </span>
                 <svg class="mob-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="mob-sub">
-                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Vehicule</div>
-                <a href="/simulateur" onclick="closeMobile()" class="mob-sub-link">Occasion</a>
-                <a href="/demande?service=vehicule-neuf" onclick="closeMobile()" class="mob-sub-link">Neuf</a>
-                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Marchandise</div>
-                <a href="/calculateur" onclick="closeMobile()" class="mob-sub-link">Import</a>
-                <a href="/calculateur?mode=export" onclick="closeMobile()" class="mob-sub-link">Export</a>
+                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Import</div>
+                <a href="/simulateur" onclick="closeMobile()" class="mob-sub-link">Véhicule d’occasion</a>
+                <a href="/demande?service=vehicule-neuf" onclick="closeMobile()" class="mob-sub-link">Véhicule neuf</a>
+                <a href="/calculateur" onclick="closeMobile()" class="mob-sub-link">Marchandises</a>
+                <div style="padding:4px 0 2px;font-size:10px;font-weight:700;color:var(--gray400);text-transform:uppercase;letter-spacing:.08em;">Export</div>
+                <a href="/demande?service=exportation" onclick="closeMobile()" class="mob-sub-link">Étude des droits à l’export</a>
             </div>
         </div>
         <!-- Importation -->
@@ -601,7 +601,7 @@ nav .max-w-\[1440px\] {
 
     <!-- CTAs -->
     <div style="padding:20px 20px 16px;display:flex;flex-direction:column;gap:10px;">
-        <a href="#contact" onclick="closeMobile()" class="btn btn-dark" style="justify-content:center;">Devis gratuit</a>
+        <a href="/demande" onclick="closeMobile()" class="btn btn-dark" style="justify-content:center;">Devis gratuit</a>
         <a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:9999px;border:1.5px solid #E5E5E5;font-size:14px;font-weight:600;color:#25D366;text-decoration:none;transition:all .2s;">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25D366" style="width:18px;height:18px;flex-shrink:0;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.345.223-.643.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
             WhatsApp
@@ -624,7 +624,7 @@ nav .max-w-\[1440px\] {
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
     <span>Boutique</span>
   </a>
-  <a href="#contact" class="bn-item" data-page="/contact">
+  <a href="/demande" class="bn-item" data-page="/contact">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     <span>Contact</span>
   </a>
@@ -660,8 +660,8 @@ nav .max-w-\[1440px\] {
             </div>
         </div>
         <div class="card" style="overflow:hidden;display:flex;flex-direction:column;" data-reveal data-delay="100">
-            <div class="formation-media" data-fallback="Référentiel 2026 des valeurs en douane — Véhicules">
-                <img src="/assets/shop/referentiel-valeurs-2026.png" alt="Référentiel 2026 des valeurs en douane — Véhicules" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
+            <div class="formation-media formation-media--academy" data-fallback="Référentiel 2026 des valeurs en douane — Véhicules">
+                <img src="/assets/shop/academy-referentiel-2026-20260923.webp" alt="Référentiel 2026 des valeurs en douane — Véhicules" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
                 <div style="position:absolute;top:12px;left:12px;display:flex;gap:6px;">
                     <span style="padding:4px 10px;background:var(--black);color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;text-transform:uppercase;">PDF + Excel</span>
                     <span style="padding:4px 10px;background:#c9a227;color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;">NOUVEAU &#11088;</span>
@@ -675,8 +675,8 @@ nav .max-w-\[1440px\] {
             </div>
         </div>
         <div class="card" style="overflow:hidden;display:flex;flex-direction:column;" data-reveal data-delay="200">
-            <div class="formation-media" data-fallback="Guide 2026 : Dédouaner votre véhicule au Bénin">
-                <img src="/assets/shop/guide-vehicule-2026.png" alt="Guide 2026 : Dédouaner votre véhicule au Bénin" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
+            <div class="formation-media formation-media--academy" data-fallback="Guide 2026 : Dédouaner votre véhicule au Bénin">
+                <img src="/assets/shop/academy-guide-vehicule-2026-20260923.webp" alt="Guide 2026 : Dédouaner votre véhicule au Bénin" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
                 <div style="position:absolute;top:12px;left:12px;display:flex;gap:6px;">
                     <span style="padding:4px 10px;background:var(--black);color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;text-transform:uppercase;">E-book 2026</span>
                     <span style="padding:4px 10px;background:#EF4444;color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;">-60%</span>
@@ -690,8 +690,8 @@ nav .max-w-\[1440px\] {
             </div>
         </div>
         <div class="card" style="overflow:hidden;display:flex;flex-direction:column;" data-reveal data-delay="300">
-            <div class="formation-media" data-fallback="Guide 2026 : Importer un conteneur de marchandises">
-                <img src="/assets/shop/guide-conteneur-2026.png" alt="Guide 2026 : Importer un conteneur de marchandises" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
+            <div class="formation-media formation-media--academy" data-fallback="Guide 2026 : Importer un conteneur de marchandises">
+                <img src="/assets/shop/academy-guide-conteneur-2026-20260923.webp" alt="Guide 2026 : Importer un conteneur de marchandises" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
                 <div style="position:absolute;top:12px;left:12px;display:flex;gap:6px;">
                     <span style="padding:4px 10px;background:var(--black);color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;text-transform:uppercase;">E-book 2026</span>
                     <span style="padding:4px 10px;background:#EF4444;color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;">-57%</span>
@@ -705,8 +705,8 @@ nav .max-w-\[1440px\] {
             </div>
         </div>
         <div class="card" style="overflow:hidden;display:flex;flex-direction:column;" data-reveal data-delay="400">
-            <div class="formation-media" data-fallback="PACK COMPLET — Guide véhicule + Référentiel + Guide conteneur">
-                <img src="/assets/shop/referentiel-valeurs-2026.png" alt="PACK COMPLET — Guide véhicule + Référentiel + Guide conteneur" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
+            <div class="formation-media formation-media--academy" data-fallback="PACK COMPLET — Guide véhicule + Référentiel + Guide conteneur">
+                <img src="/assets/shop/academy-referentiel-2026-20260923.webp" alt="PACK COMPLET — Guide véhicule + Référentiel + Guide conteneur" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
                 <div style="position:absolute;top:12px;left:12px;display:flex;gap:6px;">
                     <span style="padding:4px 10px;background:var(--black);color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;text-transform:uppercase;">Pack 3 produits</span>
                     <span style="padding:4px 10px;background:#EF4444;color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;">-25%</span>
@@ -834,8 +834,8 @@ nav .max-w-\[1440px\] {
             </div>
         </div>
         <div class="card" style="overflow:hidden;display:flex;flex-direction:column;" data-reveal data-delay="560">
-            <div class="formation-media" data-fallback="LA COLLECTION COMPLÈTE — les 7 mémos à 1 000 F">
-                <img src="/assets/shop/memo-bareme.png" alt="LA COLLECTION COMPLÈTE — les 7 mémos à 1 000 F" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
+            <div class="formation-media formation-media--academy" data-fallback="LA COLLECTION COMPLÈTE — les 7 mémos à 1 000 F">
+                <img src="/assets/shop/academy-collection-memos-20260923.webp" alt="LA COLLECTION COMPLÈTE — les 7 mémos à 1 000 F" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('is-fallback');this.remove();">
                 <div style="position:absolute;top:12px;left:12px;display:flex;gap:6px;">
                     <span style="padding:4px 10px;background:var(--black);color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;text-transform:uppercase;">Pack 7 mémos</span>
                     <span style="padding:4px 10px;background:#EF4444;color:var(--white);font-size:11px;font-weight:700;border-radius:9999px;">-30%</span>
@@ -867,27 +867,27 @@ nav .max-w-\[1440px\] {
                 <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--black);">AD TRANS LOGISTICS</span>
             </div>
             <p style="font-size:13px;color:var(--gray500);line-height:1.65;margin-bottom:14px;">SURL spécialisée en transit douanier, importation de véhicules et logistique portuaire au port de Cotonou, Bénin.</p>
-            <div style="font-size:12px;color:var(--gray500);line-height:1.8;"><p style="margin:0;"><strong style="color:var(--gray700);">IFU:</strong> 3202113824203</p><p style="margin:0;"><strong style="color:var(--gray700);">RCCM:</strong> RB/COT/21 B 31505</p></div>
+            <div style="font-size:12px;color:var(--gray500);line-height:1.8;"><p style="margin:0;"><strong style="color:var(--gray700);">IFU:</strong> 3202465578499</p><p style="margin:0;"><strong style="color:var(--gray700);">RCCM:</strong> RB/COT/24 B 38537</p></div>
         </div>
         <div>
             <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--black);margin-bottom:18px;">Services</h4>
             <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
-                <li><a href="#services" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Transit Douanier</a></li>
-                <li><a href="#services" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Logistique Portuaire</a></li>
+                <li><a href="/#services" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Transit Douanier</a></li>
+                <li><a href="/#services" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Logistique Portuaire</a></li>
                 <li><a href="/transit-niger" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Transit Niger (Niamey)</a></li>
                 <li><a href="/transit-nigeria" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Transit Nigeria (Lagos)</a></li>
                 <li><a href="/en" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">🇬🇧 English version</a></li>
                 <li><a href="/negoce" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Négoce Matières Premières</a></li>
                 <li><a href="/vehicules" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Achat & Import Véhicules</a></li>
-                <li><a href="#formation" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Formation & Conseil</a></li>
+                <li><a href="/#formation" style="font-size:13px;color:var(--gray500);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Formation & Conseil</a></li>
             </ul>
         </div>
         <div>
             <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--black);margin-bottom:18px;">Ressources</h4>
             <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
-                <li><a href="#simulateur" style="font-size:13px;color:var(--gray500);text-decoration:none;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Simulateur de coûts</a></li>
+                <li><a href="/simulateur" style="font-size:13px;color:var(--gray500);text-decoration:none;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Simulateur de coûts</a></li>
                 <li><a href="/suivi" style="font-size:13px;color:var(--gray500);text-decoration:none;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Suivi en temps réel</a></li>
-                <li><a href="#faq" style="font-size:13px;color:var(--gray500);text-decoration:none;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Questions fréquentes</a></li>
+                <li><a href="/#faq" style="font-size:13px;color:var(--gray500);text-decoration:none;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Questions fréquentes</a></li>
                 <li><a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" style="font-size:13px;color:var(--gray500);text-decoration:none;" onmouseover="this.style.color='#0A0A0A'" onmouseout="this.style.color='#737373'">Chaîne YouTube</a></li>
             </ul>
         </div>
@@ -1014,6 +1014,5 @@ Object.keys(PRODUITS).forEach(function (id) {
 </script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<script src="/cookie-consent.js?v=5"></script>
 </body>
 </html>

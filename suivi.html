@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Suivi | AD TRANS LOGISTICS - Tracking en temps réel</title>
-    <meta content="Suivez vos expéditions en temps réel : véhicules, conteneurs, dossiers de dédouanement. AD TRANS LOGISTICS, transit douanier à Cotonou, Bénin." name="description"/>
+    <title>Suivi de conteneur | AD TRANS LOGISTICS — Dépotage en temps réel à Cotonou</title>
+    <meta content="Suivez le dépotage de votre conteneur au port de Cotonou en temps réel : 13 étapes, 4 phases, notifications WhatsApp. Code de suivi ou conteneur + BL." name="description"/>
     <!-- PWA / Application Mobile -->
     <link rel="manifest" href="/manifest.json"/>
     <meta name="theme-color" content="#0A0A0A"/>
@@ -70,16 +70,19 @@
 <link rel="canonical" href="https://www.adtranslogistics.com/suivi"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.adtranslogistics.com/"},{"@type":"ListItem","position":2,"name":"Suivi de dossier","item":"https://www.adtranslogistics.com/suivi"}]}</script>
 
-<meta property="og:title" content="Suivi | AD TRANS LOGISTICS - Tracking en temps réel"/>
-<meta property="og:description" content="Suivez vos expéditions en temps réel : véhicules, conteneurs, dossiers de dédouanement. AD TRANS LOGISTICS, transit douanier à Cotonou, Bénin."/>
+<meta property="og:title" content="Suivi de conteneur | AD TRANS LOGISTICS — Dépotage en temps réel"/>
+<meta property="og:description" content="Suivez le dépotage de votre conteneur au port de Cotonou en temps réel : 13 étapes, 4 phases, notifications WhatsApp. Code de suivi ou conteneur + BL."/>
 <meta property="og:url" content="https://www.adtranslogistics.com/suivi"/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="https://www.adtranslogistics.com/icons/og-cover.png"/>
 <meta property="og:site_name" content="AD TRANS LOGISTICS"/>
 <meta property="og:locale" content="fr_FR"/>
 <meta name="twitter:card" content="summary"/>
+<link rel="stylesheet" href="/adtl-elegant.css?v=20260911"/>
+<link rel="stylesheet" href="/adtl-cards.css?v=20260911-3"/>
+<link rel="stylesheet" href="/assets/site-logo-20260919.css">
 </head>
-<body class="bg-white text-g800 font-sans">
+<body class="adtl-elegant bg-white text-g800 font-sans">
 
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/2290197500555?text=Bonjour%20AD%20TRANS%20LOGISTICS%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20vos%20services." target="_blank" class="whatsapp-btn" title="Contactez-nous via WhatsApp">
@@ -95,21 +98,18 @@
 <nav class="glass-nav transition-all duration-300" id="navbar">
 <div class="container mx-auto px-6 max-w-[1440px]">
 <div class="flex items-center justify-between h-20">
-<a class="flex items-center gap-2.5 group" href="/">
-<div class="w-9 h-9 bg-brand rounded-brand-sm flex items-center justify-center text-white font-heading font-bold text-xs tracking-wider">AD</div>
-<div class="font-heading font-bold text-base text-brand">AD TRANS <span class="text-g400 font-medium">LOGISTICS</span></div>
-</a>
+<a class="adtl-site-logo" href="/" aria-label="AD TRANS LOGISTICS — Accueil"><img class="adtl-site-logo__image" src="/assets/logo-adtl-20260919.jpeg" width="1080" height="817" alt="" decoding="async"></a>
 <ul class="hidden lg:flex items-center gap-1 list-none">
     <li class="relative group">
-        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Calcul droit de douane <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Calcul des droits de douane <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Vehicule</div>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/simulateur">Occasion</a>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">Neuf</a>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Import</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/simulateur">Véhicule d’occasion</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=vehicule-neuf">Véhicule neuf</a>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Marchandises</a>
             <div class="border-t border-gray-100 mx-3 my-1"></div>
-            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Marchandise</div>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur">Import</a>
-            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/calculateur?mode=export">Export</a>
+            <div class="px-4 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Export</div>
+            <a class="block px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50" href="/demande?service=exportation">Étude des droits à l’export</a>
         </div>
     </li>
     <li class="relative group">
@@ -151,7 +151,8 @@
             <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Articles</a>
         </div>
     </li>
-    <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/connexion">Mon compte</a></li>
+    <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/suivi">Suivi</a></li>
+        <li><a class="text-[15px] font-medium text-g500 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-black transition-colors" href="/connexion">Mon compte</a></li>
 </ul>
 <button aria-label="Menu" class="lg:hidden p-2 text-brand" id="hamburger">
 <span class="block w-5 h-0.5 bg-current mb-1 transition-all"></span>
@@ -168,22 +169,23 @@
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/" onclick="closeMobile()">Accueil</a>
 <div>
     <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-medium text-g700 rounded-brand-sm cursor-pointer hover:bg-g50">
-        <span>Calcul droit de douane</span>
+        <span>Calcul des droits de douane</span>
         <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="mob-tw-sub hidden pl-8 pb-2">
-        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Vehicule</div>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/simulateur" onclick="closeMobile()">Occasion</a>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">Neuf</a>
-        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Marchandise</div>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Import</a>
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur?mode=export" onclick="closeMobile()">Export</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Import</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/simulateur" onclick="closeMobile()">Véhicule d’occasion</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=vehicule-neuf" onclick="closeMobile()">Véhicule neuf</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/calculateur" onclick="closeMobile()">Marchandises</a>
+        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider py-1">Export</div>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/demande?service=exportation" onclick="closeMobile()">Étude des droits à l’export</a>
     </div>
 </div>
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=importation" onclick="closeMobile()">Importation</a>
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=exportation" onclick="closeMobile()">Exportation</a>
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=transit" onclick="closeMobile()">Transit</a>
 <a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/demande?service=depotage" onclick="closeMobile()">Depotage</a>
+<a class="block p-4 text-base font-medium text-g700 rounded-brand-sm hover:bg-g50" href="/suivi" onclick="closeMobile()">Suivi conteneur</a>
 <div>
     <button onclick="this.parentElement.classList.toggle('mob-tw-open')" class="flex items-center justify-between w-full p-4 text-base font-medium text-g700 rounded-brand-sm cursor-pointer hover:bg-g50">
         <span>Boutique</span>
@@ -197,523 +199,124 @@
 </div>
 
 <!-- ===================== HERO SECTION ===================== -->
-<section class="pt-32 pb-16 lg:pt-44 lg:pb-20 bg-white">
+<section class="pt-32 pb-12 lg:pt-44 lg:pb-16 bg-white">
 <div class="container mx-auto px-6 max-w-[1440px]">
 <div class="text-center max-w-3xl mx-auto">
-<div class="tag mb-6 mx-auto w-fit"><div class="w-1.5 h-1.5 rounded-full bg-brand"></div>Suivi en temps réel</div>
+<div class="tag mb-6 mx-auto w-fit"><div class="w-1.5 h-1.5 rounded-full bg-brand animate-blink"></div>Suivi dépotage · mis à jour par notre équipe au port</div>
 <h1 class="font-heading text-4xl lg:text-[62px] font-bold leading-[1.08] tracking-tight text-brand mb-6">
-Suivez vos expéditions<br/><span class="text-g400 font-medium italic">en temps réel</span>
+Où en est votre conteneur&nbsp;?<br/><span class="text-g400 font-medium italic">13 étapes, en direct</span>
 </h1>
-<p class="text-lg lg:text-xl text-g500 leading-relaxed max-w-[560px] mx-auto">
-Véhicules, conteneurs, dossiers de dédouanement : accédez à l'état d'avancement de vos opérations à tout moment.
+<p class="text-lg lg:text-xl text-g500 leading-relaxed max-w-[600px] mx-auto">
+Entrez le code de suivi reçu par WhatsApp, ou votre numéro de conteneur et de connaissement. Chaque étape franchie au port de Cotonou apparaît ici immédiatement.
 </p>
 </div>
 </div>
 </section>
 
-<!-- ===================== TRACKING TABS SECTION ===================== -->
-<section class="py-16 bg-g50">
+<!-- ===================== SUIVI DÉPOTAGE ===================== -->
+<section class="py-14 bg-g50" id="suivi">
 <div class="container mx-auto px-6 max-w-5xl">
 
-<!-- Tab Pills -->
-<div class="flex flex-wrap justify-center gap-3 mb-10">
-<button class="tab-pill active" onclick="switchTab('vin')" id="tab-vin">
-<span class="material-symbols-outlined !text-[18px] align-middle mr-1">directions_car</span>
-Tracking Véhicule (VIN)
-</button>
-<button class="tab-pill" onclick="switchTab('container')" id="tab-container">
-<span class="material-symbols-outlined !text-[18px] align-middle mr-1">package_2</span>
-Tracking Conteneur
-</button>
-<button class="tab-pill" onclick="switchTab('dedouanement')" id="tab-dedouanement">
-<span class="material-symbols-outlined !text-[18px] align-middle mr-1">folder_open</span>
-Suivi Dossier
-</button>
-</div>
-
-<!-- ========== TAB 1: VIN ========== -->
-<div id="panel-vin" class="tab-panel">
-<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-8">
-<h3 class="font-heading text-lg font-bold text-brand mb-1">Recherche par VIN</h3>
-<p class="text-sm text-g400 mb-6">Entrez le numéro d'identification du véhicule (VIN) pour suivre son acheminement.</p>
-<div class="space-y-4">
-<div class="space-y-2">
-<label class="text-[13px] font-semibold text-g600">Numéro VIN *</label>
-<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="vinInput" placeholder="Ex: 1HGBH41JXMN109186" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="text-[13px] font-semibold text-g600">Référence dossier ADTL <span class="text-g400 font-normal">(optionnel)</span></label>
-<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="vinRefInput" placeholder="Ex: ADTL-2026-0142" type="text"/>
-</div>
-<button class="btn-brand btn-brand-dark w-full justify-center mt-2" onclick="searchVIN()">
-Rechercher <span class="material-symbols-outlined !text-sm">search</span>
-</button>
-</div>
-</div>
-<!-- VIN Results -->
-<div id="vin-result" class="hidden animate-slide-up">
-<!-- Vehicle Info Card -->
-<div class="bg-white rounded-brand-lg border border-g200 overflow-hidden shadow-sm mb-6">
-<div class="p-6 border-b border-g100 flex flex-col sm:flex-row justify-between items-start gap-4">
-<div>
-<div class="font-heading text-xl font-bold text-brand">Toyota RAV4 2023</div>
-<div class="text-sm text-g400 mt-1">VIN: <span class="font-mono text-g600" id="vin-display">1HGBH41JXMN109186</span></div>
-</div>
-<span class="px-4 py-1.5 bg-brand/10 rounded-full text-[12px] font-semibold text-brand">En transit</span>
-</div>
-<div class="p-6 grid grid-cols-2 sm:grid-cols-4 gap-6">
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Marque</div>
-<div class="text-sm font-semibold text-brand">Toyota</div>
-</div>
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Modèle</div>
-<div class="text-sm font-semibold text-brand">RAV4 XLE</div>
-</div>
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Année</div>
-<div class="text-sm font-semibold text-brand">2023</div>
-</div>
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Couleur</div>
-<div class="text-sm font-semibold text-brand">Blanc Nacré</div>
-</div>
-</div>
-</div>
-<!-- Progress Bar -->
-<div class="bg-white rounded-brand-lg border border-g200 p-6 shadow-sm mb-6">
-<div class="flex justify-between items-center mb-3">
-<span class="text-sm font-semibold text-brand">Progression</span>
-<span class="text-sm font-bold text-brand">65%</span>
-</div>
-<div class="w-full bg-g100 rounded-full h-3">
-<div class="bg-brand h-3 rounded-full animate-progress" style="width: 65%"></div>
-</div>
-<div class="flex justify-between mt-3">
-<span class="text-[11px] text-g400">Départ: Savannah, GA (USA)</span>
-<span class="text-[11px] text-g400">Arrivée estimée: 08 Avr 2026</span>
-</div>
-</div>
-<!-- Timeline -->
-<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm">
-<h4 class="font-heading text-base font-bold text-brand mb-8">Historique du suivi</h4>
-<div class="space-y-0">
-<!-- Step 1 - Done -->
-<div class="track-step">
-<div class="step-line done" style="height: calc(100% - 18px);"></div>
-<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-brand">Achat confirmé</h5>
-<p class="text-[12px] text-g400 mt-0.5">12 Mars 2026 - Copart, Savannah GA</p>
-<p class="text-[13px] text-g500 mt-2">Véhicule acheté aux enchères. Titre de propriété reçu.</p>
-</div>
-</div>
-<!-- Step 2 - Done -->
-<div class="track-step">
-<div class="step-line done" style="height: calc(100% - 18px);"></div>
-<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-brand">Embarquement</h5>
-<p class="text-[12px] text-g400 mt-0.5">18 Mars 2026 - Port de Savannah</p>
-<p class="text-[13px] text-g500 mt-2">Chargé sur navire MSC LUCIA. Bill of Lading émis.</p>
-</div>
-</div>
-<!-- Step 3 - Current -->
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot current animate-blink"><span class="material-symbols-outlined !text-[16px]">sailing</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-brand">Transit Maritime</h5>
-<p class="text-[12px] text-g400 mt-0.5">En cours - Atlantique</p>
-<p class="text-[13px] text-g500 mt-2">Navire en mer. Position actuelle : large des Canaries. ETA Cotonou : 05 Avr 2026.</p>
-</div>
-</div>
-<!-- Step 4 - Waiting -->
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">anchor</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-g400">Arrivée au Port de Cotonou</h5>
-<p class="text-[12px] text-g300 mt-0.5">Prévue le 05 Avr 2026</p>
-</div>
-</div>
-<!-- Step 5 - Waiting -->
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">gavel</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-g400">Dédouanement</h5>
-<p class="text-[12px] text-g300 mt-0.5">En attente</p>
-</div>
-</div>
-<!-- Step 6 - Waiting -->
-<div class="track-step">
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">check_circle</span></div>
-<div class="pb-2">
-<h5 class="text-[15px] font-semibold text-g400">Livré</h5>
-<p class="text-[12px] text-g300 mt-0.5">En attente</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- ========== TAB 2: CONTAINER ========== -->
-<div id="panel-container" class="tab-panel hidden">
-<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-8">
-<h3 class="font-heading text-lg font-bold text-brand mb-1">Recherche par conteneur</h3>
-<p class="text-sm text-g400 mb-6">Entrez le numéro de conteneur ou le Bill of Lading pour suivre votre cargaison.</p>
-<div class="space-y-4">
-<div class="space-y-2">
-<label class="text-[13px] font-semibold text-g600">Numéro de conteneur *</label>
-<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="containerInput" placeholder="Ex: MSCU1234567" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="text-[13px] font-semibold text-g600">Bill of Lading <span class="text-g400 font-normal">(optionnel)</span></label>
-<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="blInput" placeholder="Ex: MSCUHAM123456" type="text"/>
-</div>
-<button class="btn-brand btn-brand-dark w-full justify-center mt-2" onclick="searchContainer()">
-Rechercher <span class="material-symbols-outlined !text-sm">search</span>
-</button>
-</div>
-</div>
-<!-- Container Results -->
-<div id="container-result" class="hidden animate-slide-up">
-<!-- Container Info Card -->
-<div class="bg-white rounded-brand-lg border border-g200 overflow-hidden shadow-sm mb-6">
-<div class="p-6 border-b border-g100 flex flex-col sm:flex-row justify-between items-start gap-4">
-<div>
-<div class="font-heading text-xl font-bold text-brand">Conteneur <span class="font-mono" id="container-display">MSCU1234567</span></div>
-<div class="text-sm text-g400 mt-1">B/L: MSCUHAM789012 &mdash; MSC Mediterranean Shipping</div>
-</div>
-<span class="px-4 py-1.5 bg-brand/10 rounded-full text-[12px] font-semibold text-brand">En mer</span>
-</div>
-<div class="p-6 grid grid-cols-2 sm:grid-cols-4 gap-6">
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Type</div>
-<div class="text-sm font-semibold text-brand">40' HC (High Cube)</div>
-</div>
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Poids</div>
-<div class="text-sm font-semibold text-brand">18 250 kg</div>
-</div>
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Origine</div>
-<div class="text-sm font-semibold text-brand">Guangzhou, Chine</div>
-</div>
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Destination</div>
-<div class="text-sm font-semibold text-brand">Cotonou, Bénin</div>
-</div>
-</div>
-</div>
-<!-- Route Info -->
-<div class="bg-white rounded-brand-lg border border-g200 p-6 shadow-sm mb-6">
-<div class="flex justify-between items-center mb-4">
-<span class="text-sm font-semibold text-brand">Progression du voyage</span>
-<span class="text-sm font-bold text-brand">48%</span>
-</div>
-<div class="w-full bg-g100 rounded-full h-3 mb-4">
-<div class="bg-brand h-3 rounded-full animate-progress" style="width: 48%"></div>
-</div>
-<!-- Route Text Map -->
-<div class="flex flex-wrap items-center justify-between gap-2 text-[12px] font-semibold">
-<span class="text-brand">Guangzhou</span>
-<span class="text-g300">&rarr;</span>
-<span class="text-g400">Singapour</span>
-<span class="text-g300">&rarr;</span>
-<span class="text-brand underline">Canal de Suez</span>
-<span class="text-g300">&rarr;</span>
-<span class="text-g400">Tanger Med</span>
-<span class="text-g300">&rarr;</span>
-<span class="text-g400">Cotonou</span>
-</div>
-<div class="mt-4 p-4 bg-g50 rounded-brand-sm flex items-center gap-3">
-<span class="material-symbols-outlined text-brand !text-xl">schedule</span>
-<div>
-<div class="text-[13px] font-semibold text-brand">ETA : 15 Avril 2026</div>
-<div class="text-[12px] text-g400">Navire: MSC AURORA III &mdash; Voyage: FA612E</div>
-</div>
-</div>
-</div>
-<!-- Timeline -->
-<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm">
-<h4 class="font-heading text-base font-bold text-brand mb-8">Historique du suivi</h4>
-<div class="space-y-0">
-<div class="track-step">
-<div class="step-line done" style="height: calc(100% - 18px);"></div>
-<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-brand">Chargement</h5>
-<p class="text-[12px] text-g400 mt-0.5">05 Mars 2026 - Port de Guangzhou, Chine</p>
-<p class="text-[13px] text-g500 mt-2">Conteneur chargé et scellé. Seal: MSCUL892341.</p>
-</div>
-</div>
-<div class="track-step">
-<div class="step-line done" style="height: calc(100% - 18px);"></div>
-<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-brand">Transbordement Singapour</h5>
-<p class="text-[12px] text-g400 mt-0.5">14 Mars 2026 - Port de Singapour</p>
-<p class="text-[13px] text-g500 mt-2">Transbordement effectué vers MSC AURORA III.</p>
-</div>
-</div>
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot current animate-blink"><span class="material-symbols-outlined !text-[16px]">sailing</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-brand">En mer</h5>
-<p class="text-[12px] text-g400 mt-0.5">En cours - Canal de Suez</p>
-<p class="text-[13px] text-g500 mt-2">Traversée du Canal de Suez en cours. Prochaine escale : Tanger Med.</p>
-</div>
-</div>
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">anchor</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-g400">Arrivée Cotonou</h5>
-<p class="text-[12px] text-g300 mt-0.5">Prévue le 15 Avr 2026</p>
-</div>
-</div>
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">gavel</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-g400">Dédouanement</h5>
-<p class="text-[12px] text-g300 mt-0.5">En attente</p>
-</div>
-</div>
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">deployed_code</span></div>
-<div class="pb-8">
-<h5 class="text-[15px] font-semibold text-g400">Dépotage</h5>
-<p class="text-[12px] text-g300 mt-0.5">En attente</p>
-</div>
-</div>
-<div class="track-step">
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">local_shipping</span></div>
-<div class="pb-2">
-<h5 class="text-[15px] font-semibold text-g400">Livraison</h5>
-<p class="text-[12px] text-g300 mt-0.5">En attente</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- ========== TAB 3: SUIVI DOSSIER ========== -->
-<div id="panel-dedouanement" class="tab-panel hidden">
-<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-8">
-<h3 class="font-heading text-lg font-bold text-brand mb-1">Suivi Dossier</h3>
-<p class="text-sm text-g400 mb-6">Consultez l'avancement de votre dossier en saisissant votre référence ADTL.</p>
-<div class="space-y-4">
-<div class="space-y-2">
-<label class="text-[13px] font-semibold text-g600">Référence dossier *</label>
-<input class="w-full bg-white border-g200 rounded-brand-sm text-sm focus:ring-0 focus:border-brand transition-colors" id="dedouanementInput" placeholder="Ex: ADTL-2026-0142" type="text"/>
-</div>
-<button class="btn-brand btn-brand-dark w-full justify-center mt-2" onclick="searchDedouanement()">
-Consulter <span class="material-symbols-outlined !text-sm">search</span>
-</button>
-</div>
-</div>
-<!-- Dedouanement Results -->
-<div id="dedouanement-result" class="hidden animate-slide-up">
-<!-- Dossier Info -->
-<div class="bg-white rounded-brand-lg border border-g200 overflow-hidden shadow-sm mb-6">
-<div class="p-6 border-b border-g100 flex flex-col sm:flex-row justify-between items-start gap-4">
-<div>
-<div class="font-heading text-xl font-bold text-brand" id="ded-ref">#ADTL-2026-0158</div>
-<div class="text-sm text-g400 mt-1">Dédouanement conteneur &mdash; Marchandises diverses</div>
-</div>
-<span class="px-4 py-1.5 bg-brand/10 rounded-full text-[12px] font-semibold text-brand">En cours</span>
-</div>
-<div class="p-6 grid grid-cols-2 sm:grid-cols-4 gap-6">
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Type</div>
-<div class="text-sm font-semibold text-brand">Import définitif</div>
-</div>
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Client</div>
-<div class="text-sm font-semibold text-brand">ETS KOFFI & Fils</div>
-</div>
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Date ouverture</div>
-<div class="text-sm font-semibold text-brand">20 Mars 2026</div>
-</div>
-<div>
-<div class="text-[11px] text-g400 font-bold uppercase tracking-wider mb-1">Agent</div>
-<div class="text-sm font-semibold text-brand">M. Adékambi</div>
-</div>
-</div>
-</div>
-<!-- Status Steps -->
-<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-6">
-<h4 class="font-heading text-base font-bold text-brand mb-2">Étapes du dossier</h4>
-<p class="text-[12px] text-g400 mb-8">Progression en temps réel — de l'ouverture du dossier jusqu'à la livraison en magasin.</p>
-
-<!-- Progress bar globale -->
-<div style="background:#F5F5F5;border-radius:999px;height:8px;margin-bottom:32px;overflow:hidden;">
-  <div style="background:linear-gradient(90deg,#0A0A0A,#404040);width:45%;height:100%;border-radius:999px;transition:width 1s ease;"></div>
-</div>
-
-<div class="space-y-0">
-
-<!-- Étape 1 — DONE -->
-<div class="track-step">
-<div class="step-line done" style="height: calc(100% - 18px);"></div>
-<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
-<div class="pb-8">
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">
-    <h5 class="text-[15px] font-semibold text-brand">Ouverture du dossier</h5>
-    <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#F0FDF4;color:#16A34A;">✔ Complété</span>
+<div class="tk-search">
+  <div class="tk-modes" role="tablist">
+    <button class="tk-mode active" id="tk-mode-code" type="button" onclick="tkMode('code')" role="tab">Code de suivi</button>
+    <button class="tk-mode" id="tk-mode-ref" type="button" onclick="tkMode('ref')" role="tab">Conteneur + BL</button>
   </div>
-  <p class="text-[12px] text-g400 mt-0.5">20 Mars 2026 · 09h14</p>
-  <p class="text-[13px] text-g500 mt-2">Dossier créé. Référence attribuée : <strong>#ADTL-2026-0158</strong>. Agent assigné : M. Adékambi.</p>
-</div>
+
+  <form class="tk-form" id="tk-form-code" onsubmit="return tkSearch(event,'code')">
+    <label class="tk-label" for="tk-code">Code de suivi (8 caractères)</label>
+    <div class="tk-row">
+      <input class="tk-input tk-input-code" id="tk-code" inputmode="latin" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="8" placeholder="EX. K7M2PQ9D"/>
+      <button class="tk-btn" type="submit" id="tk-btn-code">Suivre <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </div>
+    <p class="tk-help">Le code figure dans chaque message WhatsApp d’AD TRANS LOGISTICS concernant votre conteneur.</p>
+  </form>
+
+  <form class="tk-form hidden" id="tk-form-ref" onsubmit="return tkSearch(event,'ref')">
+    <div class="tk-grid">
+      <div>
+        <label class="tk-label" for="tk-container">N° de conteneur</label>
+        <input class="tk-input" id="tk-container" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="EX. MSKU1234567"/>
+      </div>
+      <div>
+        <label class="tk-label" for="tk-bl">N° de connaissement (BL)</label>
+        <input class="tk-input" id="tk-bl" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="EX. MAEU123456789"/>
+      </div>
+    </div>
+    <div class="tk-row tk-row-end">
+      <button class="tk-btn" type="submit" id="tk-btn-ref">Suivre <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </div>
+    <p class="tk-help">Les deux références figurent sur votre connaissement (Bill of Lading). Elles sont vérifiées ensemble pour protéger vos données.</p>
+  </form>
+
+  <div class="tk-status" id="tk-status" aria-live="polite"></div>
 </div>
 
-<!-- Étape 2 — DONE -->
-<div class="track-step">
-<div class="step-line done" style="height: calc(100% - 18px);"></div>
-<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
-<div class="pb-8">
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">
-    <h5 class="text-[15px] font-semibold text-brand">Échanges documentaires</h5>
-    <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#F0FDF4;color:#16A34A;">✔ Complété</span>
+<div id="tk-result" class="tk-result"></div>
+
+<div class="tk-aside">
+  <div class="tk-aside-card">
+    <div class="tk-aside-k">Comment ça marche</div>
+    <h3>4 phases, 13 étapes, zéro appel à passer</h3>
+    <ol class="tk-phases-list">
+      <li><b>Documents</b> Échange documentaire, bon à délivrer, liste prévisionnelle, demande de transfert, déclaration en douane.</li>
+      <li><b>Validations</b> Factures Port, Bénin Manutention, Bénin Terminal et BESC — traitées <em>en parallèle</em> pour gagner des jours.</li>
+      <li><b>Relâche</b> Relâche autorisée puis demande de positionnement du conteneur.</li>
+      <li><b>Dépotage</b> Fiches de dépotage, dégroupage et remise des marchandises.</li>
+    </ol>
   </div>
-  <p class="text-[12px] text-g400 mt-0.5">21 Mars 2026 · 11h30</p>
-  <p class="text-[13px] text-g500 mt-2">B/L, facture commerciale, packing list et certificats reçus et validés. Déclaration GUCE soumise — N° DI-2026-41872.</p>
-  <!-- docs tags -->
-  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
-    <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:#F0FDF4;color:#16A34A;font-weight:600;">✔ Bill of Lading</span>
-    <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:#F0FDF4;color:#16A34A;font-weight:600;">✔ Facture commerciale</span>
-    <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:#F0FDF4;color:#16A34A;font-weight:600;">✔ Packing list</span>
-    <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:#FFFBEB;color:#D97706;font-weight:600;">⏳ Certificat d'origine</span>
+  <div class="tk-aside-card tk-aside-dark">
+    <div class="tk-aside-k">Vous êtes client</div>
+    <h3>Tous vos conteneurs sur un seul écran</h3>
+    <p>Créez votre espace client avec l’adresse e-mail communiquée à notre équipe : vos dépotages y apparaissent automatiquement, avec l’historique des notifications.</p>
+    <a class="tk-btn tk-btn-white" href="/connexion">Accéder à mon espace</a>
   </div>
-</div>
-</div>
-
-<!-- Étape 3 — DONE -->
-<div class="track-step">
-<div class="step-line done" style="height: calc(100% - 18px);"></div>
-<div class="step-dot done"><span class="material-symbols-outlined !text-[16px]">check</span></div>
-<div class="pb-8">
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">
-    <h5 class="text-[15px] font-semibold text-brand">Marchandises chargées</h5>
-    <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#F0FDF4;color:#16A34A;">✔ Complété</span>
-  </div>
-  <p class="text-[12px] text-g400 mt-0.5">22 Mars 2026 · 07h00</p>
-  <p class="text-[13px] text-g500 mt-2">Conteneur MSCU4581920 chargé et scellé au port d'origine. Scellé N° MSCUL892341. Départ confirmé.</p>
-</div>
-</div>
-
-<!-- Étape 4 — CURRENT -->
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot current animate-blink"><span class="material-symbols-outlined !text-[16px]">payments</span></div>
-<div class="pb-8">
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px;">
-    <h5 class="text-[15px] font-semibold text-brand">Liquidation & paiement des droits</h5>
-    <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF7ED;color:#EA580C;">⏳ En cours</span>
-  </div>
-  <p class="text-[12px] text-g400 mt-0.5">25 Mars 2026 — En attente de paiement client</p>
-  <p class="text-[13px] text-g500 mt-2">Droits et taxes liquidés : <strong>2 845 000 FCFA</strong>. Avis envoyé. En attente de virement bancaire pour délivrance du BAE.</p>
-</div>
-</div>
-
-<!-- Étape 5 — WAITING -->
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">fact_check</span></div>
-<div class="pb-8">
-  <h5 class="text-[15px] font-semibold text-g400">Bon à enlever (BAE) & sortie du port</h5>
-  <p class="text-[12px] text-g300 mt-0.5">En attente</p>
-  <p class="text-[13px] text-g400 mt-2">Délivrance du BAE après paiement. Enlèvement des marchandises au port autonome de Cotonou.</p>
-</div>
-</div>
-
-<!-- Étape 6 — WAITING -->
-<div class="track-step">
-<div class="step-line" style="height: calc(100% - 18px);"></div>
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">local_shipping</span></div>
-<div class="pb-8">
-  <h5 class="text-[15px] font-semibold text-g400">En route pour le magasin / entrepôt</h5>
-  <p class="text-[12px] text-g300 mt-0.5">En attente</p>
-  <p class="text-[13px] text-g400 mt-2">Transport terrestre en cours vers l'entrepôt ou le magasin du client. Notification SMS à l'arrivée.</p>
-</div>
-</div>
-
-<!-- Étape 7 — WAITING -->
-<div class="track-step">
-<div class="step-dot waiting"><span class="material-symbols-outlined !text-[16px]">warehouse</span></div>
-<div class="pb-2">
-  <h5 class="text-[15px] font-semibold text-g400">Livraison & remise au client</h5>
-  <p class="text-[12px] text-g300 mt-0.5">En attente</p>
-  <p class="text-[13px] text-g400 mt-2">Marchandises livrées et remises en main propre. Dossier clôturé.</p>
-</div>
-</div>
-
-</div>
-</div>
-<!-- Documents Checklist -->
-<div class="bg-white rounded-brand-lg border border-g200 p-8 shadow-sm mb-6">
-<h4 class="font-heading text-base font-bold text-brand mb-6">Checklist documents</h4>
-<div class="grid sm:grid-cols-2 gap-3">
-<div class="doc-item">
-<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
-<span class="text-sm text-g700">Bill of Lading (B/L)</span>
-</div>
-<div class="doc-item">
-<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
-<span class="text-sm text-g700">Facture commerciale</span>
-</div>
-<div class="doc-item">
-<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
-<span class="text-sm text-g700">Packing list</span>
-</div>
-<div class="doc-item">
-<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
-<span class="text-sm text-g700">Attestation de valeur</span>
-</div>
-<div class="doc-item">
-<span class="material-symbols-outlined text-amber-500 !text-xl">schedule</span>
-<span class="text-sm text-g700">Certificat d'origine</span>
-<span class="text-[11px] text-amber-600 font-semibold ml-auto">En cours</span>
-</div>
-<div class="doc-item">
-<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
-<span class="text-sm text-g700">Certificat de conformité</span>
-</div>
-<div class="doc-item">
-<span class="material-symbols-outlined text-green-600 !text-xl">check_circle</span>
-<span class="text-sm text-g700">Note de fret</span>
-</div>
-<div class="doc-item">
-<span class="material-symbols-outlined text-g300 !text-xl">radio_button_unchecked</span>
-<span class="text-sm text-g400">Quittance de paiement</span>
-<span class="text-[11px] text-g400 font-semibold ml-auto">En attente</span>
-</div>
-</div>
-</div>
-<!-- Agent Contact -->
-<div class="bg-white rounded-brand-lg border border-g200 p-6 shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-4">
-<div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white font-heading font-bold text-sm shrink-0">AA</div>
-<div class="flex-1">
-<div class="text-sm font-bold text-brand">Agent assigné : M. Adékambi Arnaud</div>
-<div class="text-[13px] text-g500 mt-0.5">Spécialiste dédouanement conteneurs</div>
-</div>
-<a href="https://wa.me/2290197500555?text=Bonjour%2C%20je%20souhaite%20des%20infos%20sur%20mon%20dossier%20ADTL-2026-0158" target="_blank" class="btn-brand btn-brand-dark px-5 py-2.5 text-[13px]">
-<span class="material-symbols-outlined !text-[16px]">chat</span> Contacter
-</a>
-</div>
-</div>
 </div>
 
 </div>
 </section>
+
+<style>
+.tk-search{background:#fff;border:1px solid #E5E5E5;border-radius:24px;padding:28px;box-shadow:0 1px 2px rgba(10,10,10,.04),0 12px 40px -24px rgba(10,10,10,.25)}
+.tk-modes{display:inline-flex;background:#F0F0F0;border-radius:999px;padding:4px;margin-bottom:22px}
+.tk-mode{border:0;background:transparent;padding:9px 18px;border-radius:999px;font:600 14px 'Instrument Sans',sans-serif;color:#737373;cursor:pointer;transition:all .2s}
+.tk-mode.active{background:#fff;color:#0A0A0A;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tk-label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#737373;margin-bottom:8px}
+.tk-row{display:flex;gap:10px;align-items:stretch}
+.tk-row-end{justify-content:flex-end;margin-top:14px}
+.tk-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tk-input{width:100%;height:56px;border:1.5px solid #E5E5E5;border-radius:14px;padding:0 18px;font:600 16px 'Instrument Sans',sans-serif;color:#0A0A0A;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s;text-transform:uppercase}
+.tk-input::placeholder{color:#A3A3A3;text-transform:none;font-weight:500}
+.tk-input:focus{border-color:#0A0A0A;box-shadow:0 0 0 4px rgba(10,10,10,.06)}
+.tk-input-code{font-family:'Space Grotesk',sans-serif;font-size:22px;letter-spacing:.22em;font-weight:700}
+.tk-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:56px;padding:0 26px;border-radius:14px;background:#0A0A0A;color:#fff;border:0;font:700 15px 'Instrument Sans',sans-serif;cursor:pointer;white-space:nowrap;transition:all .2s;text-decoration:none}
+.tk-btn:hover{background:#262626;transform:translateY(-1px)}
+.tk-btn:disabled{opacity:.55;cursor:wait;transform:none}
+.tk-btn-white{background:#fff;color:#0A0A0A;height:48px;border-radius:999px;margin-top:14px}
+.tk-btn-white:hover{background:#F0F0F0}
+.tk-help{font-size:13px;color:#737373;margin-top:12px;line-height:1.5}
+.tk-status{margin-top:10px;font-size:14px;font-weight:600;min-height:0}
+.tk-status.err{color:#B91C1C}.tk-status.ok{color:#166534}
+.tk-result{margin-top:20px}
+.tk-empty{background:#fff;border:1px dashed #D4D4D4;border-radius:20px;padding:28px;text-align:center}
+.tk-empty h3{font-family:'Space Grotesk',sans-serif;font-size:20px;margin-bottom:6px}
+.tk-empty p{color:#737373;font-size:14px;line-height:1.6;max-width:520px;margin:0 auto}
+.tk-empty a{color:#0A0A0A;font-weight:700;text-decoration:underline}
+.tk-aside{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:20px}
+.tk-aside-card{background:#fff;border:1px solid #E5E5E5;border-radius:20px;padding:24px}
+.tk-aside-k{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#737373;margin-bottom:8px}
+.tk-aside-card h3{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:12px;line-height:1.2}
+.tk-aside-card p{font-size:14px;color:#525252;line-height:1.6}
+.tk-phases-list{list-style:none;margin:0;padding:0;counter-reset:ph;display:grid;gap:10px}
+.tk-phases-list li{counter-increment:ph;display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:13.5px;color:#525252;line-height:1.5}
+.tk-phases-list li::before{content:counter(ph);width:26px;height:26px;border-radius:50%;background:#0A0A0A;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.tk-phases-list b{display:block;color:#0A0A0A;font-size:14px}
+.tk-aside-dark{background:#0A0A0A;color:#fff;border-color:#0A0A0A}
+.tk-aside-dark .tk-aside-k{color:rgba(255,255,255,.5)}.tk-aside-dark p{color:rgba(255,255,255,.65)}
+.tk-skel{height:220px;border-radius:24px;background:linear-gradient(90deg,#F0F0F0 25%,#F7F7F7 50%,#F0F0F0 75%);background-size:200% 100%;animation:tkShimmer 1.2s infinite}
+@keyframes tkShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media(max-width:720px){.tk-search{padding:20px;border-radius:18px}.tk-grid{grid-template-columns:1fr}.tk-row{flex-direction:column}.tk-btn{width:100%}.tk-aside{grid-template-columns:1fr}.tk-input-code{font-size:18px}}
+</style>
 
 <!-- ===================== CTA SECTION ===================== -->
 <section class="py-20 bg-brand text-white">
@@ -736,8 +339,8 @@ Consulter <span class="material-symbols-outlined !text-sm">search</span>
 <div class="font-heading font-bold text-base text-brand mb-6">AD TRANS LOGISTICS</div>
 <p class="text-sm text-g500 mb-4">SURL specialisée en transit douanier, importation de véhicules et logistique portuaire au port de Cotonou, Bénin.</p>
 <div class="space-y-2 text-[13px] text-g600">
-<p><strong>IFU:</strong> 3202113824203</p>
-<p><strong>RCCM:</strong> RB/COT/21 B 31505</p>
+<p><strong>IFU:</strong> 3202465578499</p>
+<p><strong>RCCM:</strong> RB/COT/24 B 38537</p>
 </div>
 </div>
 <!-- Quick Links -->
@@ -829,82 +432,95 @@ function showToast(message) {
     }, 3000);
 }
 
-// ============ TAB SWITCHING ============
-function switchTab(tabName) {
-    // Update pill styles
-    document.querySelectorAll('.tab-pill').forEach(pill => pill.classList.remove('active'));
-    document.getElementById('tab-' + tabName).classList.add('active');
-    // Show/hide panels
-    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
-    document.getElementById('panel-' + tabName).classList.remove('hidden');
-}
+</script>
+<script src="/config.js?v=4"></script>
+<script src="/assets/depotage.js?v=20261015"></script>
+<script>
+// ============ SUIVI DÉPOTAGE (données réelles via Supabase RPC track_depotage) ============
+(function () {
+  const DP = window.ADTLDepotage; DP.injectCSS();
+  const { SUPABASE_URL, SUPABASE_ANON_KEY } = window.ADTL_CONFIG;
+  const el = id => document.getElementById(id);
+  let busy = false;
 
-// ============ VIN SEARCH ============
-function searchVIN() {
-    const vin = document.getElementById('vinInput').value.trim();
-    if (!vin) {
-        showToast('Veuillez entrer un numéro VIN.');
-        return;
-    }
-    // Show demo result
-    document.getElementById('vin-display').textContent = vin.toUpperCase();
-    const resultDiv = document.getElementById('vin-result');
-    resultDiv.classList.remove('hidden');
-    // Re-trigger animation
-    resultDiv.classList.remove('animate-slide-up');
-    void resultDiv.offsetWidth;
-    resultDiv.classList.add('animate-slide-up');
-    // Re-trigger progress animation
-    resultDiv.querySelectorAll('.animate-progress').forEach(bar => {
-        bar.style.animation = 'none';
-        void bar.offsetWidth;
-        bar.style.animation = '';
+  window.tkMode = function (mode) {
+    ['code', 'ref'].forEach(m => {
+      el('tk-mode-' + m).classList.toggle('active', m === mode);
+      el('tk-form-' + m).classList.toggle('hidden', m !== mode);
     });
-    // Scroll to result
-    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+    el('tk-status').textContent = '';
+    (mode === 'code' ? el('tk-code') : el('tk-container')).focus();
+  };
 
-// ============ CONTAINER SEARCH ============
-function searchContainer() {
-    const container = document.getElementById('containerInput').value.trim();
-    if (!container) {
-        showToast('Veuillez entrer un numéro de conteneur.');
-        return;
+  async function rpc(params) {
+    const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 15000);
+    try {
+      const r = await fetch(SUPABASE_URL + '/rest/v1/rpc/track_depotage', {
+        method: 'POST', signal: ctrl.signal,
+        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY, Authorization: 'Bearer ' + SUPABASE_ANON_KEY },
+        body: JSON.stringify(params)
+      });
+      if (!r.ok) throw new Error('http_' + r.status);
+      return await r.json();
+    } finally { clearTimeout(t); }
+  }
+
+  function setStatus(msg, kind) { const s = el('tk-status'); s.textContent = msg || ''; s.className = 'tk-status' + (kind ? ' ' + kind : ''); }
+
+  function renderEmpty(mode) {
+    el('tk-result').innerHTML = `<div class="tk-empty animate-slide-up">
+      <h3>Aucun dossier trouvé</h3>
+      <p>${mode === 'code'
+        ? 'Vérifiez le code de suivi (8 caractères, sans espace). Si votre conteneur vient d’arriver, notre équipe l’enregistre dès l’échange documentaire.'
+        : 'Vérifiez le numéro de conteneur et le numéro de connaissement : ils doivent correspondre exactement à votre BL.'}
+      Besoin d’aide ? <a href="https://wa.me/2290197500555?text=${encodeURIComponent('Bonjour AD TRANS LOGISTICS, je ne retrouve pas le suivi de mon conteneur.')}" target="_blank" rel="noopener">Écrivez-nous sur WhatsApp</a>.</p>
+    </div>`;
+  }
+
+  window.tkSearch = async function (event, mode) {
+    if (event) event.preventDefault();
+    if (busy) return false;
+    let params;
+    if (mode === 'code') {
+      const code = el('tk-code').value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+      el('tk-code').value = code;
+      if (code.length < 6) { setStatus('Entrez votre code de suivi complet (8 caractères).', 'err'); return false; }
+      params = { p_code: code };
+    } else {
+      const c = el('tk-container').value.trim().toUpperCase().replace(/\s/g, '');
+      const bl = el('tk-bl').value.trim().toUpperCase();
+      el('tk-container').value = c; el('tk-bl').value = bl;
+      if (c.length < 6 || bl.length < 3) { setStatus('Indiquez le numéro de conteneur et le numéro de BL.', 'err'); return false; }
+      params = { p_container: c, p_bl: bl };
     }
-    document.getElementById('container-display').textContent = container.toUpperCase();
-    const resultDiv = document.getElementById('container-result');
-    resultDiv.classList.remove('hidden');
-    resultDiv.classList.remove('animate-slide-up');
-    void resultDiv.offsetWidth;
-    resultDiv.classList.add('animate-slide-up');
-    resultDiv.querySelectorAll('.animate-progress').forEach(bar => {
-        bar.style.animation = 'none';
-        void bar.offsetWidth;
-        bar.style.animation = '';
-    });
-    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// ============ DEDOUANEMENT SEARCH ============
-function searchDedouanement() {
-    const ref = document.getElementById('dedouanementInput').value.trim();
-    if (!ref) {
-        showToast('Veuillez entrer une référence dossier.');
-        return;
+    busy = true; setStatus('Recherche en cours…');
+    el('tk-btn-code').disabled = el('tk-btn-ref').disabled = true;
+    el('tk-result').innerHTML = '<div class="tk-skel"></div>';
+    try {
+      const data = await rpc(params);
+      if (!data) { setStatus('', ''); renderEmpty(mode); }
+      else {
+        setStatus('', '');
+        el('tk-result').innerHTML = DP.renderCard(data, { open: true });
+        el('tk-result').firstElementChild.classList.add('animate-slide-up');
+        const url = new URL(location.href); url.searchParams.set('code', data.tracking_code); url.searchParams.delete('conteneur'); url.searchParams.delete('bl');
+        history.replaceState(null, '', url);
+      }
+      el('tk-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch (e) {
+      el('tk-result').innerHTML = '';
+      setStatus('Le service de suivi est momentanément indisponible. Réessayez dans un instant.', 'err');
+    } finally {
+      busy = false; el('tk-btn-code').disabled = el('tk-btn-ref').disabled = false;
     }
-    document.getElementById('ded-ref').textContent = '#' + ref.toUpperCase();
-    const resultDiv = document.getElementById('dedouanement-result');
-    resultDiv.classList.remove('hidden');
-    resultDiv.classList.remove('animate-slide-up');
-    void resultDiv.offsetWidth;
-    resultDiv.classList.add('animate-slide-up');
-    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+    return false;
+  };
 
-// Allow Enter key to trigger search
-document.getElementById('vinInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchVIN(); });
-document.getElementById('containerInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchContainer(); });
-document.getElementById('dedouanementInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') searchDedouanement(); });
+  // Pré-remplissage depuis l'URL (liens envoyés par WhatsApp)
+  const q = new URLSearchParams(location.search);
+  if (q.get('code')) { el('tk-code').value = q.get('code'); tkSearch(null, 'code'); }
+  else if (q.get('conteneur')) { tkMode('ref'); el('tk-container').value = q.get('conteneur'); el('tk-bl').value = q.get('bl') || ''; if (q.get('bl')) tkSearch(null, 'ref'); }
+})();
 </script>
 
     <!-- Enregistrement du Service Worker -->

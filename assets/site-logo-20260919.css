@@ -1,0 +1,8 @@
+/* Shared header identity: supplied AD TRANS LOGISTICS logo, unchanged. */
+.adtl-site-logo{display:inline-flex!important;align-items:center;gap:11px;flex-shrink:0;text-decoration:none!important;color:#0a0a0a;line-height:1.15;}
+.adtl-site-logo .adtl-site-logo__image{display:block;width:76px;height:58px;max-width:none;object-fit:contain;flex-shrink:0;border-radius:6px;}
+.adtl-site-logo .adtl-site-logo__name{display:flex;flex-direction:column;gap:4px;font-family:'Space Grotesk',Arial,sans-serif;white-space:nowrap;}
+.adtl-site-logo__name strong{font-size:14px;font-weight:700;letter-spacing:.02em;}
+.adtl-site-logo__name>span{font-size:10px;font-weight:500;letter-spacing:.16em;color:#737373;}
+.adtl-site-logo:focus-visible{outline:2px solid #171717;outline-offset:4px;border-radius:6px;}
+@media(max-width:640px){.adtl-site-logo{gap:9px}.adtl-site-logo .adtl-site-logo__image{width:68px;height:52px}.adtl-site-logo__name strong{font-size:13px}.adtl-site-logo__name>span{font-size:9px}}
