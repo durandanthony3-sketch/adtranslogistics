@@ -111,5 +111,11 @@
       "includeFiles": "{lib/**,assets/goods-budget.js,assets/vendor/jspdf.umd.min.js,assets/logo-adtl-20260919.jpeg}",
       "maxDuration": 60
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/keepalive",
+      "schedule": "17 5 * * *"
+    }
+  ]
 }
