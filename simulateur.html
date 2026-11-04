@@ -654,7 +654,7 @@ body { -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         <div id="sim-notification-status" hidden role="status" style="border:1px solid #D4D4D4;background:#F7F7F7;padding:14px;border-radius:12px;font-size:13px;line-height:1.6;margin-bottom:16px;">Votre paiement est confirmé et votre rapport reste disponible. L’envoi de votre rapport par e-mail doit être réessayé ; aucun nouveau paiement n’est nécessaire.
           <button id="sim-notification-retry" type="button" hidden style="display:block;margin-top:10px;padding:10px 14px;background:#0A0A0A;color:#fff;border:0;border-radius:8px;cursor:pointer;">Réessayer l’envoi par e-mail</button>
         </div>
-        <div id="sim-report-action" hidden class="sim-report-action"><strong>Votre rapport est prêt</strong><p>Téléchargez-le pour le conserver et le partager.</p><p id="sim-email-status" role="status"></p><div style="margin:14px 0;"><label for="sim-report-email">Adresse e-mail du rapport</label><input id="sim-report-email" type="email" required maxlength="254" autocomplete="email" placeholder="votre@email.com" style="display:block;width:100%;padding:12px;margin:6px 0;border:1px solid #D4D4D4;border-radius:8px;"><button id="sim-email-send" type="button" class="sim-text-button" style="padding:10px 0;">Renvoyer le rapport par e-mail</button></div><button type="button" class="calc-submit" onclick="downloadReportPDF()">Télécharger mon rapport PDF</button></div>
+        <div id="sim-report-action" hidden class="sim-report-action"><strong>Votre rapport est prêt</strong><p>Téléchargez-le pour le conserver et le partager.</p><p id="sim-email-status" role="status"></p><div style="margin:14px 0;"><label for="sim-report-email">Adresse e-mail du rapport</label><input id="sim-report-email" type="email" required maxlength="254" autocomplete="email" placeholder="votre@email.com" style="display:block;width:100%;padding:12px;margin:6px 0;border:1px solid #D4D4D4;border-radius:8px;"><button id="sim-email-send" type="button" class="sim-text-button" style="padding:10px 0;">Renvoyer le rapport par e-mail</button></div><button type="button" class="calc-submit" onclick="downloadReportPDF()">Télécharger mon rapport PDF</button><p style="margin:12px 0 0;font-size:13px;color:#525252;line-height:1.6;">Rien reçu par e-mail ? <a id="sim-wa-report" href="https://wa.me/2290197500555" target="_blank" rel="noopener" style="color:#0A0A0A;font-weight:700;text-decoration:underline;">Demandez votre rapport sur WhatsApp</a> : notre équipe le retrouve avec votre référence de paiement.</p></div>
         <p id="sim-paid-banner" hidden role="status" style="border:1px solid #D4D4D4;background:#F7F7F7;padding:14px;border-radius:12px;font-size:13px;line-height:1.6;margin-bottom:16px;"></p>
 
         <!-- Empty state -->
@@ -2594,8 +2594,8 @@ function shareOnWhatsApp() {
 <script src="/assets/lang-suggest.js?v=5" defer></script>
 <script defer src="/assets/client-contact.js?v=20260923-email1"></script>
 <script defer src="/assets/vehicle-condition.js?v=20260914"></script>
-<script defer src="/assets/simulation-tools.js?v=20260923-email2"></script>
-<script defer src="/assets/simulator-payment.js?v=20260923-reset2"></script>
+<script defer src="/assets/simulation-tools.js?v=20261104"></script>
+<script defer src="/assets/simulator-payment.js?v=20261104"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

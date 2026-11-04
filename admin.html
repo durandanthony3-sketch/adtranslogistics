@@ -208,6 +208,7 @@
         <button class="admin-tab active" onclick="switchAdminTab('dossiers')" id="atab-dossiers">Dossiers</button>
         <button class="admin-tab" onclick="switchAdminTab('documents')" id="atab-documents">Documents</button>
         <button class="admin-tab" onclick="switchAdminTab('catalogue')" id="atab-catalogue">Catalogue</button>
+        <button class="admin-tab" onclick="switchAdminTab('simulations')" id="atab-simulations">Simulations payées <span id="sim-pending-badge" class="badge" style="display:none;background:#FEF3C7;color:#92400E;margin-left:6px;">0</span></button>
         <a class="admin-tab" href="/equipe" style="margin-left:auto;background:#0A0A0A;color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">🚢 Console dépotage →</a>
     </div>
 
@@ -261,6 +262,23 @@
         </div>
         <!-- Documents grouped by client -->
         <div id="admin-doc-list"></div>
+    </div>
+
+    <!-- ═══ SIMULATIONS PAYÉES ═══ -->
+    <div id="view-simulations" style="display:none;">
+        <div class="filter-bar">
+            <input type="search" class="fi" id="sim-search" placeholder="🔍  Référence, client, téléphone, e-mail, véhicule…" oninput="renderSims()" style="max-width:340px;"/>
+            <select class="fi" id="sim-filter" onchange="renderSims()">
+                <option value="">Toutes</option>
+                <option value="pending">E-mail non envoyé</option>
+                <option value="sent">E-mail envoyé</option>
+                <option value="unhandled">Non traitées</option>
+            </select>
+            <button onclick="loadSims()" class="btn btn-outline btn-sm">↺ Actualiser</button>
+            <span id="sim-provider" style="font-size:12.5px;color:var(--gray600);margin-left:auto;"></span>
+        </div>
+        <p style="font-size:13px;color:var(--gray600);line-height:1.6;margin:0 0 14px;">Chaque simulation payée (véhicule ou marchandises) est copiée ici dès que le paiement KKiaPay est vérifié. Si l’e-mail automatique a échoué, téléchargez le PDF et envoyez-le au client, ou renvoyez l’e-mail une fois le service d’e-mail configuré.</p>
+        <div id="sim-list"></div>
     </div>
 
     <!-- ═══ CATALOGUE VIEW ═══ -->
@@ -663,12 +681,100 @@ function showToast(msg) {
 // ── Admin Tabs ──
 // ══════════════════════════════════════════════
 function switchAdminTab(tab) {
-    ['dossiers','documents','catalogue'].forEach(t => {
+    ['dossiers','documents','catalogue','simulations'].forEach(t => {
         document.getElementById('view-'+t).style.display = t===tab ? 'block' : 'none';
         document.getElementById('atab-'+t).classList.toggle('active', t===tab);
     });
     if (tab==='documents') loadAllDocuments();
     if (tab==='catalogue') loadProducts();
+    if (tab==='simulations') loadSims();
+}
+
+// ══════════════════════════════════════════════
+// ── Simulations payées (copie serveur, table sim_receipts) ──
+// ══════════════════════════════════════════════
+let allSims = [], simConfig = null;
+const SIM_API = { vehicle: '/api/sim-pay', goods: '/api/goods' };
+const simMoney = v => v == null ? '—' : Number(v).toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' F';
+const simDate = v => v ? new Date(v).toLocaleString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
+const simEsc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+async function simToken() { const { data: { session } } = await sb.auth.getSession(); if (!session) throw new Error('Session expirée. Reconnectez-vous.'); return session.access_token; }
+async function simApi(product, action, body) {
+    const res = await fetch((SIM_API[product] || SIM_API.vehicle) + '?action=' + action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), credentials: 'same-origin', cache: 'no-store' });
+    let data = {}; try { data = await res.json(); } catch (_) {}
+    if (!res.ok) throw new Error(data.error?.message || 'Le service ne répond pas.');
+    return data;
+}
+async function loadSims() {
+    const list = document.getElementById('sim-list');
+    list.innerHTML = '<p style="color:var(--gray600);font-size:14px;">Chargement…</p>';
+    if (!simConfig) { try { simConfig = await (await fetch('/api/sim-pay?action=config', { cache: 'no-store' })).json(); } catch (_) { simConfig = {}; } }
+    document.getElementById('sim-provider').textContent = simConfig.emailProvider && simConfig.emailProvider !== 'formsubmit' ? 'E-mail automatique : ' + simConfig.emailProvider : 'E-mail automatique non configuré (ajouter BREVO_API_KEY dans Vercel)';
+    const { data, error } = await sb.from('sim_receipts_overview').select('*').order('verified_at', { ascending: false }).limit(300);
+    if (error) {
+        list.innerHTML = '<p style="color:#B91C1C;font-size:14px;">' + (error.code === '42P01' || /sim_receipts/.test(error.message) ? 'La table des simulations payées n’est pas encore créée dans Supabase (fichier supabase-sim-receipts.sql).' : simEsc(error.message)) + '</p>';
+        allSims = []; return;
+    }
+    allSims = data || [];
+    const pending = allSims.filter(r => r.notification_status !== 'sent' && !r.handled_at).length;
+    const badge = document.getElementById('sim-pending-badge'); badge.textContent = pending; badge.style.display = pending ? 'inline-flex' : 'none';
+    renderSims();
+}
+function renderSims() {
+    const q = (document.getElementById('sim-search').value || '').toLowerCase(), f = document.getElementById('sim-filter').value;
+    const rows = allSims.filter(r => {
+        const hay = [r.transaction_id, r.first_name, r.last_name, r.customer_phone, r.customer_email, r.label].join(' ').toLowerCase();
+        if (q && !hay.includes(q)) return false;
+        if (f === 'pending') return r.notification_status !== 'sent';
+        if (f === 'sent') return r.notification_status === 'sent';
+        if (f === 'unhandled') return !r.handled_at;
+        return true;
+    });
+    const list = document.getElementById('sim-list');
+    if (!rows.length) { list.innerHTML = '<p style="color:var(--gray600);font-size:14px;">Aucune simulation payée' + (allSims.length ? ' pour ce filtre.' : ' enregistrée pour l’instant.') + '</p>'; return; }
+    list.innerHTML = rows.map(r => {
+        const name = [r.first_name, r.last_name].filter(Boolean).join(' ') || 'Client';
+        const sent = r.notification_status === 'sent';
+        const wa = r.customer_phone ? 'https://wa.me/' + String(r.customer_phone).replace(/\D/g, '').replace(/^(?!229|234)/, '229') + '?text=' + encodeURIComponent('Bonjour ' + name + ', AD TRANS LOGISTICS vous confirme votre simulation ' + (r.label || '') + ' (réf. ADTL-' + r.transaction_id + ') : montant total estimé ' + simMoney(r.total) + ' CFA, droits, taxes et frais compris. Le rapport PDF vous est transmis. — AD TRANS LOGISTICS, +229 01 97 50 05 55') : '';
+        return '<div class="dos-card" style="cursor:default;flex-wrap:wrap;align-items:flex-start;">' +
+          '<div style="flex:1;min-width:240px;">' +
+            '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:6px;">' +
+              '<span class="badge ' + (r.product === 'goods' ? 'badge-import' : 'badge-transit') + '">' + (r.product === 'goods' ? 'Marchandises' : 'Véhicule') + '</span>' +
+              '<span class="badge" style="background:' + (sent ? '#DCFCE7;color:#166534' : '#FEF3C7;color:#92400E') + ';">' + (sent ? 'E-mail envoyé' : 'E-mail non envoyé') + '</span>' +
+              (r.handled_at ? '<span class="badge badge-ouvert">Traité ' + simDate(r.handled_at) + '</span>' : '') +
+            '</div>' +
+            '<div style="font-weight:700;font-size:15px;">' + simEsc(r.label || '—') + ' <span style="color:var(--gray600);font-weight:500;">· ' + simMoney(r.total) + '</span></div>' +
+            '<div style="font-size:13px;color:var(--gray600);margin-top:4px;">' + simEsc(name) + (r.customer_phone ? ' · ' + simEsc(r.customer_phone) : '') + (r.customer_email ? ' · ' + simEsc(r.customer_email) : '') + '</div>' +
+            '<div style="font-size:12px;color:var(--gray600);margin-top:4px;">Réf. ADTL-' + simEsc(r.transaction_id) + ' · payé ' + simMoney(r.amount) + ' · vérifié ' + simDate(r.verified_at || r.created_at) + (r.email_provider ? ' · ' + simEsc(r.email_provider) : '') + '</div>' +
+          '</div>' +
+          '<div style="display:flex;gap:8px;flex-wrap:wrap;">' +
+            '<button class="btn btn-dark btn-sm" onclick="simDownload(\'' + simEsc(r.product) + '\',\'' + simEsc(r.transaction_id) + '\')">PDF</button>' +
+            '<button class="btn btn-outline btn-sm" onclick="simResend(\'' + simEsc(r.product) + '\',\'' + simEsc(r.transaction_id) + '\',\'' + simEsc(r.customer_email || '') + '\')">Renvoyer l’e-mail</button>' +
+            (wa ? '<a class="btn btn-outline btn-sm" href="' + wa + '" target="_blank" rel="noopener">WhatsApp</a>' : '') +
+            (r.handled_at ? '' : '<button class="btn btn-outline btn-sm" onclick="simHandled(' + r.id + ')">Marquer traité</button>') +
+          '</div></div>';
+    }).join('');
+}
+async function simDownload(product, transactionId) {
+    try {
+        const data = await simApi(product, 'adminReport', { accessToken: await simToken(), transactionId });
+        const bytes = Uint8Array.from(atob(data.contentBase64), c => c.charCodeAt(0));
+        const url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+        const a = document.createElement('a'); a.href = url; a.download = data.filename; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1500);
+    } catch (e) { showToast(e.message); }
+}
+async function simResend(product, transactionId, email) {
+    const to = prompt('Envoyer le rapport PDF à quelle adresse ?', email || '');
+    if (!to) return;
+    try {
+        const data = await simApi(product, 'adminResend', { accessToken: await simToken(), transactionId, email: to.trim() });
+        showToast('Rapport envoyé à ' + data.email + ' (' + data.provider + ').'); loadSims();
+    } catch (e) { showToast(e.message); }
+}
+async function simHandled(id) {
+    const { data: { session } } = await sb.auth.getSession();
+    const { error } = await sb.from('sim_receipts').update({ handled_by: session.user.id, handled_at: new Date().toISOString() }).eq('id', id);
+    if (error) showToast('Mise à jour impossible : ' + error.message); else loadSims();
 }
 
 // ══════════════════════════════════════════════

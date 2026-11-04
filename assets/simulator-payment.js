@@ -265,6 +265,7 @@
     status('Votre simulation payée est disponible. Vous pourrez la retrouver sur cet appareil sans payer à nouveau pour ces mêmes paramètres.', true);
     el('sim-paid-banner').textContent = 'Paiement confirmé pour la prestation de simulation' + (Number.isSafeInteger(data.amount) && data.currency === 'XOF' ? ' à ' + data.amount.toLocaleString('fr-FR') + ' F CFA' : '') + ', hors frais KKiaPay éventuels. Référence Kkiapay : ' + String(data.transactionId || 'conservée') + '. Votre rapport PDF est disponible.';
     el('sim-paid-banner').hidden = false;
+    const wa = el('sim-wa-report'); if (wa) wa.href = 'https://wa.me/2290197500555?text=' + encodeURIComponent('Bonjour AD TRANS LOGISTICS, je n’ai pas reçu mon rapport de simulation. Référence de paiement : ADTL-' + String(data.transactionId || '') + '. Véhicule : ' + [data.input?.brand, data.input?.model, data.input?.year].filter(Boolean).join(' ') + '.');
     el('sim-report-action').hidden=false; el('sim-checkout').hidden=true;
     flow.step(3);flow.track('result_viewed','vehicle');
     el('sticky-unlock').style.display = 'none'; document.body.classList.remove('has-sticky');

@@ -39,6 +39,8 @@
   async function deliverReportEmail(api, receiptToken, email, prepared) {
     const job = await request(api,'email',{receiptToken,email});
     prepared?.(job);
+    // Envoi direct depuis le serveur (Brevo / Resend) : rien à soumettre depuis le navigateur.
+    if(!job.emailSubmission&&job.emailDeliveryStatus==='sent')return job;
     const submission=job.emailSubmission, next=new URL(submission?.payload?._next||'',location.origin);
     if(submission?.endpoint!=='https://formsubmit.co/adtranslogistics@hotmail.com'||next.origin!==location.origin||next.pathname!=='/rapport-envoi-confirme'||!/^[a-f0-9]{48}$/.test(submission.attempt))throw Error('Envoi du rapport indisponible. Réessayez.');
     const frame=document.createElement('iframe'), form=document.createElement('form');
