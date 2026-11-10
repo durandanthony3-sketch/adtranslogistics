@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Suivi de conteneur au port de Cotonou en temps réel | AD TRANS LOGISTICS</title>
+    <title>Suivi de conteneur au port de Cotonou en temps réel | ADTL</title>
     <meta content="Suivez le dépotage de votre conteneur au port de Cotonou en temps réel : 13 étapes, 4 phases, notifications WhatsApp. Code de suivi ou conteneur + BL." name="description"/>
     <!-- PWA / Application Mobile -->
     <link rel="manifest" href="/manifest.json"/>
@@ -78,9 +78,13 @@
 <meta property="og:url" content="https://www.adtranslogistics.com/suivi"/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="https://www.adtranslogistics.com/icons/og-cover.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="AD TRANS LOGISTICS — transitaire au port de Cotonou, Bénin"/>
 <meta property="og:site_name" content="AD TRANS LOGISTICS"/>
 <meta property="og:locale" content="fr_FR"/>
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.adtranslogistics.com/icons/og-cover.png"/>
 <link rel="stylesheet" href="/adtl-elegant.css?v=20261015"/>
 <link rel="stylesheet" href="/adtl-cards.css?v=20260911-3"/>
 <link rel="stylesheet" href="/assets/site-logo-20260919.css">
@@ -101,7 +105,7 @@
 <nav class="glass-nav transition-all duration-300" id="navbar">
 <div class="container mx-auto px-6 max-w-[1440px]">
 <div class="flex items-center justify-between h-20">
-<a class="adtl-site-logo" href="/" aria-label="AD TRANS LOGISTICS — Accueil"><img class="adtl-site-logo__image" src="/assets/logo-adtl-160.webp" srcset="/assets/logo-adtl-160.webp 1x, /assets/logo-adtl-320.webp 2x" width="160" height="121" alt="" decoding="async" fetchpriority="high"></a>
+<a class="adtl-site-logo" href="/" aria-label="AD TRANS LOGISTICS — Accueil"><img class="adtl-site-logo__image" src="/assets/logo-adtl-160.webp" srcset="/assets/logo-adtl-160.webp 1x, /assets/logo-adtl-320.webp 2x" width="160" height="121" alt="AD TRANS LOGISTICS" decoding="async" fetchpriority="high"></a>
 <ul class="hidden lg:flex items-center gap-1 list-none">
     <li class="relative group">
         <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Calcul des droits de douane <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
@@ -123,6 +127,8 @@
         <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
             <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Facture commerciale</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Liste de colisage</li><li>&#10003; Certificat d'origine</li><li>&#10003; Licence / autorisation d'import</li></ul>
+            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/guides">Guides import-export 2026 →</a>
+            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/importer-voiture-diaspora">Importer une voiture depuis l’étranger →</a>
             <a href="/demande?service=importation" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
         </div>
     </li>
@@ -139,6 +145,10 @@
         <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 p-4 min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             <div class="text-xs font-bold text-black uppercase tracking-wide mb-2">Documents requis</div>
             <ul class="space-y-1 mb-3 text-[13px] text-gray-500"><li>&#10003; Declaration de transit (T1)</li><li>&#10003; Garantie de transit</li><li>&#10003; Connaissement (BL) ou LTA</li><li>&#10003; Facture commerciale</li><li>&#10003; Certificat d'origine</li></ul>
+            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/transit-niger">Transit Niger (Niamey) →</a>
+            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/transit-burkina">Transit Burkina Faso →</a>
+            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/transit-mali">Transit Mali (Bamako) →</a>
+            <a class="block px-1 py-2 text-sm font-semibold text-black hover:underline" href="/transit-nigeria">Transit Nigeria (Lagos) →</a>
             <a href="/demande?service=transit" class="block text-center py-2.5 bg-black text-white text-sm font-semibold rounded-lg hover:opacity-85">Soumettre une demande &rarr;</a>
         </div>
     </li>
@@ -155,7 +165,7 @@
     <li class="relative group">
         <button class="text-[15px] font-medium text-g500 flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">Boutique <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="absolute top-full left-0 mt-1 bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="/boutique">Vehicules</a>
+            <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="/boutique">Véhicules</a>
             <a class="block px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50" href="https://adtranslogistics.mychariow.shop" target="_blank">Articles</a>
         </div>
     </li>
@@ -202,7 +212,7 @@
         <svg class="w-4 h-4 transition-transform mob-tw-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
     </button>
     <div class="mob-tw-sub hidden pl-8 pb-2">
-        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/boutique" onclick="closeMobile()">Vehicules</a>
+        <a class="block p-3 text-sm text-gray-500 hover:text-black" href="/boutique" onclick="closeMobile()">Véhicules</a>
         <a class="block p-3 text-sm text-gray-500 hover:text-black" href="https://adtranslogistics.mychariow.shop" target="_blank" onclick="closeMobile()">Articles</a>
     </div>
 </div>
@@ -341,13 +351,37 @@ Entrez le code de suivi reçu par WhatsApp, ou votre numéro de conteneur et de 
 </section>
 
 <!-- FOOTER -->
+<!-- À lire aussi : maillage interne -->
+<section id="a-lire-aussi" aria-labelledby="a-lire-aussi-title" style="padding:56px 0;background:#F7F7F7;border-top:1px solid #E5E5E5;">
+<div style="max-width:1440px;margin:0 auto;padding:0 24px;">
+<h2 id="a-lire-aussi-title" style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;line-height:1.2;color:#0A0A0A;margin:0 0 20px;">À lire aussi</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;">
+<a href="/depotage-conteneur-cotonou" style="display:block;padding:18px 20px;background:#fff;border:1px solid #E5E5E5;border-radius:14px;text-decoration:none;">
+<span style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;line-height:1.35;color:#0A0A0A;margin-bottom:6px;">Dépotage de conteneur à Cotonou</span>
+<span style="display:block;font-size:13px;line-height:1.55;color:#525252;">13 étapes tracées et notification WhatsApp à chaque étape.</span>
+</a>
+<a href="/simulateur-depotage" style="display:block;padding:18px 20px;background:#fff;border:1px solid #E5E5E5;border-radius:14px;text-decoration:none;">
+<span style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;line-height:1.35;color:#0A0A0A;margin-bottom:6px;">Simulateur de dépotage de conteneur</span>
+<span style="display:block;font-size:13px;line-height:1.55;color:#525252;">Estimez le coût du dépotage de votre conteneur au port de Cotonou.</span>
+</a>
+<a href="/guides/delais-port-cotonou" style="display:block;padding:18px 20px;background:#fff;border:1px solid #E5E5E5;border-radius:14px;text-decoration:none;">
+<span style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;line-height:1.35;color:#0A0A0A;margin-bottom:6px;">Délais au port de Cotonou</span>
+<span style="display:block;font-size:13px;line-height:1.55;color:#525252;">Délais par étape, causes de retard et conseils pour éviter le magasinage.</span>
+</a>
+<a href="/guides/documents-importation-benin" style="display:block;padding:18px 20px;background:#fff;border:1px solid #E5E5E5;border-radius:14px;text-decoration:none;">
+<span style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;line-height:1.35;color:#0A0A0A;margin-bottom:6px;">Documents pour importer au Bénin</span>
+<span style="display:block;font-size:13px;line-height:1.55;color:#525252;">BL, facture, liste de colisage, certificat d’origine : la liste complète et le circuit GUCE.</span>
+</a>
+</div>
+</div>
+</section>
 <footer class="bg-g50 border-t border-g200 py-16">
 <div class="container mx-auto px-6 max-w-[1440px]">
 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 <!-- Company Info -->
 <div>
 <div class="font-heading font-bold text-base text-brand mb-6">AD TRANS LOGISTICS</div>
-<p class="text-sm text-g500 mb-4">SARL specialisée en transit douanier, importation de véhicules et logistique portuaire au port de Cotonou, Bénin.</p>
+<p class="text-sm text-g500 mb-4">SARL spécialisée en transit douanier, importation de véhicules et logistique portuaire au port de Cotonou, Bénin.</p>
 <div class="space-y-2 text-[13px] text-g600">
 <p><strong>IFU:</strong> 3202465578499</p>
 <p><strong>RCCM:</strong> RB/COT/24 B 38537</p>
@@ -357,25 +391,36 @@ Entrez le code de suivi reçu par WhatsApp, ou votre numéro de conteneur et de 
 <div>
 <h3 class="font-heading font-bold text-sm text-brand mb-6">Services</h3>
 <ul class="space-y-3 text-[13px]">
-<li><a href="/#services" class="text-g500 hover:text-brand transition-colors">Transit Douanier</a></li>
-<li><a href="/#services" class="text-g500 hover:text-brand transition-colors">Logistique Portuaire</a></li>
-<li><a href="/negoce" class="text-g500 hover:text-brand transition-colors">Négoce Matières Premières</a></li>
-<li><a href="/vehicules" class="text-g500 hover:text-brand transition-colors">Achat & Import Véhicules</a></li>
-<li><a href="/#formation" class="text-g500 hover:text-brand transition-colors">Formation & Conseil</a></li>
+<li><a href="/#services" class="text-g500 hover:text-brand transition-colors">Transit douanier à Cotonou</a></li>
+<li><a href="/depotage-conteneur-cotonou" class="text-g500 hover:text-brand transition-colors">Dépotage de conteneur à Cotonou</a></li>
+<li><a href="/transit-niger" class="text-g500 hover:text-brand transition-colors">Transit Niger (Niamey)</a></li>
+<li><a href="/transit-burkina" class="text-g500 hover:text-brand transition-colors">Transit Burkina Faso (Ouagadougou)</a></li>
+<li><a href="/transit-mali" class="text-g500 hover:text-brand transition-colors">Transit Mali (Bamako)</a></li>
+<li><a href="/transit-nigeria" class="text-g500 hover:text-brand transition-colors">Transit Nigeria (Lagos)</a></li>
+<li><a href="/vehicules" class="text-g500 hover:text-brand transition-colors">Achat &amp; import de véhicules</a></li>
+<li><a href="/transport-conteneur-vehicules" class="text-g500 hover:text-brand transition-colors">Transport de véhicules en conteneur</a></li>
+<li><a href="/importer-voiture-diaspora" class="text-g500 hover:text-brand transition-colors">Importer une voiture depuis l’étranger</a></li>
+<li><a href="/vehicules-chine" class="text-g500 hover:text-brand transition-colors">Véhicules de Chine (Youxinpai)</a></li>
+<li><a href="/negoce" class="text-g500 hover:text-brand transition-colors">Négoce de matières premières</a></li>
 </ul>
 </div>
 <!-- Resources -->
 <div>
 <h3 class="font-heading font-bold text-sm text-brand mb-6">Ressources</h3>
 <ul class="space-y-3 text-[13px]">
-<li><a href="/#simulateur" class="text-g500 hover:text-brand transition-colors">Simulateur de coûts</a></li>
-<li><a href="/suivi" class="text-g500 hover:text-brand transition-colors font-semibold">Suivi en temps réel</a></li>
-<li><a href="/depotage-conteneur-cotonou" class="text-g500 hover:text-brand transition-colors">Dépotage de conteneurs</a></li>
+<li><a href="/simulateurs" class="text-g500 hover:text-brand transition-colors">Simulateurs de droits de douane</a></li>
+<li><a href="/guides" class="text-g500 hover:text-brand transition-colors">Guides import-export 2026</a></li>
+<li><a href="/guides/dedouanement-vehicule-benin-2026" class="text-g500 hover:text-brand transition-colors">Guide : dédouaner une voiture au Bénin</a></li>
+<li><a href="/guides/documents-importation-benin" class="text-g500 hover:text-brand transition-colors">Guide : documents pour importer</a></li>
+<li><a href="/guides/delais-port-cotonou" class="text-g500 hover:text-brand transition-colors">Guide : délais au port de Cotonou</a></li>
+<li><a href="/guides/calcul-valeur-caf-douane" class="text-g500 hover:text-brand transition-colors">Guide : valeur CAF et droits de douane</a></li>
+<li><a href="/suivi" class="text-g500 hover:text-brand transition-colors">Suivi de conteneur en temps réel</a></li>
 <li><a href="/couverture-mondiale" class="text-g500 hover:text-brand transition-colors">Couverture mondiale</a></li>
+<li><a href="/produits-digitaux" class="text-g500 hover:text-brand transition-colors">Formations &amp; mémos PDF</a></li>
 <li><a href="/a-propos" class="text-g500 hover:text-brand transition-colors">À propos</a></li>
-<li><a href="/produits-digitaux" class="text-g500 hover:text-brand transition-colors">Guides &amp; mémos PDF</a></li>
 <li><a href="/#faq" class="text-g500 hover:text-brand transition-colors">Questions fréquentes</a></li>
-<li><a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" class="text-g500 hover:text-brand transition-colors">Chaîne YouTube</a></li>
+<li><a href="https://www.youtube.com/@ADTRANSLOGISTICS-r3x" target="_blank" rel="noopener" class="text-g500 hover:text-brand transition-colors">Chaîne YouTube</a></li>
+<li><a href="/en" class="text-g500 hover:text-brand transition-colors">English version</a></li>
 </ul>
 </div>
 <!-- Contact & Social -->
